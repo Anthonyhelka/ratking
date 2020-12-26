@@ -89,6 +89,16 @@ public class PlayerController : MonoBehaviour {
     }
   }
 
+  [SerializeField] private bool _dying;
+  public bool Dying {
+    get { return _dying; }
+    set {
+      if (value == _dying) return;
+      _dying = value;
+      _animator.SetBool("dying", _dying);
+    }
+  }
+
   void Awake() {
     _rb = GetComponent<Rigidbody2D>();
     _bc = GetComponent<BoxCollider2D>();
@@ -139,7 +149,7 @@ public class PlayerController : MonoBehaviour {
     } 
     
     // Airborne Animations
-    if (!_isGrounded) {
+    if (!_isGrounded && !Dying) {
       if (Mathf.Round(_rb.velocity.y) < 0) {
         Falling = true;
       } else if (Mathf.Round(_rb.velocity.y) > 0) {
@@ -160,8 +170,9 @@ public class PlayerController : MonoBehaviour {
   }
 
   void FixedUpdate() {
+    Debug.Log(Dying);
     // Movement & Gravity
-    if (!Dashing) {
+    if (!Dashing && !Dying) {
       CalculateMovement();
       CalculateGravity();
     }
@@ -277,33 +288,35 @@ public class PlayerController : MonoBehaviour {
   void DamagePlayer() {
     _health--;
     if (_health <= 0) {
-      Destroy(gameObject);
+      ResetAnimationVariables();
+      Dying = true;
+      Destroy(gameObject, 3.5f);
     } else {
-      StartCoroutine(DamagerPlayerRoutine());
+      // StartCoroutine(DamagerPlayerRoutine());
     }
   }
+  
+  // IEnumerator DamagerPlayerRoutine() {
+  //   Dashing = true;
+  //   _dashCount++;
 
-  IEnumerator DamagerPlayerRoutine() {
-    Dashing = true;
-    _dashCount++;
+  //   // Remove Velocity & Stop Gravity
+  //   _rb.velocity = new Vector2(0, 0) * 0;
+  //   // _rb.gravityScale = 0.0f;
 
-    // Remove Velocity & Stop Gravity
-    _rb.velocity = new Vector2(0, 0) * 0;
-    _rb.gravityScale = 0.0f;
-
-    while (_dashDurationCount < 0.25f) {
-      _dashDurationCount += Time.deltaTime;
-      if (_facingRight == false) {
-        _rb.AddForce(Vector2.right * 0.3f, ForceMode2D.Impulse);
-      } else {
-        _rb.AddForce(Vector2.left * 0.3f, ForceMode2D.Impulse);
-      }
-      _rb.AddForce(Vector2.up * 0.05f, ForceMode2D.Impulse);
-      yield return 0;
-    }
-    Dashing = false;
-    _dashTimer = Time.time + _dashCooldown;
-  }
+  //   while (_dashDurationCount < 0.25f) {
+  //     _dashDurationCount += Time.deltaTime;
+  //     if (_facingRight == false) {
+  //       _rb.AddForce(Vector2.right * 0.3f, ForceMode2D.Impulse);
+  //     } else {
+  //       _rb.AddForce(Vector2.left * 0.3f, ForceMode2D.Impulse);
+  //     }
+  //     // _rb.AddForce(Vector2.up * 0.05f, ForceMode2D.Impulse);
+  //     yield return 0;
+  //   }
+  //   Dashing = false;
+  //   _dashTimer = Time.time + _dashCooldown;
+  // }
 
   void DamageEnemy(GameObject enemy) {
     Destroy(enemy);

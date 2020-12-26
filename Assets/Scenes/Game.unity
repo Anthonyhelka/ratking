@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29106c652ca3991488a0e14fb680d862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: 3
   _speed: 1
   _groundLayerMask:
     serializedVersion: 2
@@ -174,6 +175,7 @@ MonoBehaviour:
   _doubleJump: 0
   _falling: 0
   _dashing: 0
+  _dying: 0
 --- !u!212 &76001770
 SpriteRenderer:
   m_ObjectHideFlags: 0
