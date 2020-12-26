@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2673148580242810164}
   - component: {fileID: 2673148580242810167}
   - component: {fileID: 2673148580242810166}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sticky_Rat
   m_TagString: Enemy
   m_Icon: {fileID: 0}

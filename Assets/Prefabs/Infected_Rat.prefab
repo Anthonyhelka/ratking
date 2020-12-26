@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1141284503323247919}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ground_Detection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 1141284504186021767}
   - component: {fileID: 1141284504186021766}
   - component: {fileID: 1141284504186021764}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Infected_Rat
   m_TagString: Enemy
   m_Icon: {fileID: 0}

@@ -155,22 +155,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 1
-  _state: 0
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 4096
-  _jumpsValue: 2
+  _enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  _airJumpCountMax: 1
   _jumpForce: 3.5
   _fallMultiplier: 2.5
   _lowJumpMultiplier: 2
-  _dashesValue: 1
+  _dashCountMax: 1
   _dashSpeed: 0.3
-  _dashDurationValue: 0.4
+  _dashDurationCountMax: 0.4
   _dashCooldown: 1
-  _airJumpCountMax: 1
   _moving: 0
   _jumping: 0
+  _doubleJump: 0
   _falling: 0
+  _dashing: 0
 --- !u!212 &76001770
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4614,6 +4617,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sticky_Rat (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2673148580242810169, guid: e9e19c04da90c3b40840bdb639623e89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9e19c04da90c3b40840bdb639623e89, type: 3}
 --- !u!1001 &1141284503768017618
@@ -4623,6 +4631,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1141284503323247918, guid: 17ea09546b8bfc74c975f35015b95776,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1141284504186021761, guid: 17ea09546b8bfc74c975f35015b95776,
         type: 3}
       propertyPath: m_RootOrder
@@ -4682,6 +4695,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Infected_Rat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141284504186021762, guid: 17ea09546b8bfc74c975f35015b95776,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17ea09546b8bfc74c975f35015b95776, type: 3}
@@ -4751,6 +4769,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sticky_Rat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2673148580242810169, guid: e9e19c04da90c3b40840bdb639623e89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9e19c04da90c3b40840bdb639623e89, type: 3}

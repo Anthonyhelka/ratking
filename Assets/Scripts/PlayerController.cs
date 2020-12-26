@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour {
   private BoxCollider2D _bc;
   private Animator _animator;
 
+  [SerializeField] private int _health = 3;
+
   // Movement
   private float _horizontalInput;
   private float _verticalInput;
@@ -16,7 +18,9 @@ public class PlayerController : MonoBehaviour {
   private bool _facingRight = true;
   
   // Jumping & Gravity
+  private bool _isGrounded;
   [SerializeField] private LayerMask _groundLayerMask;
+  [SerializeField] private LayerMask _enemyLayerMask;
   private bool _jumpRequest;
   private int _airJumpCount = 0;
   [SerializeField] private int _airJumpCountMax = 1;
@@ -104,8 +108,8 @@ public class PlayerController : MonoBehaviour {
     _verticalInput = Input.GetAxisRaw("Vertical");
     
     // Jump
-    if (Input.GetKey(KeyCode.Space)) {
-      if (IsGrounded()) {
+    if (Input.GetKey(KeyCode.Space) && !Dashing) {
+      if (_isGrounded) {
         _jumpRequest = true;
       } else {
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -128,14 +132,14 @@ public class PlayerController : MonoBehaviour {
     ResetAnimationVariables();
     
     // Grounded Animations
-    if (IsGrounded()) {
+    if (_isGrounded) {
       if (Mathf.Abs(_horizontalInput) > 0) {
         Moving = true;
       }
     } 
     
     // Airborne Animations
-    if (!IsGrounded()) {
+    if (!_isGrounded) {
       if (Mathf.Round(_rb.velocity.y) < 0) {
         Falling = true;
       } else if (Mathf.Round(_rb.velocity.y) > 0) {
@@ -162,8 +166,11 @@ public class PlayerController : MonoBehaviour {
       CalculateGravity();
     }
 
+    // Detect Collisions With BoxCast
+    BoxCastDetector();
+
     // Reset Values When Grounded
-    if (IsGrounded()) {
+    if (_isGrounded) {
       _airJumpCount = 0;
       _dashCount = 0;
       if (!Dashing) {
@@ -203,7 +210,7 @@ public class PlayerController : MonoBehaviour {
 
   void CalculateGravity() {
     // Fall Gravity
-    if (!IsGrounded() && Mathf.Round(_rb.velocity.y) < 0) {
+    if (_isGrounded && Mathf.Round(_rb.velocity.y) < 0) {
       _rb.gravityScale = _fallMultiplier;
       return;
     }
@@ -250,23 +257,56 @@ public class PlayerController : MonoBehaviour {
 
   void OnCollisionEnter2D(Collision2D collision) {
     if (collision.gameObject.tag == "Enemy") {
-      // if (_state == State.jumping || _state == State.dashing) {
-      //   _dashDuration = _dashDurationValue;
-      //   _dashes = _dashesValue;
-      //   _state = State.normal;
-      // }
+      RaycastHit2D enemycastHit = Physics2D.BoxCast(_bc.bounds.center, _bc.bounds.size, 0f, Vector2.down, 0.04f, _enemyLayerMask);
+      if (enemycastHit.collider == null) {
+        DamagePlayer();
+      }
     }
   }
 
-  private bool IsGrounded() {
+  void BoxCastDetector() {
     float height = 0.04f;
-    RaycastHit2D raycastHit = Physics2D.BoxCast(_bc.bounds.center, _bc.bounds.size, 0f, Vector2.down, height, _groundLayerMask);
-    Color rayColor;
-    if (raycastHit.collider != null) {
-      rayColor = Color.green;
-    } else {
-      rayColor = Color.red;
+    RaycastHit2D groundcastHit = Physics2D.BoxCast(_bc.bounds.center, _bc.bounds.size, 0f, Vector2.down, height, _groundLayerMask);
+    RaycastHit2D enemycastHit = Physics2D.BoxCast(_bc.bounds.center, new Vector3(_bc.bounds.size.x / 2, _bc.bounds.size.y, _bc.bounds.size.z), 0f, Vector2.down, height, _enemyLayerMask); 
+    _isGrounded = groundcastHit.collider != null; 
+    if (enemycastHit.collider != null) { 
+      DamageEnemy(enemycastHit.transform.gameObject);
     }
-    return raycastHit.collider != null;
+  }
+
+  void DamagePlayer() {
+    _health--;
+    if (_health <= 0) {
+      Destroy(gameObject);
+    } else {
+      StartCoroutine(DamagerPlayerRoutine());
+    }
+  }
+
+  IEnumerator DamagerPlayerRoutine() {
+    Dashing = true;
+    _dashCount++;
+
+    // Remove Velocity & Stop Gravity
+    _rb.velocity = new Vector2(0, 0) * 0;
+    _rb.gravityScale = 0.0f;
+
+    while (_dashDurationCount < 0.25f) {
+      _dashDurationCount += Time.deltaTime;
+      if (_facingRight == false) {
+        _rb.AddForce(Vector2.right * 0.3f, ForceMode2D.Impulse);
+      } else {
+        _rb.AddForce(Vector2.left * 0.3f, ForceMode2D.Impulse);
+      }
+      _rb.AddForce(Vector2.up * 0.05f, ForceMode2D.Impulse);
+      yield return 0;
+    }
+    Dashing = false;
+    _dashTimer = Time.time + _dashCooldown;
+  }
+
+  void DamageEnemy(GameObject enemy) {
+    Destroy(enemy);
+    Jump();
   }
 }
