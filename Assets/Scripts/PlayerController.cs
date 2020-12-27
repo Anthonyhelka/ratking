@@ -278,7 +278,7 @@ public class PlayerController : MonoBehaviour {
     _dashTimer = Time.time + _dashCooldown;
   }
 
-  void OnCollisionEnter2D(Collision2D collision) {
+  void OnCollisionStay2D(Collision2D collision) {
     if (collision.gameObject.tag == "Enemy") {
       RaycastHit2D enemycastHit = Physics2D.BoxCast(_bc.bounds.center, _bc.bounds.size, 0f, Vector2.down, 0.04f, _enemyLayerMask);
       if (enemycastHit.collider == null && Time.time > _invincibilityTimer) {
@@ -299,8 +299,15 @@ public class PlayerController : MonoBehaviour {
 
   void DamagePlayer() {
     _health--;
+
+    // Stop other animations and movement
     ResetAnimationVariables();
-    Dashing = false;
+    if (Dashing) {
+      Dashing = false;
+      StopCoroutine(DashRoutine());
+    }
+    _rb.velocity = new Vector2(0, 0) * 0;
+    _rb.gravityScale = 1.0f;
     if (_health <= 0) {
       PlayerDeath();
     } else {
@@ -309,14 +316,13 @@ public class PlayerController : MonoBehaviour {
   }
   
   void PlayerDeath() {
-    _rb.velocity = new Vector2(0, 0) * 0;
-    _rb.gravityScale = 1.0f;
     Dying = true;
     Destroy(gameObject, 3.5f);
   }
 
   IEnumerator DamagerPlayerRoutine() {
     Damaged = true;
+    _invincibilityTimer = Time.time + _invincibilityCooldown;
 
     // Remove Velocity
     _rb.velocity = new Vector2(0, 0) * 0;
@@ -331,7 +337,6 @@ public class PlayerController : MonoBehaviour {
       }
       yield return 0;
     }
-    _invincibilityTimer = Time.time + _invincibilityCooldown;
     Damaged = false;
   }
 
