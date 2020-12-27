@@ -16,7 +16,9 @@ public class PlayerController : MonoBehaviour {
   private float _verticalInput;
   [SerializeField] private float _speed = 1.0f;
   private bool _facingRight = true;
-  
+  private float  _invincibilityCooldown = 2.0f;
+  private float _invincibilityTimer = -1.0f;
+
   // Jumping & Gravity
   private bool _isGrounded;
   [SerializeField] private LayerMask _groundLayerMask;
@@ -89,6 +91,16 @@ public class PlayerController : MonoBehaviour {
     }
   }
 
+  [SerializeField] private bool _damaged;
+  public bool Damaged {
+    get { return _damaged; }
+    set {
+      if (value == _damaged) return;
+      _damaged = value;
+      _animator.SetBool("damaged", _damaged);
+    }
+  }
+
   [SerializeField] private bool _dying;
   public bool Dying {
     get { return _dying; }
@@ -118,7 +130,7 @@ public class PlayerController : MonoBehaviour {
     _verticalInput = Input.GetAxisRaw("Vertical");
     
     // Jump
-    if (Input.GetKey(KeyCode.Space) && !Dashing) {
+    if (Input.GetKey(KeyCode.Space) && !Dashing && !Damaged && !Dying) {
       if (_isGrounded) {
         _jumpRequest = true;
       } else {
@@ -132,7 +144,7 @@ public class PlayerController : MonoBehaviour {
     }
     
     // Dash
-    if (Input.GetKeyDown(KeyCode.LeftShift) && _dashCount < _dashCountMax && Time.time >  _dashTimer) {
+    if (Input.GetKeyDown(KeyCode.LeftShift) && _dashCount < _dashCountMax && Time.time >  _dashTimer && !Dashing) {
       _dashRequest = true;
     }
   }
@@ -172,7 +184,7 @@ public class PlayerController : MonoBehaviour {
   void FixedUpdate() {
     Debug.Log(Dying);
     // Movement & Gravity
-    if (!Dashing && !Dying) {
+    if (!Dashing && !Damaged && !Dying) {
       CalculateMovement();
       CalculateGravity();
     }
@@ -269,7 +281,7 @@ public class PlayerController : MonoBehaviour {
   void OnCollisionEnter2D(Collision2D collision) {
     if (collision.gameObject.tag == "Enemy") {
       RaycastHit2D enemycastHit = Physics2D.BoxCast(_bc.bounds.center, _bc.bounds.size, 0f, Vector2.down, 0.04f, _enemyLayerMask);
-      if (enemycastHit.collider == null) {
+      if (enemycastHit.collider == null && Time.time > _invincibilityTimer) {
         DamagePlayer();
       }
     }
@@ -280,43 +292,48 @@ public class PlayerController : MonoBehaviour {
     RaycastHit2D groundcastHit = Physics2D.BoxCast(_bc.bounds.center, _bc.bounds.size, 0f, Vector2.down, height, _groundLayerMask);
     RaycastHit2D enemycastHit = Physics2D.BoxCast(_bc.bounds.center, new Vector3(_bc.bounds.size.x / 2, _bc.bounds.size.y, _bc.bounds.size.z), 0f, Vector2.down, height, _enemyLayerMask); 
     _isGrounded = groundcastHit.collider != null; 
-    if (enemycastHit.collider != null) { 
+    if (enemycastHit.collider != null) {
       DamageEnemy(enemycastHit.transform.gameObject);
     }
   }
 
   void DamagePlayer() {
     _health--;
+    ResetAnimationVariables();
+    Dashing = false;
     if (_health <= 0) {
-      ResetAnimationVariables();
-      Dying = true;
-      Destroy(gameObject, 3.5f);
+      PlayerDeath();
     } else {
-      // StartCoroutine(DamagerPlayerRoutine());
+      StartCoroutine(DamagerPlayerRoutine());
     }
   }
   
-  // IEnumerator DamagerPlayerRoutine() {
-  //   Dashing = true;
-  //   _dashCount++;
+  void PlayerDeath() {
+    _rb.velocity = new Vector2(0, 0) * 0;
+    _rb.gravityScale = 1.0f;
+    Dying = true;
+    Destroy(gameObject, 3.5f);
+  }
 
-  //   // Remove Velocity & Stop Gravity
-  //   _rb.velocity = new Vector2(0, 0) * 0;
-  //   // _rb.gravityScale = 0.0f;
+  IEnumerator DamagerPlayerRoutine() {
+    Damaged = true;
 
-  //   while (_dashDurationCount < 0.25f) {
-  //     _dashDurationCount += Time.deltaTime;
-  //     if (_facingRight == false) {
-  //       _rb.AddForce(Vector2.right * 0.3f, ForceMode2D.Impulse);
-  //     } else {
-  //       _rb.AddForce(Vector2.left * 0.3f, ForceMode2D.Impulse);
-  //     }
-  //     // _rb.AddForce(Vector2.up * 0.05f, ForceMode2D.Impulse);
-  //     yield return 0;
-  //   }
-  //   Dashing = false;
-  //   _dashTimer = Time.time + _dashCooldown;
-  // }
+    // Remove Velocity
+    _rb.velocity = new Vector2(0, 0) * 0;
+
+    float duration = 0.0f;
+    while (duration < 0.2f) {
+      duration += Time.deltaTime;
+      if (_facingRight == false) {
+        _rb.AddForce(Vector2.right * 0.2f, ForceMode2D.Impulse);
+      } else {
+        _rb.AddForce(Vector2.left * 0.2f, ForceMode2D.Impulse);
+      }
+      yield return 0;
+    }
+    _invincibilityTimer = Time.time + _invincibilityCooldown;
+    Damaged = false;
+  }
 
   void DamageEnemy(GameObject enemy) {
     Destroy(enemy);
