@@ -185,7 +185,6 @@ public class PlayerController : MonoBehaviour {
   }
 
   void FixedUpdate() {
-    Debug.Log(_rb.velocity);
     // Movement & Gravity
     if (!Dashing && !Damaged) {
       CalculateMovement();
@@ -321,7 +320,7 @@ public class PlayerController : MonoBehaviour {
     _rb.velocity = new Vector2(0, 0) * 0;
     _rb.gravityScale = 1.0f;
     float duration = 0.0f;
-    while (duration < 0.2f) {
+    while (duration < 0.2f && !Dying) {
       duration += Time.deltaTime;
       if (_facingRight == false) {
         _rb.AddForce(Vector2.right * 0.2f, ForceMode2D.Impulse);

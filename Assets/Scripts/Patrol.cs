@@ -13,7 +13,7 @@ public class Patrol : MonoBehaviour
   {
     transform.Translate(Vector2.right * _speed * Time.deltaTime);
     RaycastHit2D groundInformation = Physics2D.Raycast(_groundDetection.position, Vector2.down, _distance);
-    if (groundInformation.collider == false) {
+    if (groundInformation.collider == false || groundInformation.collider.tag == "Enemy") {
       if (_movingRight == true) {
         transform.eulerAngles = new Vector2(0, -180);
         _movingRight = false;
