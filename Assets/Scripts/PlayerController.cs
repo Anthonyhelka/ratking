@@ -14,10 +14,8 @@ public class PlayerController : MonoBehaviour {
   private float _horizontalInput;
   private float _verticalInput;
   [SerializeField] private float _speed = 1.0f;
-  private bool _facingRight = true;
-  private float  _invincibilityCooldown = 2.0f;
-  private float _invincibilityTimer = -1.0f;
-  private bool _lockPlayerInput = false;
+  public bool _facingRight = true;
+  public bool _lockPlayerInput = false;
 
   // Jumping & Gravity
   private bool _isGrounded;
@@ -91,26 +89,6 @@ public class PlayerController : MonoBehaviour {
     }
   }
 
-  [SerializeField] private bool _damaged;
-  public bool Damaged {
-    get { return _damaged; }
-    set {
-      if (value == _damaged) return;
-      _damaged = value;
-      _animator.SetBool("damaged", _damaged);
-    }
-  }
-
-  [SerializeField] private bool _dying;
-  public bool Dying {
-    get { return _dying; }
-    set {
-      if (value == _dying) return;
-      _dying = value;
-      _animator.SetBool("dying", _dying);
-    }
-  }
-
   void Awake() {
     _rb = GetComponent<Rigidbody2D>();
     _bc = GetComponent<BoxCollider2D>();
@@ -123,6 +101,8 @@ public class PlayerController : MonoBehaviour {
   void Update() {
     if (!_lockPlayerInput) {
       GetInput();
+    } else {
+      ClearInput();
     }
     SetAnimations();
   }
@@ -152,6 +132,13 @@ public class PlayerController : MonoBehaviour {
     }
   }
 
+  void ClearInput() {
+    _horizontalInput = 0.0f;
+    _verticalInput = 0.0f;
+    _jumpRequest = false;
+    _dashRequest = false;
+  }
+  
   void SetAnimations() {
     // Clears Animation Variables
     ResetAnimationVariables();
@@ -164,7 +151,7 @@ public class PlayerController : MonoBehaviour {
     } 
     
     // Airborne Animations
-    if (!_isGrounded && !Dying) {
+    if (!_isGrounded && !_playerHealthScript.Dying) {
       if (Mathf.Round(_rb.velocity.y) < 0) {
         Falling = true;
       } else if (Mathf.Round(_rb.velocity.y) > 0) {
@@ -186,7 +173,7 @@ public class PlayerController : MonoBehaviour {
 
   void FixedUpdate() {
     // Movement & Gravity
-    if (!Dashing && !Damaged) {
+    if (!Dashing && !_playerHealthScript.Damaged) {
       CalculateMovement();
       CalculateGravity();
     }
@@ -241,7 +228,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Low Jump Gravity
-    if (Mathf.Round(_rb.velocity.y) > 0 && !Input.GetKey(KeyCode.Space) && !Dying) {
+    if (Mathf.Round(_rb.velocity.y) > 0 && !Input.GetKey(KeyCode.Space) && !_playerHealthScript.Dying) {
       _rb.gravityScale = _lowJumpMultiplier;
       return;
     }
@@ -283,10 +270,11 @@ public class PlayerController : MonoBehaviour {
   }
 
   void OnCollisionStay2D(Collision2D collision) {
-    if (collision.gameObject.tag == "Enemy") {
+    if (collision.gameObject.tag == "Infected" || collision.gameObject.tag == "Spikes") {
       RaycastHit2D enemycastHit = Physics2D.BoxCast(_bc.bounds.center, _bc.bounds.size, 0f, Vector2.down, 0.04f, _enemyLayerMask);
-      if (enemycastHit.collider == null && Time.time > _invincibilityTimer) {
-        DamagePlayer();
+      if (enemycastHit.collider == null) {
+        ResetAnimationVariables();
+        _playerHealthScript.TakeDamage(collision.transform.tag);
       }
     }
   }
@@ -294,59 +282,11 @@ public class PlayerController : MonoBehaviour {
   void BoxCastDetector() {
     float height = 0.04f;
     RaycastHit2D groundcastHit = Physics2D.BoxCast(_bc.bounds.center, _bc.bounds.size, 0f, Vector2.down, height, _groundLayerMask);
-    RaycastHit2D enemycastHit = Physics2D.BoxCast(_bc.bounds.center, new Vector3(_bc.bounds.size.x / 2, _bc.bounds.size.y, _bc.bounds.size.z), 0f, Vector2.down, height, _enemyLayerMask); 
+    RaycastHit2D enemycastHit = Physics2D.BoxCast(_bc.bounds.center, new Vector3(0.10f, _bc.bounds.size.y, _bc.bounds.size.z), 0f, Vector2.down, height, _enemyLayerMask); 
     _isGrounded = groundcastHit.collider != null; 
     if (enemycastHit.collider != null) {
       DamageEnemy(enemycastHit.transform.gameObject);
     }
-  }
-
-  void DamagePlayer() {
-    _playerHealthScript.TakeDamage();
-
-    // Stop other animations and movement
-    ResetAnimationVariables();
-    if (Dashing) {
-      Dashing = false;
-      StopCoroutine(DashRoutine());
-    }
-    
-    StartCoroutine(DamagerPlayerRoutine());
-  }
-
-  IEnumerator DamagerPlayerRoutine() {
-    Damaged = true;
-    _invincibilityTimer = Time.time + _invincibilityCooldown;
-    _rb.velocity = new Vector2(0, 0) * 0;
-    _rb.gravityScale = 1.0f;
-    float duration = 0.0f;
-    while (duration < 0.2f && !Dying) {
-      duration += Time.deltaTime;
-      if (_facingRight == false) {
-        _rb.AddForce(Vector2.right * 0.2f, ForceMode2D.Impulse);
-      } else {
-        _rb.AddForce(Vector2.left * 0.2f, ForceMode2D.Impulse);
-      }
-      yield return 0;
-    }
-    Damaged = false;
-    _lockPlayerInput = false;
-
-    if (_playerHealthScript.health <= 0) {
-      StartCoroutine(PlayerDeathRoutine());
-    }
-  }
-
-  IEnumerator PlayerDeathRoutine() {
-    Dying = true;
-    _lockPlayerInput = true;
-    float duration = 0.0f;
-    while (duration < 3.4f) {
-      duration += Time.deltaTime;
-      yield return 0;
-    }
-    Dying = false;
-    Destroy(gameObject);
   }
 
   void DamageEnemy(GameObject enemy) {
