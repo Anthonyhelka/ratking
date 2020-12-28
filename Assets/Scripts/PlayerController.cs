@@ -8,8 +8,7 @@ public class PlayerController : MonoBehaviour {
   private Rigidbody2D _rb;
   private BoxCollider2D _bc;
   private Animator _animator;
-
-  [SerializeField] private int _health = 3;
+  private PlayerHealth _playerHealthScript;
 
   // Movement
   private float _horizontalInput;
@@ -18,6 +17,7 @@ public class PlayerController : MonoBehaviour {
   private bool _facingRight = true;
   private float  _invincibilityCooldown = 2.0f;
   private float _invincibilityTimer = -1.0f;
+  private bool _lockPlayerInput = false;
 
   // Jumping & Gravity
   private bool _isGrounded;
@@ -115,12 +115,15 @@ public class PlayerController : MonoBehaviour {
     _rb = GetComponent<Rigidbody2D>();
     _bc = GetComponent<BoxCollider2D>();
     _animator = GetComponent<Animator>();
+    _playerHealthScript = GetComponent<PlayerHealth>();
     Application.targetFrameRate = 60;
     QualitySettings.vSyncCount = 0;
   }
 
   void Update() {
-    GetInput();
+    if (!_lockPlayerInput) {
+      GetInput();
+    }
     SetAnimations();
   }
 
@@ -130,7 +133,7 @@ public class PlayerController : MonoBehaviour {
     _verticalInput = Input.GetAxisRaw("Vertical");
     
     // Jump
-    if (Input.GetKey(KeyCode.Space) && !Dashing && !Damaged && !Dying) {
+    if (Input.GetKey(KeyCode.Space)) {
       if (_isGrounded) {
         _jumpRequest = true;
       } else {
@@ -144,7 +147,7 @@ public class PlayerController : MonoBehaviour {
     }
     
     // Dash
-    if (Input.GetKeyDown(KeyCode.LeftShift) && _dashCount < _dashCountMax && Time.time >  _dashTimer && !Dashing) {
+    if (Input.GetKeyDown(KeyCode.LeftShift) && _dashCount < _dashCountMax && Time.time >  _dashTimer) {
       _dashRequest = true;
     }
   }
@@ -182,9 +185,9 @@ public class PlayerController : MonoBehaviour {
   }
 
   void FixedUpdate() {
-    Debug.Log(Dying);
+    Debug.Log(_rb.velocity);
     // Movement & Gravity
-    if (!Dashing && !Damaged && !Dying) {
+    if (!Dashing && !Damaged) {
       CalculateMovement();
       CalculateGravity();
     }
@@ -239,7 +242,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Low Jump Gravity
-    if (Mathf.Round(_rb.velocity.y) > 0 && !Input.GetKey(KeyCode.Space)) {
+    if (Mathf.Round(_rb.velocity.y) > 0 && !Input.GetKey(KeyCode.Space) && !Dying) {
       _rb.gravityScale = _lowJumpMultiplier;
       return;
     }
@@ -259,6 +262,7 @@ public class PlayerController : MonoBehaviour {
 
   IEnumerator DashRoutine() {
     Dashing = true;
+    _lockPlayerInput = true;
     _dashCount++;
 
     // Remove Velocity & Stop Gravity
@@ -275,6 +279,7 @@ public class PlayerController : MonoBehaviour {
       yield return 0;
     }
     Dashing = false;
+    _lockPlayerInput = false;
     _dashTimer = Time.time + _dashCooldown;
   }
 
@@ -298,7 +303,7 @@ public class PlayerController : MonoBehaviour {
   }
 
   void DamagePlayer() {
-    _health--;
+    _playerHealthScript.TakeDamage();
 
     // Stop other animations and movement
     ResetAnimationVariables();
@@ -306,27 +311,15 @@ public class PlayerController : MonoBehaviour {
       Dashing = false;
       StopCoroutine(DashRoutine());
     }
-    _rb.velocity = new Vector2(0, 0) * 0;
-    _rb.gravityScale = 1.0f;
-    if (_health <= 0) {
-      PlayerDeath();
-    } else {
-      StartCoroutine(DamagerPlayerRoutine());
-    }
-  }
-  
-  void PlayerDeath() {
-    Dying = true;
-    Destroy(gameObject, 3.5f);
+    
+    StartCoroutine(DamagerPlayerRoutine());
   }
 
   IEnumerator DamagerPlayerRoutine() {
     Damaged = true;
     _invincibilityTimer = Time.time + _invincibilityCooldown;
-
-    // Remove Velocity
     _rb.velocity = new Vector2(0, 0) * 0;
-
+    _rb.gravityScale = 1.0f;
     float duration = 0.0f;
     while (duration < 0.2f) {
       duration += Time.deltaTime;
@@ -338,6 +331,23 @@ public class PlayerController : MonoBehaviour {
       yield return 0;
     }
     Damaged = false;
+    _lockPlayerInput = false;
+
+    if (_playerHealthScript.health <= 0) {
+      StartCoroutine(PlayerDeathRoutine());
+    }
+  }
+
+  IEnumerator PlayerDeathRoutine() {
+    Dying = true;
+    _lockPlayerInput = true;
+    float duration = 0.0f;
+    while (duration < 3.4f) {
+      duration += Time.deltaTime;
+      yield return 0;
+    }
+    Dying = false;
+    Destroy(gameObject);
   }
 
   void DamageEnemy(GameObject enemy) {
