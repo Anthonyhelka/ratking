@@ -44,16 +44,16 @@ public class PlayerCombat : MonoBehaviour
     Attacking = true;
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
     foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(attackDamage); }
-    _nextAttackTime = Time.time + attackCooldown; 
-    _rb.velocity = new Vector2(0, 0) * 0;
-    _rb.gravityScale = 0.0f;
-    _rb.gravityScale = 0.0f;
+    _nextAttackTime = Time.time + attackCooldown;
     float duration = 0.0f;
     while (duration < 0.25f) {
       duration += Time.deltaTime;
+      _playerControllerScript._lockPlayerInput = true; 
+      _rb.velocity = new Vector2(0, 0) * 0;
+      _rb.gravityScale = 0.0f;
       yield return 0;
     }
-
+    _playerControllerScript._lockPlayerInput = false; 
     Attacking = false;
   }
 

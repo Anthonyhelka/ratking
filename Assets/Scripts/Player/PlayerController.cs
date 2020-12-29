@@ -129,12 +129,12 @@ public class PlayerController : MonoBehaviour {
     }
     
     // Dash
-    if (Input.GetKeyDown(KeyCode.LeftShift) && _dashCount < _dashCountMax && Time.time >  _dashTimer) {
+    if (Input.GetKey(KeyCode.LeftShift) && _dashCount < _dashCountMax && Time.time >  _dashTimer) {
       _dashRequest = true;
     }
 
     // Attack
-    if (Input.GetKeyDown(KeyCode.Mouse0)) {
+    if (Input.GetKey(KeyCode.Mouse0)) {
       _playerCombatScript.Attack();
     }
   }
