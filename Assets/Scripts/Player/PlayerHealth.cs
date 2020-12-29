@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour {
-
   private Animator _animator;
   private Rigidbody2D _rb;
   private PlayerController _playerControllerScript;
