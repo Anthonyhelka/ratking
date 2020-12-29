@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
   private BoxCollider2D _bc;
   private Animator _animator;
   private PlayerHealth _playerHealthScript;
+  private PlayerCombat _playerCombatScript;
 
   // Movement
   private float _horizontalInput;
@@ -94,6 +95,7 @@ public class PlayerController : MonoBehaviour {
     _bc = GetComponent<BoxCollider2D>();
     _animator = GetComponent<Animator>();
     _playerHealthScript = GetComponent<PlayerHealth>();
+    _playerCombatScript = GetComponent<PlayerCombat>();
     Application.targetFrameRate = 60;
     QualitySettings.vSyncCount = 0;
   }
@@ -130,6 +132,11 @@ public class PlayerController : MonoBehaviour {
     if (Input.GetKeyDown(KeyCode.LeftShift) && _dashCount < _dashCountMax && Time.time >  _dashTimer) {
       _dashRequest = true;
     }
+
+    // Attack
+    if (Input.GetKeyDown(KeyCode.Mouse0)) {
+      _playerCombatScript.Attack();
+    }
   }
 
   void ClearInput() {
@@ -164,7 +171,7 @@ public class PlayerController : MonoBehaviour {
     }
   }
 
-  void ResetAnimationVariables() {
+  public void ResetAnimationVariables() {
     Moving = false;
     Falling = false;
     Jumping = false;
@@ -179,7 +186,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Detect Collisions With BoxCast
-    BoxCastDetector();
+    GroundCheck();
 
     // Reset Values When Grounded
     if (_isGrounded) {
@@ -269,28 +276,9 @@ public class PlayerController : MonoBehaviour {
     _dashTimer = Time.time + _dashCooldown;
   }
 
-  void OnCollisionStay2D(Collision2D collision) {
-    if (collision.gameObject.tag == "Infected" || collision.gameObject.tag == "Spikes") {
-      RaycastHit2D enemycastHit = Physics2D.BoxCast(_bc.bounds.center, _bc.bounds.size, 0f, Vector2.down, 0.04f, _enemyLayerMask);
-      if (enemycastHit.collider == null) {
-        ResetAnimationVariables();
-        _playerHealthScript.TakeDamage(collision.transform.tag);
-      }
-    }
-  }
-
-  void BoxCastDetector() {
+  void GroundCheck() {
     float height = 0.04f;
-    RaycastHit2D groundcastHit = Physics2D.BoxCast(_bc.bounds.center, _bc.bounds.size, 0f, Vector2.down, height, _groundLayerMask);
-    RaycastHit2D enemycastHit = Physics2D.BoxCast(_bc.bounds.center, new Vector3(0.10f, _bc.bounds.size.y, _bc.bounds.size.z), 0f, Vector2.down, height, _enemyLayerMask); 
+    RaycastHit2D groundcastHit = Physics2D.BoxCast(_bc.bounds.center, _bc.bounds.size, 0f, Vector2.down, 0.04f, _groundLayerMask);
     _isGrounded = groundcastHit.collider != null; 
-    if (enemycastHit.collider != null) {
-      DamageEnemy(enemycastHit.transform.gameObject);
-    }
-  }
-
-  void DamageEnemy(GameObject enemy) {
-    Destroy(enemy);
-    Jump();
   }
 }
