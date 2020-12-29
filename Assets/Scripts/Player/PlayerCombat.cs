@@ -15,6 +15,7 @@ public class PlayerCombat : MonoBehaviour
   public int attackDamage = 1;
   public float attackCooldown = 1.0f;
   private float _nextAttackTime = -1.0f;
+  public IEnumerator _swingRoutine;
   public List<string> Enemies = new List<string>() { "Infected", "Spikes" };
 
   [SerializeField] private bool _attacking;
@@ -37,23 +38,25 @@ public class PlayerCombat : MonoBehaviour
 
   public void Attack() {
     if (Time.time < _nextAttackTime) { return; }
-    StartCoroutine(SwingRoutine());
+    _swingRoutine = SwingRoutine();
+    StartCoroutine(_swingRoutine);
   }
 
-  IEnumerator SwingRoutine() {
+  public IEnumerator SwingRoutine() {
     Attacking = true;
+
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
     foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(attackDamage); }
     _nextAttackTime = Time.time + attackCooldown;
+
     float duration = 0.0f;
-    while (duration < 0.25f) {
+    while (duration < 0.25f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
       duration += Time.deltaTime;
-      _playerControllerScript._lockPlayerInput = true; 
       _rb.velocity = new Vector2(0, 0) * 0;
       _rb.gravityScale = 0.0f;
       yield return 0;
     }
-    _playerControllerScript._lockPlayerInput = false; 
+
     Attacking = false;
   }
 

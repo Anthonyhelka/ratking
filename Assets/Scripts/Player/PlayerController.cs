@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour {
   [SerializeField] private float _dashDurationCountMax = 0.4f;
   [SerializeField] private float _dashCooldown = 1.0f;
   private float _dashTimer = -1.0f;
+  public IEnumerator _dashRoutine;
 
   // Animation Variables
   [SerializeField] private bool _moving;
@@ -188,6 +189,8 @@ public class PlayerController : MonoBehaviour {
     // Detect Collisions With BoxCast
     GroundCheck();
 
+    DetermineLockedInput();
+
     // Reset Values When Grounded
     if (_isGrounded) {
       _airJumpCount = 0;
@@ -250,12 +253,13 @@ public class PlayerController : MonoBehaviour {
   }
 
   void Dash() {
-    StartCoroutine(DashRoutine());
+    _dashRoutine = DashRoutine();
+    StartCoroutine(_dashRoutine);
   }
 
   IEnumerator DashRoutine() {
     Dashing = true;
-    _lockPlayerInput = true;
+    // _lockPlayerInput = true;
     _dashCount++;
 
     // Remove Velocity & Stop Gravity
@@ -271,14 +275,22 @@ public class PlayerController : MonoBehaviour {
       }
       yield return 0;
     }
+    
     Dashing = false;
-    _lockPlayerInput = false;
     _dashTimer = Time.time + _dashCooldown;
   }
 
   void GroundCheck() {
     float height = 0.04f;
-    RaycastHit2D groundcastHit = Physics2D.BoxCast(_bc.bounds.center, _bc.bounds.size, 0f, Vector2.down, 0.04f, _groundLayerMask);
+    RaycastHit2D groundcastHit = Physics2D.BoxCast(_bc.bounds.center, _bc.bounds.size, 0f, Vector2.down, height, _groundLayerMask);
     _isGrounded = groundcastHit.collider != null; 
+  }
+
+  void DetermineLockedInput() {
+    if (Dashing || _playerCombatScript.Attacking || _playerHealthScript.Damaged || _playerHealthScript.Dying) {
+      _lockPlayerInput = true;
+    } else {
+      _lockPlayerInput = false;
+    }
   }
 }

@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour {
   private Animator _animator;
   private Rigidbody2D _rb;
   private PlayerController _playerControllerScript;
+  private PlayerCombat _playerCombatScript;
 
   public int health;
   public int heartCount;
@@ -14,6 +15,7 @@ public class PlayerHealth : MonoBehaviour {
   public Sprite fullHeart;
   public Sprite emptyHeart;
   public GameObject gameOverText;
+  private IEnumerator _invincibilityRoutine;
 
   private float  _invincibilityCooldown = 2.0f;
   private float _invincibilityTimer = -1.0f;
@@ -65,6 +67,7 @@ public class PlayerHealth : MonoBehaviour {
     _rb = GetComponent<Rigidbody2D>();
     _animator = GetComponent<Animator>();
     _playerControllerScript = GetComponent<PlayerController>();
+    _playerCombatScript = GetComponent<PlayerCombat>();
     gameOverText = GameObject.Find("Game_Over");
     gameOverText.SetActive(false);
   }
@@ -103,7 +106,6 @@ public class PlayerHealth : MonoBehaviour {
   IEnumerator DamagerPlayerRoutine(string enemyTag) {
     Damaged = true;
     _invincibilityTimer = Time.time + _invincibilityCooldown;
-    _playerControllerScript._lockPlayerInput = true;
 
     _rb.velocity = new Vector2(0, 0) * 0;
     _rb.gravityScale = 1.0f;
@@ -120,17 +122,21 @@ public class PlayerHealth : MonoBehaviour {
     }
 
     Damaged = false;
-    _playerControllerScript._lockPlayerInput = false;
 
     if (health <= 0) {
       StartCoroutine(PlayerDeathRoutine(enemyTag));
+    } else if (health > 0) {
+      _invincibilityRoutine = InvincibilityRoutine();
+      StartCoroutine(_invincibilityRoutine);
     }
   }
 
   IEnumerator PlayerDeathRoutine(string enemyTag) {
     Dying = true;
-    _playerControllerScript._lockPlayerInput = true;
-    
+
+    if (_playerControllerScript._dashRoutine != null) StopCoroutine(_playerControllerScript._dashRoutine);
+    if (_playerCombatScript._swingRoutine != null) StopCoroutine(_playerCombatScript._swingRoutine);
+
     float maxDuration = 0.0f;
     if (enemyTag == "Infected") {
       maxDuration = _vomitDuration;
@@ -148,5 +154,14 @@ public class PlayerHealth : MonoBehaviour {
     }
 
     gameOverText.SetActive(true);
+  }
+
+  IEnumerator InvincibilityRoutine() {
+    while (Time.time < _invincibilityTimer && !Dying) {
+      yield return new WaitForSeconds(0.25f);
+      GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
+      yield return new WaitForSeconds(0.25f);
+      GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+    }
   }
 }
