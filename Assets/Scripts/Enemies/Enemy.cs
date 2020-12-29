@@ -5,8 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
   private Animator _animator;
   private BoxCollider2D _bc;
-  public int maxHealth = 1;
-  private int currentHealth;
+  [SerializeField] private int maxHealth = 1;
+  [SerializeField] private int currentHealth;
 
   void Awake()
   {
@@ -15,26 +15,16 @@ public class Enemy : MonoBehaviour {
     currentHealth = maxHealth;
   }
 
-  void Update()
-  {
-    
-  }
-
   public void TakeDamage(int damage) {
     currentHealth -= damage;
-    Debug.Log(currentHealth);
-    if (currentHealth <= 0) {
-      Die();
-    }
+    if (currentHealth <= 0) Die();
   }
 
   void Die() {
-    _animator.SetBool("isDead", true);
-    _bc.enabled = false;
     Patrol patrol = GetComponent<Patrol>();
-    if (patrol != null) {
-      patrol.enabled = false;
-    }
+    if (patrol != null) patrol.enabled = false;
+    _bc.enabled = false;
+    _animator.SetBool("isDead", true);
     Destroy (gameObject, _animator.GetCurrentAnimatorStateInfo(0).length);
   }
 }

@@ -25,12 +25,9 @@ public class PlayerCombat : MonoBehaviour
 
   public void Attack() {
     if (Time.time < _nextAttackTime) { return; }
-    Debug.Log("Attack");
     _animator.SetTrigger("attack");
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-    foreach(Collider2D enemy in hitEnemies) {
-      enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
-    }
+    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(attackDamage); }
     _nextAttackTime = Time.time + attackCooldown;
   }
 
