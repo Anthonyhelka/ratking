@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
   private Animator _animator;
+  private Rigidbody2D _rb;
   private PlayerHealth _playerHealthScript;
   private PlayerController _playerControllerScript;
 
@@ -16,19 +17,44 @@ public class PlayerCombat : MonoBehaviour
   private float _nextAttackTime = -1.0f;
   public List<string> Enemies = new List<string>() { "Infected", "Spikes" };
 
+  [SerializeField] private bool _attacking;
+  public bool Attacking {
+    get { return _attacking; }
+    set {
+      if (value == _attacking) return;
+      _attacking = value;
+      _animator.SetBool("attacking", _attacking);
+    }
+  }
+
   void Awake()
   {
     _animator = GetComponent<Animator>();
+    _rb = GetComponent<Rigidbody2D>();
     _playerControllerScript = GetComponent<PlayerController>();
     _playerHealthScript = GetComponent<PlayerHealth>();
   }
 
   public void Attack() {
     if (Time.time < _nextAttackTime) { return; }
-    _animator.SetTrigger("attack");
+    StartCoroutine(SwingRoutine());
+  }
+
+  IEnumerator SwingRoutine() {
+    Attacking = true;
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
     foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(attackDamage); }
-    _nextAttackTime = Time.time + attackCooldown;
+    _nextAttackTime = Time.time + attackCooldown; 
+    _rb.velocity = new Vector2(0, 0) * 0;
+    _rb.gravityScale = 0.0f;
+    _rb.gravityScale = 0.0f;
+    float duration = 0.0f;
+    while (duration < 0.25f) {
+      duration += Time.deltaTime;
+      yield return 0;
+    }
+
+    Attacking = false;
   }
 
   void OnDrawGizmosSelected() {

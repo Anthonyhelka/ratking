@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour {
 
   void FixedUpdate() {
     // Movement & Gravity
-    if (!Dashing && !_playerHealthScript.Damaged) {
+    if (!Dashing && !_playerHealthScript.Damaged && !_playerCombatScript.Attacking) {
       CalculateMovement();
       CalculateGravity();
     }

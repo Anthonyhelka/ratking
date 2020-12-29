@@ -248,8 +248,8 @@ MonoBehaviour:
   _fallMultiplier: 2.5
   _lowJumpMultiplier: 2
   _dashCountMax: 1
-  _dashSpeed: 0.3
-  _dashDurationCountMax: 0.4
+  _dashSpeed: 0.15
+  _dashDurationCountMax: 0.5
   _dashCooldown: 1
   _moving: 0
   _jumping: 1
@@ -435,6 +435,7 @@ MonoBehaviour:
   Enemies:
   - Infected
   - Spikes
+  _attacking: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
