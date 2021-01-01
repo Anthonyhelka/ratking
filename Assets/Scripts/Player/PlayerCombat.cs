@@ -76,12 +76,12 @@ public class PlayerCombat : MonoBehaviour
 
   public void Attack() {
     if (Time.time < _nextAttackTime) { return; }
-    if (_playerControllerScript._isGrounded) {
-      Debug.Log("Spin Attack!");
-    } else {
+    // if (!_playerControllerScript._isGrounded) {
+    //   Debug.Log("Spin Attack!");
+    // } else {
       _firstAttackRoutine = FirstAttackRoutine();
       StartCoroutine(_firstAttackRoutine);
-    }
+    // }
   }
 
   public IEnumerator FirstAttackRoutine() {

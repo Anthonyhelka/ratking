@@ -237,6 +237,7 @@ MonoBehaviour:
   _speed: 1
   _facingRight: 1
   _lockPlayerInput: 0
+  _isGrounded: 0
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 4096
@@ -10608,6 +10609,24 @@ Transform:
   m_Father: {fileID: 76001771}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1616938158 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2673148580242810169, guid: e9e19c04da90c3b40840bdb639623e89,
+    type: 3}
+  m_PrefabInstance: {fileID: 1459050385}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1616938165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616938158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07f6993dc49a5f544958b107cb42256b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1670688800
 GameObject:
   m_ObjectHideFlags: 0
@@ -11129,6 +11148,18 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -4707620477410525401, guid: e9e19c04da90c3b40840bdb639623e89,
+        type: 3}
+      propertyPath: _damagePopup
+      value: 
+      objectReference: {fileID: 4163459886277618558, guid: 506e61d6592938f499dd90551ced8c65,
+        type: 3}
+    - target: {fileID: -4707620477410525401, guid: e9e19c04da90c3b40840bdb639623e89,
+        type: 3}
+      propertyPath: _damageTextPrefab
+      value: 
+      objectReference: {fileID: 4163459886277618558, guid: 506e61d6592938f499dd90551ced8c65,
+        type: 3}
     - target: {fileID: 2673148580242810162, guid: e9e19c04da90c3b40840bdb639623e89,
         type: 3}
       propertyPath: m_RootOrder

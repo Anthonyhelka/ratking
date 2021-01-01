@@ -130,7 +130,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c4b4f83f234ce543b45b8bd7bf3b777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damagePopup: {fileID: 4163459886277618558, guid: 506e61d6592938f499dd90551ced8c65,
+    type: 3}
   maxHealth: 1
+  currentHealth: 0
 --- !u!114 &1141284504186021763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,6 +150,8 @@ MonoBehaviour:
   _distance: 0.1
   _movingRight: 0
   _groundDetection: {fileID: 1141284503323247919}
+  HarmfulGround:
+  - Spikes
 --- !u!61 &1141284504186021767
 BoxCollider2D:
   m_ObjectHideFlags: 0
