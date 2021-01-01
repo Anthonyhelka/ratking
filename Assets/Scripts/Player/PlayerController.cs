@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
   public bool _lockPlayerInput = false;
 
   // Jumping & Gravity
-  private bool _isGrounded;
+  public bool _isGrounded;
   [SerializeField] private LayerMask _groundLayerMask;
   [SerializeField] private LayerMask _enemyLayerMask;
   private bool _jumpRequest;
@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Attack
-    if (Input.GetKey(KeyCode.Mouse0)) {
+    if (Input.GetKey(KeyCode.Mouse0) && !_playerCombatScript.Attacking) {
       _playerCombatScript.Attack();
     }
   }
@@ -259,15 +259,12 @@ public class PlayerController : MonoBehaviour {
 
   IEnumerator DashRoutine() {
     Dashing = true;
-    // _lockPlayerInput = true;
     _dashCount++;
-
-    // Remove Velocity & Stop Gravity
-    _rb.velocity = new Vector2(0, 0) * 0;
-    _rb.gravityScale = 0.0f;
 
     while (_dashDurationCount < _dashDurationCountMax) {
       _dashDurationCount += Time.deltaTime;
+      _rb.velocity = new Vector2(_rb.velocity.x, 0) ;
+      _rb.gravityScale = 0.0f;
       if (_facingRight == true) {
         _rb.AddForce(Vector2.right * _dashSpeed, ForceMode2D.Impulse);
       } else {
