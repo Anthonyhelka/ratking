@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour {
 
   public void TakeDamage(int damage) {
     currentHealth -= damage;
-    GameObject damagePopupInstance = Instantiate(_damagePopup, transform);
+    GameObject damagePopupInstance = Instantiate(_damagePopup, transform.position, Quaternion.identity);
     TextMeshPro damagePopupText = damagePopupInstance.transform.GetChild(0).GetComponent<TextMeshPro>();
     damagePopupText.SetText(damage.ToString());
     if (currentHealth <= 0) {
