@@ -13,8 +13,12 @@ public class PlayerCombat : MonoBehaviour
   private Animator _attackEffectAnimator;
   public float attackRange = 0.15f;
   public LayerMask enemyLayers;
-  public int attackDamage = 1;
-  public float attackCooldown = 1.0f;
+  [SerializeField] private int _firstAttackDamage = 40;
+  [SerializeField] private int _secondAttackDamage = 60;
+  [SerializeField] private int _thirdAttackDamage = 100;
+  [SerializeField] private float _firstAttackCooldown = 0.5f;
+  [SerializeField] private float _secondAttackCooldown = 0.75f;
+  [SerializeField] private float _thirdAttackCooldown = 1.0f;
   private float _nextAttackTime = -1.0f;
   public IEnumerator _firstAttackRoutine;
   public IEnumerator _secondAttackRoutine;
@@ -89,8 +93,8 @@ public class PlayerCombat : MonoBehaviour
     FirstAttack = true;
 
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(attackDamage); }
-    _nextAttackTime = Time.time + attackCooldown;
+    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_firstAttackDamage); }
+    _nextAttackTime = Time.time + _firstAttackCooldown;
 
     float duration = 0.0f;
     bool queueSecondAttack = false;
@@ -117,8 +121,8 @@ public class PlayerCombat : MonoBehaviour
     SecondAttack = true;
 
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(attackDamage); }
-    _nextAttackTime = Time.time + attackCooldown;
+    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_secondAttackDamage); }
+    _nextAttackTime = Time.time + _secondAttackCooldown;
 
     float duration = 0.0f;
     bool queueThirdAttack = false;
@@ -145,8 +149,8 @@ public class PlayerCombat : MonoBehaviour
     ThirdAttack = true;
 
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(attackDamage); }
-    _nextAttackTime = Time.time + attackCooldown;
+    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_thirdAttackDamage); }
+    _nextAttackTime = Time.time + _thirdAttackCooldown;
 
     float duration = 0.0f;
     while (duration < 0.25f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
