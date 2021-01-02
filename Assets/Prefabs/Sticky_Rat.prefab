@@ -492,6 +492,7 @@ MonoBehaviour:
     type: 3}
   _maxHealth: 100
   _currentHealth: 0
+  _damageFlashDuration: 0.1
 --- !u!50 &2673148580242810164
 Rigidbody2D:
   serializedVersion: 4
@@ -510,7 +511,7 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!61 &2673148580242810167

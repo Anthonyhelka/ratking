@@ -7,14 +7,20 @@ public class Enemy : MonoBehaviour {
   [SerializeField] private HealthBar _healthBar;
   private Animator _animator;
   private BoxCollider2D _bc;
+  private Rigidbody2D _rb;
+  private SpriteRenderer _sr;
   [SerializeField] private GameObject _damagePopup;
   [SerializeField] private int _maxHealth = 100;
   [SerializeField] private int _currentHealth;
+  private IEnumerator _damageRoutine;
+  [SerializeField] private float _damageFlashDuration = 0.1f;
 
   void Awake()
   {
     _animator = GetComponent<Animator>();
     _bc = GetComponent<BoxCollider2D>();
+    _rb = GetComponent<Rigidbody2D>();
+    _sr = GetComponent<SpriteRenderer>();
     _currentHealth = _maxHealth;
     _healthBar.SetHealth(_currentHealth, _maxHealth);
   }
@@ -25,17 +31,28 @@ public class Enemy : MonoBehaviour {
     GameObject damagePopupInstance = Instantiate(_damagePopup, transform.position, Quaternion.identity);
     TextMeshPro damagePopupText = damagePopupInstance.transform.GetChild(0).GetComponent<TextMeshPro>();
     damagePopupText.SetText(damage.ToString());
+    _damageRoutine = DamageRoutine();
+    StartCoroutine(_damageRoutine);
     if (_currentHealth <= 0) {
       damagePopupText.color = Color.red;
       Die();
     }
   }
 
+  IEnumerator DamageRoutine() {
+    _sr.color = Color.red;
+    _rb.AddForce(new Vector2(1000, _rb.velocity.y));
+    yield return new WaitForSeconds(_damageFlashDuration);
+    _sr.color = Color.white;
+  }
+
   void Die() {
     _healthBar.Destroy();
     Patrol patrol = GetComponent<Patrol>();
-    if (patrol != null) patrol.enabled = false;
+    if (patrol != null) patrol.Stop();
     _bc.enabled = false;
+    _rb.bodyType = RigidbodyType2D.Kinematic;
+    transform.rotation = Quaternion.Euler(0, 0, 0);
     _animator.SetBool("isDead", true);
     Destroy (gameObject, _animator.GetCurrentAnimatorStateInfo(0).length);
   }
