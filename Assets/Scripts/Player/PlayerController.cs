@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour {
   private int _dashCount;
   [SerializeField] private int _dashCountMax = 1;
   [SerializeField] private float _dashSpeed = 0.3f;
-  private float _dashDurationCount;
   [SerializeField] private float _dashDurationCountMax = 0.4f;
   [SerializeField] private float _dashCooldown = 1.0f;
   private float _dashTimer = -1.0f;
@@ -135,7 +134,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Attack
-    if (Input.GetKey(KeyCode.Mouse0) && !_playerCombatScript.Attacking) {
+    if (Input.GetKeyDown(KeyCode.Mouse0) && !_playerCombatScript.Attacking) {
       _playerCombatScript.Attack();
     }
   }
@@ -195,9 +194,6 @@ public class PlayerController : MonoBehaviour {
     if (_isGrounded) {
       _airJumpCount = 0;
       _dashCount = 0;
-      if (!Dashing) {
-        _dashDurationCount = 0;
-      }
     }
 
     // User Requests
@@ -260,9 +256,15 @@ public class PlayerController : MonoBehaviour {
   IEnumerator DashRoutine() {
     Dashing = true;
     _dashCount++;
-
-    while (_dashDurationCount < _dashDurationCountMax) {
-      _dashDurationCount += Time.deltaTime;
+    _rb.velocity = new Vector2(0, 0);
+    float duration = 0.0f;
+    bool queueAttack = false;
+    while (duration <= _dashDurationCountMax) {
+      if (Input.GetKeyDown(KeyCode.Mouse0) && duration > 0.05f && Time.time > _playerCombatScript._nextAttackTime) {
+        queueAttack = true;
+        break;
+      }
+      duration += Time.deltaTime;
       _rb.velocity = new Vector2(_rb.velocity.x, 0) ;
       _rb.gravityScale = 0.0f;
       if (_facingRight == true) {
@@ -272,9 +274,10 @@ public class PlayerController : MonoBehaviour {
       }
       yield return 0;
     }
-    
     Dashing = false;
     _dashTimer = Time.time + _dashCooldown;
+
+    if (queueAttack) _playerCombatScript.Attack();
   }
 
   void GroundCheck() {

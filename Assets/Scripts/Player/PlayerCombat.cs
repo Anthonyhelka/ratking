@@ -19,7 +19,7 @@ public class PlayerCombat : MonoBehaviour
   [SerializeField] private float _firstAttackCooldown = 0.5f;
   [SerializeField] private float _secondAttackCooldown = 0.75f;
   [SerializeField] private float _thirdAttackCooldown = 1.0f;
-  private float _nextAttackTime = -1.0f;
+  public float _nextAttackTime = -1.0f;
   public IEnumerator _firstAttackRoutine;
   public IEnumerator _secondAttackRoutine;
   public IEnumerator _thirdAttackRoutine;
