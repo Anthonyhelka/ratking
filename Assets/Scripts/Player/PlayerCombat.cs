@@ -222,7 +222,7 @@ public class PlayerCombat : MonoBehaviour
     _nextAttackTime = Time.time + _airHeavyAttackCooldown;
 
     float duration = 0.0f;
-    while (duration < 0.5f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
+    while (duration < 0.4f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
       duration += Time.deltaTime;
       _rb.velocity = new Vector2(0, 0) * 0;
       _rb.gravityScale = 0.0f;
@@ -236,16 +236,16 @@ public class PlayerCombat : MonoBehaviour
   public IEnumerator airHeavyAttacksRoutine() {
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
     foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
-    yield return new WaitForSeconds(0.125f);
+    yield return new WaitForSeconds(0.1f);
     hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
     foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
-    yield return new WaitForSeconds(0.125f);
+    yield return new WaitForSeconds(0.1f);
     hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
     foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
-    yield return new WaitForSeconds(0.125f);
+    yield return new WaitForSeconds(0.1f);
     hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
     foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
-    yield return new WaitForSeconds(0.125f);
+    yield return new WaitForSeconds(0.1f);
   }
       
   void OnDrawGizmosSelected() {

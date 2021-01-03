@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29106c652ca3991488a0e14fb680d862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1.5
+  _speed: 1.25
   _facingRight: 1
   _lockPlayerInput: 0
   _isGrounded: 0
