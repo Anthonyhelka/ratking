@@ -1,31 +1,49 @@
 fileFormatVersion: 2
-guid: dbf4cd01649a043e0bb0018d08a70e74
+guid: 9c865c4e466c7554ab1684c0cce05346
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1636032825770652962
-    second: Rat King Walk (1)_0
+      213: -1360642935512140377
+    second: heavy_attack_air_0
   - first:
-      213: -2116961237118293326
-    second: Rat King Walk (1)_1
+      213: -3302126747358792765
+    second: heavy_attack_air_1
   - first:
-      213: 345315125867021918
-    second: Rat King Walk (1)_2
+      213: -3729499148176440405
+    second: heavy_attack_air_2
   - first:
-      213: -3216425075627738926
-    second: Rat King Walk (1)_3
+      213: -7344599684359407308
+    second: heavy_attack_air_3
   - first:
-      213: -186409252585043895
-    second: Rat King Walk (1)_4
+      213: 2438698506909038540
+    second: heavy_attack_air_4
   - first:
-      213: 1874534876023302688
-    second: Rat King Walk (1)_5
+      213: -5593041567705531656
+    second: remove
   - first:
-      213: 9117867227287966923
-    second: Rat King Walk (1)_6
+      213: -6562789239320044892
+    second: heavy_attack_air_6
   - first:
-      213: 7144436726725037418
-    second: Rat King Walk (1)_7
+      213: 4408610276922178379
+    second: heavy_attack_air_7
+  - first:
+      213: -5149757819904810455
+    second: heavy_attack_air_8
+  - first:
+      213: -7878736185667963279
+    second: heavy_attack_air_9
+  - first:
+      213: 1374888304449128652
+    second: heavy_attack_air_10
+  - first:
+      213: 5730455972137676911
+    second: heavy_attack_air_11
+  - first:
+      213: -1621856538014211393
+    second: heavy_attack_air_12
+  - first:
+      213: -2134328112234291744
+    second: heavy_attack_air_13
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -47,7 +65,6 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
-  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -82,7 +99,6 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
-  ignorePngGamma: 0
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
@@ -125,10 +141,157 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Rat King Walk (1)_0
+      name: heavy_attack_air_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 5
+        y: 99
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a577aa85760e1de0800000000000000
+      internalID: -1360642935512140377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heavy_attack_air_1
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 99
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c3fc5cf73d7c22d0800000000000000
+      internalID: -3302126747358792765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heavy_attack_air_2
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 99
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba342d2d8482e3cc0800000000000000
+      internalID: -3729499148176440405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heavy_attack_air_3
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 99
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 439bf4c108db21a90800000000000000
+      internalID: -7344599684359407308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heavy_attack_air_4
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 67
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc7b69a0f5ff7d120800000000000000
+      internalID: 2438698506909038540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heavy_attack_air_6
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 67
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aa929e35f94ce4a0800000000000000
+      internalID: -6562789239320044892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heavy_attack_air_7
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 67
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4b351560b78e2d30800000000000000
+      internalID: 4408610276922178379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heavy_attack_air_8
+      rect:
+        serializedVersion: 2
+        x: 102
         y: 67
         width: 26
         height: 26
@@ -139,19 +302,40 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22530fcdf2b54b610800000000000000
-      internalID: 1636032825770652962
+      spriteID: 922a8412c826888b0800000000000000
+      internalID: -5149757819904810455
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rat King Walk (1)_1
+      name: heavy_attack_air_9
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 35
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 176be36be2b19a290800000000000000
+      internalID: -7878736185667963279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heavy_attack_air_10
       rect:
         serializedVersion: 2
         x: 32
-        y: 67
-        width: 26
+        y: 35
+        width: 27
         height: 26
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -160,40 +344,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2baea4298fa0f92e0800000000000000
-      internalID: -2116961237118293326
+      spriteID: cc88780e0a5941310800000000000000
+      internalID: 1374888304449128652
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rat King Walk (1)_2
+      name: heavy_attack_air_11
       rect:
         serializedVersion: 2
         x: 64
-        y: 67
-        width: 26
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e568fd4074ecac400800000000000000
-      internalID: 345315125867021918
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rat King Walk (1)_3
-      rect:
-        serializedVersion: 2
-        x: 0
         y: 35
-        width: 26
+        width: 27
         height: 26
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -202,19 +365,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d8bc806f66fc53d0800000000000000
-      internalID: -3216425075627738926
+      spriteID: f60384c685ba68f40800000000000000
+      internalID: 5730455972137676911
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rat King Walk (1)_4
+      name: heavy_attack_air_12
       rect:
         serializedVersion: 2
-        x: 32
+        x: 96
         y: 35
-        width: 26
+        width: 27
         height: 26
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -223,40 +386,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94882dcb5cdb96df0800000000000000
-      internalID: -186409252585043895
+      spriteID: fb2a40752120e79e0800000000000000
+      internalID: -1621856538014211393
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rat King Walk (1)_5
+      name: heavy_attack_air_13
       rect:
         serializedVersion: 2
-        x: 64
-        y: 35
-        width: 26
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 02a237cb98fa30a10800000000000000
-      internalID: 1874534876023302688
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rat King Walk (1)_6
-      rect:
-        serializedVersion: 2
-        x: 0
+        x: 1
         y: 3
-        width: 26
+        width: 27
         height: 26
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -265,29 +407,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc4dca74feb298e70800000000000000
-      internalID: 9117867227287966923
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rat King Walk (1)_7
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 3
-        width: 26
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a6d43b0a953262360800000000000000
-      internalID: 7144436726725037418
+      spriteID: 0ed152cd3e75162e0800000000000000
+      internalID: -2134328112234291744
       vertices: []
       indices: 
       edges: []

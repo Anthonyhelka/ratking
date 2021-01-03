@@ -41,8 +41,8 @@ public class PlayerCombat : MonoBehaviour
     set {
       if (value == _firstAttack) return;
       _firstAttack = value;
-      _animator.SetBool("firstAttack", _firstAttack);
-      _attackEffectAnimator.SetBool("firstAttack", _firstAttack);
+      _animator.SetBool("firstLightAttack", _firstAttack);
+      _attackEffectAnimator.SetBool("firstLightAttack", _firstAttack);
     }
   }
 
@@ -52,8 +52,8 @@ public class PlayerCombat : MonoBehaviour
     set {
       if (value == _secondAttack) return;
       _secondAttack = value;
-      _animator.SetBool("secondAttack", _secondAttack);
-      _attackEffectAnimator.SetBool("secondAttack", _secondAttack);
+      _animator.SetBool("secondLightAttack", _secondAttack);
+      _attackEffectAnimator.SetBool("secondLightAttack", _secondAttack);
     }
   }
 
@@ -63,8 +63,8 @@ public class PlayerCombat : MonoBehaviour
     set {
       if (value == _thirdAttack) return;
       _thirdAttack = value;
-      _animator.SetBool("thirdAttack", _thirdAttack);
-      _attackEffectAnimator.SetBool("thirdAttack", _thirdAttack);
+      _animator.SetBool("thirdLightAttack", _thirdAttack);
+      _attackEffectAnimator.SetBool("thirdLightAttack", _thirdAttack);
     }
   }
 
