@@ -41,15 +41,18 @@ public class Enemy : MonoBehaviour {
 
   IEnumerator DamageRoutine() {
     _sr.color = Color.red;
-    _rb.AddForce(new Vector2(1000, _rb.velocity.y));
     yield return new WaitForSeconds(_damageFlashDuration);
     _sr.color = Color.white;
   }
 
   void Die() {
     _healthBar.Destroy();
+
     Patrol patrol = GetComponent<Patrol>();
     if (patrol != null) patrol.Stop();
+    Pathfind pathfind = GetComponent<Pathfind>();
+    if (pathfind != null) pathfind.Stop();
+
     _bc.enabled = false;
     _rb.bodyType = RigidbodyType2D.Kinematic;
     transform.rotation = Quaternion.Euler(0, 0, 0);

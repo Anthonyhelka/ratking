@@ -249,7 +249,6 @@ public class PlayerCombat : MonoBehaviour
   }
       
   void OnDrawGizmosSelected() {
-    float range = 0.0f;
     if (FirstLightAttack) Gizmos.DrawWireSphere(attackPoint.position, _firstLightAttackRange);
     if (SecondLightAttack) Gizmos.DrawWireSphere(attackPoint.position, _secondLightAttackRange);
     if (ThirdLightAttack) Gizmos.DrawWireSphere(attackPoint.position, _thirdLightAttackRange);
@@ -257,6 +256,13 @@ public class PlayerCombat : MonoBehaviour
   }
 
   void OnCollisionStay2D(Collision2D collision) {
+    if (Enemies.Contains(collision.gameObject.tag)) {
+      _playerControllerScript.ResetAnimationVariables();
+      _playerHealthScript.TakeDamage(collision.transform.tag);
+    }
+  }
+
+  void OnTriggerStay2D(Collider2D collision) {
     if (Enemies.Contains(collision.gameObject.tag)) {
       _playerControllerScript.ResetAnimationVariables();
       _playerHealthScript.TakeDamage(collision.transform.tag);
