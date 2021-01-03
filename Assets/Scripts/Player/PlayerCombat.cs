@@ -11,18 +11,32 @@ public class PlayerCombat : MonoBehaviour
 
   public Transform attackPoint;
   private Animator _attackEffectAnimator;
-  public float attackRange = 0.15f;
   public LayerMask enemyLayers;
-  [SerializeField] private int _firstAttackDamage = 40;
-  [SerializeField] private int _secondAttackDamage = 60;
-  [SerializeField] private int _thirdAttackDamage = 100;
-  [SerializeField] private float _firstAttackCooldown = 0.5f;
-  [SerializeField] private float _secondAttackCooldown = 0.75f;
-  [SerializeField] private float _thirdAttackCooldown = 1.0f;
   public float _nextAttackTime = -1.0f;
-  public IEnumerator _firstAttackRoutine;
-  public IEnumerator _secondAttackRoutine;
-  public IEnumerator _thirdAttackRoutine;
+
+  // Light Attacks
+  [SerializeField] private int _firstLightAttackDamage = 40;
+  [SerializeField] private float _firstLightAttackRange = 0.15f;
+  [SerializeField] private float _firstLightAttackCooldown = 0.5f;
+  public IEnumerator _firstLightAttackRoutine;
+
+  [SerializeField] private int _secondLightAttackDamage = 60;
+  [SerializeField] private float _secondLightAttackRange = 0.15f;
+  [SerializeField] private float _secondLightAttackCooldown = 0.75f;
+  public IEnumerator _secondLightAttackRoutine;
+
+  [SerializeField] private int _thirdLightAttackDamage = 100;
+  [SerializeField] private float _thirdLightAttackRange = 0.15f;
+  [SerializeField] private float _thirdLightAttackCooldown = 1.0f;
+  public IEnumerator _thirdLightAttackRoutine;
+
+  // Heavy Attacks
+  [SerializeField] private int _airHeavyAttackDamage = 25;
+  [SerializeField] private float _airHeavyAttackRange = 0.25f;
+  [SerializeField] private float _airHeavyAttackCooldown = 1.0f;
+
+  public IEnumerator _airHeavyAttackRoutine;
+
   public List<string> Enemies = new List<string>() { "Infected", "Spikes" };
 
   [SerializeField] private bool _attacking;
@@ -35,39 +49,49 @@ public class PlayerCombat : MonoBehaviour
     }
   }
 
-  [SerializeField] private bool _firstAttack;
-  public bool FirstAttack {
-    get { return _firstAttack; }
+  [SerializeField] private bool _firstLightAttack;
+  public bool FirstLightAttack {
+    get { return _firstLightAttack; }
     set {
-      if (value == _firstAttack) return;
-      _firstAttack = value;
-      _animator.SetBool("firstLightAttack", _firstAttack);
-      _attackEffectAnimator.SetBool("firstLightAttack", _firstAttack);
+      if (value == _firstLightAttack) return;
+      _firstLightAttack = value;
+      _animator.SetBool("firstLightAttack", _firstLightAttack);
+      _attackEffectAnimator.SetBool("firstLightAttack", _firstLightAttack);
     }
   }
 
-  [SerializeField] private bool _secondAttack;
-  public bool SecondAttack {
-    get { return _secondAttack; }
+  [SerializeField] private bool _secondLightAttack;
+  public bool SecondLightAttack {
+    get { return _secondLightAttack; }
     set {
-      if (value == _secondAttack) return;
-      _secondAttack = value;
-      _animator.SetBool("secondLightAttack", _secondAttack);
-      _attackEffectAnimator.SetBool("secondLightAttack", _secondAttack);
+      if (value == _secondLightAttack) return;
+      _secondLightAttack = value;
+      _animator.SetBool("secondLightAttack", _secondLightAttack);
+      _attackEffectAnimator.SetBool("secondLightAttack", _secondLightAttack);
     }
   }
 
-  [SerializeField] private bool _thirdAttack;
-  public bool ThirdAttack {
-    get { return _thirdAttack; }
+  [SerializeField] private bool _thirdLightAttack;
+  public bool ThirdLightAttack {
+    get { return _thirdLightAttack; }
     set {
-      if (value == _thirdAttack) return;
-      _thirdAttack = value;
-      _animator.SetBool("thirdLightAttack", _thirdAttack);
-      _attackEffectAnimator.SetBool("thirdLightAttack", _thirdAttack);
+      if (value == _thirdLightAttack) return;
+      _thirdLightAttack = value;
+      _animator.SetBool("thirdLightAttack", _thirdLightAttack);
+      _attackEffectAnimator.SetBool("thirdLightAttack", _thirdLightAttack);
     }
   }
 
+  [SerializeField] private bool _airHeavyAttack;
+  public bool AirHeavyAttack {
+    get { return _airHeavyAttack; }
+    set {
+      if (value == _airHeavyAttack) return;
+      _airHeavyAttack = value;
+      _animator.SetBool("airHeavyAttack", _airHeavyAttack);
+      _attackEffectAnimator.SetBool("airHeavyAttack", _airHeavyAttack);
+    }
+  }
 
   void Awake()
   {
@@ -78,82 +102,127 @@ public class PlayerCombat : MonoBehaviour
     _attackEffectAnimator = GameObject.Find("Attack_Effect").GetComponent<Animator>();
   }
 
-  public void Attack() {
+  public void Attack(string type) {
     if (Time.time < _nextAttackTime) { return; }
-    // if (!_playerControllerScript._isGrounded) {
-    //   Debug.Log("Spin Attack!");
-    // } else {
-      _firstAttackRoutine = FirstAttackRoutine();
-      StartCoroutine(_firstAttackRoutine);
-    // }
+    if (type == "Light") {
+      _firstLightAttackRoutine = firstLightAttackRoutine();
+      StartCoroutine(_firstLightAttackRoutine);
+    } else if (type == "Heavy") {
+      _airHeavyAttackRoutine = airHeavyAttackRoutine();
+      StartCoroutine(_airHeavyAttackRoutine);
+    }
   }
 
-  public IEnumerator FirstAttackRoutine() {
+  public IEnumerator firstLightAttackRoutine() {
     Attacking = true;
-    FirstAttack = true;
+    FirstLightAttack = true;
 
-    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_firstAttackDamage); }
-    _nextAttackTime = Time.time + _firstAttackCooldown;
+    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _firstLightAttackRange, enemyLayers);
+    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_firstLightAttackDamage); }
+    _nextAttackTime = Time.time + _firstLightAttackCooldown;
 
     float duration = 0.0f;
-    bool queueSecondAttack = false;
+    bool queueSecondLightAttack = false;
+    bool queueHeavyAttack = false;
     while (duration < 0.25f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
-      if (Input.GetKeyDown(KeyCode.Mouse0) && duration > 0.05f) queueSecondAttack = true;
+      if (Input.GetKeyDown(KeyCode.Mouse0) && duration > 0.05f) {
+        queueSecondLightAttack = true;
+      } else if (Input.GetKeyDown(KeyCode.Mouse1) && duration > 0.05f) {
+        queueHeavyAttack = true;
+      }
       duration += Time.deltaTime;
       _rb.velocity = new Vector2(0, 0) * 0;
       _rb.gravityScale = 0.0f;
       yield return 0;
     }
 
-    FirstAttack = false;
+    FirstLightAttack = false;
 
-    if (queueSecondAttack) {
-      _secondAttackRoutine = SecondAttackRoutine();
-      StartCoroutine(_secondAttackRoutine);
+    if (queueSecondLightAttack) {
+      _secondLightAttackRoutine = secondLightAttackRoutine();
+      StartCoroutine(_secondLightAttackRoutine);
+    } else if (queueHeavyAttack) {
+      _airHeavyAttackRoutine = airHeavyAttackRoutine();
+      StartCoroutine(_airHeavyAttackRoutine);
     } else {
       Attacking = false;
     }
   }
 
-  public IEnumerator SecondAttackRoutine() {
+  public IEnumerator secondLightAttackRoutine() {
     Attacking = true;
-    SecondAttack = true;
+    SecondLightAttack = true;
 
-    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_secondAttackDamage); }
-    _nextAttackTime = Time.time + _secondAttackCooldown;
+    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _secondLightAttackRange, enemyLayers);
+    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_secondLightAttackDamage); }
+    _nextAttackTime = Time.time + _secondLightAttackCooldown;
 
     float duration = 0.0f;
-    bool queueThirdAttack = false;
+    bool queueThirdLightAttack = false;
+    bool queueHeavyAttack = false;
     while (duration < 0.25f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
-      if (Input.GetKeyDown(KeyCode.Mouse0) && duration > 0.05f) queueThirdAttack = true;
+      if (Input.GetKeyDown(KeyCode.Mouse0) && duration > 0.05f) {
+        queueThirdLightAttack = true;
+      } else if (Input.GetKeyDown(KeyCode.Mouse1) && duration > 0.05f) {
+        queueHeavyAttack = true;
+      }      
       duration += Time.deltaTime;
       _rb.velocity = new Vector2(0, 0) * 0;
       _rb.gravityScale = 0.0f;
       yield return 0;
     }
 
-    SecondAttack = false;
+    SecondLightAttack = false;
     
-    if (queueThirdAttack) {
-      _thirdAttackRoutine = ThirdAttackRoutine();
-      StartCoroutine(_thirdAttackRoutine);
+    if (queueThirdLightAttack) {
+      _thirdLightAttackRoutine = thirdLightAttackRoutine();
+      StartCoroutine(_thirdLightAttackRoutine);
+    } else if (queueHeavyAttack) {
+      _airHeavyAttackRoutine = airHeavyAttackRoutine();
+      StartCoroutine(_airHeavyAttackRoutine);
     } else {
       Attacking = false;
     }
   }
 
-  public IEnumerator ThirdAttackRoutine() {
+  public IEnumerator thirdLightAttackRoutine() {
     Attacking = true;
-    ThirdAttack = true;
+    ThirdLightAttack = true;
 
-    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_thirdAttackDamage); }
-    _nextAttackTime = Time.time + _thirdAttackCooldown;
+    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _thirdLightAttackRange, enemyLayers);
+    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_thirdLightAttackDamage); }
+    _nextAttackTime = Time.time + _thirdLightAttackCooldown;
 
     float duration = 0.0f;
+    bool queueHeavyAttack = false;
     while (duration < 0.25f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
+      if (Input.GetKeyDown(KeyCode.Mouse1) && duration > 0.05f) queueHeavyAttack = true;
+      duration += Time.deltaTime;
+      _rb.velocity = new Vector2(0, 0) * 0;
+      _rb.gravityScale = 0.0f;
+      yield return 0;
+    }
+
+    ThirdLightAttack = false;
+
+    if (queueHeavyAttack) {
+      _airHeavyAttackRoutine = airHeavyAttackRoutine();
+      StartCoroutine(_airHeavyAttackRoutine);
+    } else {
+      Attacking = false;
+    }
+  }
+
+  public IEnumerator airHeavyAttackRoutine() {
+    Attacking = true;
+    AirHeavyAttack = true;
+
+    StartCoroutine(airHeavyAttacksRoutine());
+
+    _nextAttackTime = Time.time + _airHeavyAttackCooldown;
+
+    float duration = 0.0f;
+    while (duration < 0.5f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
       duration += Time.deltaTime;
       _rb.velocity = new Vector2(0, 0) * 0;
       _rb.gravityScale = 0.0f;
@@ -161,11 +230,30 @@ public class PlayerCombat : MonoBehaviour
     }
 
     Attacking = false;
-    ThirdAttack = false;
+    AirHeavyAttack = false;
   }
 
+  public IEnumerator airHeavyAttacksRoutine() {
+    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
+    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
+    yield return new WaitForSeconds(0.125f);
+    hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
+    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
+    yield return new WaitForSeconds(0.125f);
+    hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
+    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
+    yield return new WaitForSeconds(0.125f);
+    hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
+    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
+    yield return new WaitForSeconds(0.125f);
+  }
+      
   void OnDrawGizmosSelected() {
-    Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    float range = 0.0f;
+    if (FirstLightAttack) Gizmos.DrawWireSphere(attackPoint.position, _firstLightAttackRange);
+    if (SecondLightAttack) Gizmos.DrawWireSphere(attackPoint.position, _secondLightAttackRange);
+    if (ThirdLightAttack) Gizmos.DrawWireSphere(attackPoint.position, _thirdLightAttackRange);
+    if (AirHeavyAttack) Gizmos.DrawWireSphere(transform.position, _airHeavyAttackRange);
   }
 
   void OnCollisionStay2D(Collision2D collision) {

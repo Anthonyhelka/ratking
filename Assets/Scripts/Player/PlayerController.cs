@@ -135,7 +135,9 @@ public class PlayerController : MonoBehaviour {
 
     // Attack
     if (Input.GetKeyDown(KeyCode.Mouse0) && !_playerCombatScript.Attacking) {
-      _playerCombatScript.Attack();
+      _playerCombatScript.Attack("Light");
+    } else if (Input.GetKeyDown(KeyCode.Mouse1) && !_playerCombatScript.Attacking) {
+      _playerCombatScript.Attack("Heavy");
     }
   }
 
@@ -258,10 +260,14 @@ public class PlayerController : MonoBehaviour {
     _dashCount++;
     _rb.velocity = new Vector2(0, 0);
     float duration = 0.0f;
-    bool queueAttack = false;
+    bool queueLightAttack = false;
+    bool queueHeavyAttack = false;
     while (duration <= _dashDurationCountMax) {
       if (Input.GetKeyDown(KeyCode.Mouse0) && duration > 0.05f && Time.time > _playerCombatScript._nextAttackTime) {
-        queueAttack = true;
+        queueLightAttack = true;
+        break;
+      } else if (Input.GetKeyDown(KeyCode.Mouse1) && duration > 0.05f && Time.time > _playerCombatScript._nextAttackTime) {
+        queueHeavyAttack = true;
         break;
       }
       duration += Time.deltaTime;
@@ -277,7 +283,8 @@ public class PlayerController : MonoBehaviour {
     Dashing = false;
     _dashTimer = Time.time + _dashCooldown;
 
-    if (queueAttack) _playerCombatScript.Attack();
+    if (queueLightAttack) _playerCombatScript.Attack("Light");
+    if (queueHeavyAttack) _playerCombatScript.Attack("Heavy");
   }
 
   void GroundCheck() {

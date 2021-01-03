@@ -135,9 +135,10 @@ public class PlayerHealth : MonoBehaviour {
     Dying = true;
 
     if (_playerControllerScript._dashRoutine != null) StopCoroutine(_playerControllerScript._dashRoutine);
-    if (_playerCombatScript._firstAttackRoutine != null) StopCoroutine(_playerCombatScript._firstAttackRoutine);
-    if (_playerCombatScript._secondAttackRoutine != null) StopCoroutine(_playerCombatScript._secondAttackRoutine);
-    if (_playerCombatScript._thirdAttackRoutine != null) StopCoroutine(_playerCombatScript._thirdAttackRoutine);
+    if (_playerCombatScript._firstLightAttackRoutine != null) StopCoroutine(_playerCombatScript._firstLightAttackRoutine);
+    if (_playerCombatScript._secondLightAttackRoutine != null) StopCoroutine(_playerCombatScript._secondLightAttackRoutine);
+    if (_playerCombatScript._thirdLightAttackRoutine != null) StopCoroutine(_playerCombatScript._thirdLightAttackRoutine);
+    if (_playerCombatScript._airHeavyAttackRoutine != null) StopCoroutine(_playerCombatScript._airHeavyAttackRoutine);
 
     float maxDuration = 0.0f;
     if (enemyTag == "Infected") {
