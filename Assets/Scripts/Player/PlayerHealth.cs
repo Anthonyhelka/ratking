@@ -8,17 +8,19 @@ public class PlayerHealth : MonoBehaviour {
   private Rigidbody2D _rb;
   private PlayerController _playerControllerScript;
   private PlayerCombat _playerCombatScript;
+  private GameOverMenu _gameOverMenuScript;
 
-  public int health;
-  public int heartCount;
-  public Image[] hearts;
-  public Sprite fullHeart;
-  public Sprite emptyHeart;
-  public GameObject gameOverText;
+  [SerializeField] private int health;
+  [SerializeField] private int heartCount;
+  [SerializeField] private Image[] hearts;
+  [SerializeField] private Sprite fullHeart;
+  [SerializeField] private Sprite emptyHeart;
+
+  [SerializeField] private float _knockbackDuration = 0.2f;
+  [SerializeField] private float _knockbackForce = 10.0f;
+  [SerializeField] private float  _invincibilityCooldown = 2.0f;
+  [SerializeField] private float _invincibilityTimer = -1.0f;
   private IEnumerator _invincibilityRoutine;
-
-  private float  _invincibilityCooldown = 2.0f;
-  private float _invincibilityTimer = -1.0f;
 
   private float _vomitDuration = 3.4f;
   private float _spikesDuration = 1.9f;
@@ -68,8 +70,7 @@ public class PlayerHealth : MonoBehaviour {
     _animator = GetComponent<Animator>();
     _playerControllerScript = GetComponent<PlayerController>();
     _playerCombatScript = GetComponent<PlayerCombat>();
-    gameOverText = GameObject.Find("Game_Over");
-    gameOverText.SetActive(false);
+    _gameOverMenuScript = GameObject.Find("UI").GetComponent<GameOverMenu>();
   }
 
   void Update() {
@@ -100,10 +101,10 @@ public class PlayerHealth : MonoBehaviour {
 
     health--;
 
-    StartCoroutine(DamagerPlayerRoutine(enemyTag));
+    StartCoroutine(DamagedPlayerRoutine(enemyTag));
   }
 
-  IEnumerator DamagerPlayerRoutine(string enemyTag) {
+  IEnumerator DamagedPlayerRoutine(string enemyTag) {
     Damaged = true;
     _invincibilityTimer = Time.time + _invincibilityCooldown;
 
@@ -111,12 +112,12 @@ public class PlayerHealth : MonoBehaviour {
     _rb.gravityScale = 1.0f;
 
     float duration = 0.0f;
-    while (duration < 0.2f && !Dying) {
+    while (duration < _knockbackDuration && !Dying) {
       duration += Time.deltaTime;
       if (_playerControllerScript._facingRight == false) {
-        _rb.AddForce(Vector2.right * 0.2f, ForceMode2D.Impulse);
+        _rb.AddForce(Vector2.right * _knockbackForce * Time.deltaTime, ForceMode2D.Impulse);
       } else {
-        _rb.AddForce(Vector2.left * 0.2f, ForceMode2D.Impulse);
+        _rb.AddForce(Vector2.left * _knockbackForce * Time.deltaTime, ForceMode2D.Impulse);
       }
       yield return 0;
     }
@@ -156,7 +157,7 @@ public class PlayerHealth : MonoBehaviour {
       yield return 0;
     }
 
-    gameOverText.SetActive(true);
+    _gameOverMenuScript.GameOver();
   }
 
   IEnumerator InvincibilityRoutine() {

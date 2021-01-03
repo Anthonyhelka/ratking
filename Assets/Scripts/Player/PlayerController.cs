@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour {
   private bool _dashRequest;
   private int _dashCount;
   [SerializeField] private int _dashCountMax = 1;
-  [SerializeField] private float _dashSpeed = 0.3f;
+  [SerializeField] private float _dashSpeed = 8.0f;
   [SerializeField] private float _dashDurationCountMax = 0.4f;
   [SerializeField] private float _dashCooldown = 1.0f;
   private float _dashTimer = -1.0f;
@@ -95,6 +95,7 @@ public class PlayerController : MonoBehaviour {
     _bc = GetComponent<BoxCollider2D>();
     _animator = GetComponent<Animator>();
     _playerHealthScript = GetComponent<PlayerHealth>();
+    _playerCombatScript = GetComponent<PlayerCombat>();
     _playerCombatScript = GetComponent<PlayerCombat>();
     Application.targetFrameRate = 60;
     QualitySettings.vSyncCount = 0;
@@ -271,12 +272,12 @@ public class PlayerController : MonoBehaviour {
         break;
       }
       duration += Time.deltaTime;
-      _rb.velocity = new Vector2(_rb.velocity.x, 0) ;
+      _rb.velocity = new Vector2(_rb.velocity.x, 0);
       _rb.gravityScale = 0.0f;
       if (_facingRight == true) {
-        _rb.AddForce(Vector2.right * _dashSpeed, ForceMode2D.Impulse);
+        _rb.AddForce(Vector2.right * _dashSpeed * Time.deltaTime, ForceMode2D.Impulse);
       } else {
-        _rb.AddForce(Vector2.left * _dashSpeed, ForceMode2D.Impulse);
+        _rb.AddForce(Vector2.left * _dashSpeed * Time.deltaTime, ForceMode2D.Impulse);
       }
       yield return 0;
     }
