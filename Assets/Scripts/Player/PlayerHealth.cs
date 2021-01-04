@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour {
   private Animator _animator;
@@ -10,11 +9,7 @@ public class PlayerHealth : MonoBehaviour {
   private PlayerCombat _playerCombatScript;
   private GameOverMenu _gameOverMenuScript;
 
-  [SerializeField] private int health;
-  [SerializeField] private int heartCount;
-  [SerializeField] private Image[] hearts;
-  [SerializeField] private Sprite fullHeart;
-  [SerializeField] private Sprite emptyHeart;
+  public int health;
 
   [SerializeField] private float _knockbackDuration = 0.2f;
   [SerializeField] private float _knockbackForce = 10.0f;
@@ -73,34 +68,9 @@ public class PlayerHealth : MonoBehaviour {
     _gameOverMenuScript = GameObject.Find("UI").GetComponent<GameOverMenu>();
   }
 
-  void Update() {
-    HealthUI();
-  }
-
-  void HealthUI() {
-    if (health > heartCount) {
-      health = heartCount;
-    }
-    for (int i = 0; i < hearts.Length; i++) {
-      if (i < health) {
-        hearts[i].sprite = fullHeart;
-      } else {
-        hearts[i].sprite = emptyHeart;
-      }
-
-      if (i < heartCount) {
-        hearts[i].enabled = true;
-      } else {
-        hearts[i].enabled = false;
-      }
-    }
-  }
-
   public void TakeDamage(string enemyTag) {
     if (Time.time < _invincibilityTimer) return;
-
     health--;
-
     StartCoroutine(DamagedPlayerRoutine(enemyTag));
   }
 

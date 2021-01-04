@@ -116,11 +116,11 @@ public class PlayerController : MonoBehaviour {
     _verticalInput = Input.GetAxisRaw("Vertical");
     
     // Jump
-    if (Input.GetKey(KeyCode.Space)) {
+    if (Input.GetButton("Jump")) {
       if (_isGrounded) {
         _jumpRequest = true;
       } else {
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetButtonDown("Jump")) {
           if (_airJumpCount < _airJumpCountMax) {
             _jumpRequest = true;
             _airJumpCount++;
@@ -130,14 +130,14 @@ public class PlayerController : MonoBehaviour {
     }
     
     // Dash
-    if (Input.GetKey(KeyCode.LeftShift) && _dashCount < _dashCountMax && Time.time >  _dashTimer) {
+    if (Input.GetButton("Dash") && _dashCount < _dashCountMax && Time.time >  _dashTimer) {
       _dashRequest = true;
     }
 
     // Attack
-    if (Input.GetKeyDown(KeyCode.Mouse0) && !_playerCombatScript.Attacking) {
+    if (Input.GetButtonDown("Fire1") && !_playerCombatScript.Attacking) {
       _playerCombatScript.Attack("Light");
-    } else if (Input.GetKeyDown(KeyCode.Mouse1) && !_playerCombatScript.Attacking) {
+    } else if (Input.GetButtonDown("Fire2") && !_playerCombatScript.Attacking) {
       _playerCombatScript.Attack("Heavy");
     }
   }
@@ -237,7 +237,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Low Jump Gravity
-    if (Mathf.Round(_rb.velocity.y) > 0 && !Input.GetKey(KeyCode.Space) && !_playerHealthScript.Dying) {
+    if (Mathf.Round(_rb.velocity.y) > 0 && !Input.GetButton("Jump") && !_playerHealthScript.Dying) {
       _rb.gravityScale = _lowJumpMultiplier;
       return;
     }
@@ -264,10 +264,10 @@ public class PlayerController : MonoBehaviour {
     bool queueLightAttack = false;
     bool queueHeavyAttack = false;
     while (duration <= _dashDurationCountMax) {
-      if (Input.GetKeyDown(KeyCode.Mouse0) && duration > 0.05f && Time.time > _playerCombatScript._nextAttackTime) {
+      if (Input.GetButtonDown("Fire1") && duration > 0.05f && Time.time > _playerCombatScript._nextAttackTime) {
         queueLightAttack = true;
         break;
-      } else if (Input.GetKeyDown(KeyCode.Mouse1) && duration > 0.05f && Time.time > _playerCombatScript._nextAttackTime) {
+      } else if (Input.GetButtonDown("Fire2") && duration > 0.05f && Time.time > _playerCombatScript._nextAttackTime) {
         queueHeavyAttack = true;
         break;
       }

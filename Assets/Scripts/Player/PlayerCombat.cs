@@ -125,9 +125,9 @@ public class PlayerCombat : MonoBehaviour
     bool queueSecondLightAttack = false;
     bool queueHeavyAttack = false;
     while (duration < 0.25f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
-      if (Input.GetKeyDown(KeyCode.Mouse0) && duration > 0.05f) {
+      if (Input.GetButtonDown("Fire1") && duration > 0.05f) {
         queueSecondLightAttack = true;
-      } else if (Input.GetKeyDown(KeyCode.Mouse1) && duration > 0.05f) {
+      } else if (Input.GetButtonDown("Fire2") && duration > 0.05f) {
         queueHeavyAttack = true;
       }
       duration += Time.deltaTime;
@@ -161,9 +161,9 @@ public class PlayerCombat : MonoBehaviour
     bool queueThirdLightAttack = false;
     bool queueHeavyAttack = false;
     while (duration < 0.25f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
-      if (Input.GetKeyDown(KeyCode.Mouse0) && duration > 0.05f) {
+      if (Input.GetButtonDown("Fire1") && duration > 0.05f) {
         queueThirdLightAttack = true;
-      } else if (Input.GetKeyDown(KeyCode.Mouse1) && duration > 0.05f) {
+      } else if (Input.GetButtonDown("Fire2") && duration > 0.05f) {
         queueHeavyAttack = true;
       }      
       duration += Time.deltaTime;
@@ -196,7 +196,7 @@ public class PlayerCombat : MonoBehaviour
     float duration = 0.0f;
     bool queueHeavyAttack = false;
     while (duration < 0.25f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
-      if (Input.GetKeyDown(KeyCode.Mouse1) && duration > 0.05f) queueHeavyAttack = true;
+      if (Input.GetButtonDown("Fire2") && duration > 0.05f) queueHeavyAttack = true;
       duration += Time.deltaTime;
       _rb.velocity = new Vector2(0, 0) * 0;
       _rb.gravityScale = 0.0f;

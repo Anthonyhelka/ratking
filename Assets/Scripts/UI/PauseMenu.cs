@@ -20,7 +20,7 @@ public class PauseMenu : MonoBehaviour
   }
 
   void Update() {
-    if (Input.GetKeyDown(KeyCode.Escape) && !_gameOverMenuScript.gameOver) {
+    if (Input.GetButtonDown("Cancel") && !_gameOverMenuScript.gameOver) {
       if (paused) {
         Resume();
       } else {

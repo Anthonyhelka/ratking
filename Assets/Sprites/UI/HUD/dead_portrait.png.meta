@@ -1,49 +1,97 @@
 fileFormatVersion: 2
-guid: 9c865c4e466c7554ab1684c0cce05346
+guid: cef2735faceedc54db816ff30b5087be
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1360642935512140377
-    second: heavy_attack_air_0
+      213: -2879738599993466582
+    second: dead_portait_0
   - first:
-      213: -3302126747358792765
-    second: heavy_attack_air_1
+      213: 5846346535048625169
+    second: dead_portait_1
   - first:
-      213: -3729499148176440405
-    second: heavy_attack_air_2
+      213: 5680320634229046104
+    second: dead_portait_2
   - first:
-      213: -7344599684359407308
-    second: heavy_attack_air_3
+      213: -4228351863022185896
+    second: dead_portait_3
   - first:
-      213: 2438698506909038540
-    second: heavy_attack_air_4
+      213: 7007979331505982798
+    second: dead_portait_4
   - first:
-      213: -5593041567705531656
-    second: remove
+      213: 124744677260149296
+    second: dead_portait_5
   - first:
-      213: -6562789239320044892
-    second: heavy_attack_air_6
+      213: 327864859941849972
+    second: dead_portait_6
   - first:
-      213: 4408610276922178379
-    second: heavy_attack_air_7
+      213: -6548130419277158670
+    second: dead_portait_7
   - first:
-      213: -5149757819904810455
-    second: heavy_attack_air_8
+      213: 6184809351012332217
+    second: dead_portait_8
   - first:
-      213: -7878736185667963279
-    second: heavy_attack_air_9
+      213: 275179837443686195
+    second: dead_portait_9
   - first:
-      213: 1374888304449128652
-    second: heavy_attack_air_10
+      213: 9076430966144424540
+    second: dead_portait_10
   - first:
-      213: 5730455972137676911
-    second: heavy_attack_air_11
+      213: 9150572246542635951
+    second: dead_portait_11
   - first:
-      213: -1621856538014211393
-    second: heavy_attack_air_12
+      213: 2706988013385175240
+    second: dead_portait_12
   - first:
-      213: -2134328112234291744
-    second: heavy_attack_air_13
+      213: -4450654640357297157
+    second: dead_portait_13
+  - first:
+      213: 7266746387580474496
+    second: dead_portait_14
+  - first:
+      213: 9169093520470538535
+    second: dead_portrait_0
+  - first:
+      213: -8993107557487439285
+    second: dead_portrait_1
+  - first:
+      213: -4683624764370844274
+    second: dead_portrait_2
+  - first:
+      213: 1315356570457358053
+    second: dead_portrait_3
+  - first:
+      213: 9012797695375529016
+    second: dead_portrait_4
+  - first:
+      213: 7664784250193897153
+    second: dead_portrait_5
+  - first:
+      213: 8851907473313502614
+    second: dead_portrait_6
+  - first:
+      213: -697919834334809408
+    second: dead_portrait_7
+  - first:
+      213: -1852810014896182041
+    second: dead_portrait_8
+  - first:
+      213: -3817553960579858537
+    second: dead_portrait_9
+  - first:
+      213: 694090441700036076
+    second: dead_portrait_10
+  - first:
+      213: -5769485519449881348
+    second: dead_portrait_11
+  - first:
+      213: -6992552297678766945
+    second: dead_portrait_12
+  - first:
+      213: 6995978869935560437
+    second: dead_portrait_13
+  - first:
+      213: 1746739933712329456
+    second: dead_portrait_14
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -141,274 +189,316 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: heavy_attack_air_0
+      name: dead_portrait_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 99
-        width: 27
-        height: 26
+        x: 0
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a577aa85760e1de0800000000000000
-      internalID: -1360642935512140377
+      spriteID: 7297bf71af92f3f70800000000000000
+      internalID: 9169093520470538535
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_attack_air_1
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 99
-        width: 27
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3c3fc5cf73d7c22d0800000000000000
-      internalID: -3302126747358792765
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_attack_air_2
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 99
-        width: 27
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ba342d2d8482e3cc0800000000000000
-      internalID: -3729499148176440405
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_attack_air_3
-      rect:
-        serializedVersion: 2
-        x: 99
-        y: 99
-        width: 27
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 439bf4c108db21a90800000000000000
-      internalID: -7344599684359407308
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_attack_air_4
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 67
-        width: 27
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cc7b69a0f5ff7d120800000000000000
-      internalID: 2438698506909038540
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_attack_air_6
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 67
-        width: 27
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4aa929e35f94ce4a0800000000000000
-      internalID: -6562789239320044892
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_attack_air_7
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 67
-        width: 27
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b4b351560b78e2d30800000000000000
-      internalID: 4408610276922178379
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_attack_air_8
-      rect:
-        serializedVersion: 2
-        x: 102
-        y: 67
-        width: 26
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 922a8412c826888b0800000000000000
-      internalID: -5149757819904810455
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_attack_air_9
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 35
-        width: 27
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 176be36be2b19a290800000000000000
-      internalID: -7878736185667963279
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_attack_air_10
+      name: dead_portrait_1
       rect:
         serializedVersion: 2
         x: 32
-        y: 35
-        width: 27
-        height: 26
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc88780e0a5941310800000000000000
-      internalID: 1374888304449128652
+      spriteID: b429411f250123380800000000000000
+      internalID: -8993107557487439285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_attack_air_11
+      name: dead_portrait_2
       rect:
         serializedVersion: 2
         x: 64
-        y: 35
-        width: 27
-        height: 26
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f60384c685ba68f40800000000000000
-      internalID: 5730455972137676911
+      spriteID: e85047a771c600fb0800000000000000
+      internalID: -4683624764370844274
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_attack_air_12
+      name: dead_portrait_3
       rect:
         serializedVersion: 2
         x: 96
-        y: 35
-        width: 27
-        height: 26
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb2a40752120e79e0800000000000000
-      internalID: -1621856538014211393
+      spriteID: 5ee361fe4d5114210800000000000000
+      internalID: 1315356570457358053
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_attack_air_13
+      name: dead_portrait_4
       rect:
         serializedVersion: 2
-        x: 1
-        y: 3
-        width: 27
-        height: 26
+        x: 0
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ed152cd3e75162e0800000000000000
-      internalID: -2134328112234291744
+      spriteID: 834515980c3e31d70800000000000000
+      internalID: 9012797695375529016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_portrait_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c6e0d07aa8ce5a60800000000000000
+      internalID: 7664784250193897153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_portrait_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6951a7392fa48da70800000000000000
+      internalID: 8851907473313502614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_portrait_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c236c0cb9d7056f0800000000000000
+      internalID: -697919834334809408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_portrait_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7eca3d9ab1f7946e0800000000000000
+      internalID: -1852810014896182041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_portrait_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79f70cc26e2550bc0800000000000000
+      internalID: -3817553960579858537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_portrait_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ced468b4497e1a900800000000000000
+      internalID: 694090441700036076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_portrait_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf40e64fc7baeefa0800000000000000
+      internalID: -5769485519449881348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_portrait_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9cf38fbbb675fe90800000000000000
+      internalID: -6992552297678766945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_portrait_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f6d5a647b5b61160800000000000000
+      internalID: 6995978869935560437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_portrait_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0faa9ef07baad3810800000000000000
+      internalID: 1746739933712329456
       vertices: []
       indices: 
       edges: []
