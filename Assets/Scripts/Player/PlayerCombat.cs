@@ -37,7 +37,7 @@ public class PlayerCombat : MonoBehaviour
 
   public IEnumerator _airHeavyAttackRoutine;
 
-  public List<string> Enemies = new List<string>() { "Infected", "Spikes" };
+  public List<string> HarmfulGround = new List<string>() { "Spikes" };
 
   [SerializeField] private bool _attacking;
   public bool Attacking {
@@ -118,7 +118,7 @@ public class PlayerCombat : MonoBehaviour
     FirstLightAttack = true;
 
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _firstLightAttackRange, enemyLayers);
-    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_firstLightAttackDamage); }
+    foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_firstLightAttackDamage); }
     _nextAttackTime = Time.time + _firstLightAttackCooldown;
 
     float duration = 0.0f;
@@ -154,7 +154,7 @@ public class PlayerCombat : MonoBehaviour
     SecondLightAttack = true;
 
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _secondLightAttackRange, enemyLayers);
-    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_secondLightAttackDamage); }
+    foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_secondLightAttackDamage); }
     _nextAttackTime = Time.time + _secondLightAttackCooldown;
 
     float duration = 0.0f;
@@ -190,7 +190,7 @@ public class PlayerCombat : MonoBehaviour
     ThirdLightAttack = true;
 
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _thirdLightAttackRange, enemyLayers);
-    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_thirdLightAttackDamage); }
+    foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_thirdLightAttackDamage); }
     _nextAttackTime = Time.time + _thirdLightAttackCooldown;
 
     float duration = 0.0f;
@@ -235,16 +235,16 @@ public class PlayerCombat : MonoBehaviour
 
   public IEnumerator airHeavyAttacksRoutine() {
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
-    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
+    foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
     yield return new WaitForSeconds(0.1f);
     hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
-    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
+    foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
     yield return new WaitForSeconds(0.1f);
     hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
-    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
+    foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
     yield return new WaitForSeconds(0.1f);
     hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
-    foreach(Collider2D enemy in hitEnemies) { enemy.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
+    foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
     yield return new WaitForSeconds(0.1f);
   }
       
@@ -256,16 +256,16 @@ public class PlayerCombat : MonoBehaviour
   }
 
   void OnCollisionStay2D(Collision2D collision) {
-    if (Enemies.Contains(collision.gameObject.tag)) {
+    if (HarmfulGround.Contains(collision.gameObject.tag)) {
       _playerControllerScript.ResetAnimationVariables();
       _playerHealthScript.TakeDamage(collision.transform.tag);
     }
   }
 
   void OnTriggerStay2D(Collider2D collision) {
-    if (Enemies.Contains(collision.gameObject.tag)) {
+    if (collision.gameObject.layer == 13) {
       _playerControllerScript.ResetAnimationVariables();
-      _playerHealthScript.TakeDamage(collision.transform.tag);
+      _playerHealthScript.TakeDamage(collision.transform.parent.tag);
     }
   }
 }

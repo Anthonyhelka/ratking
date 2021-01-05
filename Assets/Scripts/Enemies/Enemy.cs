@@ -6,7 +6,7 @@ using TMPro;
 public class Enemy : MonoBehaviour {
   [SerializeField] private HealthBar _healthBar;
   private Animator _animator;
-  private BoxCollider2D _bc;
+  private BoxCollider2D _hitbox;
   private Rigidbody2D _rb;
   private SpriteRenderer _sr;
   [SerializeField] private GameObject _damagePopup;
@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour {
   void Awake()
   {
     _animator = GetComponent<Animator>();
-    _bc = GetComponent<BoxCollider2D>();
+    _hitbox = transform.GetChild(0).GetComponent<BoxCollider2D>();
     _rb = GetComponent<Rigidbody2D>();
     _sr = GetComponent<SpriteRenderer>();
     _currentHealth = _maxHealth;
@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour {
     Pathfind pathfind = GetComponent<Pathfind>();
     if (pathfind != null) pathfind.Stop();
 
-    _bc.enabled = false;
+    _hitbox.enabled = false;
     _rb.bodyType = RigidbodyType2D.Kinematic;
     transform.rotation = Quaternion.Euler(0, 0, 0);
     _animator.SetBool("isDead", true);

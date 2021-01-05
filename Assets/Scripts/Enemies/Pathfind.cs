@@ -58,6 +58,12 @@ public class Pathfind : MonoBehaviour
       _reachedEndOfPath = false;
     }
 
+    if (Chasing) {
+      _chaseRange = 2.5f;
+    } else {
+      _chaseRange = 1.5f;
+    }
+
     if (Vector2.Distance(_target.position, _rb.position) <= _chaseRange) {
       Chasing = true;
       CalculateMovement();
