@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour {
   [SerializeField] private int _currentHealth;
   private IEnumerator _damageRoutine;
   [SerializeField] private float _damageFlashDuration = 0.1f;
+  [SerializeField] private float _deathAnimationDuration;
 
   void Awake()
   {
@@ -57,6 +58,6 @@ public class Enemy : MonoBehaviour {
     _rb.bodyType = RigidbodyType2D.Kinematic;
     transform.rotation = Quaternion.Euler(0, 0, 0);
     _animator.SetBool("isDead", true);
-    Destroy (gameObject, _animator.GetCurrentAnimatorStateInfo(0).length);
+    Destroy (gameObject, _deathAnimationDuration);
   }
 }

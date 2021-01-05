@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1141284503323247918}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.15, y: -0.112, z: 0}
+  m_LocalPosition: {x: 0.12, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141284504186021761}
@@ -137,6 +137,7 @@ MonoBehaviour:
   _maxHealth: 100
   _currentHealth: 0
   _damageFlashDuration: 0.1
+  _deathAnimationDuration: 0.6
 --- !u!114 &1141284504186021763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,10 +151,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 0.3
-  _distance: 0.1
+  _distance: 0.5
   _movingRight: 0
   _groundDetection: {fileID: 1141284503323247919}
-  HarmfulGround:
+  UnwalkableGround:
+  - Walls
   - Spikes
 --- !u!61 &1141284504186021767
 BoxCollider2D:

@@ -9,7 +9,7 @@ public class Patrol : MonoBehaviour
   [SerializeField] private float _distance  = 0.1f;
   [SerializeField] private bool _movingRight;
   [SerializeField] private Transform _groundDetection;
-  [SerializeField] private List<string> HarmfulGround = new List<string>() { "Spikes" };
+  [SerializeField] private List<string> UnwalkableGround = new List<string>() { "Walls", "Spikes" };
 
   void Awake() {
     _rb = GetComponent<Rigidbody2D>();
@@ -19,7 +19,7 @@ public class Patrol : MonoBehaviour
   {
 
     RaycastHit2D groundInformation = Physics2D.Raycast(_groundDetection.position, Vector2.down, _distance);
-    if (groundInformation.collider == false || HarmfulGround.Contains(groundInformation.collider.tag)) {
+    if (groundInformation.collider == false || UnwalkableGround.Contains(groundInformation.collider.tag)) {
       if (_movingRight == true) {
         _rb.velocity = new Vector2(-1.0f * _speed, _rb.velocity.y);
         transform.eulerAngles = new Vector2(0, -180);

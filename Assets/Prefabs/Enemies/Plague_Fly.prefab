@@ -223,6 +223,7 @@ MonoBehaviour:
   _maxHealth: 50
   _currentHealth: 0
   _damageFlashDuration: 0.1
+  _deathAnimationDuration: 0.6
 --- !u!114 &4032734531042720084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,7 +264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c675cfadacfbc24da2ec2d780c400b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 0}
   _speed: 200
   _nextWaypointDistance: 0.1
   _chaseRange: 1.5
@@ -296,7 +296,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 4032734531042720072}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 8fbedd19310b38941997c7788d670996, type: 2}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
