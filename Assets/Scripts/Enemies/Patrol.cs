@@ -19,7 +19,7 @@ public class Patrol : MonoBehaviour
   {
 
     RaycastHit2D groundInformation = Physics2D.Raycast(_groundDetection.position, Vector2.down, _distance);
-    if (groundInformation.collider == false || UnwalkableGround.Contains(groundInformation.collider.tag)) {
+    if (groundInformation.collider == false || UnwalkableGround.Contains(groundInformation.collider.tag) || groundInformation.collider.tag == "Player") {
       if (_movingRight == true) {
         _rb.velocity = new Vector2(-1.0f * _speed, _rb.velocity.y);
         transform.eulerAngles = new Vector2(0, -180);

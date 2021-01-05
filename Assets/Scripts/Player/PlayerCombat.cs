@@ -15,25 +15,25 @@ public class PlayerCombat : MonoBehaviour
   public float _nextAttackTime = -1.0f;
 
   // Light Attacks
-  [SerializeField] private int _firstLightAttackDamage = 40;
+  [SerializeField] private int _firstLightAttackDamage = 10;
   [SerializeField] private float _firstLightAttackRange = 0.15f;
   [SerializeField] private float _firstLightAttackCooldown = 0.5f;
   public IEnumerator _firstLightAttackRoutine;
 
-  [SerializeField] private int _secondLightAttackDamage = 60;
+  [SerializeField] private int _secondLightAttackDamage = 20;
   [SerializeField] private float _secondLightAttackRange = 0.15f;
-  [SerializeField] private float _secondLightAttackCooldown = 0.75f;
+  [SerializeField] private float _secondLightAttackCooldown = 0.6f;
   public IEnumerator _secondLightAttackRoutine;
 
-  [SerializeField] private int _thirdLightAttackDamage = 100;
+  [SerializeField] private int _thirdLightAttackDamage = 30;
   [SerializeField] private float _thirdLightAttackRange = 0.15f;
-  [SerializeField] private float _thirdLightAttackCooldown = 1.0f;
+  [SerializeField] private float _thirdLightAttackCooldown = 0.7f;
   public IEnumerator _thirdLightAttackRoutine;
 
   // Heavy Attacks
-  [SerializeField] private int _airHeavyAttackDamage = 25;
+  [SerializeField] private int _airHeavyAttackDamage = 10;
   [SerializeField] private float _airHeavyAttackRange = 0.25f;
-  [SerializeField] private float _airHeavyAttackCooldown = 1.0f;
+  [SerializeField] private float _airHeavyAttackCooldown = 0.8f;
 
   public IEnumerator _airHeavyAttackRoutine;
 
