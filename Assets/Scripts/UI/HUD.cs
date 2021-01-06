@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class HUD : MonoBehaviour {
+  private PlayerController _playerControllerScript;
   private PlayerHealth _playerHealthScript;
   private Animator _portraitAnimator;
+  private Slider _dashSlider;
 
   private float _health;
   [SerializeField] private int _heartCount;
@@ -54,14 +56,17 @@ public class HUD : MonoBehaviour {
   }
 
   void Awake() {
-    _portraitAnimator = GameObject.Find("Portrait").GetComponent<Animator>();
+    _playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
     _playerHealthScript = GameObject.Find("Player").GetComponent<PlayerHealth>();
+    _portraitAnimator = GameObject.Find("Portrait").GetComponent<Animator>();
+    _dashSlider = GameObject.Find("Dash_Slider").GetComponent<Slider>();
   }
 
   void Update() {
     _health = _playerHealthScript.health;
     CalculateHearts();
     CalculatePortrait();
+    CalculateDashCooldown();
   }
 
   void CalculateHearts() {
@@ -97,6 +102,17 @@ public class HUD : MonoBehaviour {
       Wounded = true;
     } else if (_health <= 0) {
       Dead = true;
+    }
+  }
+
+  void CalculateDashCooldown() {
+    float dashProgress = _playerControllerScript._dashCooldown - (_playerControllerScript._dashTimer - Time.time) * 2 + _playerControllerScript._dashTimer - Time.time;
+    _dashSlider.maxValue = _playerControllerScript._dashCooldown;
+    _dashSlider.value = dashProgress;
+    if (dashProgress >= _playerControllerScript._dashCooldown && _playerControllerScript._dashCount == 0) {
+      _dashSlider.fillRect.GetComponentInChildren<Image>().color = new Color(0.0f, 0.55f, 1.0f);
+    } else {
+      _dashSlider.fillRect.GetComponentInChildren<Image>().color = new Color(0.65f, 0.65f, 0.65f); 
     }
   }
 }

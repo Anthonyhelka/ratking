@@ -31,12 +31,12 @@ public class PlayerController : MonoBehaviour {
   
   // Dashing
   private bool _dashRequest;
-  private int _dashCount;
-  [SerializeField] private int _dashCountMax = 1;
+  public int _dashCount;
+  public int _dashCountMax = 1;
   [SerializeField] private float _dashSpeed = 8.0f;
   [SerializeField] private float _dashDurationCountMax = 0.4f;
-  [SerializeField] private float _dashCooldown = 1.0f;
-  private float _dashTimer = -1.0f;
+  public float _dashCooldown = 1.0f;
+  public float _dashTimer = -1.0f;
   public IEnumerator _dashRoutine;
 
   // Animation Variables
@@ -196,9 +196,8 @@ public class PlayerController : MonoBehaviour {
     // Reset Values When Grounded
     if (_isGrounded) {
       _airJumpCount = 0;
-      _dashCount = 0;
+      if (Time.time > _dashTimer) _dashCount = 0;
     }
-
     // User Requests
     if (_jumpRequest) {
       Jump();
@@ -260,10 +259,13 @@ public class PlayerController : MonoBehaviour {
     Dashing = true;
     _dashCount++;
     _rb.velocity = new Vector2(0, 0);
+
     float duration = 0.0f;
     bool queueLightAttack = false;
     bool queueHeavyAttack = false;
+    _dashTimer = Time.time + _dashCooldown;
     while (duration <= _dashDurationCountMax) {
+      _dashTimer += Time.deltaTime;
       if (Input.GetButtonDown("Fire1") && duration > 0.05f && Time.time > _playerCombatScript._nextAttackTime) {
         queueLightAttack = true;
         break;
@@ -281,8 +283,8 @@ public class PlayerController : MonoBehaviour {
       }
       yield return 0;
     }
+
     Dashing = false;
-    _dashTimer = Time.time + _dashCooldown;
 
     if (queueLightAttack) _playerCombatScript.Attack("Light");
     if (queueHeavyAttack) _playerCombatScript.Attack("Heavy");
