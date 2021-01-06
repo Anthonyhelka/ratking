@@ -33,7 +33,8 @@ public class PlayerController : MonoBehaviour {
   private bool _dashRequest;
   public int _dashCount;
   public int _dashCountMax = 1;
-  [SerializeField] private float _dashSpeed = 8.0f;
+  [SerializeField] private float _dashHorizontalSpeed = 8.0f;
+  [SerializeField] private float _dashVerticalSpeed = 5.0f;
   [SerializeField] private float _dashDurationCountMax = 0.4f;
   public float _dashCooldown = 1.0f;
   public float _dashTimer = -1.0f;
@@ -263,26 +264,47 @@ public class PlayerController : MonoBehaviour {
     float duration = 0.0f;
     bool queueLightAttack = false;
     bool queueHeavyAttack = false;
-    _dashTimer = Time.time + _dashCooldown;
+    _dashTimer = 10000000.0f;
+    Vector2 velocity;
+    bool vertical = false;
+    if (_horizontalInput != 0.0f) {
+      velocity = new Vector2(_horizontalInput, 0.0f).normalized * _dashHorizontalSpeed; 
+    } else if (_verticalInput != 0.0f) {
+      vertical = true;
+      velocity = new Vector2(0.0f, _verticalInput).normalized * _dashVerticalSpeed;
+    } else {
+      if (_facingRight == true) {
+        velocity = new Vector2(1.0f, 0.0f) * _dashHorizontalSpeed;
+      } else {
+        velocity = new Vector2(-1.0f, 0.0f) * _dashHorizontalSpeed;
+      }
+    }
+
     while (duration <= _dashDurationCountMax) {
-      _dashTimer += Time.deltaTime;
-      if (Input.GetButtonDown("Fire1") && duration > 0.05f && Time.time > _playerCombatScript._nextAttackTime) {
+      if (vertical) {
+        if (_facingRight) {
+          transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
+        } else {
+          transform.rotation = Quaternion.Euler(0.0f, 0.0f, -90.0f);
+        }
+      }
+      if (Input.GetButtonDown("Fire1") && duration > 0.05f && Time.time > _playerCombatScript._attackTimer) {
         queueLightAttack = true;
         break;
-      } else if (Input.GetButtonDown("Fire2") && duration > 0.05f && Time.time > _playerCombatScript._nextAttackTime) {
+      } else if (Input.GetButtonDown("Fire2") && duration > 0.05f && Time.time > _playerCombatScript._attackTimer) {
         queueHeavyAttack = true;
         break;
       }
       duration += Time.deltaTime;
-      _rb.velocity = new Vector2(_rb.velocity.x, 0);
+      _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y);
       _rb.gravityScale = 0.0f;
-      if (_facingRight == true) {
-        _rb.AddForce(Vector2.right * _dashSpeed * Time.deltaTime, ForceMode2D.Impulse);
-      } else {
-        _rb.AddForce(Vector2.left * _dashSpeed * Time.deltaTime, ForceMode2D.Impulse);
-      }
+      _rb.AddForce(velocity * Time.deltaTime, ForceMode2D.Impulse);
       yield return 0;
     }
+
+    transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+
+    _dashTimer = Time.time + _dashCooldown;
 
     Dashing = false;
 

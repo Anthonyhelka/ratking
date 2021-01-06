@@ -12,7 +12,7 @@ public class PlayerCombat : MonoBehaviour
   public Transform attackPoint;
   private Animator _attackEffectAnimator;
   public LayerMask enemyLayers;
-  public float _nextAttackTime = -1.0f;
+  public float _attackTimer = -1.0f;
   
   // Light Attacks
   [SerializeField] private int _firstLightAttackDamage = 10;
@@ -22,18 +22,18 @@ public class PlayerCombat : MonoBehaviour
 
   [SerializeField] private int _secondLightAttackDamage = 20;
   [SerializeField] private float _secondLightAttackRange = 0.20f;
-  [SerializeField] private float _secondLightAttackCooldown = 0.6f;
+  [SerializeField] private float _secondLightAttackCooldown = 0.5f;
   public IEnumerator _secondLightAttackRoutine;
 
   [SerializeField] private int _thirdLightAttackDamage = 30;
   [SerializeField] private float _thirdLightAttackRange = 0.20f;
-  [SerializeField] private float _thirdLightAttackCooldown = 0.7f;
+  [SerializeField] private float _thirdLightAttackCooldown = 0.5f;
   public IEnumerator _thirdLightAttackRoutine;
 
   // Heavy Attacks
   [SerializeField] private int _airHeavyAttackDamage = 10;
   [SerializeField] private float _airHeavyAttackRange = 0.30f;
-  [SerializeField] private float _airHeavyAttackCooldown = 0.8f;
+  [SerializeField] private float _airHeavyAttackCooldown = 0.5f;
 
   public IEnumerator _airHeavyAttackRoutine;
 
@@ -103,7 +103,7 @@ public class PlayerCombat : MonoBehaviour
   }
 
   public void Attack(string type) {
-    if (Time.time < _nextAttackTime) { return; }
+    if (Time.time < _attackTimer) { return; }
     if (type == "Light") {
       _firstLightAttackRoutine = firstLightAttackRoutine();
       StartCoroutine(_firstLightAttackRoutine);
@@ -119,11 +119,11 @@ public class PlayerCombat : MonoBehaviour
 
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _firstLightAttackRange, enemyLayers);
     foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_firstLightAttackDamage); }
-    _nextAttackTime = Time.time + _firstLightAttackCooldown;
 
     float duration = 0.0f;
     bool queueSecondLightAttack = false;
     bool queueHeavyAttack = false;
+    _attackTimer = 10000000.0f;
     while (duration < 0.25f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
       if (Input.GetButtonDown("Fire1") && duration > 0.05f) {
         queueSecondLightAttack = true;
@@ -135,6 +135,8 @@ public class PlayerCombat : MonoBehaviour
       _rb.gravityScale = 0.0f;
       yield return 0;
     }
+
+    _attackTimer = Time.time + _firstLightAttackCooldown;
 
     FirstLightAttack = false;
 
@@ -155,11 +157,11 @@ public class PlayerCombat : MonoBehaviour
 
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _secondLightAttackRange, enemyLayers);
     foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_secondLightAttackDamage); }
-    _nextAttackTime = Time.time + _secondLightAttackCooldown;
 
     float duration = 0.0f;
     bool queueThirdLightAttack = false;
     bool queueHeavyAttack = false;
+    _attackTimer = 10000000.0f;
     while (duration < 0.25f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
       if (Input.GetButtonDown("Fire1") && duration > 0.05f) {
         queueThirdLightAttack = true;
@@ -171,6 +173,8 @@ public class PlayerCombat : MonoBehaviour
       _rb.gravityScale = 0.0f;
       yield return 0;
     }
+
+    _attackTimer = Time.time + _secondLightAttackCooldown;
 
     SecondLightAttack = false;
     
@@ -191,10 +195,10 @@ public class PlayerCombat : MonoBehaviour
 
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _thirdLightAttackRange, enemyLayers);
     foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_thirdLightAttackDamage); }
-    _nextAttackTime = Time.time + _thirdLightAttackCooldown;
 
     float duration = 0.0f;
     bool queueHeavyAttack = false;
+    _attackTimer = 10000000.0f;
     while (duration < 0.25f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
       if (Input.GetButtonDown("Fire2") && duration > 0.05f) queueHeavyAttack = true;
       duration += Time.deltaTime;
@@ -202,6 +206,8 @@ public class PlayerCombat : MonoBehaviour
       _rb.gravityScale = 0.0f;
       yield return 0;
     }
+
+    _attackTimer = Time.time + _thirdLightAttackCooldown;
 
     ThirdLightAttack = false;
 
@@ -219,15 +225,16 @@ public class PlayerCombat : MonoBehaviour
 
     StartCoroutine(airHeavyAttacksRoutine());
 
-    _nextAttackTime = Time.time + _airHeavyAttackCooldown;
-
     float duration = 0.0f;
+    _attackTimer = 10000000.0f;
     while (duration < 0.4f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
       duration += Time.deltaTime;
       _rb.velocity = new Vector2(0, 0) * 0;
       _rb.gravityScale = 0.0f;
       yield return 0;
     }
+
+    _attackTimer = Time.time + _airHeavyAttackCooldown;
 
     Attacking = false;
     AirHeavyAttack = false;

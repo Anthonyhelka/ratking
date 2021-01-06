@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class HUD : MonoBehaviour {
   private PlayerController _playerControllerScript;
   private PlayerHealth _playerHealthScript;
+  private PlayerCombat _playerCombatScript;
   private Animator _portraitAnimator;
   private Slider _dashSlider;
+  private Slider _attackSlider;
 
   private float _health;
   [SerializeField] private int _heartCount;
@@ -58,15 +60,18 @@ public class HUD : MonoBehaviour {
   void Awake() {
     _playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
     _playerHealthScript = GameObject.Find("Player").GetComponent<PlayerHealth>();
+    _playerCombatScript = GameObject.Find("Player").GetComponent<PlayerCombat>();
     _portraitAnimator = GameObject.Find("Portrait").GetComponent<Animator>();
     _dashSlider = GameObject.Find("Dash_Slider").GetComponent<Slider>();
+    _attackSlider = GameObject.Find("Attack_Slider").GetComponent<Slider>();
   }
 
   void Update() {
     _health = _playerHealthScript.health;
     CalculateHearts();
     CalculatePortrait();
-    CalculateDashCooldown();
+    CalculateDashSlider();
+    CalculateAttackSlider();
   }
 
   void CalculateHearts() {
@@ -105,7 +110,7 @@ public class HUD : MonoBehaviour {
     }
   }
 
-  void CalculateDashCooldown() {
+  void CalculateDashSlider() {
     float dashProgress = _playerControllerScript._dashCooldown - (_playerControllerScript._dashTimer - Time.time) * 2 + _playerControllerScript._dashTimer - Time.time;
     _dashSlider.maxValue = _playerControllerScript._dashCooldown;
     _dashSlider.value = dashProgress;
@@ -113,6 +118,17 @@ public class HUD : MonoBehaviour {
       _dashSlider.fillRect.GetComponentInChildren<Image>().color = new Color(0.0f, 0.55f, 1.0f);
     } else {
       _dashSlider.fillRect.GetComponentInChildren<Image>().color = new Color(0.65f, 0.65f, 0.65f); 
+    }
+  }
+
+  void CalculateAttackSlider() {
+    float attackProgress = 0.5f - (_playerCombatScript._attackTimer - Time.time) * 2 + _playerCombatScript._attackTimer - Time.time;
+    _attackSlider.maxValue = 0.5f;
+    _attackSlider.value = attackProgress;
+    if (attackProgress >= 0.5f) {
+      _attackSlider.fillRect.GetComponentInChildren<Image>().color = new Color(1.0f, 0.1f, 0.0f);
+    } else {
+      _attackSlider.fillRect.GetComponentInChildren<Image>().color = new Color(0.65f, 0.65f, 0.65f); 
     }
   }
 }
