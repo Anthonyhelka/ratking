@@ -685,6 +685,9 @@ AnimatorStateTransition:
     m_ConditionEvent: jumping
     m_EventTreshold: 0
   - m_ConditionMode: 2
+    m_ConditionEvent: dashing
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
     m_ConditionEvent: damaged
     m_EventTreshold: 0
   - m_ConditionMode: 2

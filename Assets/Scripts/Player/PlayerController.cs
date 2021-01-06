@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour {
   public int _dashCount;
   public int _dashCountMax = 1;
   [SerializeField] private float _dashHorizontalSpeed = 8.0f;
-  [SerializeField] private float _dashVerticalSpeed = 5.0f;
+  [SerializeField] private float _dashVerticalSpeed = 6.0f;
   [SerializeField] private float _dashDurationCountMax = 0.4f;
   public float _dashCooldown = 1.0f;
   public float _dashTimer = -1.0f;
@@ -267,11 +267,9 @@ public class PlayerController : MonoBehaviour {
     _dashTimer = 10000000.0f;
     Vector2 velocity;
     bool vertical = false;
-    if (_horizontalInput != 0.0f) {
-      velocity = new Vector2(_horizontalInput, 0.0f).normalized * _dashHorizontalSpeed; 
-    } else if (_verticalInput != 0.0f) {
+    if (_verticalInput != 0.0f) {
       vertical = true;
-      velocity = new Vector2(0.0f, _verticalInput).normalized * _dashVerticalSpeed;
+      velocity = new Vector2(0.0f, _verticalInput).normalized * _dashVerticalSpeed; 
     } else {
       if (_facingRight == true) {
         velocity = new Vector2(1.0f, 0.0f) * _dashHorizontalSpeed;
