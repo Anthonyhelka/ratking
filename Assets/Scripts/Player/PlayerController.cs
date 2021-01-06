@@ -116,11 +116,11 @@ public class PlayerController : MonoBehaviour {
     _verticalInput = Input.GetAxisRaw("Vertical");
     
     // Jump
-    if (Input.GetButton("Jump")) {
+    if (Input.GetButton("Jump") && !_playerCombatScript.AirHeavyAttack) {
       if (_isGrounded) {
         _jumpRequest = true;
       } else {
-        if (Input.GetButtonDown("Jump")) {
+        if (Input.GetButtonDown("Jump") && !_playerCombatScript.AirHeavyAttack) {
           if (_airJumpCount < _airJumpCountMax) {
             _jumpRequest = true;
             _airJumpCount++;
@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour {
     }
     
     // Dash
-    if (Input.GetButton("Dash") && _dashCount < _dashCountMax && Time.time >  _dashTimer) {
+    if (Input.GetButton("Dash") && _dashCount < _dashCountMax && Time.time >  _dashTimer && !_playerCombatScript.AirHeavyAttack) {
       _dashRequest = true;
     }
 
@@ -183,9 +183,9 @@ public class PlayerController : MonoBehaviour {
 
   void FixedUpdate() {
     // Movement & Gravity
-    if (!Dashing && !_playerHealthScript.Damaged && !_playerCombatScript.Attacking) {
+    if (!Dashing && !_playerHealthScript.Damaged) {
       CalculateMovement();
-      CalculateGravity();
+      if (!_playerCombatScript.Attacking) CalculateGravity();
     }
 
     // Detect Collisions With BoxCast
@@ -295,7 +295,7 @@ public class PlayerController : MonoBehaviour {
   }
 
   void DetermineLockedInput() {
-    if (Dashing || _playerCombatScript.Attacking || _playerHealthScript.Damaged || _playerHealthScript.Dying) {
+    if (Dashing || (_playerCombatScript.Attacking && !_playerCombatScript.AirHeavyAttack) || _playerHealthScript.Dying) {
       _lockPlayerInput = true;
     } else {
       _lockPlayerInput = false;

@@ -13,7 +13,7 @@ public class PlayerCombat : MonoBehaviour
   private Animator _attackEffectAnimator;
   public LayerMask enemyLayers;
   public float _nextAttackTime = -1.0f;
-
+  
   // Light Attacks
   [SerializeField] private int _firstLightAttackDamage = 10;
   [SerializeField] private float _firstLightAttackRange = 0.15f;
