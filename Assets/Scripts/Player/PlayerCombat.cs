@@ -265,14 +265,14 @@ public class PlayerCombat : MonoBehaviour
   void OnCollisionStay2D(Collision2D collision) {
     if (HarmfulGround.Contains(collision.gameObject.tag)) {
       _playerControllerScript.ResetAnimationVariables();
-      _playerHealthScript.TakeDamage(collision.transform.tag);
+      _playerHealthScript.TakeDamage(collision.transform);
     }
   }
 
   void OnTriggerStay2D(Collider2D collision) {
     if (collision.gameObject.layer == 13) {
       _playerControllerScript.ResetAnimationVariables();
-      _playerHealthScript.TakeDamage(collision.transform.parent.tag);
+      _playerHealthScript.TakeDamage(collision.transform.parent);
     }
   }
 }

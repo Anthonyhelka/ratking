@@ -68,41 +68,41 @@ public class PlayerHealth : MonoBehaviour {
     _gameOverMenuScript = GameObject.Find("UI").GetComponent<GameOverMenu>();
   }
 
-  public void TakeDamage(string enemyTag) {
+  public void TakeDamage(Transform enemy) {
     if (Time.time < _invincibilityTimer) return;
     health--;
-    StartCoroutine(DamagedPlayerRoutine(enemyTag));
+    StartCoroutine(DamagedPlayerRoutine(enemy));
   }
 
-  IEnumerator DamagedPlayerRoutine(string enemyTag) {
+  IEnumerator DamagedPlayerRoutine(Transform enemy) {
     Damaged = true;
     _invincibilityTimer = Time.time + _invincibilityCooldown;
 
+    Vector2 direction = (transform.position - enemy.position);
+    direction = direction.normalized;
     _rb.velocity = new Vector2(0, 0) * 0;
     _rb.gravityScale = 1.0f;
 
     float duration = 0.0f;
     while (duration < _knockbackDuration && !Dying) {
       duration += Time.deltaTime;
-      if (_playerControllerScript._facingRight == false) {
-        _rb.AddForce(Vector2.right * _knockbackForce * Time.deltaTime, ForceMode2D.Impulse);
-      } else {
-        _rb.AddForce(Vector2.left * _knockbackForce * Time.deltaTime, ForceMode2D.Impulse);
-      }
+      if (direction.x > 0.1f && _playerControllerScript._facingRight) _playerControllerScript.Flip();
+      if (direction.x < 0.1f && !_playerControllerScript._facingRight) _playerControllerScript.Flip();
+      _rb.AddForce(direction * _knockbackForce * Time.deltaTime, ForceMode2D.Impulse);
       yield return 0;
     }
 
     Damaged = false;
 
     if (health <= 0) {
-      StartCoroutine(PlayerDeathRoutine(enemyTag));
+      StartCoroutine(PlayerDeathRoutine(enemy));
     } else if (health > 0) {
       _invincibilityRoutine = InvincibilityRoutine();
       StartCoroutine(_invincibilityRoutine);
     }
   }
 
-  IEnumerator PlayerDeathRoutine(string enemyTag) {
+  IEnumerator PlayerDeathRoutine(Transform enemy) {
     Dying = true;
 
     if (_playerControllerScript._dashRoutine != null) StopCoroutine(_playerControllerScript._dashRoutine);
@@ -112,11 +112,11 @@ public class PlayerHealth : MonoBehaviour {
     if (_playerCombatScript._airHeavyAttackRoutine != null) StopCoroutine(_playerCombatScript._airHeavyAttackRoutine);
 
     float maxDuration = 0.0f;
-    if (enemyTag == "Infected") {
+    if (enemy.tag == "Infected") {
       maxDuration = _vomitDuration;
       Vomit = true;
     }
-    if (enemyTag == "Spikes") {
+    if (enemy.tag == "Spikes") {
       maxDuration = _spikesDuration;
       Spikes = true;
     }

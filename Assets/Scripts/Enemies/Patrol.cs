@@ -15,11 +15,13 @@ public class Patrol : MonoBehaviour
     _rb = GetComponent<Rigidbody2D>();
   }
 
-  void Update()
-  {
-
+  void Update() {
     RaycastHit2D groundInformation = Physics2D.Raycast(_groundDetection.position, Vector2.down, _distance);
-    if (groundInformation.collider == false || UnwalkableGround.Contains(groundInformation.collider.tag) || groundInformation.collider.tag == "Player") {
+    if (Mathf.Abs(_rb.velocity.x) < 0.1f) {
+      _rb.velocity = new Vector2(1.0f * _speed, _rb.velocity.y);
+      transform.eulerAngles = new Vector2(0, 0);
+      _movingRight = true;
+    } else if (groundInformation.collider == false || UnwalkableGround.Contains(groundInformation.collider.tag)) {
       if (_movingRight == true) {
         _rb.velocity = new Vector2(-1.0f * _speed, _rb.velocity.y);
         transform.eulerAngles = new Vector2(0, -180);

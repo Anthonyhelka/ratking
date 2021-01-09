@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour {
   private IEnumerator _damageRoutine;
   [SerializeField] private float _damageFlashDuration = 0.1f;
   [SerializeField] private float _deathAnimationDuration;
+  public bool airEnemy;
 
   void Awake()
   {
