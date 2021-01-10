@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class PlayerController : MonoBehaviour {
   private Animator _animator;
   private PlayerHealth _playerHealthScript;
   private PlayerCombat _playerCombatScript;
+  private CinemachineVirtualCamera _cinemaMachineVirtualCamera;
+  private CinemachineFramingTransposer _cinemaMachineFramingTransposer;
 
   // Movement
   private float _horizontalInput;
@@ -17,7 +20,11 @@ public class PlayerController : MonoBehaviour {
   [SerializeField] private float _speed = 1.0f;
   public bool _facingRight = true;
   public bool _lockPlayerInput = false;
-
+  private float _lookUpTimer = 0.0f;
+  private float _lookDownTimer = 0.0f;
+  [SerializeField] private float _lookDuration = 1.0f;
+  private bool _hasTouchedGround = false;
+  
   // Jumping & Gravity
   public bool _isGrounded;
   [SerializeField] private LayerMask _groundLayerMask;
@@ -97,6 +104,8 @@ public class PlayerController : MonoBehaviour {
     _playerHealthScript = GetComponent<PlayerHealth>();
     _playerCombatScript = GetComponent<PlayerCombat>();
     _playerCombatScript = GetComponent<PlayerCombat>();
+    _cinemaMachineVirtualCamera = GameObject.Find("Cinemachine_Camera").GetComponent<CinemachineVirtualCamera>();
+    _cinemaMachineFramingTransposer = _cinemaMachineVirtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
     Application.targetFrameRate = 60;
     QualitySettings.vSyncCount = 0;
   }
@@ -185,6 +194,7 @@ public class PlayerController : MonoBehaviour {
     // Movement & Gravity
     if (!Dashing && !_playerHealthScript.Damaged) {
       CalculateMovement();
+      CalculateLookAround();
       if (!_playerCombatScript.Attacking) CalculateGravity();
     }
 
@@ -194,8 +204,10 @@ public class PlayerController : MonoBehaviour {
     // Reset Values When Grounded
     if (_isGrounded) {
       _airJumpCount = 0;
-      if (Time.time > _dashTimer) _dashCount = 0;
+      _hasTouchedGround = true;
     }
+    if (Time.time > _dashTimer && _hasTouchedGround) _dashCount = 0;
+
     // User Requests
     if (_jumpRequest) {
       Jump();
@@ -243,6 +255,28 @@ public class PlayerController : MonoBehaviour {
     _rb.gravityScale = 1.0f;
   }
 
+  void CalculateLookAround() {
+    if (_horizontalInput != 0.0f) {
+      _lookUpTimer = 0.0f;
+      _lookDownTimer = 0.0f;
+      _cinemaMachineFramingTransposer.m_TrackedObjectOffset.y = 0.0f;
+      return;
+    }
+    if (_verticalInput > 0.0f) {
+      _lookDownTimer = 0.0f;
+      _lookUpTimer += Time.deltaTime;
+      if (_lookUpTimer > _lookDuration) _cinemaMachineFramingTransposer.m_TrackedObjectOffset.y = 1.0f;
+    } else if (_verticalInput < 0.0f) {
+      _lookUpTimer = 0.0f;
+      _lookDownTimer += Time.deltaTime;
+      if (_lookDownTimer > _lookDuration) _cinemaMachineFramingTransposer.m_TrackedObjectOffset.y = -1.0f;
+    } else {
+      _lookUpTimer = 0.0f;
+      _lookDownTimer = 0.0f;
+      _cinemaMachineFramingTransposer.m_TrackedObjectOffset.y = 0.0f;
+    }
+  }
+
   void Jump() {
     _rb.velocity = Vector2.up * 0;
     _rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
@@ -270,6 +304,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     while (duration <= _dashDurationCountMax) {
+      if (_playerHealthScript.Damaged || _playerHealthScript.Dying) break;
       if (Input.GetButtonDown("Fire1") && duration > 0.05f && Time.time > _playerCombatScript._attackTimer) {
         queueLightAttack = true;
         break;
@@ -285,6 +320,7 @@ public class PlayerController : MonoBehaviour {
 
     transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
 
+    _hasTouchedGround = false;
     _dashTimer = Time.time + _dashCooldown;
 
     Dashing = false;
