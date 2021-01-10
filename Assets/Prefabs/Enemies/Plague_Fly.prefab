@@ -282,6 +282,8 @@ MonoBehaviour:
   _currentHealth: 0
   _damageFlashDuration: 0.1
   _deathAnimationDuration: 0.6
+  _knockbackDuration: 0.1
+  _knockbackForce: 3
   airEnemy: 0
 --- !u!114 &4032734531042720084
 MonoBehaviour:
@@ -323,7 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c675cfadacfbc24da2ec2d780c400b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 200
+  _speed: 250
   _nextWaypointDistance: 0.1
   _chaseRange: 1.5
   _chasing: 0

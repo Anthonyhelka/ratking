@@ -13,7 +13,7 @@ public class PlayerHealth : MonoBehaviour {
 
   [SerializeField] private float _knockbackDuration = 0.2f;
   [SerializeField] private float _knockbackForce = 15.0f;
-  [SerializeField] private float  _invincibilityCooldown = 2.0f;
+  [SerializeField] private float  _invincibilityCooldown = 1.5f;
   [SerializeField] private float _invincibilityTimer = -1.0f;
   private IEnumerator _invincibilityRoutine;
 

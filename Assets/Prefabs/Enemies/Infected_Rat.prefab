@@ -139,6 +139,8 @@ MonoBehaviour:
   _currentHealth: 0
   _damageFlashDuration: 0.1
   _deathAnimationDuration: 0.6
+  _knockbackDuration: 0.1
+  _knockbackForce: 3
   airEnemy: 0
 --- !u!114 &1141284504186021763
 MonoBehaviour:
@@ -152,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98e9956f0701b644b7f761a0cea6e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.3
+  _speed: 0.4
   _distance: 0.5
   _movingRight: 0
   _groundDetection: {fileID: 1141284503323247919}
@@ -190,7 +192,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1000
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1

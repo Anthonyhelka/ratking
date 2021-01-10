@@ -7,7 +7,7 @@ public class Patrol : MonoBehaviour
   private Rigidbody2D _rb;
   [SerializeField] private float _speed = 0.3f;
   [SerializeField] private float _distance  = 0.1f;
-  [SerializeField] private bool _movingRight;
+  public bool _movingRight;
   [SerializeField] private Transform _groundDetection;
   [SerializeField] private List<string> UnwalkableGround = new List<string>() { "Walls", "Spikes" };
 
@@ -18,9 +18,15 @@ public class Patrol : MonoBehaviour
   void Update() {
     RaycastHit2D groundInformation = Physics2D.Raycast(_groundDetection.position, Vector2.down, _distance);
     if (Mathf.Abs(_rb.velocity.x) < 0.1f) {
-      _rb.velocity = new Vector2(1.0f * _speed, _rb.velocity.y);
-      transform.eulerAngles = new Vector2(0, 0);
-      _movingRight = true;
+      if (_movingRight == true) {
+        _rb.velocity = new Vector2(1.0f * _speed, _rb.velocity.y);
+        transform.eulerAngles = new Vector2(0, 0);
+        _movingRight = true;
+      } else {
+        _rb.velocity = new Vector2(-1.0f * _speed, _rb.velocity.y);
+        transform.eulerAngles = new Vector2(0, -180);
+        _movingRight = false;
+      }
     } else if (groundInformation.collider == false || UnwalkableGround.Contains(groundInformation.collider.tag)) {
       if (_movingRight == true) {
         _rb.velocity = new Vector2(-1.0f * _speed, _rb.velocity.y);
@@ -37,5 +43,9 @@ public class Patrol : MonoBehaviour
   public void Stop() {
     _rb.velocity = new Vector2(0, 0);
     this.enabled = false;
+  }
+
+  public void TakeDamage() {
+
   }
 }
