@@ -1,37 +1,49 @@
 fileFormatVersion: 2
-guid: c4b1c313dd949a443aea04c09a238edb
+guid: 132d9e5ed1b0b77469773c6f7354bd0b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2480443528530159841
-    second: attack_sprite_0
+      213: -5522316921255302568
+    second: light_attack_0
   - first:
-      213: -6703798474304641614
-    second: attack_sprite_1
+      213: 6834226137480691828
+    second: light_attack_1
   - first:
-      213: 8815950625819070681
-    second: attack_sprite_2
+      213: -1535609499185853323
+    second: light_attack_2
   - first:
-      213: -1588934402718568930
-    second: attack_sprite_3
+      213: 6829729283754005052
+    second: light_attack_3
   - first:
-      213: -1362288520967230648
-    second: attack_sprite_4
+      213: 3175624500002701566
+    second: light_attack_4
   - first:
-      213: 4254919596082580810
-    second: attack_sprite_5
+      213: -5609132493606755600
+    second: light_attack_5
   - first:
-      213: 195251229788104333
-    second: attack_sprite_6
+      213: -8716354939280725090
+    second: light_attack_6
   - first:
-      213: 4213641321925437320
-    second: attack_sprite_7
+      213: -5699660327412297761
+    second: light_attack_7
   - first:
-      213: 6474266102544381190
-    second: attack_sprite_8
+      213: -22550550361940204
+    second: light_attack_8
   - first:
-      213: 4831272092531850288
-    second: attack_sprite_9
+      213: 8118994218760517360
+    second: light_attack_9
+  - first:
+      213: 2848019324367801152
+    second: light_attack_10
+  - first:
+      213: 7336840781402973465
+    second: light_attack_11
+  - first:
+      213: -8403150542729440967
+    second: light_attack_12
+  - first:
+      213: -7085451935202125781
+    second: light_attack_13
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -129,211 +141,295 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: attack_sprite_0
+      name: light_attack_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 99
-        width: 30
-        height: 27
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e8e47b4f3e4c6220800000000000000
-      internalID: 2480443528530159841
+      spriteID: 85ae273c40acc53b0800000000000000
+      internalID: -5522316921255302568
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack_sprite_1
-      rect:
-        serializedVersion: 2
-        x: 34
-        y: 99
-        width: 30
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2b5244d4ec257f2a0800000000000000
-      internalID: -6703798474304641614
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attack_sprite_2
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 99
-        width: 30
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9d01451a26c885a70800000000000000
-      internalID: 8815950625819070681
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attack_sprite_3
-      rect:
-        serializedVersion: 2
-        x: 2
-        y: 67
-        width: 30
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e1eef8a4498f2f9e0800000000000000
-      internalID: -1588934402718568930
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attack_sprite_4
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 67
-        width: 30
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 84be722decd281de0800000000000000
-      internalID: -1362288520967230648
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attack_sprite_5
+      name: light_attack_1
       rect:
         serializedVersion: 2
         x: 64
-        y: 67
-        width: 30
-        height: 27
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4dc95044d28c0b30800000000000000
-      internalID: 4254919596082580810
+      spriteID: 4700a37767c08de50800000000000000
+      internalID: 6834226137480691828
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack_sprite_6
+      name: light_attack_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57ccf47eb4b60bae0800000000000000
+      internalID: -1535609499185853323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: light_attack_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c329d3e199218ce50800000000000000
+      internalID: 6829729283754005052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: light_attack_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 35
-        width: 30
-        height: 27
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d866a7185fba5b200800000000000000
-      internalID: 195251229788104333
+      spriteID: ef040b658a5121c20800000000000000
+      internalID: 3175624500002701566
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack_sprite_7
+      name: light_attack_5
       rect:
         serializedVersion: 2
-        x: 34
-        y: 36
-        width: 30
-        height: 27
+        x: 64
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 887e54c157cd97a30800000000000000
-      internalID: 4213641321925437320
+      spriteID: 0f2e77c27bb5822b0800000000000000
+      internalID: -5609132493606755600
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack_sprite_8
+      name: light_attack_6
       rect:
         serializedVersion: 2
-        x: 66
-        y: 36
-        width: 30
-        height: 27
+        x: 128
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 605b287d7b639d950800000000000000
-      internalID: 6474266102544381190
+      spriteID: e9b63fb2d59490780800000000000000
+      internalID: -8716354939280725090
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack_sprite_9
+      name: light_attack_7
       rect:
         serializedVersion: 2
-        x: 2
-        y: 4
-        width: 30
-        height: 27
+        x: 192
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03c7e98fe502c0340800000000000000
-      internalID: 4831272092531850288
+      spriteID: fdf043c512db6e0b0800000000000000
+      internalID: -5699660327412297761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: light_attack_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41fdf28d462efaff0800000000000000
+      internalID: -22550550361940204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: light_attack_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f6bba6c9367ca070800000000000000
+      internalID: 8118994218760517360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: light_attack_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04b046e6c72368720800000000000000
+      internalID: 2848019324367801152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: light_attack_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 915af1581d1b1d560800000000000000
+      internalID: 7336840781402973465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: light_attack_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9311b7a6a13026b80800000000000000
+      internalID: -8403150542729440967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: light_attack_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b285c29510b6bad90800000000000000
+      internalID: -7085451935202125781
       vertices: []
       indices: 
       edges: []

@@ -1,49 +1,46 @@
 fileFormatVersion: 2
-guid: 9c865c4e466c7554ab1684c0cce05346
+guid: 9850a5d953877644caa1435a7a5bffbd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1360642935512140377
-    second: heavy_attack_air_0
+      213: -937883279266703948
+    second: heavy_air_attack_0
   - first:
-      213: -3302126747358792765
-    second: heavy_attack_air_1
+      213: 6957176651758278928
+    second: heavy_air_attack_1
   - first:
-      213: -3729499148176440405
-    second: heavy_attack_air_2
+      213: -6660774367512850781
+    second: heavy_air_attack_2
   - first:
-      213: -7344599684359407308
-    second: heavy_attack_air_3
+      213: 333239551047719366
+    second: heavy_air_attack_3
   - first:
-      213: 2438698506909038540
-    second: heavy_attack_air_4
+      213: 6234315876375907902
+    second: heavy_air_attack_4
   - first:
-      213: -5593041567705531656
-    second: remove
+      213: 4825877784274123361
+    second: heavy_air_attack_5
   - first:
-      213: -6562789239320044892
-    second: heavy_attack_air_6
+      213: 4037815922462291460
+    second: heavy_air_attack_6
   - first:
-      213: 4408610276922178379
-    second: heavy_attack_air_7
+      213: -1750660900950063013
+    second: heavy_air_attack_7
   - first:
-      213: -5149757819904810455
-    second: heavy_attack_air_8
+      213: -6348522172034874277
+    second: heavy_air_attack_8
   - first:
-      213: -7878736185667963279
-    second: heavy_attack_air_9
+      213: 9219427036594835643
+    second: heavy_air_attack_9
   - first:
-      213: 1374888304449128652
-    second: heavy_attack_air_10
+      213: -3756306915308202330
+    second: heavy_air_attack_10
   - first:
-      213: 5730455972137676911
-    second: heavy_attack_air_11
+      213: -3668935687528195703
+    second: heavy_air_attack_11
   - first:
-      213: -1621856538014211393
-    second: heavy_attack_air_12
-  - first:
-      213: -2134328112234291744
-    second: heavy_attack_air_13
+      213: 5468118394755487933
+    second: heavy_air_attack_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -141,274 +138,274 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: heavy_attack_air_0
+      name: heavy_air_attack_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 99
-        width: 27
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a577aa85760e1de0800000000000000
-      internalID: -1360642935512140377
+      spriteID: 4b5978a6028fbf2f0800000000000000
+      internalID: -937883279266703948
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_attack_air_1
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 99
-        width: 27
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3c3fc5cf73d7c22d0800000000000000
-      internalID: -3302126747358792765
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_attack_air_2
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 99
-        width: 27
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ba342d2d8482e3cc0800000000000000
-      internalID: -3729499148176440405
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_attack_air_3
-      rect:
-        serializedVersion: 2
-        x: 99
-        y: 99
-        width: 27
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 439bf4c108db21a90800000000000000
-      internalID: -7344599684359407308
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_attack_air_4
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 67
-        width: 27
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cc7b69a0f5ff7d120800000000000000
-      internalID: 2438698506909038540
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_attack_air_6
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 67
-        width: 27
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4aa929e35f94ce4a0800000000000000
-      internalID: -6562789239320044892
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_attack_air_7
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 67
-        width: 27
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b4b351560b78e2d30800000000000000
-      internalID: 4408610276922178379
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_attack_air_8
-      rect:
-        serializedVersion: 2
-        x: 102
-        y: 67
-        width: 26
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 922a8412c826888b0800000000000000
-      internalID: -5149757819904810455
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_attack_air_9
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 35
-        width: 27
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 176be36be2b19a290800000000000000
-      internalID: -7878736185667963279
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_attack_air_10
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 35
-        width: 27
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cc88780e0a5941310800000000000000
-      internalID: 1374888304449128652
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: heavy_attack_air_11
+      name: heavy_air_attack_1
       rect:
         serializedVersion: 2
         x: 64
-        y: 35
-        width: 27
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f60384c685ba68f40800000000000000
-      internalID: 5730455972137676911
+      spriteID: 01991b7dd4bdc8060800000000000000
+      internalID: 6957176651758278928
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_attack_air_12
+      name: heavy_air_attack_2
       rect:
         serializedVersion: 2
-        x: 96
-        y: 35
-        width: 27
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb2a40752120e79e0800000000000000
-      internalID: -1621856538014211393
+      spriteID: 3ae8e57c00d2093a0800000000000000
+      internalID: -6660774367512850781
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_attack_air_13
+      name: heavy_air_attack_3
       rect:
         serializedVersion: 2
-        x: 1
-        y: 3
-        width: 27
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ed152cd3e75162e0800000000000000
-      internalID: -2134328112234291744
+      spriteID: 6c95f492b97ef9400800000000000000
+      internalID: 333239551047719366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heavy_air_attack_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3ec6fc324db48650800000000000000
+      internalID: 6234315876375907902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heavy_air_attack_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16abb15b646f8f240800000000000000
+      internalID: 4825877784274123361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heavy_air_attack_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 406f7ce2034390830800000000000000
+      internalID: 4037815922462291460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heavy_air_attack_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b58c4bc9f2764b7e0800000000000000
+      internalID: -1750660900950063013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heavy_air_attack_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b548b2f68b485e7a0800000000000000
+      internalID: -6348522172034874277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heavy_air_attack_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb01edc0b0cf1ff70800000000000000
+      internalID: 9219427036594835643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heavy_air_attack_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a616b523caeedbc0800000000000000
+      internalID: -3756306915308202330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heavy_air_attack_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 989d0295e62551dc0800000000000000
+      internalID: -3668935687528195703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heavy_air_attack_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db81e2d65b8a2eb40800000000000000
+      internalID: 5468118394755487933
       vertices: []
       indices: 
       edges: []

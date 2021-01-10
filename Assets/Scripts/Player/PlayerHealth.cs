@@ -12,7 +12,7 @@ public class PlayerHealth : MonoBehaviour {
   public int health;
 
   [SerializeField] private float _knockbackDuration = 0.2f;
-  [SerializeField] private float _knockbackForce = 10.0f;
+  [SerializeField] private float _knockbackForce = 15.0f;
   [SerializeField] private float  _invincibilityCooldown = 2.0f;
   [SerializeField] private float _invincibilityTimer = -1.0f;
   private IEnumerator _invincibilityRoutine;
@@ -75,15 +75,16 @@ public class PlayerHealth : MonoBehaviour {
   }
 
   IEnumerator DamagedPlayerRoutine(Transform enemy) {
-    Damaged = true;
     _invincibilityTimer = Time.time + _invincibilityCooldown;
 
     Vector2 direction = (transform.position - enemy.position);
     direction = direction.normalized;
+    direction = new Vector2(direction.x, 1.0f);
     _rb.velocity = new Vector2(0, 0) * 0;
     _rb.gravityScale = 1.0f;
 
     float duration = 0.0f;
+    Damaged = true;
     while (duration < _knockbackDuration && !Dying) {
       duration += Time.deltaTime;
       if (direction.x > 0.1f && _playerControllerScript._facingRight) _playerControllerScript.Flip();

@@ -84,9 +84,9 @@ public class Pathfind : MonoBehaviour
 
   void Flip() {
     if (_rb.velocity.x >= 0.01f) {
-      transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-    } else if (_rb.velocity.x <= -0.01f) {
       transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+    } else if (_rb.velocity.x <= -0.01f) {
+      transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
     }
   }
 

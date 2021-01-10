@@ -122,10 +122,10 @@ public class HUD : MonoBehaviour {
   }
 
   void CalculateAttackSlider() {
-    float attackProgress = 0.5f - (_playerCombatScript._attackTimer - Time.time) * 2 + _playerCombatScript._attackTimer - Time.time;
-    _attackSlider.maxValue = 0.5f;
+    float attackProgress = 0.4f - (_playerCombatScript._attackTimer - Time.time) * 2 + _playerCombatScript._attackTimer - Time.time;
+    _attackSlider.maxValue = 0.4f;
     _attackSlider.value = attackProgress;
-    if (attackProgress >= 0.5f) {
+    if (attackProgress >= 0.4f) {
       _attackSlider.fillRect.GetComponentInChildren<Image>().color = new Color(1.0f, 0.1f, 0.0f);
     } else {
       _attackSlider.fillRect.GetComponentInChildren<Image>().color = new Color(0.65f, 0.65f, 0.65f); 

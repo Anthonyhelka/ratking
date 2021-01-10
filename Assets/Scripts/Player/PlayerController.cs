@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour {
   public int _dashCount;
   public int _dashCountMax = 1;
   [SerializeField] private float _dashHorizontalSpeed = 8.0f;
-  [SerializeField] private float _dashVerticalSpeed = 6.0f;
   [SerializeField] private float _dashDurationCountMax = 0.4f;
   public float _dashCooldown = 1.0f;
   public float _dashTimer = -1.0f;
@@ -103,6 +102,7 @@ public class PlayerController : MonoBehaviour {
   }
 
   void Update() {
+    DetermineLockedInput();
     if (!_lockPlayerInput) {
       GetInput();
     } else {
@@ -115,7 +115,6 @@ public class PlayerController : MonoBehaviour {
     // Movement
     _horizontalInput = Input.GetAxisRaw("Horizontal");
     _verticalInput = Input.GetAxisRaw("Vertical");
-    
     // Jump
     if (Input.GetButton("Jump") && !_playerCombatScript.AirHeavyAttack) {
       if (_isGrounded) {
@@ -136,9 +135,9 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Attack
-    if (Input.GetButtonDown("Fire1") && !_playerCombatScript.Attacking) {
+    if (Input.GetButton("Fire1") && !_playerCombatScript.Attacking) {
       _playerCombatScript.Attack("Light");
-    } else if (Input.GetButtonDown("Fire2") && !_playerCombatScript.Attacking) {
+    } else if (Input.GetButton("Fire2") && !_playerCombatScript.Attacking) {
       _playerCombatScript.Attack("Heavy");
     }
   }
@@ -191,8 +190,6 @@ public class PlayerController : MonoBehaviour {
 
     // Detect Collisions With BoxCast
     GroundCheck();
-
-    DetermineLockedInput();
 
     // Reset Values When Grounded
     if (_isGrounded) {
@@ -266,26 +263,13 @@ public class PlayerController : MonoBehaviour {
     bool queueHeavyAttack = false;
     _dashTimer = 10000000.0f;
     Vector2 velocity;
-    bool vertical = false;
-    if (_verticalInput != 0.0f) {
-      vertical = true;
-      velocity = new Vector2(0.0f, _verticalInput).normalized * _dashVerticalSpeed; 
-    } else {
-      if (_facingRight == true) {
+    if (_facingRight == true) {
         velocity = new Vector2(1.0f, 0.0f) * _dashHorizontalSpeed;
-      } else {
-        velocity = new Vector2(-1.0f, 0.0f) * _dashHorizontalSpeed;
-      }
+    } else {
+      velocity = new Vector2(-1.0f, 0.0f) * _dashHorizontalSpeed;
     }
 
     while (duration <= _dashDurationCountMax) {
-      if (vertical) {
-        if (_facingRight) {
-          transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
-        } else {
-          transform.rotation = Quaternion.Euler(0.0f, 0.0f, -90.0f);
-        }
-      }
       if (Input.GetButtonDown("Fire1") && duration > 0.05f && Time.time > _playerCombatScript._attackTimer) {
         queueLightAttack = true;
         break;
@@ -294,7 +278,6 @@ public class PlayerController : MonoBehaviour {
         break;
       }
       duration += Time.deltaTime;
-      _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y);
       _rb.gravityScale = 0.0f;
       _rb.AddForce(velocity * Time.deltaTime, ForceMode2D.Impulse);
       yield return 0;
@@ -317,7 +300,7 @@ public class PlayerController : MonoBehaviour {
   }
 
   void DetermineLockedInput() {
-    if (Dashing || (_playerCombatScript.Attacking && !_playerCombatScript.AirHeavyAttack) || _playerHealthScript.Dying) {
+    if (Dashing || (_playerCombatScript.Attacking && !_playerCombatScript.AirHeavyAttack) || _playerHealthScript.Damaged || _playerHealthScript.Dying) {
       _lockPlayerInput = true;
     } else {
       _lockPlayerInput = false;

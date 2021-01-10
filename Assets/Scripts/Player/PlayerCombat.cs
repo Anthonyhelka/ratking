@@ -10,30 +10,29 @@ public class PlayerCombat : MonoBehaviour
   private PlayerController _playerControllerScript;
 
   public Transform attackPoint;
-  private Animator _attackEffectAnimator;
   public LayerMask enemyLayers;
   public float _attackTimer = -1.0f;
-  
+
   // Light Attacks
   [SerializeField] private int _firstLightAttackDamage = 10;
   [SerializeField] private float _firstLightAttackRange = 0.20f;
-  [SerializeField] private float _firstLightAttackCooldown = 0.5f;
+  [SerializeField] private float _firstLightAttackCooldown = 0.4f;
   public IEnumerator _firstLightAttackRoutine;
 
   [SerializeField] private int _secondLightAttackDamage = 20;
   [SerializeField] private float _secondLightAttackRange = 0.20f;
-  [SerializeField] private float _secondLightAttackCooldown = 0.5f;
+  [SerializeField] private float _secondLightAttackCooldown = 0.4f;
   public IEnumerator _secondLightAttackRoutine;
 
   [SerializeField] private int _thirdLightAttackDamage = 30;
   [SerializeField] private float _thirdLightAttackRange = 0.20f;
-  [SerializeField] private float _thirdLightAttackCooldown = 0.5f;
+  [SerializeField] private float _thirdLightAttackCooldown = 0.4f;
   public IEnumerator _thirdLightAttackRoutine;
 
   // Heavy Attacks
   [SerializeField] private int _airHeavyAttackDamage = 10;
-  [SerializeField] private float _airHeavyAttackRange = 0.30f;
-  [SerializeField] private float _airHeavyAttackCooldown = 0.5f;
+  [SerializeField] private float _airHeavyAttackRange = 0.3f;
+  [SerializeField] private float _airHeavyAttackCooldown = 0.4f;
 
   public IEnumerator _airHeavyAttackRoutine;
 
@@ -56,7 +55,6 @@ public class PlayerCombat : MonoBehaviour
       if (value == _firstLightAttack) return;
       _firstLightAttack = value;
       _animator.SetBool("firstLightAttack", _firstLightAttack);
-      _attackEffectAnimator.SetBool("firstLightAttack", _firstLightAttack);
     }
   }
 
@@ -67,7 +65,6 @@ public class PlayerCombat : MonoBehaviour
       if (value == _secondLightAttack) return;
       _secondLightAttack = value;
       _animator.SetBool("secondLightAttack", _secondLightAttack);
-      _attackEffectAnimator.SetBool("secondLightAttack", _secondLightAttack);
     }
   }
 
@@ -78,7 +75,6 @@ public class PlayerCombat : MonoBehaviour
       if (value == _thirdLightAttack) return;
       _thirdLightAttack = value;
       _animator.SetBool("thirdLightAttack", _thirdLightAttack);
-      _attackEffectAnimator.SetBool("thirdLightAttack", _thirdLightAttack);
     }
   }
 
@@ -89,7 +85,6 @@ public class PlayerCombat : MonoBehaviour
       if (value == _airHeavyAttack) return;
       _airHeavyAttack = value;
       _animator.SetBool("airHeavyAttack", _airHeavyAttack);
-      _attackEffectAnimator.SetBool("airHeavyAttack", _airHeavyAttack);
     }
   }
 
@@ -99,7 +94,6 @@ public class PlayerCombat : MonoBehaviour
     _rb = GetComponent<Rigidbody2D>();
     _playerControllerScript = GetComponent<PlayerController>();
     _playerHealthScript = GetComponent<PlayerHealth>();
-    _attackEffectAnimator = GameObject.Find("Attack_Effect").GetComponent<Animator>();
   }
 
   public void Attack(string type) {
@@ -125,9 +119,9 @@ public class PlayerCombat : MonoBehaviour
     bool queueHeavyAttack = false;
     _attackTimer = 10000000.0f;
     while (duration < 0.25f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
-      if (Input.GetButtonDown("Fire1") && duration > 0.05f) {
+      if (Input.GetButton("Fire1") && duration > 0.1f) {
         queueSecondLightAttack = true;
-      } else if (Input.GetButtonDown("Fire2") && duration > 0.05f) {
+      } else if (Input.GetButton("Fire2") && duration > 0.1f) {
         queueHeavyAttack = true;
       }
       duration += Time.deltaTime;
@@ -163,9 +157,9 @@ public class PlayerCombat : MonoBehaviour
     bool queueHeavyAttack = false;
     _attackTimer = 10000000.0f;
     while (duration < 0.25f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
-      if (Input.GetButtonDown("Fire1") && duration > 0.05f) {
+      if (Input.GetButton("Fire1") && duration > 0.1f) {
         queueThirdLightAttack = true;
-      } else if (Input.GetButtonDown("Fire2") && duration > 0.05f) {
+      } else if (Input.GetButton("Fire2") && duration > 0.1f) {
         queueHeavyAttack = true;
       }      
       duration += Time.deltaTime;
@@ -200,7 +194,7 @@ public class PlayerCombat : MonoBehaviour
     bool queueHeavyAttack = false;
     _attackTimer = 10000000.0f;
     while (duration < 0.25f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
-      if (Input.GetButtonDown("Fire2") && duration > 0.05f) queueHeavyAttack = true;
+      if (Input.GetButton("Fire2") && duration > 0.1f) queueHeavyAttack = true;
       duration += Time.deltaTime;
       _rb.velocity = new Vector2(0, 0) * 0;
       _rb.gravityScale = 0.0f;
@@ -227,7 +221,7 @@ public class PlayerCombat : MonoBehaviour
 
     float duration = 0.0f;
     _attackTimer = 10000000.0f;
-    while (duration < 0.4f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
+    while (duration < 0.5f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
       duration += Time.deltaTime;
       _rb.velocity = new Vector2(0, 0) * 0;
       _rb.gravityScale = 0.0f;
@@ -243,16 +237,16 @@ public class PlayerCombat : MonoBehaviour
   public IEnumerator airHeavyAttacksRoutine() {
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
     foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
-    yield return new WaitForSeconds(0.1f);
+    yield return new WaitForSeconds(0.125f);
     hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
     foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
-    yield return new WaitForSeconds(0.1f);
+    yield return new WaitForSeconds(0.125f);
     hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
     foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
-    yield return new WaitForSeconds(0.1f);
+    yield return new WaitForSeconds(0.125f);
     hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
     foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
-    yield return new WaitForSeconds(0.1f);
+    yield return new WaitForSeconds(0.125f);
   }
       
   void OnDrawGizmosSelected() {
