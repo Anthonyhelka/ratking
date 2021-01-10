@@ -16,7 +16,6 @@ public class Enemy : MonoBehaviour {
   [SerializeField] private int _maxHealth = 100;
   [SerializeField] private int _currentHealth;
   private IEnumerator _damageRoutine;
-  [SerializeField] private float _damageFlashDuration = 0.2f;
   [SerializeField] private float _deathAnimationDuration;
   [SerializeField] private float _knockbackDuration = 0.2f;
   [SerializeField] private float _knockbackForce = 5.0f;
