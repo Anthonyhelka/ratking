@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour {
   private float _idleTime = 0.0f;
   private IEnumerator _idleRoutine;
   private bool _isIdle = false;
+  [SerializeField] private ParticleSystem _dust;
 
   // Jumping & Gravity
   public bool _isGrounded;
@@ -48,7 +49,7 @@ public class PlayerController : MonoBehaviour {
   public float _dashCooldown = 1.0f;
   public float _dashTimer = -1.0f;
   public IEnumerator _dashRoutine;
-
+  
   // Animation Variables
   [SerializeField] private bool _moving;
   public bool Moving {
@@ -281,6 +282,7 @@ public class PlayerController : MonoBehaviour {
     Vector3 Scaler = transform.localScale;
     Scaler.x *= -1;
     transform.localScale = Scaler;
+    if (_isGrounded) CreateDust();
   }
 
   void CalculateGravity() {
@@ -333,6 +335,7 @@ public class PlayerController : MonoBehaviour {
   }
 
   void Jump() {
+    CreateDust();
     _rb.velocity = Vector2.up * 0;
     _rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
   }
@@ -346,7 +349,7 @@ public class PlayerController : MonoBehaviour {
     Dashing = true;
     _dashCount++;
     _rb.velocity = new Vector2(0, 0);
-
+    
     float duration = 0.0f;
     bool queueLightAttack = false;
     bool queueHeavyAttack = false;
@@ -412,5 +415,17 @@ public class PlayerController : MonoBehaviour {
       yield return new WaitForSeconds(5.0f);
     }
     _isIdle = false;
+  }
+
+  void CreateDust() {
+    var dustVelocityOverLifeTime = _dust.velocityOverLifetime;
+    if (_rb.velocity.normalized.x == 0.0f) {
+      dustVelocityOverLifeTime.x = 0.0f;
+    } else if (_facingRight) {
+      dustVelocityOverLifeTime.x = -0.2f;
+    } else {
+      dustVelocityOverLifeTime.x = 0.2f;
+    }
+    _dust.Play();
   }
 }

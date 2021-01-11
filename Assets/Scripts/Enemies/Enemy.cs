@@ -81,7 +81,7 @@ public class Enemy : MonoBehaviour {
     damagePopupText.SetText(damage.ToString());
     if (_currentHealth <= 0) damagePopupText.color = Color.red;
     var psEmission = _ps.emission;
-    psEmission.rateOverTime = damage * 4;
+    psEmission.rateOverTime = damage * 3;
     _ps.Play();
     yield return new WaitForSeconds(1.0f);
     _ps.Stop();
