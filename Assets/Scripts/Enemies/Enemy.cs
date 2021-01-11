@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour {
   private BoxCollider2D _hitbox;
   private Rigidbody2D _rb;
   private SpriteRenderer _sr;
+  private ParticleSystem _ps;
   private GameObject _player;
   [SerializeField] private GameObject _damagePopup;
   private Patrol _patrolScript;
@@ -21,12 +22,15 @@ public class Enemy : MonoBehaviour {
   [SerializeField] private float _knockbackForce = 5.0f;
   public bool airEnemy;
 
+  public List<string> HarmfulGround = new List<string>() { "Spikes" };
+
   void Awake()
   {
     _animator = GetComponent<Animator>();
     _hitbox = transform.GetChild(0).GetComponent<BoxCollider2D>();
     _rb = GetComponent<Rigidbody2D>();
     _sr = GetComponent<SpriteRenderer>();
+    _ps = transform.GetChild(1).GetComponent<ParticleSystem>();
     _patrolScript = GetComponent<Patrol>();
     _pathfindScript = GetComponent<Pathfind>();
     _player = GameObject.Find("Player");
@@ -37,14 +41,11 @@ public class Enemy : MonoBehaviour {
   public void TakeDamage(int damage) {
     _currentHealth -= damage;
     _healthBar.SetHealth(_currentHealth, _maxHealth);
-    GameObject damagePopupInstance = Instantiate(_damagePopup, transform.position, Quaternion.identity);
-    TextMeshPro damagePopupText = damagePopupInstance.transform.GetChild(0).GetComponent<TextMeshPro>();
-    damagePopupText.SetText(damage.ToString());
-    _damageRoutine = DamageRoutine();
+    StartCoroutine(DamageEffectsRoutine(damage));
     if (_currentHealth <= 0) {
-      damagePopupText.color = Color.red;
       Die();
     } else {
+      _damageRoutine = DamageRoutine();
       StartCoroutine(_damageRoutine); 
     }
   }
@@ -74,6 +75,18 @@ public class Enemy : MonoBehaviour {
     _sr.color = Color.white;
   }
 
+  IEnumerator DamageEffectsRoutine(int damage) {
+    GameObject damagePopupInstance = Instantiate(_damagePopup, transform.position, Quaternion.identity);
+    TextMeshPro damagePopupText = damagePopupInstance.transform.GetChild(0).GetComponent<TextMeshPro>();
+    damagePopupText.SetText(damage.ToString());
+    if (_currentHealth <= 0) damagePopupText.color = Color.red;
+    var psEmission = _ps.emission;
+    psEmission.rateOverTime = damage * 4;
+    _ps.Play();
+    yield return new WaitForSeconds(1.0f);
+    _ps.Stop();
+  }
+
   void Die() {
     _healthBar.Destroy();
 
@@ -92,5 +105,11 @@ public class Enemy : MonoBehaviour {
   void ToggleScripts(bool status) {
     if (_patrolScript) _patrolScript.enabled = status;
     if (_pathfindScript) _pathfindScript.enabled = status;
+  }
+
+  void OnCollisionStay2D(Collision2D collision) {
+    if (HarmfulGround.Contains(collision.gameObject.tag)) {
+      Die();
+    }
   }
 }

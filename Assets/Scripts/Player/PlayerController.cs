@@ -24,7 +24,10 @@ public class PlayerController : MonoBehaviour {
   private float _lookDownTimer = 0.0f;
   [SerializeField] private float _lookDuration = 1.0f;
   private bool _hasTouchedGround = false;
-  
+  private float _idleTime = 0.0f;
+  private IEnumerator _idleRoutine;
+  private bool _isIdle = false;
+
   // Jumping & Gravity
   public bool _isGrounded;
   [SerializeField] private LayerMask _groundLayerMask;
@@ -97,6 +100,36 @@ public class PlayerController : MonoBehaviour {
     }
   }
 
+  [SerializeField] private bool _sleeping;
+  public bool Sleeping {
+    get { return _sleeping; }
+    set {
+      if (value == _sleeping) return;
+      _sleeping = value;
+      _animator.SetBool("sleeping", _sleeping);
+    }
+  }
+
+  [SerializeField] private bool _lookingUp;
+  public bool LookingUp {
+    get { return _lookingUp; }
+    set {
+      if (value == _lookingUp) return;
+      _lookingUp = value;
+      _animator.SetBool("lookingUp", _lookingUp);
+    }
+  }
+
+  [SerializeField] private bool _lookingDown;
+  public bool LookingDown {
+    get { return _lookingDown; }
+    set {
+      if (value == _lookingDown) return;
+      _lookingDown = value;
+      _animator.SetBool("lookingDown", _lookingDown);
+    }
+  }
+
   void Awake() {
     _rb = GetComponent<Rigidbody2D>();
     _bc = GetComponent<BoxCollider2D>();
@@ -124,6 +157,11 @@ public class PlayerController : MonoBehaviour {
     // Movement
     _horizontalInput = Input.GetAxisRaw("Horizontal");
     _verticalInput = Input.GetAxisRaw("Vertical");
+
+    if (Input.anyKey) {
+      _idleTime = 0.0f;
+    }
+
     // Jump
     if (Input.GetButton("Jump") && !_playerCombatScript.AirHeavyAttack) {
       if (_isGrounded) {
@@ -201,6 +239,13 @@ public class PlayerController : MonoBehaviour {
     // Detect Collisions With BoxCast
     GroundCheck();
 
+    _idleTime += Time.deltaTime;
+    if (_idleTime > 10.0f) {
+      if (!_isIdle) Idle();
+    } else {
+      _isIdle = false;
+    }
+
     // Reset Values When Grounded
     if (_isGrounded) {
       _airJumpCount = 0;
@@ -256,23 +301,33 @@ public class PlayerController : MonoBehaviour {
   }
 
   void CalculateLookAround() {
-    if (_horizontalInput != 0.0f) {
+    if (_horizontalInput != 0.0f || _rb.velocity.x != 0.0f || _rb.velocity.y != 0.0f) {
       _lookUpTimer = 0.0f;
       _lookDownTimer = 0.0f;
+      LookingUp = false;
+      LookingDown = false; 
       _cinemaMachineFramingTransposer.m_TrackedObjectOffset.y = 0.0f;
       return;
     }
     if (_verticalInput > 0.0f) {
       _lookDownTimer = 0.0f;
       _lookUpTimer += Time.deltaTime;
-      if (_lookUpTimer > _lookDuration) _cinemaMachineFramingTransposer.m_TrackedObjectOffset.y = 1.0f;
+      if (_lookUpTimer > _lookDuration) {
+        LookingUp = true;
+        _cinemaMachineFramingTransposer.m_TrackedObjectOffset.y = 1.0f;
+      }
     } else if (_verticalInput < 0.0f) {
       _lookUpTimer = 0.0f;
       _lookDownTimer += Time.deltaTime;
-      if (_lookDownTimer > _lookDuration) _cinemaMachineFramingTransposer.m_TrackedObjectOffset.y = -1.0f;
+      if (_lookDownTimer > _lookDuration) {
+        LookingDown = true;
+        _cinemaMachineFramingTransposer.m_TrackedObjectOffset.y = -1.0f;
+      }
     } else {
       _lookUpTimer = 0.0f;
       _lookDownTimer = 0.0f;
+      LookingUp = false;
+      LookingDown = false;
       _cinemaMachineFramingTransposer.m_TrackedObjectOffset.y = 0.0f;
     }
   }
@@ -298,7 +353,7 @@ public class PlayerController : MonoBehaviour {
     _dashTimer = 10000000.0f;
     Vector2 velocity;
     if (_facingRight == true) {
-        velocity = new Vector2(1.0f, 0.0f) * _dashHorizontalSpeed;
+      velocity = new Vector2(1.0f, 0.0f) * _dashHorizontalSpeed;
     } else {
       velocity = new Vector2(-1.0f, 0.0f) * _dashHorizontalSpeed;
     }
@@ -341,5 +396,21 @@ public class PlayerController : MonoBehaviour {
     } else {
       _lockPlayerInput = false;
     }
+  }
+
+  void Idle() {
+    _idleRoutine = IdleRoutine();
+    StartCoroutine(_idleRoutine);
+  }
+
+  IEnumerator IdleRoutine() {
+    _isIdle = true;
+    while (_isIdle) {
+      Sleeping = true;
+      yield return new WaitForSeconds(1.4f);
+      Sleeping = false;
+      yield return new WaitForSeconds(5.0f);
+    }
+    _isIdle = false;
   }
 }
