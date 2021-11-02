@@ -1,61 +1,25 @@
 fileFormatVersion: 2
-guid: 4b58dd5deb277184ea7164d15cc08cbd
+guid: 8a5934853c79b0b4789647bcc998c132
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6332986411492553454
-    second: dash_2_0
+      213: 3821258555941828203
+    second: light_air_attack_0
   - first:
-      213: -8814538180086280053
-    second: dash_2_1
+      213: -8528380670101790870
+    second: light_air_attack_1
   - first:
-      213: -3457791104416146524
-    second: dash_2_2
+      213: -651362576319177364
+    second: light_air_attack_2
   - first:
-      213: -4656696797609329214
-    second: dash_2_3
+      213: 3333945883695012437
+    second: light_air_attack_3
   - first:
-      213: 6657562339184231992
-    second: dash_2_4
+      213: 3080920550011618092
+    second: light_air_attack_4
   - first:
-      213: -7545032444707700574
-    second: dash_2_5
-  - first:
-      213: 7413677591597623558
-    second: dash_2_6
-  - first:
-      213: 4193099114357153530
-    second: dash_2_7
-  - first:
-      213: 1453231880026612526
-    second: dash_2_8
-  - first:
-      213: 7110878671101974141
-    second: dash_0
-  - first:
-      213: 7643240275301989466
-    second: dash_1
-  - first:
-      213: -8809873816130030523
-    second: dash_2
-  - first:
-      213: -4770175892979620097
-    second: dash_3
-  - first:
-      213: -1190105860681885623
-    second: dash_4
-  - first:
-      213: 8035217175372748222
-    second: dash_5
-  - first:
-      213: 697318719324224050
-    second: dash_6
-  - first:
-      213: -123402397366724103
-    second: dash_7
-  - first:
-      213: 1856454893650784056
-    second: dash_8
+      213: -6855230476361577467
+    second: light_air_attack_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -145,13 +109,55 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dash_0
+      name: light_air_attack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b66b5d52966d70530800000000000000
+      internalID: 3821258555941828203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: light_air_attack_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6f564147fa15a980800000000000000
+      internalID: -8528380670101790870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: light_air_attack_2
       rect:
         serializedVersion: 2
         x: 0
         y: 64
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,41 +165,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d765fefe97aeea260800000000000000
-      internalID: 7110878671101974141
+      spriteID: c6d138a1035e5f6f0800000000000000
+      internalID: -651362576319177364
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dash_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a5c7556e88e321a60800000000000000
-      internalID: 7643240275301989466
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dash_2
+      name: light_air_attack_3
       rect:
         serializedVersion: 2
         x: 64
         y: 64
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -201,83 +186,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 544fd81e07a0db580800000000000000
-      internalID: -8809873816130030523
+      spriteID: 55a54020e1e844e20800000000000000
+      internalID: 3333945883695012437
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dash_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ff661de7c4eeccdb0800000000000000
-      internalID: -4770175892979620097
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dash_4
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 94812f07605eb7fe0800000000000000
-      internalID: -1190105860681885623
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dash_5
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eb5d537d273d28f60800000000000000
-      internalID: 8035217175372748222
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dash_6
+      name: light_air_attack_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -285,41 +207,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23afc804eaf5da900800000000000000
-      internalID: 697318719324224050
+      spriteID: c23c4a4bae0a1ca20800000000000000
+      internalID: 3080920550011618092
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dash_7
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9f956846c26994ef0800000000000000
-      internalID: -123402397366724103
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dash_8
+      name: light_air_attack_5
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -327,8 +228,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83f279dc3e373c910800000000000000
-      internalID: 1856454893650784056
+      spriteID: 50c490bc3345dd0a0800000000000000
+      internalID: -6855230476361577467
       vertices: []
       indices: 
       edges: []

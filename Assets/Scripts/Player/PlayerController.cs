@@ -394,7 +394,7 @@ public class PlayerController : MonoBehaviour {
   }
 
   void DetermineLockedInput() {
-    if (Dashing || (_playerCombatScript.Attacking && !_playerCombatScript.AirHeavyAttack) || _playerHealthScript.Damaged || _playerHealthScript.Dying) {
+    if (Dashing || (_playerCombatScript.Attacking && !_playerCombatScript.AirLightAttack && !_playerCombatScript.AirHeavyAttack) || _playerHealthScript.Damaged || _playerHealthScript.Dying) {
       _lockPlayerInput = true;
     } else {
       _lockPlayerInput = false;
