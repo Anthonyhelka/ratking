@@ -240,9 +240,13 @@ public class PlayerCombat : MonoBehaviour
     float duration = 0.0f;
     bool queueHeavyAttack = false;
     _attackTimer = 10000000.0f;
-    while (!_playerControllerScript._isGrounded && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
+    while (!_playerControllerScript._isGrounded && !queueHeavyAttack && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
       Debug.Log(_playerControllerScript._bounceDuration);
-      if (_playerControllerScript.Dashing || _playerControllerScript._bounceDuration <= 0.0f) { break; }
+      if (_playerControllerScript.Dashing || _playerControllerScript.finalBounce) { break; }
+      if (Input.GetButtonDown("Fire2")) {
+        queueHeavyAttack = true;
+        break;
+      }
       _playerControllerScript._bounceDuration -= Time.deltaTime;
       Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(bouncePoint.position, _airLightAttackRange, enemyLayers);
       foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airLightAttackDamage); }

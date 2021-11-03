@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour {
   [SerializeField] private float _bounceForce = 3.5f;
   [SerializeField] public float _bounceDuration = 3.0f;
   [SerializeField] public float _bounceDurationMax = 3.0f;
+  public bool finalBounce = false;
   [SerializeField] private float _fallMultiplier = 2.5f;
   [SerializeField] private float _lowJumpMultiplier = 2.0f;
   
@@ -254,6 +255,7 @@ public class PlayerController : MonoBehaviour {
     if (_isGrounded) {
       _airJumpCount = 0;
       _bounceDuration = _bounceDurationMax;
+      finalBounce = false;
       _hasTouchedGround = true;
     }
     if (Time.time > _dashTimer && _hasTouchedGround) _dashCount = 0;
@@ -348,6 +350,10 @@ public class PlayerController : MonoBehaviour {
     CreateDust();
     _rb.velocity = Vector2.up * 0;
     _rb.AddForce(Vector2.up * _bounceForce, ForceMode2D.Impulse);
+
+    if (_bounceDuration <= 0.0f) {
+      finalBounce = true;
+    }
   }
 
   void Dash() {
