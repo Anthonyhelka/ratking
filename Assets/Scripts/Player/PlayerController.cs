@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour {
   private int _airJumpCount = 0;
   [SerializeField] private int _airJumpCountMax = 1;
   [SerializeField] private float _jumpForce = 3.5f;
+  [SerializeField] private float _bounceForce = 5.0f;
   [SerializeField] private float _fallMultiplier = 2.5f;
   [SerializeField] private float _lowJumpMultiplier = 2.0f;
   
@@ -234,7 +235,7 @@ public class PlayerController : MonoBehaviour {
     if (!Dashing && !_playerHealthScript.Damaged) {
       CalculateMovement();
       CalculateLookAround();
-      if (!_playerCombatScript.Attacking) CalculateGravity();
+      if (!_playerCombatScript.Attacking || _playerCombatScript.AirLightAttack) CalculateGravity();
     }
 
     // Detect Collisions With BoxCast
@@ -338,6 +339,12 @@ public class PlayerController : MonoBehaviour {
     CreateDust();
     _rb.velocity = Vector2.up * 0;
     _rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+  }
+
+  public void Bounce() {
+    // CreateDust();
+    _rb.velocity = Vector2.up * 0;
+    _rb.AddForce(Vector2.up * _bounceForce, ForceMode2D.Impulse);
   }
 
   void Dash() {

@@ -29,18 +29,17 @@ public class PlayerCombat : MonoBehaviour
   [SerializeField] private float _thirdLightAttackCooldown = 0.4f;
   public IEnumerator _thirdLightAttackRoutine;
 
+  [SerializeField] private int _airLightAttackDamage = 10;
+  [SerializeField] private float _airLightAttackRange = 0.2f;
+  [SerializeField] private float _airLightAttackCooldown = 0.4f;
+  public IEnumerator _airLightAttackRoutine;
+  public IEnumerator _airLightAttacksRoutine;
+
   // Heavy Attacks
   [SerializeField] private int _airHeavyAttackDamage = 10;
   [SerializeField] private float _airHeavyAttackRange = 0.3f;
   [SerializeField] private float _airHeavyAttackCooldown = 0.4f;
   public IEnumerator _airHeavyAttackRoutine;
-
-  // Air Attacks
-  [SerializeField] private int _airLightAttackDamage = 10;
-  [SerializeField] private float _airLightAttackRange = 0.3f;
-  [SerializeField] private float _airLightAttackCooldown = 0.4f;
-  public IEnumerator _airLightAttackRoutine;
-  public IEnumerator _airLightAttacksRoutine;
 
   public List<string> HarmfulGround = new List<string>() { "Spikes" };
 
@@ -237,20 +236,15 @@ public class PlayerCombat : MonoBehaviour
     Attacking = true;
     AirLightAttack = true;
 
-    _airLightAttacksRoutine = airLightAttacksRoutine();
-    StartCoroutine(_airLightAttacksRoutine);
-
     float duration = 0.0f;
     bool queueHeavyAttack = false;
     _attackTimer = 10000000.0f;
-    while (duration < 0.5f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
-      if (Input.GetButton("Fire2") && duration > 0.1f) queueHeavyAttack = true;
-      if (_playerControllerScript._isGrounded) {
-        StopCoroutine(_airLightAttacksRoutine); 
-        break; 
-      }
-      duration += Time.deltaTime;
-      yield return 0;
+    while (!_playerControllerScript._isGrounded && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
+      if (_playerControllerScript.Dashing) { break; }
+      Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airLightAttackRange, enemyLayers);
+      foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airLightAttackDamage); }
+      if (hitEnemies.Length > 0) { _playerControllerScript.Bounce(); }
+      yield return new WaitForSeconds(0.01f);
     }
 
     _attackTimer = Time.time + _airHeavyAttackCooldown;
@@ -263,21 +257,6 @@ public class PlayerCombat : MonoBehaviour
     } else {
       Attacking = false;
     }
-  }
-
-  public IEnumerator airLightAttacksRoutine() {
-    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airLightAttackRange, enemyLayers);
-    foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airLightAttackDamage); }
-    yield return new WaitForSeconds(0.125f);
-    hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airLightAttackRange, enemyLayers);
-    foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airLightAttackDamage); }
-    yield return new WaitForSeconds(0.125f);
-    hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airLightAttackRange, enemyLayers);
-    foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airLightAttackDamage); }
-    yield return new WaitForSeconds(0.125f);
-    hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airLightAttackRange, enemyLayers);
-    foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airLightAttackDamage); }
-    yield return new WaitForSeconds(0.125f);
   }
       
   public IEnumerator airHeavyAttackRoutine() {

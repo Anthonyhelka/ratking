@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour {
   [SerializeField] private GameObject _damagePopup;
   private Patrol _patrolScript;
   private Pathfind _pathfindScript;
+  [SerializeField] public float _invulnerabilityDuration = 0.125f;
+  [SerializeField] public float _invulnerabilityTimer = -1.0f;
   [SerializeField] private int _maxHealth = 100;
   [SerializeField] private int _currentHealth;
   private IEnumerator _damageRoutine;
@@ -38,8 +40,14 @@ public class Enemy : MonoBehaviour {
     _healthBar.SetHealth(_currentHealth, _maxHealth);
   }
 
+  void Update() {
+    _invulnerabilityTimer = _invulnerabilityTimer + Time.deltaTime;
+  }
+
   public void TakeDamage(int damage) {
+    if (_invulnerabilityTimer < _invulnerabilityDuration) { return; }
     _currentHealth -= damage;
+    _invulnerabilityTimer = 0.0f; 
     _healthBar.SetHealth(_currentHealth, _maxHealth);
     StartCoroutine(DamageEffectsRoutine(damage));
     if (_currentHealth <= 0) {

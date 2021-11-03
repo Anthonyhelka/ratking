@@ -45810,6 +45810,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4707620477410525401, guid: e9e19c04da90c3b40840bdb639623e89,
         type: 3}
+      propertyPath: _maxHealth
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: -4707620477410525401, guid: e9e19c04da90c3b40840bdb639623e89,
+        type: 3}
       propertyPath: _hitParticles
       value: 
       objectReference: {fileID: 1183951988754748650, guid: 71bf1c7105c950e47813b277af2b7744,
@@ -49534,6 +49539,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7787247275520382253, guid: 53b3894969988254aac40a0a5fce8998,
         type: 3}
+      propertyPath: _airLightAttackRange
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787247275520382253, guid: 53b3894969988254aac40a0a5fce8998,
+        type: 3}
       propertyPath: _airLightAttackDamage
       value: 10
       objectReference: {fileID: 0}
@@ -49551,6 +49561,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _secondLightAttackDamage
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787247275520382260, guid: 53b3894969988254aac40a0a5fce8998,
+        type: 3}
+      propertyPath: _bounceForce
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7787247275520382261, guid: 53b3894969988254aac40a0a5fce8998,
         type: 3}
