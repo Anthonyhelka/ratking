@@ -45811,7 +45811,7 @@ PrefabInstance:
     - target: {fileID: -4707620477410525401, guid: e9e19c04da90c3b40840bdb639623e89,
         type: 3}
       propertyPath: _maxHealth
-      value: 10000
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: -4707620477410525401, guid: e9e19c04da90c3b40840bdb639623e89,
         type: 3}
@@ -49545,7 +49545,7 @@ PrefabInstance:
     - target: {fileID: 7787247275520382253, guid: 53b3894969988254aac40a0a5fce8998,
         type: 3}
       propertyPath: _airLightAttackDamage
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7787247275520382253, guid: 53b3894969988254aac40a0a5fce8998,
         type: 3}

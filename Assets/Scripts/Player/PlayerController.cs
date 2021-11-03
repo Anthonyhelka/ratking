@@ -342,7 +342,7 @@ public class PlayerController : MonoBehaviour {
   }
 
   public void Bounce() {
-    // CreateDust();
+    CreateDust();
     _rb.velocity = Vector2.up * 0;
     _rb.AddForce(Vector2.up * _bounceForce, ForceMode2D.Impulse);
   }
