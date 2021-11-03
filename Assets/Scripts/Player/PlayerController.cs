@@ -37,7 +37,9 @@ public class PlayerController : MonoBehaviour {
   private int _airJumpCount = 0;
   [SerializeField] private int _airJumpCountMax = 1;
   [SerializeField] private float _jumpForce = 3.5f;
-  [SerializeField] private float _bounceForce = 5.0f;
+  [SerializeField] private float _bounceForce = 3.5f;
+  [SerializeField] public float _bounceDuration = 3.0f;
+  [SerializeField] public float _bounceDurationMax = 3.0f;
   [SerializeField] private float _fallMultiplier = 2.5f;
   [SerializeField] private float _lowJumpMultiplier = 2.0f;
   
@@ -251,6 +253,7 @@ public class PlayerController : MonoBehaviour {
     // Reset Values When Grounded
     if (_isGrounded) {
       _airJumpCount = 0;
+      _bounceDuration = _bounceDurationMax;
       _hasTouchedGround = true;
     }
     if (Time.time > _dashTimer && _hasTouchedGround) _dashCount = 0;
@@ -288,13 +291,13 @@ public class PlayerController : MonoBehaviour {
 
   void CalculateGravity() {
     // Fall Gravity
-    if (_isGrounded && Mathf.Round(_rb.velocity.y) < 0) {
+    if (_isGrounded && Mathf.Round(_rb.velocity.y) < 0 && !_playerCombatScript.AirLightAttack) {
       _rb.gravityScale = _fallMultiplier;
       return;
     }
 
     // Low Jump Gravity
-    if (Mathf.Round(_rb.velocity.y) > 0 && !Input.GetButton("Jump") && !_playerHealthScript.Dying) {
+    if (Mathf.Round(_rb.velocity.y) > 0 && !Input.GetButton("Jump") && !_playerHealthScript.Dying && !_playerCombatScript.AirLightAttack) {
       _rb.gravityScale = _lowJumpMultiplier;
       return;
     }

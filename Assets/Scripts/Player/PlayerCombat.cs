@@ -10,33 +10,34 @@ public class PlayerCombat : MonoBehaviour
   private PlayerController _playerControllerScript;
 
   public Transform attackPoint;
+  public Transform bouncePoint;
   public LayerMask enemyLayers;
   public float _attackTimer = -1.0f;
 
   // Light Attacks
-  [SerializeField] private int _firstLightAttackDamage = 10;
+  [SerializeField] private int _firstLightAttackDamage = 20;
   [SerializeField] private float _firstLightAttackRange = 0.20f;
   [SerializeField] private float _firstLightAttackCooldown = 0.4f;
   public IEnumerator _firstLightAttackRoutine;
 
-  [SerializeField] private int _secondLightAttackDamage = 15;
+  [SerializeField] private int _secondLightAttackDamage = 30;
   [SerializeField] private float _secondLightAttackRange = 0.20f;
   [SerializeField] private float _secondLightAttackCooldown = 0.4f;
   public IEnumerator _secondLightAttackRoutine;
 
-  [SerializeField] private int _thirdLightAttackDamage = 20;
+  [SerializeField] private int _thirdLightAttackDamage = 40;
   [SerializeField] private float _thirdLightAttackRange = 0.20f;
   [SerializeField] private float _thirdLightAttackCooldown = 0.4f;
   public IEnumerator _thirdLightAttackRoutine;
 
   [SerializeField] private int _airLightAttackDamage = 10;
   [SerializeField] private float _airLightAttackRange = 0.2f;
-  [SerializeField] private float _airLightAttackCooldown = 0.4f;
+  [SerializeField] private float _airLightAttackCooldown = 0.2f;
   public IEnumerator _airLightAttackRoutine;
   public IEnumerator _airLightAttacksRoutine;
 
   // Heavy Attacks
-  [SerializeField] private int _airHeavyAttackDamage = 10;
+  [SerializeField] private int _airHeavyAttackDamage = 15;
   [SerializeField] private float _airHeavyAttackRange = 0.3f;
   [SerializeField] private float _airHeavyAttackCooldown = 0.4f;
   public IEnumerator _airHeavyAttackRoutine;
@@ -240,14 +241,16 @@ public class PlayerCombat : MonoBehaviour
     bool queueHeavyAttack = false;
     _attackTimer = 10000000.0f;
     while (!_playerControllerScript._isGrounded && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
-      if (_playerControllerScript.Dashing) { break; }
-      Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airLightAttackRange, enemyLayers);
+      Debug.Log(_playerControllerScript._bounceDuration);
+      if (_playerControllerScript.Dashing || _playerControllerScript._bounceDuration <= 0.0f) { break; }
+      _playerControllerScript._bounceDuration -= Time.deltaTime;
+      Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(bouncePoint.position, _airLightAttackRange, enemyLayers);
       foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airLightAttackDamage); }
       if (hitEnemies.Length > 0) { _playerControllerScript.Bounce(); }
       yield return new WaitForSeconds(0.01f);
     }
 
-    _attackTimer = Time.time + _airHeavyAttackCooldown;
+    _attackTimer = Time.time + _airLightAttackCooldown;
 
     AirLightAttack = false;
 
@@ -299,7 +302,7 @@ public class PlayerCombat : MonoBehaviour
     if (FirstLightAttack) Gizmos.DrawWireSphere(attackPoint.position, _firstLightAttackRange);
     if (SecondLightAttack) Gizmos.DrawWireSphere(attackPoint.position, _secondLightAttackRange);
     if (ThirdLightAttack) Gizmos.DrawWireSphere(attackPoint.position, _thirdLightAttackRange);
-    if (AirLightAttack) Gizmos.DrawWireSphere(transform.position, _airLightAttackRange);
+    if (AirLightAttack) Gizmos.DrawWireSphere(bouncePoint.position, _airLightAttackRange);
     if (AirHeavyAttack) Gizmos.DrawWireSphere(transform.position, _airHeavyAttackRange);
   }
 

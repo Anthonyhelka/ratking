@@ -10,6 +10,7 @@ public class HUD : MonoBehaviour {
   private Animator _portraitAnimator;
   private Slider _dashSlider;
   private Slider _attackSlider;
+  private Slider _bounceSlider;
 
   private float _health;
   [SerializeField] private int _heartCount;
@@ -64,6 +65,7 @@ public class HUD : MonoBehaviour {
     _portraitAnimator = GameObject.Find("Portrait").GetComponent<Animator>();
     _dashSlider = GameObject.Find("Dash_Slider").GetComponent<Slider>();
     _attackSlider = GameObject.Find("Attack_Slider").GetComponent<Slider>();
+    _bounceSlider = GameObject.Find("Bounce_Slider").GetComponent<Slider>();
   }
 
   void Update() {
@@ -72,6 +74,7 @@ public class HUD : MonoBehaviour {
     CalculatePortrait();
     CalculateDashSlider();
     CalculateAttackSlider();
+    CalculateBounceSlider();
   }
 
   void CalculateHearts() {
@@ -126,9 +129,19 @@ public class HUD : MonoBehaviour {
     _attackSlider.maxValue = 0.4f;
     _attackSlider.value = attackProgress;
     if (attackProgress >= 0.4f) {
-      _attackSlider.fillRect.GetComponentInChildren<Image>().color = new Color(1.0f, 0.1f, 0.0f);
+      _attackSlider.fillRect.GetComponentInChildren<Image>().color = new Color(1.0f, 0.0f, 0.0f);
     } else {
       _attackSlider.fillRect.GetComponentInChildren<Image>().color = new Color(0.65f, 0.65f, 0.65f); 
+    }
+  }
+
+  void CalculateBounceSlider() {
+    _bounceSlider.maxValue = _playerControllerScript._bounceDurationMax;
+    _bounceSlider.value = _playerControllerScript._bounceDuration;
+    if (_bounceSlider.value > 0.0f) {
+      _bounceSlider.fillRect.GetComponentInChildren<Image>().color = new Color(0.0f, 1.0f, 0.0f);
+    } else {
+      _bounceSlider.fillRect.GetComponentInChildren<Image>().color = new Color(0.65f, 0.65f, 0.65f); 
     }
   }
 }
