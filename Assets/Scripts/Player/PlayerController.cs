@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour {
   private IEnumerator _idleRoutine;
   private bool _isIdle = false;
   [SerializeField] private ParticleSystem _dust;
+  private bool _danceRequest;
+  public IEnumerator _danceRoutine;
 
   // Jumping & Gravity
   public bool _isGrounded;
@@ -43,7 +45,10 @@ public class PlayerController : MonoBehaviour {
   public bool finalBounce = false;
   [SerializeField] private float _fallMultiplier = 2.5f;
   [SerializeField] private float _lowJumpMultiplier = 2.0f;
-  
+  [SerializeField] private bool _queueRoll;
+  [SerializeField] private float _rollDuration = 0.4f;
+  public IEnumerator _rollRoutine;
+
   // Dashing
   private bool _dashRequest;
   public int _dashCount;
@@ -95,6 +100,16 @@ public class PlayerController : MonoBehaviour {
     }
   }
 
+  [SerializeField] private bool _rolling;
+  public bool Rolling {
+    get { return _rolling; }
+    set {
+      if (value == _rolling) return;
+      _rolling = value;
+      _animator.SetBool("rolling", _rolling);
+    }
+  }
+
   [SerializeField] private bool _dashing;
   public bool Dashing {
     get { return _dashing; }
@@ -105,13 +120,23 @@ public class PlayerController : MonoBehaviour {
     }
   }
 
-  [SerializeField] private bool _sleeping;
-  public bool Sleeping {
-    get { return _sleeping; }
+  [SerializeField] private bool _sleepingOne;
+  public bool SleepingOne {
+    get { return _sleepingOne; }
     set {
-      if (value == _sleeping) return;
-      _sleeping = value;
-      _animator.SetBool("sleeping", _sleeping);
+      if (value == _sleepingOne) return;
+      _sleepingOne = value;
+      _animator.SetBool("sleepingOne", _sleepingOne);
+    }
+  }
+
+  [SerializeField] private bool _sleepingTwo;
+  public bool SleepingTwo {
+    get { return _sleepingTwo; }
+    set {
+      if (value == _sleepingTwo) return;
+      _sleepingTwo = value;
+      _animator.SetBool("sleepingTwo", _sleepingTwo);
     }
   }
 
@@ -132,6 +157,16 @@ public class PlayerController : MonoBehaviour {
       if (value == _lookingDown) return;
       _lookingDown = value;
       _animator.SetBool("lookingDown", _lookingDown);
+    }
+  }
+
+  [SerializeField] private bool _dancing;
+  public bool Dancing {
+    get { return _dancing; }
+    set {
+      if (value == _dancing) return;
+      _dancing = value;
+      _animator.SetBool("dancing", _dancing);
     }
   }
 
@@ -192,6 +227,11 @@ public class PlayerController : MonoBehaviour {
     } else if (Input.GetButton("Fire2") && !_playerCombatScript.Attacking) {
       _playerCombatScript.Attack("Heavy");
     }
+
+    // Dance 
+    if (Input.GetButton("Dance")) {
+      _danceRequest = true;
+    }
   }
 
   void ClearInput() {
@@ -199,6 +239,7 @@ public class PlayerController : MonoBehaviour {
     _verticalInput = 0.0f;
     _jumpRequest = false;
     _dashRequest = false;
+    _danceRequest = false;
   }
   
   void SetAnimations() {
@@ -268,6 +309,10 @@ public class PlayerController : MonoBehaviour {
     if (_dashRequest) {
       Dash();
       _dashRequest = false;
+    }
+    if (_danceRequest) {
+      Dance();
+      _danceRequest = false;
     }
   }
   
@@ -403,6 +448,37 @@ public class PlayerController : MonoBehaviour {
     if (queueHeavyAttack) _playerCombatScript.Attack("Heavy");
   }
 
+  void Dance() {
+    _danceRoutine = DanceRoutine();
+    StartCoroutine(_danceRoutine);
+  }
+
+  IEnumerator DanceRoutine() {
+    Dancing = true;
+    while (Mathf.Round(_horizontalInput) == 0.0f && Mathf.Round(_rb.velocity.x) == 0.0f && Mathf.Round(_rb.velocity.y) == 0.0f) {
+      yield return 0;
+    }
+    Dancing = false;
+  }
+
+  public void Roll() {
+    _rollRoutine = RollRoutine();
+    StartCoroutine(_rollRoutine);
+  }
+
+  IEnumerator RollRoutine() {
+    Rolling = true;
+    float duration = 0.0f;
+    while (duration < _rollDuration) {
+      if (_horizontalInput == 0.0f) { break; }
+      _speed = 1.5f;
+      duration += Time.deltaTime;
+      yield return 0;
+    }
+    _speed = 1.0f;
+    Rolling = false;
+  }
+
   void GroundCheck() {
     float height = 0.04f;
     RaycastHit2D groundcastHit = Physics2D.BoxCast(_bc.bounds.center, _bc.bounds.size, 0f, Vector2.down, height, _groundLayerMask);
@@ -424,10 +500,16 @@ public class PlayerController : MonoBehaviour {
 
   IEnumerator IdleRoutine() {
     _isIdle = true;
-    while (_isIdle) {
-      Sleeping = true;
-      yield return new WaitForSeconds(1.4f);
-      Sleeping = false;
+    while (_isIdle && !Dancing) {
+      if (Random.value > 0.5) {
+        SleepingOne = true;
+        yield return new WaitForSeconds(1.4f);
+      } else {
+        SleepingTwo = true;
+        yield return new WaitForSeconds(3.0f);
+      }
+      SleepingOne = false;
+      SleepingTwo = false;
       yield return new WaitForSeconds(5.0f);
     }
     _isIdle = false;
