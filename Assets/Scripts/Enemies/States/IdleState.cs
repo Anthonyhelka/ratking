@@ -9,6 +9,8 @@ public class IdleState : State {
   protected float idleTime;
   protected bool isIdleTimeOver;
 
+  protected bool isPlayerInMinAggroRange;
+
   public IdleState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_IdleState stateData) : base(entity, stateMachine, animationBoolName) {
     this.stateData = stateData;
   }
@@ -39,6 +41,12 @@ public class IdleState : State {
 
   public override void PhysicsUpdate() {
     base.PhysicsUpdate();
+  }
+
+  public override void DoChecks() {
+    base.DoChecks();
+
+    isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
   }
 
   public void SetFlipAfterIdle(bool flip) {

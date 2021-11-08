@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveState : State {
-  protected D_MoveState stateData;
+public class ChargeState : State {
+  protected D_ChargeState stateData;
 
+  protected bool isPlayerInMinAggroRange;
   protected bool isDetectingWall;
   protected bool isDetectingLedge;
-  
-  protected bool isPlayerInMinAggroRange;
 
-  public MoveState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_MoveState stateData) : base(entity, stateMachine, animationBoolName) {
+  public ChargeState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_ChargeState stateData) : base(entity, stateMachine, animationBoolName) {
     this.stateData = stateData;
   }
-
+  
   public override void Enter() {
     base.Enter();
-    entity.SetVelocity(stateData.movementSpeed);
+
+    entity.SetVelocity(stateData.chargeSpeed);
   }
 
   public override void Exit() {
@@ -34,8 +34,8 @@ public class MoveState : State {
   public override void DoChecks() {
     base.DoChecks();
 
+    isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
     isDetectingWall = entity.CheckWall();
     isDetectingLedge = entity.CheckLedge();
-    isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
   }
 }

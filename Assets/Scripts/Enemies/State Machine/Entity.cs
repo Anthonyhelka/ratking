@@ -15,6 +15,7 @@ public class Entity : MonoBehaviour {
 
   [SerializeField] private Transform wallCheck;
   [SerializeField] private Transform ledgeCheck;
+  [SerializeField] private Transform playerCheck;
 
   public virtual void Start() {
     stateMachine = new FiniteStateMachine();
@@ -35,7 +36,6 @@ public class Entity : MonoBehaviour {
 
   public virtual void SetVelocity(float velocity) {
     velocityWorkspace.Set(facingDirection * velocity, rb.velocity.y);
-    Debug.Log(velocityWorkspace);
     rb.velocity = velocityWorkspace;
   }
 
@@ -47,6 +47,14 @@ public class Entity : MonoBehaviour {
     return Physics2D.Raycast(ledgeCheck.position, Vector2.down, entityData.ledgeCheckDistance, entityData.whatIsGround);
   }
 
+  public virtual bool CheckPlayerInMinAggroRange() {
+    return Physics2D.Raycast(playerCheck.position, alive.transform.right, entityData.minAggroDistance, entityData.whatIsPlayer);
+  }
+
+  public virtual bool CheckPlayerInMaxAggroRange() {
+    return Physics2D.Raycast(playerCheck.position, alive.transform.right, entityData.maxAggroDistance, entityData.whatIsPlayer);
+  }
+
   public virtual void Flip() {
     facingDirection *= -1;
     alive.transform.Rotate(0.0f, 180.0f, 0.0f);
@@ -55,5 +63,7 @@ public class Entity : MonoBehaviour {
   public virtual void OnDrawGizmos() {
     Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.wallCheckDistance));
     Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
+    Gizmos.DrawLine(playerCheck.position, playerCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.minAggroDistance));
+    Gizmos.DrawLine(playerCheck.position, playerCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.maxAggroDistance));
   }
 }

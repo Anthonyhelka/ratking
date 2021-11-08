@@ -21,7 +21,9 @@ public class KnightRat_IdleState : IdleState
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (isIdleTimeOver) {
+    if (isPlayerInMinAggroRange) {
+      stateMachine.ChangeState(knightRat.playerDetectedState);
+    } else if (isIdleTimeOver) {
       stateMachine.ChangeState(knightRat.moveState);
     }
   }

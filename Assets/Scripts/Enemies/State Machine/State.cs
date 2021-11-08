@@ -19,6 +19,8 @@ public class State {
   public virtual void Enter() {
     startTime = Time.time;
     entity.animator.SetBool(animationBoolName, true);
+
+    DoChecks();
   }
 
   public virtual void Exit() {
@@ -27,5 +29,9 @@ public class State {
 
   public virtual void LogicUpdate() { }
 
-  public virtual void PhysicsUpdate() { }
+  public virtual void PhysicsUpdate() {
+    DoChecks();
+  }
+
+  public virtual void DoChecks() { }
 }
