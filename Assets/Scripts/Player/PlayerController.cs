@@ -59,6 +59,11 @@ public class PlayerController : MonoBehaviour {
   public float _dashTimer = -1.0f;
   public IEnumerator _dashRoutine;
   
+  // Knockback
+  [SerializeField] private float _knockbackStartTime;
+  [SerializeField] private float _knockbackDuration;
+  [SerializeField] private Vector2 _knockbackSpeed;
+
   // Animation Variables
   [SerializeField] private bool _moving;
   public bool Moving {
@@ -117,6 +122,16 @@ public class PlayerController : MonoBehaviour {
       if (value == _dashing) return;
       _dashing = value;
       _animator.SetBool("dashing", _dashing);
+    }
+  }
+
+  [SerializeField] public bool _knockback;
+  public bool Knockback {
+    get { return _knockback; }
+    set {
+      if (value == _knockback) return;
+      _knockback = value;
+      _animator.SetBool("knockback", _knockback);
     }
   }
 
@@ -276,7 +291,7 @@ public class PlayerController : MonoBehaviour {
 
   void FixedUpdate() {
     // Movement & Gravity
-    if (!Dashing && !_playerHealthScript.Damaged) {
+    if (!Dashing && !Knockback) {
       CalculateMovement();
       CalculateLookAround();
       if (!_playerCombatScript.Attacking || _playerCombatScript.AirLightAttack) CalculateGravity();
@@ -314,6 +329,8 @@ public class PlayerController : MonoBehaviour {
       Dance();
       _danceRequest = false;
     }
+
+    CheckKnockback();
   }
   
   void CalculateMovement() {
@@ -423,7 +440,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     while (duration <= _dashDurationCountMax) {
-      if (_playerHealthScript.Damaged || _playerHealthScript.Dying) break;
+      if (Knockback || _playerHealthScript.Dying) break;
       if (Input.GetButtonDown("Fire1") && duration > 0.05f && Time.time > _playerCombatScript._attackTimer) {
         queueLightAttack = true;
         break;
@@ -480,13 +497,13 @@ public class PlayerController : MonoBehaviour {
   }
 
   void GroundCheck() {
-    float height = 0.04f;
+    float height = 0.03f;
     RaycastHit2D groundcastHit = Physics2D.BoxCast(_bc.bounds.center, _bc.bounds.size, 0f, Vector2.down, height, _groundLayerMask);
     _isGrounded = groundcastHit.collider != null; 
   }
 
   void DetermineLockedInput() {
-    if (Dashing || (_playerCombatScript.Attacking && !_playerCombatScript.AirLightAttack && !_playerCombatScript.AirHeavyAttack) || _playerHealthScript.Damaged || _playerHealthScript.Dying) {
+    if (Dashing || (_playerCombatScript.Attacking && !_playerCombatScript.AirLightAttack && !_playerCombatScript.AirHeavyAttack) || Knockback || _playerHealthScript.Dying) {
       _lockPlayerInput = true;
     } else {
       _lockPlayerInput = false;
@@ -525,5 +542,18 @@ public class PlayerController : MonoBehaviour {
       dustVelocityOverLifeTime.x = 0.2f;
     }
     _dust.Play();
+  }
+
+  public void doKnockback(int direction) {
+    Knockback = true;
+    _knockbackStartTime = Time.time;
+    _rb.velocity = new Vector2(_knockbackSpeed.x * direction, _knockbackSpeed.y);
+  }
+
+  void CheckKnockback() {
+    if (Time.time >= _knockbackStartTime + _knockbackDuration && Knockback) {
+      Knockback = false;
+      _rb.velocity = new Vector2(0.0f, _rb.velocity.y);
+    }
   }
 }

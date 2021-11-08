@@ -37,7 +37,7 @@ AnimatorStateTransition:
     m_ConditionEvent: dashing
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: damaged
+    m_ConditionEvent: knockback
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: attacking
@@ -317,7 +317,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: damaged
+    m_ConditionEvent: knockback
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: dying
@@ -349,6 +349,12 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: rolling
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: jumping
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: airLightAttack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2527342315694503914}
@@ -589,7 +595,7 @@ AnimatorStateTransition:
     m_ConditionEvent: rolling
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: damaged
+    m_ConditionEvent: knockback
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: dying
@@ -706,7 +712,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: damaged
+  - m_Name: knockback
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -827,7 +833,7 @@ AnimatorStateTransition:
     m_ConditionEvent: dashing
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: damaged
+    m_ConditionEvent: knockback
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: dying
@@ -943,7 +949,7 @@ AnimatorStateTransition:
     m_ConditionEvent: dashing
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: damaged
+    m_ConditionEvent: knockback
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: dying
@@ -1014,7 +1020,7 @@ AnimatorStateTransition:
     m_ConditionEvent: dashing
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: damaged
+    m_ConditionEvent: knockback
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: dying
@@ -1054,7 +1060,7 @@ AnimatorStateTransition:
     m_ConditionEvent: dashing
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: damaged
+    m_ConditionEvent: knockback
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: dying
@@ -1260,7 +1266,7 @@ AnimatorStateTransition:
     m_ConditionEvent: dashing
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: damaged
+    m_ConditionEvent: knockback
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: dying

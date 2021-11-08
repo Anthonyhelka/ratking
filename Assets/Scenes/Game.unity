@@ -846,16 +846,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Infected_Rat (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 1141284504186021762, guid: 17ea09546b8bfc74c975f35015b95776,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1772460054784400099, guid: 17ea09546b8bfc74c975f35015b95776,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17ea09546b8bfc74c975f35015b95776, type: 3}
 --- !u!1 &519420028
@@ -1508,10 +1498,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1412860177}
     m_Modifications:
-    - target: {fileID: 1332149988, guid: e9e19c04da90c3b40840bdb639623e89, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2673148580242810162, guid: e9e19c04da90c3b40840bdb639623e89,
         type: 3}
       propertyPath: m_RootOrder
@@ -43953,20 +43939,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2124559873}
     m_Modifications:
-    - target: {fileID: 7135578178420088930, guid: f8f72cac66f0c06439de8d99f02229ea,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7135578179162916189, guid: f8f72cac66f0c06439de8d99f02229ea,
         type: 3}
       propertyPath: m_Name
       value: Mutated_Rat
-      objectReference: {fileID: 0}
-    - target: {fileID: 7135578179162916191, guid: f8f72cac66f0c06439de8d99f02229ea,
-        type: 3}
-      propertyPath: _maxHealth
-      value: 260
       objectReference: {fileID: 0}
     - target: {fileID: 7135578179162916193, guid: f8f72cac66f0c06439de8d99f02229ea,
         type: 3}
@@ -44919,20 +44895,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 949133259}
     m_Modifications:
-    - target: {fileID: 4032734530990203180, guid: 881f5d22fc5eb1243a902677dbdb7787,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4032734531042720072, guid: 881f5d22fc5eb1243a902677dbdb7787,
         type: 3}
       propertyPath: m_Name
       value: Plague_Fly
-      objectReference: {fileID: 0}
-    - target: {fileID: 4032734531042720085, guid: 881f5d22fc5eb1243a902677dbdb7787,
-        type: 3}
-      propertyPath: _knockbackForce
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4032734531042720087, guid: 881f5d22fc5eb1243a902677dbdb7787,
         type: 3}
@@ -46024,25 +45990,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1412860177}
     m_Modifications:
-    - target: {fileID: -4707620477410525401, guid: e9e19c04da90c3b40840bdb639623e89,
-        type: 3}
-      propertyPath: _maxHealth
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: -4707620477410525401, guid: e9e19c04da90c3b40840bdb639623e89,
-        type: 3}
-      propertyPath: _hitParticles
-      value: 
-      objectReference: {fileID: 1183951988754748650, guid: 71bf1c7105c950e47813b277af2b7744,
-        type: 3}
-    - target: {fileID: 1332149987, guid: e9e19c04da90c3b40840bdb639623e89, type: 3}
-      propertyPath: m_TagString
-      value: Infected
-      objectReference: {fileID: 0}
-    - target: {fileID: 1332149988, guid: e9e19c04da90c3b40840bdb639623e89, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2673148580242810162, guid: e9e19c04da90c3b40840bdb639623e89,
         type: 3}
       propertyPath: m_RootOrder
@@ -46102,31 +46049,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sticky_Rat
-      objectReference: {fileID: 0}
-    - target: {fileID: 2673148580242810169, guid: e9e19c04da90c3b40840bdb639623e89,
-        type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3815558586573937021, guid: e9e19c04da90c3b40840bdb639623e89,
-        type: 3}
-      propertyPath: m_TagString
-      value: Infected
-      objectReference: {fileID: 0}
-    - target: {fileID: 9108856979810620623, guid: e9e19c04da90c3b40840bdb639623e89,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9108856979810620623, guid: e9e19c04da90c3b40840bdb639623e89,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9108856979810620623, guid: e9e19c04da90c3b40840bdb639623e89,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9e19c04da90c3b40840bdb639623e89, type: 3}
@@ -48910,26 +48832,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 148004301}
     m_Modifications:
-    - target: {fileID: 1983795307428418208, guid: 4030224fc60324141aa50422c23c8992,
-        type: 3}
-      propertyPath: _maxHealth
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 1983795307428418208, guid: 4030224fc60324141aa50422c23c8992,
-        type: 3}
-      propertyPath: _knockbackForce
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1983795307428418208, guid: 4030224fc60324141aa50422c23c8992,
-        type: 3}
-      propertyPath: _damageFlashDuration
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1983795307428418209, guid: 4030224fc60324141aa50422c23c8992,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1983795307428418236, guid: 4030224fc60324141aa50422c23c8992,
         type: 3}
       propertyPath: m_RootOrder
@@ -48989,21 +48891,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Long_Walker
-      objectReference: {fileID: 0}
-    - target: {fileID: 1983795307428418237, guid: 4030224fc60324141aa50422c23c8992,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1983795307428418238, guid: 4030224fc60324141aa50422c23c8992,
-        type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1983795307791162936, guid: 4030224fc60324141aa50422c23c8992,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4030224fc60324141aa50422c23c8992, type: 3}

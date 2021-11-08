@@ -44,8 +44,4 @@ public class Patrol : MonoBehaviour
     _rb.velocity = new Vector2(0, 0);
     this.enabled = false;
   }
-
-  public void TakeDamage() {
-
-  }
 }

@@ -11,24 +11,13 @@ public class PlayerHealth : MonoBehaviour {
 
   public int health;
 
-  [SerializeField] private float _knockbackDuration = 0.2f;
-  [SerializeField] private float _knockbackForce = 15.0f;
+  // Invincibility
   [SerializeField] private float  _invincibilityCooldown = 1.5f;
   [SerializeField] private float _invincibilityTimer = -1.0f;
   private IEnumerator _invincibilityRoutine;
 
   private float _vomitDuration = 3.4f;
   private float _spikesDuration = 1.9f;
-
-  [SerializeField] public bool _damaged;
-  public bool Damaged {
-    get { return _damaged; }
-    set {
-      if (value == _damaged) return;
-      _damaged = value;
-      _animator.SetBool("damaged", _damaged);
-    }
-  }
 
   [SerializeField] public bool _dying;
   public bool Dying {
@@ -68,42 +57,57 @@ public class PlayerHealth : MonoBehaviour {
     _gameOverMenuScript = GameObject.Find("UI").GetComponent<GameOverMenu>();
   }
 
-  public void TakeDamage(Transform enemy) {
+  void Damage(float[] attackDetails) {
     if (Time.time < _invincibilityTimer) return;
+
     health--;
-    StartCoroutine(DamagedPlayerRoutine(enemy));
-  }
 
-  IEnumerator DamagedPlayerRoutine(Transform enemy) {
-    _invincibilityTimer = Time.time + _invincibilityCooldown;
-
-    Vector2 direction = (transform.position - enemy.position);
-    direction = direction.normalized;
-    direction = new Vector2(direction.x, 1.0f);
-    _rb.velocity = new Vector2(0, 0) * 0;
-    _rb.gravityScale = 1.0f;
-
-    float duration = 0.0f;
-    Damaged = true;
-    while (duration < _knockbackDuration && !Dying) {
-      duration += Time.deltaTime;
-      if (direction.x > 0.1f && _playerControllerScript._facingRight) _playerControllerScript.Flip();
-      if (direction.x < 0.1f && !_playerControllerScript._facingRight) _playerControllerScript.Flip();
-      _rb.AddForce(direction * _knockbackForce * Time.deltaTime, ForceMode2D.Impulse);
-      yield return 0;
+    int direction;
+    if (attackDetails[1] < transform.position.x) {
+      direction = 1;
+    } else {
+      direction = -1;
     }
-
-    Damaged = false;
-
+    
     if (health <= 0) {
-      StartCoroutine(PlayerDeathRoutine(enemy));
+      StartCoroutine(PlayerDeathRoutine("Infected"));
     } else if (health > 0) {
+      _playerControllerScript.doKnockback(direction);
       _invincibilityRoutine = InvincibilityRoutine();
       StartCoroutine(_invincibilityRoutine);
     }
   }
 
-  IEnumerator PlayerDeathRoutine(Transform enemy) {
+  // IEnumerator DamagedPlayerRoutine(Transform enemy) {
+  //   _invincibilityTimer = Time.time + _invincibilityCooldown;
+
+  //   Vector2 direction = (transform.position - enemy.position);
+  //   direction = direction.normalized;
+  //   direction = new Vector2(direction.x, 1.0f);
+  //   _rb.velocity = new Vector2(0, 0) * 0;
+  //   _rb.gravityScale = 1.0f;
+
+  //   float duration = 0.0f;
+  //   Knockback = true;
+  //   while (duration < _knockbackDuration && !Dying) {
+  //     duration += Time.deltaTime;
+  //     if (direction.x > 0.1f && _playerControllerScript._facingRight) _playerControllerScript.Flip();
+  //     if (direction.x < 0.1f && !_playerControllerScript._facingRight) _playerControllerScript.Flip();
+  //     _rb.AddForce(direction * _knockbackForce * Time.deltaTime, ForceMode2D.Impulse);
+  //     yield return 0;
+  //   }
+
+  //   Knockback = false;
+
+  //   if (health <= 0) {
+  //     StartCoroutine(PlayerDeathRoutine(enemy));
+  //   } else if (health > 0) {
+  //     _invincibilityRoutine = InvincibilityRoutine();
+  //     StartCoroutine(_invincibilityRoutine);
+  //   }
+  // }
+
+  IEnumerator PlayerDeathRoutine(object tag) {
     Dying = true;
 
     if (_playerControllerScript._dashRoutine != null) StopCoroutine(_playerControllerScript._dashRoutine);
@@ -113,11 +117,11 @@ public class PlayerHealth : MonoBehaviour {
     if (_playerCombatScript._airHeavyAttackRoutine != null) StopCoroutine(_playerCombatScript._airHeavyAttackRoutine);
 
     float maxDuration = 0.0f;
-    if (enemy.tag == "Infected") {
+    if (tag == "Infected") {
       maxDuration = _vomitDuration;
       Vomit = true;
     }
-    if (enemy.tag == "Spikes") {
+    if (tag == "Spikes") {
       maxDuration = _spikesDuration;
       Spikes = true;
     }
@@ -132,6 +136,7 @@ public class PlayerHealth : MonoBehaviour {
   }
 
   IEnumerator InvincibilityRoutine() {
+    _invincibilityTimer = Time.time + _invincibilityCooldown;
     while (Time.time < _invincibilityTimer && !Dying) {
       yield return new WaitForSeconds(0.25f);
       GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);

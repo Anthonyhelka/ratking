@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour {
   private BoxCollider2D _hitbox;
   private Rigidbody2D _rb;
   private SpriteRenderer _sr;
-  private ParticleSystem _ps;
+  [SerializeField] private GameObject _hitParticles, _deathChunkParticles, _deathBloodParticles;
   private GameObject _player;
   [SerializeField] private GameObject _damagePopup;
   private Patrol _patrolScript;
@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour {
   [SerializeField] private float _deathAnimationDuration;
   [SerializeField] private float _knockbackDuration = 0.2f;
   [SerializeField] private float _knockbackForce = 5.0f;
+  [SerializeField]
   public bool airEnemy;
 
   public List<string> HarmfulGround = new List<string>() { "Spikes" };
@@ -32,7 +33,6 @@ public class Enemy : MonoBehaviour {
     _hitbox = transform.GetChild(0).GetComponent<BoxCollider2D>();
     _rb = GetComponent<Rigidbody2D>();
     _sr = GetComponent<SpriteRenderer>();
-    _ps = transform.GetChild(1).GetComponent<ParticleSystem>();
     _patrolScript = GetComponent<Patrol>();
     _pathfindScript = GetComponent<Pathfind>();
     _player = GameObject.Find("Player");
@@ -44,12 +44,12 @@ public class Enemy : MonoBehaviour {
     _invulnerabilityTimer = _invulnerabilityTimer + Time.deltaTime;
   }
 
-  public void TakeDamage(int damage) {
+  public void TakeDamage(int damage, Vector3 playerPosition) {
     if (_invulnerabilityTimer < _invulnerabilityDuration) { return; }
     _currentHealth -= damage;
     _invulnerabilityTimer = 0.0f; 
     _healthBar.SetHealth(_currentHealth, _maxHealth);
-    StartCoroutine(DamageEffectsRoutine(damage));
+    StartCoroutine(DamageEffectsRoutine(damage, playerPosition));
     if (_currentHealth <= 0) {
       Die();
     } else {
@@ -83,16 +83,14 @@ public class Enemy : MonoBehaviour {
     _sr.color = Color.white;
   }
 
-  IEnumerator DamageEffectsRoutine(int damage) {
+  IEnumerator DamageEffectsRoutine(int damage, Vector3 playerPosition) {
     GameObject damagePopupInstance = Instantiate(_damagePopup, transform.position, Quaternion.identity);
     TextMeshPro damagePopupText = damagePopupInstance.transform.GetChild(0).GetComponent<TextMeshPro>();
     damagePopupText.SetText(damage.ToString());
     if (_currentHealth <= 0) damagePopupText.color = Color.red;
-    var psEmission = _ps.emission;
-    psEmission.rateOverTime = damage * 3;
-    _ps.Play();
-    yield return new WaitForSeconds(1.0f);
-    _ps.Stop();
+    GameObject hitParticle = Instantiate(_hitParticles, (transform.position + playerPosition) / 2, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
+    Destroy(hitParticle, 0.35f);
+    yield return 0;
   }
 
   void Die() {
@@ -107,6 +105,8 @@ public class Enemy : MonoBehaviour {
     _rb.bodyType = RigidbodyType2D.Kinematic;
     transform.rotation = Quaternion.Euler(0, 0, 0);
     _animator.SetBool("isDead", true);
+    // Instantiate(_deathChunkParticles, transform.position, _deathChunkParticles.transform.rotation);
+    Instantiate(_deathBloodParticles, transform.position, _deathBloodParticles.transform.rotation);
     Destroy (gameObject, _deathAnimationDuration);
   }
 

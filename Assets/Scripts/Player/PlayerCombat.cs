@@ -13,6 +13,7 @@ public class PlayerCombat : MonoBehaviour
   public Transform bouncePoint;
   public LayerMask enemyLayers;
   public float _attackTimer = -1.0f;
+  private float[] _attackDetails = new float[2];
 
   // Light Attacks
   [SerializeField] private int _firstLightAttackDamage = 20;
@@ -131,14 +132,16 @@ public class PlayerCombat : MonoBehaviour
     Attacking = true;
     FirstLightAttack = true;
 
+    _attackDetails[0] = _firstLightAttackDamage;
+    _attackDetails[1] = transform.position.x;
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _firstLightAttackRange, enemyLayers);
-    foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_firstLightAttackDamage); }
+    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
 
     float duration = 0.0f;
     bool queueSecondLightAttack = false;
     bool queueHeavyAttack = false;
     _attackTimer = 10000000.0f;
-    while (duration < 0.25f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
+    while (duration < 0.25f && !_playerControllerScript.Knockback && !_playerHealthScript.Dying) {
       if (Input.GetButton("Fire1") && duration > 0.1f) {
         queueSecondLightAttack = true;
       } else if (Input.GetButton("Fire2") && duration > 0.1f) {
@@ -169,14 +172,16 @@ public class PlayerCombat : MonoBehaviour
     Attacking = true;
     SecondLightAttack = true;
 
-    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _secondLightAttackRange, enemyLayers);
-    foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_secondLightAttackDamage); }
+    _attackDetails[0] = _secondLightAttackDamage;
+    _attackDetails[1] = transform.position.x;
+    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _firstLightAttackRange, enemyLayers);
+    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
 
     float duration = 0.0f;
     bool queueThirdLightAttack = false;
     bool queueHeavyAttack = false;
     _attackTimer = 10000000.0f;
-    while (duration < 0.25f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
+    while (duration < 0.25f && !_playerControllerScript.Knockback && !_playerHealthScript.Dying) {
       if (Input.GetButton("Fire1") && duration > 0.1f) {
         queueThirdLightAttack = true;
       } else if (Input.GetButton("Fire2") && duration > 0.1f) {
@@ -207,13 +212,15 @@ public class PlayerCombat : MonoBehaviour
     Attacking = true;
     ThirdLightAttack = true;
 
-    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _thirdLightAttackRange, enemyLayers);
-    foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_thirdLightAttackDamage); }
+    _attackDetails[0] = _thirdLightAttackDamage;
+    _attackDetails[1] = transform.position.x;
+    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _firstLightAttackRange, enemyLayers);
+    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
 
     float duration = 0.0f;
     bool queueHeavyAttack = false;
     _attackTimer = 10000000.0f;
-    while (duration < 0.25f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
+    while (duration < 0.25f && !_playerControllerScript.Knockback && !_playerHealthScript.Dying) {
       if (Input.GetButton("Fire2") && duration > 0.1f) queueHeavyAttack = true;
       duration += Time.deltaTime;
       _rb.velocity = new Vector2(0, 0) * 0;
@@ -239,7 +246,7 @@ public class PlayerCombat : MonoBehaviour
 
     bool queueHeavyAttack = false;
     _attackTimer = 10000000.0f;
-    while (!queueHeavyAttack && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
+    while (!queueHeavyAttack && !_playerControllerScript.Knockback && !_playerHealthScript.Dying) {
       if (_playerControllerScript._isGrounded) {
         _playerControllerScript.Roll();
         break;
@@ -249,8 +256,12 @@ public class PlayerCombat : MonoBehaviour
       } else if (_playerControllerScript.Dashing || _playerControllerScript.finalBounce) { break; }
 
       _playerControllerScript._bounceDuration -= Time.deltaTime;
+
       Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(bouncePoint.position, _airLightAttackRange, enemyLayers);
-      foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airLightAttackDamage); }
+      _attackDetails[0] = _airLightAttackDamage;
+      _attackDetails[1] = transform.position.x;
+      foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
+
       if (hitEnemies.Length > 0) { _playerControllerScript.Bounce(); }
       yield return new WaitForSeconds(0.01f);
     }
@@ -275,7 +286,7 @@ public class PlayerCombat : MonoBehaviour
 
     float duration = 0.0f;
     _attackTimer = 10000000.0f;
-    while (duration < .75f && !_playerHealthScript.Damaged && !_playerHealthScript.Dying) {
+    while (duration < .75f && !_playerControllerScript.Knockback && !_playerHealthScript.Dying) {
       duration += Time.deltaTime;
       _rb.velocity = new Vector2(0, 0) * 0;
       _rb.gravityScale = 0.0f;
@@ -289,26 +300,34 @@ public class PlayerCombat : MonoBehaviour
   }
 
   public IEnumerator airHeavyAttacksRoutine() {
+    _attackDetails[0] = _airLightAttackDamage;
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
-    foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
+    _attackDetails[1] = transform.position.x;
+    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
     yield return new WaitForSeconds(0.1f);
     hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
-    foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
+    _attackDetails[1] = transform.position.x;
+    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
     yield return new WaitForSeconds(0.1f);
     hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
-    foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
+    _attackDetails[1] = transform.position.x;
+    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
     yield return new WaitForSeconds(0.1f);
     hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
-    foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
+    _attackDetails[1] = transform.position.x;
+    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
     yield return new WaitForSeconds(0.1f);
     hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
-    foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
+    _attackDetails[1] = transform.position.x;
+    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
     yield return new WaitForSeconds(0.1f);
     hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
-    foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
+    _attackDetails[1] = transform.position.x;
+    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
     yield return new WaitForSeconds(0.1f);
     hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
-    foreach(Collider2D enemyHitbox in hitEnemies) { enemyHitbox.transform.parent.GetComponent<Enemy>().TakeDamage(_airHeavyAttackDamage); }
+    _attackDetails[1] = transform.position.x;
+    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
   }
 
   void OnDrawGizmosSelected() {
@@ -319,17 +338,17 @@ public class PlayerCombat : MonoBehaviour
     if (AirHeavyAttack) Gizmos.DrawWireSphere(transform.position, _airHeavyAttackRange);
   }
 
-  void OnCollisionStay2D(Collision2D collision) {
-    if (HarmfulGround.Contains(collision.gameObject.tag)) {
-      _playerControllerScript.ResetAnimationVariables();
-      _playerHealthScript.TakeDamage(collision.transform);
-    }
-  }
+  // void OnCollisionStay2D(Collision2D collision) {
+  //   if (HarmfulGround.Contains(collision.gameObject.tag)) {
+  //     _playerControllerScript.ResetAnimationVariables();
+  //     _playerHealthScript.TakeDamage(collision.transform);
+  //   }
+  // }
 
-  void OnTriggerStay2D(Collider2D collision) {
-    if (collision.gameObject.layer == 13) {
-      _playerControllerScript.ResetAnimationVariables();
-      _playerHealthScript.TakeDamage(collision.transform.parent);
-    }
-  }
+  // void OnTriggerStay2D(Collider2D collision) {
+  //   if (collision.gameObject.layer == 13) {
+  //     _playerControllerScript.ResetAnimationVariables();
+  //     _playerHealthScript.TakeDamage(collision.transform.parent);
+  //   }
+  // }
 }
