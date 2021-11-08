@@ -7,6 +7,7 @@ public class PlayerDetectedState : State {
 
   protected bool isPlayerInMinAggroRange;
   protected bool isPlayerInMaxAggroRange;
+  protected bool performCloseRangeAction;
   protected bool performLongRangeAction;
 
   public PlayerDetectedState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_PlayerDetectedState stateData) : base(entity, stateMachine, animationBoolName) {
@@ -41,5 +42,6 @@ public class PlayerDetectedState : State {
 
     isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
     isPlayerInMaxAggroRange = entity.CheckPlayerInMinAggroRange();
+    performCloseRangeAction = entity.CheckPlayerInCloseRangeAction() && entity.CheckMeleeAttackCooldown();
   }
 }

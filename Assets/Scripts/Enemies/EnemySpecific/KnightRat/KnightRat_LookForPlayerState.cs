@@ -12,7 +12,7 @@ public class KnightRat_LookForPlayerState : LookForPlayerState {
   public override void Enter() {
     base.Enter();
 
-    turnImmediately = true;
+    turnImmediately = false;
   }
 
   public override void Exit() {
@@ -31,5 +31,9 @@ public class KnightRat_LookForPlayerState : LookForPlayerState {
 
   public override void PhysicsUpdate() {
     base.PhysicsUpdate();
+  }
+
+  public override void DoChecks() {
+    base.DoChecks();
   }
 }

@@ -20,7 +20,9 @@ public class KnightRat_PlayerDetectedState : PlayerDetectedState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (performLongRangeAction) {
+    if (performCloseRangeAction) {
+      stateMachine.ChangeState(knightRat.meleeAttackState);
+    } else if (performLongRangeAction) {
       stateMachine.ChangeState(knightRat.chargeState);
     } else if (!isPlayerInMaxAggroRange) {
       stateMachine.ChangeState(knightRat.lookForPlayerState);
@@ -29,5 +31,9 @@ public class KnightRat_PlayerDetectedState : PlayerDetectedState {
 
   public override void PhysicsUpdate() {
     base.PhysicsUpdate();
+  }
+
+  public override void DoChecks() {
+    base.DoChecks();
   }
 }

@@ -31,4 +31,8 @@ public class KnightRat_MoveState : MoveState {
   public override void PhysicsUpdate() {
     base.PhysicsUpdate();
   }
+
+  public override void DoChecks() {
+    base.DoChecks();
+  }
 }

@@ -13,7 +13,7 @@ public class PlayerCombat : MonoBehaviour
   public Transform bouncePoint;
   public LayerMask enemyLayers;
   public float _attackTimer = -1.0f;
-  private float[] _attackDetails = new float[2];
+  private AttackDetails attackDetails;
 
   // Light Attacks
   [SerializeField] private int _firstLightAttackDamage = 20;
@@ -132,10 +132,10 @@ public class PlayerCombat : MonoBehaviour
     Attacking = true;
     FirstLightAttack = true;
 
-    _attackDetails[0] = _firstLightAttackDamage;
-    _attackDetails[1] = transform.position.x;
+    attackDetails.damageAmount = _firstLightAttackDamage;
+    attackDetails.position = transform.position;
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _firstLightAttackRange, enemyLayers);
-    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
+    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", attackDetails); }
 
     float duration = 0.0f;
     bool queueSecondLightAttack = false;
@@ -172,10 +172,10 @@ public class PlayerCombat : MonoBehaviour
     Attacking = true;
     SecondLightAttack = true;
 
-    _attackDetails[0] = _secondLightAttackDamage;
-    _attackDetails[1] = transform.position.x;
+    attackDetails.damageAmount = _secondLightAttackDamage;
+    attackDetails.position = transform.position;
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _firstLightAttackRange, enemyLayers);
-    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
+    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", attackDetails); }
 
     float duration = 0.0f;
     bool queueThirdLightAttack = false;
@@ -212,10 +212,10 @@ public class PlayerCombat : MonoBehaviour
     Attacking = true;
     ThirdLightAttack = true;
 
-    _attackDetails[0] = _thirdLightAttackDamage;
-    _attackDetails[1] = transform.position.x;
+    attackDetails.damageAmount = _thirdLightAttackDamage;
+    attackDetails.position = transform.position;
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _firstLightAttackRange, enemyLayers);
-    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
+    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", attackDetails); }
 
     float duration = 0.0f;
     bool queueHeavyAttack = false;
@@ -258,9 +258,9 @@ public class PlayerCombat : MonoBehaviour
       _playerControllerScript._bounceDuration -= Time.deltaTime;
 
       Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(bouncePoint.position, _airLightAttackRange, enemyLayers);
-      _attackDetails[0] = _airLightAttackDamage;
-      _attackDetails[1] = transform.position.x;
-      foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
+      attackDetails.damageAmount = _airLightAttackDamage;
+      attackDetails.position = transform.position;
+      foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", attackDetails); }
 
       if (hitEnemies.Length > 0) { _playerControllerScript.Bounce(); }
       yield return new WaitForSeconds(0.01f);
@@ -300,34 +300,34 @@ public class PlayerCombat : MonoBehaviour
   }
 
   public IEnumerator airHeavyAttacksRoutine() {
-    _attackDetails[0] = _airLightAttackDamage;
+    attackDetails.damageAmount = _airLightAttackDamage;
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
-    _attackDetails[1] = transform.position.x;
-    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
+    attackDetails.position = transform.position;
+    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", attackDetails); }
     yield return new WaitForSeconds(0.1f);
     hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
-    _attackDetails[1] = transform.position.x;
-    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
+    attackDetails.position = transform.position;
+    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", attackDetails); }
     yield return new WaitForSeconds(0.1f);
     hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
-    _attackDetails[1] = transform.position.x;
-    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
+    attackDetails.position = transform.position;
+    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", attackDetails); }
     yield return new WaitForSeconds(0.1f);
     hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
-    _attackDetails[1] = transform.position.x;
-    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
+    attackDetails.position = transform.position;
+    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", attackDetails); }
     yield return new WaitForSeconds(0.1f);
     hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
-    _attackDetails[1] = transform.position.x;
-    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
+    attackDetails.position = transform.position;
+    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", attackDetails); }
     yield return new WaitForSeconds(0.1f);
     hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
-    _attackDetails[1] = transform.position.x;
-    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
+    attackDetails.position = transform.position;
+    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", attackDetails); }
     yield return new WaitForSeconds(0.1f);
     hitEnemies = Physics2D.OverlapCircleAll(transform.position, _airHeavyAttackRange, enemyLayers);
-    _attackDetails[1] = transform.position.x;
-    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", _attackDetails); }
+    attackDetails.position = transform.position;
+    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", attackDetails); }
   }
 
   void OnDrawGizmosSelected() {

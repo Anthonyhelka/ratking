@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 402508707095436870}
   - component: {fileID: 402508707095436865}
   - component: {fileID: 402508707095436864}
+  - component: {fileID: 6019287928002640690}
   m_Layer: 10
   m_Name: Alive
   m_TagString: Enemy
@@ -93,6 +94,8 @@ Transform:
   m_Children:
   - {fileID: 402508706460465852}
   - {fileID: 402508706404299755}
+  - {fileID: 4441673757083935440}
+  - {fileID: 6425639556816127852}
   m_Father: {fileID: 402508707717112066}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -214,6 +217,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.24, y: 0.29}
   m_EdgeRadius: 0
+--- !u!114 &6019287928002640690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402508707095436866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627acae2b5659974bbf8e59454ff5784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &402508707717112077
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +274,78 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityData: {fileID: 11400000, guid: 935e0453a758586479851f89cc076787, type: 2}
+  meleeAttackCooldownTime: 0
   wallCheck: {fileID: 402508706460465852}
   ledgeCheck: {fileID: 402508706404299755}
+  playerCheck: {fileID: 4441673757083935440}
   idleStateData: {fileID: 11400000, guid: 890ee0ff95e28854c93bd8ea95a0fdb6, type: 2}
   moveStateData: {fileID: 11400000, guid: 0e03126341faa314f8f14eeaea35c8c6, type: 2}
+  playerDetectedStateData: {fileID: 11400000, guid: 3b63b91c3e267644cb14ed974e23b7fd,
+    type: 2}
+  chargeStateData: {fileID: 11400000, guid: ac483b1da6415c5489f83ee33abe2fcb, type: 2}
+  lookForPlayerStateData: {fileID: 11400000, guid: 58fa0269693f1f347a0bc173d8e3a0a9,
+    type: 2}
+  meleeAttackStateData: {fileID: 11400000, guid: 2884821f1c75a704faf4f15f9168f452,
+    type: 2}
+  deadStateData: {fileID: 11400000, guid: 85b1f6732c6aa28458361a96ce7712d0, type: 2}
+  meleeAttackPosition: {fileID: 6425639556816127852}
+--- !u!1 &1690133644525669165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6425639556816127852}
+  m_Layer: 10
+  m_Name: MeleeAttackPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6425639556816127852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690133644525669165}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.2, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 402508707095436867}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6480089203506444038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4441673757083935440}
+  m_Layer: 10
+  m_Name: PlayerCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4441673757083935440
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6480089203506444038}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 402508707095436867}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

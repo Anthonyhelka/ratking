@@ -8,8 +8,9 @@ public class ChargeState : State {
   protected bool isPlayerInMinAggroRange;
   protected bool isDetectingWall;
   protected bool isDetectingLedge;
+  protected bool performCloseRangeAction;
   protected bool isChargeTimeOver;
-
+  
   public ChargeState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_ChargeState stateData) : base(entity, stateMachine, animationBoolName) {
     this.stateData = stateData;
   }
@@ -43,5 +44,6 @@ public class ChargeState : State {
     isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
     isDetectingWall = entity.CheckWall();
     isDetectingLedge = entity.CheckLedge();
+    performCloseRangeAction = entity.CheckPlayerInCloseRangeAction() && entity.CheckMeleeAttackCooldown();
   }
 }

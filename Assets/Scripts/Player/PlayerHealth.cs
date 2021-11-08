@@ -57,20 +57,21 @@ public class PlayerHealth : MonoBehaviour {
     _gameOverMenuScript = GameObject.Find("UI").GetComponent<GameOverMenu>();
   }
 
-  void Damage(float[] attackDetails) {
+  void Damage(AttackDetails attackDetails) {
     if (Time.time < _invincibilityTimer) return;
 
-    health--;
+    health -= attackDetails.damageAmount;
 
     int direction;
-    if (attackDetails[1] < transform.position.x) {
+    if (attackDetails.position.x < transform.position.x) {
       direction = 1;
     } else {
       direction = -1;
     }
-    
+
     if (health <= 0) {
-      StartCoroutine(PlayerDeathRoutine("Infected"));
+      _playerControllerScript.doKnockback(direction);
+      StartCoroutine(PlayerDeathRoutine(attackDetails.type));
     } else if (health > 0) {
       _playerControllerScript.doKnockback(direction);
       _invincibilityRoutine = InvincibilityRoutine();
@@ -107,7 +108,7 @@ public class PlayerHealth : MonoBehaviour {
   //   }
   // }
 
-  IEnumerator PlayerDeathRoutine(object tag) {
+  IEnumerator PlayerDeathRoutine(string tag) {
     Dying = true;
 
     if (_playerControllerScript._dashRoutine != null) StopCoroutine(_playerControllerScript._dashRoutine);

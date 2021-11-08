@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnightRat_ChargeState : ChargeState {
+public class KnightRat_MeleeAttackState : MeleeAttackState {
   private KnightRat knightRat;
 
-  public KnightRat_ChargeState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_ChargeState stateData, KnightRat knightRat) : base(entity, stateMachine, animationBoolName, stateData) {
+  public KnightRat_MeleeAttackState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, Transform attackPosition, D_MeleeAttackState stateData, KnightRat knightRat) : base(entity, stateMachine, animationBoolName, attackPosition, stateData) {
     this.knightRat = knightRat;
   }
 
@@ -20,11 +20,7 @@ public class KnightRat_ChargeState : ChargeState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (performCloseRangeAction) {
-      stateMachine.ChangeState(knightRat.meleeAttackState);
-    } else if (isDetectingWall || !isDetectingLedge) {
-      stateMachine.ChangeState(knightRat.lookForPlayerState);
-    } else if (isChargeTimeOver) {
+    if (isAnimationFinished) {
       if (isPlayerInMinAggroRange) {
         stateMachine.ChangeState(knightRat.playerDetectedState);
       } else {
@@ -36,7 +32,16 @@ public class KnightRat_ChargeState : ChargeState {
   public override void PhysicsUpdate() {
     base.PhysicsUpdate();
   }
+
   public override void DoChecks() {
     base.DoChecks();
+  }
+
+  public override void TriggerAttack() {
+    base.TriggerAttack();
+  }
+  
+  public override void FinishAttack() {
+    base.FinishAttack();
   }
 }
