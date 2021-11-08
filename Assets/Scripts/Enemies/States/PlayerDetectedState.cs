@@ -7,6 +7,7 @@ public class PlayerDetectedState : State {
 
   protected bool isPlayerInMinAggroRange;
   protected bool isPlayerInMaxAggroRange;
+  protected bool performLongRangeAction;
 
   public PlayerDetectedState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_PlayerDetectedState stateData) : base(entity, stateMachine, animationBoolName) {
     this.stateData = stateData;
@@ -15,6 +16,7 @@ public class PlayerDetectedState : State {
   public override void Enter() {
     base.Enter();
 
+    performLongRangeAction = false;
     entity.SetVelocity(0.0f);
   }
 
@@ -24,6 +26,10 @@ public class PlayerDetectedState : State {
 
   public override void LogicUpdate() {
     base.LogicUpdate();
+
+    if (Time.time >= startTime + stateData.longRangeActionTime) {
+      performLongRangeAction = true;
+    }
   }
 
   public override void PhysicsUpdate() {

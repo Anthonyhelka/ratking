@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bdff045672e9f2488c4b9dd96e6b4bd, type: 3}
-  m_Name: KnightRate_BaseData
+  m_Script: {fileID: 11500000, guid: 2ac1283f30ff5f9478254eaf30e66bff, type: 3}
+  m_Name: KnightRat_ChargeStateData
   m_EditorClassIdentifier: 
-  wallCheckDistance: 0.1
-  ledgeCheckDistance: 0.35
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 4096
+  chargeSpeed: 1.25
+  chargeTime: 3

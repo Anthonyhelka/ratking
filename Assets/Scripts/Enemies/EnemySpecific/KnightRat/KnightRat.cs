@@ -6,10 +6,14 @@ public class KnightRat : Entity {
   public KnightRat_IdleState idleState { get; private set; }
   public KnightRat_MoveState moveState { get; private set; }
   public KnightRat_PlayerDetectedState playerDetectedState { get; private set; }
+  public KnightRat_ChargeState chargeState { get; private set; }
+  public KnightRat_LookForPlayerState lookForPlayerState { get; private set; }
 
   [SerializeField] private D_IdleState idleStateData;
   [SerializeField] private D_MoveState moveStateData;
   [SerializeField] private D_PlayerDetectedState playerDetectedStateData;
+  [SerializeField] private D_ChargeState chargeStateData;
+  [SerializeField] private D_LookForPlayerState lookForPlayerStateData;
 
   public override void Start() {
     base.Start();
@@ -17,6 +21,8 @@ public class KnightRat : Entity {
     idleState = new KnightRat_IdleState(this, stateMachine, "idle", idleStateData, this);
     moveState = new KnightRat_MoveState(this, stateMachine, "move", moveStateData, this);
     playerDetectedState = new KnightRat_PlayerDetectedState(this, stateMachine, "playerDetected", playerDetectedStateData, this);
+    chargeState = new KnightRat_ChargeState(this, stateMachine, "charge", chargeStateData, this);
+    lookForPlayerState = new KnightRat_LookForPlayerState(this, stateMachine, "lookForPlayer", lookForPlayerStateData, this);
 
     stateMachine.Initialize(moveState);
   }

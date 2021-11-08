@@ -20,9 +20,10 @@ public class KnightRat_PlayerDetectedState : PlayerDetectedState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (!isPlayerInMaxAggroRange) {
-      knightRat.idleState.SetFlipAfterIdle(false);
-      stateMachine.ChangeState(knightRat.idleState);
+    if (performLongRangeAction) {
+      stateMachine.ChangeState(knightRat.chargeState);
+    } else if (!isPlayerInMaxAggroRange) {
+      stateMachine.ChangeState(knightRat.lookForPlayerState);
     }
   }
 
