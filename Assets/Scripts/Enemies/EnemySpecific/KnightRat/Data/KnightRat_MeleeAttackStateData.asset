@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 389f76e21dbceb441accb6cf43617063, type: 3}
   m_Name: KnightRat_MeleeAttackStateData
   m_EditorClassIdentifier: 
-  attackDamage: 2
+  attackDamage: 1
   attackRadius: 0.25
-  attackCooldown: 1
+  attackCooldown: 0.2
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512

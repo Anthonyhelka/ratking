@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bdff045672e9f2488c4b9dd96e6b4bd, type: 3}
   m_Name: KnightRat_BaseData
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 1000
   damageHopSpeed: 1
   wallCheckDistance: 0.1
   ledgeCheckDistance: 0.35
@@ -25,7 +25,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   closeRangeActionDistance: 0.3
-  type: Infected
+  type: Knight
   meleeAttackCooldown: 1
   hitParticle: {fileID: 3837136863414369658, guid: a6fb3877f5baa6c43ab5a94804f36404,
     type: 3}

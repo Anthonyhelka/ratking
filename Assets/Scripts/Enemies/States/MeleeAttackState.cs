@@ -47,6 +47,6 @@ public class MeleeAttackState : AttackState {
   public override void FinishAttack() {
     base.FinishAttack();
 
-    entity.meleeAttackCooldownTime = Time.time + entity.entityData.meleeAttackCooldown;
+    entity.meleeAttackCooldownTime = Time.time + stateData.attackCooldown;
   }
 }

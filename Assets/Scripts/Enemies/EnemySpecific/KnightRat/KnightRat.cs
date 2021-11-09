@@ -9,6 +9,7 @@ public class KnightRat : Entity {
   public KnightRat_ChargeState chargeState { get; private set; }
   public KnightRat_LookForPlayerState lookForPlayerState { get; private set; }
   public KnightRat_MeleeAttackState meleeAttackState { get; private set; }
+  public KnightRat_HurtState hurtState { get; private set; }
   public KnightRat_DeadState deadState { get; private set; }
 
   [SerializeField] private D_IdleState idleStateData;
@@ -17,6 +18,7 @@ public class KnightRat : Entity {
   [SerializeField] private D_ChargeState chargeStateData;
   [SerializeField] private D_LookForPlayerState lookForPlayerStateData;
   [SerializeField] private D_MeleeAttackState meleeAttackStateData;
+  [SerializeField] private D_HurtState hurtStateData;
   [SerializeField] private D_DeadState deadStateData;
 
   [SerializeField] private Transform meleeAttackPosition;
@@ -30,6 +32,7 @@ public class KnightRat : Entity {
     chargeState = new KnightRat_ChargeState(this, stateMachine, "charge", chargeStateData, this);
     lookForPlayerState = new KnightRat_LookForPlayerState(this, stateMachine, "lookForPlayer", lookForPlayerStateData, this);
     meleeAttackState = new KnightRat_MeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
+    hurtState = new KnightRat_HurtState(this, stateMachine, "hurt", hurtStateData, this);
     deadState = new KnightRat_DeadState(this, stateMachine, "dead", deadStateData, this);
 
     stateMachine.Initialize(moveState);
@@ -43,9 +46,12 @@ public class KnightRat : Entity {
 
   public override void Damage(AttackDetails attackDetails) {
     base.Damage(attackDetails);
-
     if (isDead) {
       stateMachine.ChangeState(deadState);
+    } else if (attackDetails.position.y > alive.transform.position.y) {
+      stateMachine.ChangeState(chargeState);
+    } else if (lastDamageDirection == facingDirection) {
+      Flip();
     }
   }
 }

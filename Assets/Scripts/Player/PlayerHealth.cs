@@ -18,6 +18,7 @@ public class PlayerHealth : MonoBehaviour {
 
   private float _vomitDuration = 3.4f;
   private float _spikesDuration = 1.9f;
+  private float _knightDuration = 2.5f;
 
   [SerializeField] public bool _dying;
   public bool Dying {
@@ -49,6 +50,16 @@ public class PlayerHealth : MonoBehaviour {
     }
   }
 
+  [SerializeField] public bool _knight;
+  public bool Knight {
+    get { return _knight; }
+    set {
+      if (value == _knight) return;
+      _knight = value;
+      _animator.SetBool("knight", _knight);
+    }
+  }
+
   void Awake() {
     _rb = GetComponent<Rigidbody2D>();
     _animator = GetComponent<Animator>();
@@ -69,7 +80,7 @@ public class PlayerHealth : MonoBehaviour {
       direction = -1;
     }
 
-    if (health <= 0) {
+    if (health <= 0 && !Dying) {
       _playerControllerScript.doKnockback(direction);
       StartCoroutine(PlayerDeathRoutine(attackDetails.type));
     } else if (health > 0) {
@@ -121,10 +132,12 @@ public class PlayerHealth : MonoBehaviour {
     if (tag == "Infected") {
       maxDuration = _vomitDuration;
       Vomit = true;
-    }
-    if (tag == "Spikes") {
+    } else if (tag == "Spikes") {
       maxDuration = _spikesDuration;
       Spikes = true;
+    } else if (tag == "Knight") {
+      maxDuration = _knightDuration;
+      Knight = true;
     }
 
     float duration = 0.0f;
