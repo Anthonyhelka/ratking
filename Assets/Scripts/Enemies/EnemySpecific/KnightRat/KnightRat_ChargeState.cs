@@ -22,14 +22,8 @@ public class KnightRat_ChargeState : ChargeState {
 
     if (performCloseRangeAction) {
       stateMachine.ChangeState(knightRat.meleeAttackState);
-    } else if (isDetectingWall || !isDetectingLedge) {
-      stateMachine.ChangeState(knightRat.lookForPlayerState);
     } else if (isChargeTimeOver) {
-      if (isPlayerInMinAggroRange) {
-        stateMachine.ChangeState(knightRat.playerDetectedState);
-      } else {
-        stateMachine.ChangeState(knightRat.lookForPlayerState);
-      }
+      stateMachine.ChangeState(knightRat.moveState);
     }
   }
 

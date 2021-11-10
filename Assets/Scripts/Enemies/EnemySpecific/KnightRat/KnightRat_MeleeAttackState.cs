@@ -24,7 +24,7 @@ public class KnightRat_MeleeAttackState : MeleeAttackState {
       if (isPlayerInMinAggroRange) {
         stateMachine.ChangeState(knightRat.playerDetectedState);
       } else {
-        stateMachine.ChangeState(knightRat.lookForPlayerState);
+        stateMachine.ChangeState(knightRat.moveState);
       }
     }
   }

@@ -20,15 +20,10 @@ public class KnightRat_PlayerDetectedState : PlayerDetectedState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (isDetectingWall || !isDetectingLedge) {
-      entity.Flip();
-      stateMachine.ChangeState(knightRat.moveState);
-    } else if (performCloseRangeAction) {
+    if (performCloseRangeAction) {
       stateMachine.ChangeState(knightRat.meleeAttackState);
     } else if (performLongRangeAction) {
       stateMachine.ChangeState(knightRat.chargeState);
-    } else if (!isPlayerInMaxAggroRange) {
-      stateMachine.ChangeState(knightRat.lookForPlayerState);
     }
   }
 

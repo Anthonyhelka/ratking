@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bdff045672e9f2488c4b9dd96e6b4bd, type: 3}
   m_Name: KnightRat_BaseData
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 100
   damageHopSpeed: 1
+  damageCooldown: 0.125
   wallCheckDistance: 0.1
   ledgeCheckDistance: 0.35
   whatIsGround:
     serializedVersion: 2
     m_Bits: 4096
-  minAggroDistance: 1.5
-  maxAggroDistance: 2.5
+  minAggroDistance: {x: 2.25, y: 1.25}
+  maxAggroDistance: {x: 2.25, y: 1.25}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512

@@ -19,6 +19,10 @@ public class PlayerDetectedState : State {
   public override void Enter() {
     base.Enter();
 
+    if (entity.facingDirection != entity.lastPlayerDirection) {
+      entity.Flip();
+    }
+
     performLongRangeAction = false;
     entity.SetVelocity(0.0f);
   }

@@ -13,12 +13,15 @@ public class Entity : MonoBehaviour {
 
   private float currentHealth;
   public int lastDamageDirection;
+  public float lastDamageTime;
+  public int lastPlayerDirection;
   public float meleeAttackCooldownTime;
   protected bool isDead;
 
   public int facingDirection { get; private set; }
   private Vector2 velocityWorkspace;
 
+  [SerializeField] private Transform attackCheck;
   [SerializeField] private Transform wallCheck;
   [SerializeField] private Transform ledgeCheck;
   [SerializeField] private Transform playerCheck;
@@ -56,18 +59,27 @@ public class Entity : MonoBehaviour {
   }
 
   public virtual bool CheckPlayerInMinAggroRange() {
-    return 
-      Physics2D.Raycast(new Vector2(playerCheck.position.x, playerCheck.position.y + 0.1f), alive.transform.right, entityData.minAggroDistance, entityData.whatIsPlayer) ||
-      Physics2D.Raycast(playerCheck.position, alive.transform.right, entityData.minAggroDistance, entityData.whatIsPlayer) ||
-      Physics2D.Raycast(new Vector2(playerCheck.position.x, playerCheck.position.y - 0.1f), alive.transform.right, entityData.minAggroDistance, entityData.whatIsPlayer);
+    Collider2D[] detectedObjects = Physics2D.OverlapBoxAll(playerCheck.position, entityData.minAggroDistance, 0.0f, entityData.whatIsPlayer);
+    if (detectedObjects.Length > 0) {
+      lastPlayerDirection = detectedObjects[0].transform.position.x <= alive.transform.position.x ? -1 : 1;
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public virtual bool CheckPlayerInMaxAggroRange() {
-    return Physics2D.Raycast(playerCheck.position, alive.transform.right, entityData.maxAggroDistance, entityData.whatIsPlayer);
+    Collider2D[] detectedObjects = Physics2D.OverlapBoxAll(playerCheck.position, entityData.maxAggroDistance, 0.0f, entityData.whatIsPlayer);
+    if (detectedObjects.Length > 0) {
+      lastPlayerDirection = detectedObjects[0].transform.position.x <= alive.transform.position.x ? -1 : 1;
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public virtual bool CheckPlayerInCloseRangeAction() {
-    return Physics2D.Raycast(playerCheck.position, alive.transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
+    return Physics2D.Raycast(attackCheck.position, alive.transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
   }
 
   public virtual bool CheckMeleeAttackCooldown() {
@@ -75,18 +87,17 @@ public class Entity : MonoBehaviour {
   }
 
   public virtual void Damage(AttackDetails attackDetails) {
+    if (Time.time < lastDamageTime + entityData.damageCooldown) { return; }
+
     currentHealth -= attackDetails.damageAmount;
-    Debug.Log(attackDetails.damageAmount);
+
     DamageHop(entityData.damageHopSpeed);
 
     GameObject hitParticle = Instantiate(entityData.hitParticle, alive.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
     Destroy(hitParticle, 0.35f);
 
-    if (attackDetails.position.x > alive.transform.position.x) {
-      lastDamageDirection = -1;
-    } else {
-      lastDamageDirection = 1;
-    }
+    lastDamageTime = Time.time;
+    lastDamageDirection = attackDetails.position.x <= alive.transform.position.x ? -1 : 1;
 
     if (currentHealth <= 0) {
       isDead = true;
@@ -105,16 +116,13 @@ public class Entity : MonoBehaviour {
 
   public virtual void OnDrawGizmos() {
     // Wall & Ledge Check
-    // Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.wallCheckDistance));
-    // Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
+    Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.wallCheckDistance));
+    Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
     // Player Min & Max Check
-    
-    Gizmos.DrawWireSphere(new Vector3(playerCheck.position.x, playerCheck.position.y + 0.1f, 0.0f) + (Vector3)(alive.transform.right * entityData.minAggroDistance), 0.1f);
-    Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(alive.transform.right * entityData.minAggroDistance), 0.1f);
-    Gizmos.DrawWireSphere(new Vector3(playerCheck.position.x, playerCheck.position.y - 0.1f, 0.0f) + (Vector3)(alive.transform.right * entityData.minAggroDistance), 0.1f);
 
-    // Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(alive.transform.right * entityData.maxAggroDistance), 0.1f);
+    Gizmos.DrawWireCube(playerCheck.position, entityData.minAggroDistance);
+
     // Attack Range Check
-    // Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(alive.transform.right * entityData.closeRangeActionDistance), 0.1f);
+    Gizmos.DrawWireSphere(attackCheck.position + (Vector3)(alive.transform.right * entityData.closeRangeActionDistance), 0.1f);
   }
 }

@@ -40,9 +40,7 @@ public class PlayerController : MonoBehaviour {
   [SerializeField] private int _airJumpCountMax = 1;
   [SerializeField] private float _jumpForce = 3.5f;
   [SerializeField] private float _bounceForce = 3.5f;
-  [SerializeField] public float _bounceDuration = 3.0f;
-  [SerializeField] public float _bounceDurationMax = 3.0f;
-  public bool finalBounce = false;
+  [SerializeField] private bool _comingOffBounce;
   [SerializeField] private float _fallMultiplier = 2.5f;
   [SerializeField] private float _lowJumpMultiplier = 2.0f;
   [SerializeField] private bool _queueRoll;
@@ -273,7 +271,7 @@ public class PlayerController : MonoBehaviour {
       if (Mathf.Round(_rb.velocity.y) < 0) {
         Falling = true;
       } else if (Mathf.Round(_rb.velocity.y) > 0) {
-        if (_airJumpCount > 0) {
+        if (_airJumpCount > 0 || _comingOffBounce) {
           DoubleJumping = true;
         } else if (_airJumpCount == 0) {
           Jumping = true;
@@ -310,9 +308,8 @@ public class PlayerController : MonoBehaviour {
     // Reset Values When Grounded
     if (_isGrounded) {
       _airJumpCount = 0;
-      _bounceDuration = _bounceDurationMax;
-      finalBounce = false;
       _hasTouchedGround = true;
+      _comingOffBounce = false;
     }
     if (Time.time > _dashTimer && _hasTouchedGround) _dashCount = 0;
 
@@ -355,13 +352,13 @@ public class PlayerController : MonoBehaviour {
 
   void CalculateGravity() {
     // Fall Gravity
-    if (_isGrounded && Mathf.Round(_rb.velocity.y) < 0 && !_playerCombatScript.AirLightAttack) {
+    if (_isGrounded && Mathf.Round(_rb.velocity.y) < 0 && !_playerCombatScript.AirLightAttack && !_comingOffBounce) {
       _rb.gravityScale = _fallMultiplier;
       return;
     }
 
     // Low Jump Gravity
-    if (Mathf.Round(_rb.velocity.y) > 0 && !Input.GetButton("Jump") && !_playerHealthScript.Dying && !_playerCombatScript.AirLightAttack) {
+    if (Mathf.Round(_rb.velocity.y) > 0 && !Input.GetButton("Jump") && !_playerHealthScript.Dying && !_playerCombatScript.AirLightAttack && !_comingOffBounce) {
       _rb.gravityScale = _lowJumpMultiplier;
       return;
     }
@@ -404,18 +401,17 @@ public class PlayerController : MonoBehaviour {
 
   void Jump() {
     CreateDust();
+    _comingOffBounce = false;
     _rb.velocity = Vector2.up * 0;
     _rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
   }
 
   public void Bounce() {
     CreateDust();
+    _comingOffBounce = true;
+    DoubleJumping = true;
     _rb.velocity = Vector2.up * 0;
     _rb.AddForce(Vector2.up * _bounceForce, ForceMode2D.Impulse);
-
-    if (_bounceDuration <= 0.0f) {
-      finalBounce = true;
-    }
   }
 
   void Dash() {

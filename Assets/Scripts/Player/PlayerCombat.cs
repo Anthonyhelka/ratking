@@ -33,7 +33,7 @@ public class PlayerCombat : MonoBehaviour
 
   [SerializeField] private int _airLightAttackDamage = 10;
   [SerializeField] private float _airLightAttackRange = 0.2f;
-  [SerializeField] private float _airLightAttackCooldown = 0.2f;
+  [SerializeField] private float _airLightAttackCooldown = 0.4f;
   public IEnumerator _airLightAttackRoutine;
   public IEnumerator _airLightAttacksRoutine;
 
@@ -253,16 +253,20 @@ public class PlayerCombat : MonoBehaviour
       } else if (Input.GetButtonDown("Fire2")) {
         queueHeavyAttack = true;
         break;
-      } else if (_playerControllerScript.Dashing || _playerControllerScript.finalBounce) { break; }
-
-      _playerControllerScript._bounceDuration -= Time.deltaTime;
+      } else if (_playerControllerScript.Dashing) { 
+        break; 
+      }
 
       Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(bouncePoint.position, _airLightAttackRange, enemyLayers);
       attackDetails.damageAmount = _airLightAttackDamage;
       attackDetails.position = transform.position;
       foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", attackDetails); }
 
-      if (hitEnemies.Length > 0) { _playerControllerScript.Bounce(); }
+      if (hitEnemies.Length > 0) { 
+        _playerControllerScript.Bounce(); 
+        break;
+      }
+
       yield return new WaitForSeconds(0.01f);
     }
 

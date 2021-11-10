@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: KnightRat_ChargeStateData
   m_EditorClassIdentifier: 
   chargeSpeed: 1.5
-  chargeTime: 3
+  chargeTime: 1
