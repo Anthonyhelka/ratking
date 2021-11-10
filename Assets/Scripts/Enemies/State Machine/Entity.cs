@@ -15,6 +15,7 @@ public class Entity : MonoBehaviour {
   public int lastDamageDirection;
   public float lastDamageTime;
   public int lastPlayerDirection;
+  public Collider2D lastPlayerTouched;
   public float meleeAttackCooldownTime;
   protected bool isDead;
 
@@ -86,6 +87,17 @@ public class Entity : MonoBehaviour {
     return Time.time >= meleeAttackCooldownTime;
   }
 
+  public virtual bool CheckTouchingPlayer() {
+    Collider2D[] detectedObjects = Physics2D.OverlapBoxAll(playerCheck.position, entityData.touchDamageDistance, 0.0f, entityData.whatIsPlayer);
+    if (detectedObjects.Length > 0) {
+      lastPlayerTouched = detectedObjects[0];
+      return true;
+    } else {
+      lastPlayerTouched = null;
+      return false;
+    }
+  }
+
   public virtual void Damage(AttackDetails attackDetails) {
     if (Time.time < lastDamageTime + entityData.damageCooldown) { return; }
 
@@ -118,11 +130,24 @@ public class Entity : MonoBehaviour {
     // Wall & Ledge Check
     Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.wallCheckDistance));
     Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
-    // Player Min & Max Check
 
+    // Player Min & Max Check
     Gizmos.DrawWireCube(playerCheck.position, entityData.minAggroDistance);
+    Gizmos.DrawWireCube(playerCheck.position, entityData.maxAggroDistance);
 
     // Attack Range Check
     Gizmos.DrawWireSphere(attackCheck.position + (Vector3)(alive.transform.right * entityData.closeRangeActionDistance), 0.1f);
+
+    // Touch Damage Check
+    Gizmos.DrawWireCube(playerCheck.position, entityData.touchDamageDistance);
+
+    // Vector2 touchDamageBotLeft = new Vector2(playerCheck.position.x - (entityData.touchDamageWidth / 2), playerCheck.position.y - (entityData.touchDamageHeight / 2));
+    // Vector2 touchDamageBotRight = new Vector2(playerCheck.position.x + (entityData.touchDamageWidth / 2), playerCheck.position.y - (entityData.touchDamageHeight / 2));
+    // Vector2 touchDamageTopRight = new Vector2(playerCheck.position.x + (entityData.touchDamageWidth / 2), playerCheck.position.y + (entityData.touchDamageHeight / 2));
+    // Vector2 touchDamageTopLeft = new Vector2(playerCheck.position.x - (entityData.touchDamageWidth / 2), playerCheck.position.y + (entityData.touchDamageHeight / 2));
+    // Gizmos.DrawLine(touchDamageBotLeft, touchDamageBotRight);
+    // Gizmos.DrawLine(touchDamageBotRight, touchDamageTopRight);
+    // Gizmos.DrawLine(touchDamageTopRight, touchDamageTopLeft);
+    // Gizmos.DrawLine(touchDamageTopLeft, touchDamageBotLeft);
   }
 }

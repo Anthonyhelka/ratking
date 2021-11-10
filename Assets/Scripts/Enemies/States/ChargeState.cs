@@ -6,9 +6,8 @@ public class ChargeState : State {
   protected D_ChargeState stateData;
 
   protected bool isPlayerInMinAggroRange;
-  protected bool isDetectingWall;
-  protected bool isDetectingLedge;
   protected bool performCloseRangeAction;
+  protected bool isTouchingPlayer;
   protected bool isChargeTimeOver;
   
   public ChargeState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_ChargeState stateData) : base(entity, stateMachine, animationBoolName) {
@@ -32,6 +31,14 @@ public class ChargeState : State {
     if (Time.time >= startTime + stateData.chargeTime) {
       isChargeTimeOver = true;
     }
+
+    if (isTouchingPlayer) {
+      AttackDetails attackDetails;
+      attackDetails.position = entity.alive.transform.position;
+      attackDetails.damageAmount = entity.entityData.touchDamageAmount;
+      attackDetails.type = entity.entityData.type;
+      entity.lastPlayerTouched.transform.SendMessage("Damage", attackDetails);
+    }
   }
 
   public override void PhysicsUpdate() {
@@ -42,8 +49,7 @@ public class ChargeState : State {
     base.DoChecks();
 
     isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
-    isDetectingWall = entity.CheckWall();
-    isDetectingLedge = entity.CheckLedge();
     performCloseRangeAction = entity.CheckPlayerInCloseRangeAction() && entity.CheckMeleeAttackCooldown();
+    isTouchingPlayer = entity.CheckTouchingPlayer();
   }
 }

@@ -16,5 +16,7 @@ public class D_Entity : ScriptableObject {
   public float closeRangeActionDistance = 0.3f;
   public string type = "Infected";
   public float meleeAttackCooldown = 1.0f;
+  public int touchDamageAmount = 1;
+  public Vector2 touchDamageDistance = new Vector2(0.2f, 0.3f);
   public GameObject hitParticle;
 }

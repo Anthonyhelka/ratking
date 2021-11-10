@@ -28,5 +28,7 @@ MonoBehaviour:
   closeRangeActionDistance: 0.3
   type: Knight
   meleeAttackCooldown: 1
+  touchDamageAmount: 1
+  touchDamageDistance: {x: 0.2, y: 0.3}
   hitParticle: {fileID: 3837136863414369658, guid: a6fb3877f5baa6c43ab5a94804f36404,
     type: 3}
