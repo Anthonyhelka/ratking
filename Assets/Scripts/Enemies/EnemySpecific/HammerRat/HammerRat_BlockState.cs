@@ -17,6 +17,8 @@ public class HammerRat_BlockState : BlockState {
 
   public override void Exit() {
     base.Exit();
+
+    entity.willBlock = false;
   }
 
   public override void LogicUpdate() {
