@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3837136863414369656}
   - component: {fileID: 3837136863414369659}
   m_Layer: 9
-  m_Name: Rat_Hit_Particles
+  m_Name: Block_Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 2
   m_Sprite: {fileID: 256422880935788006, guid: f0eaab0c3f36ba0439353057ef46e541, type: 3}
-  m_Color: {r: 0.6886792, g: 0.06378562, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

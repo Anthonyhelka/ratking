@@ -205,7 +205,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.009, y: -0.0075}
+  m_Offset: {x: -0.010288447, y: -0.010848492}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -216,7 +216,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.24, y: 0.29}
+  m_Size: {x: 0.25864983, y: 0.29669702}
   m_EdgeRadius: 0
 --- !u!114 &3851846108186217214
 MonoBehaviour:
@@ -277,9 +277,10 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: 3998ef293234bef44b8da64035609adf, type: 2}
   lastDamageDirection: 0
   lastDamageTime: 0
-  lastPlayerDirection: 0
+  lastPlayerDetectedPosition: {x: 0, y: 0}
   lastPlayerTouched: {fileID: 0}
   meleeAttackCooldownTime: 0
+  willBlock: 0
   attackCheck: {fileID: 3851846108998937824}
   wallCheck: {fileID: 3851846108048862833}
   ledgeCheck: {fileID: 3851846107678816777}
@@ -287,6 +288,7 @@ MonoBehaviour:
   idleStateData: {fileID: 11400000, guid: 80348dfd54b442845a1afcb9f621f32f, type: 2}
   playerDetectedStateData: {fileID: 11400000, guid: fbfb8501711941444a4b80e5ca9722b4,
     type: 2}
+  blockStateData: {fileID: 11400000, guid: d1be43a2fa16f984c8570584085c665c, type: 2}
   meleeAttackStateData: {fileID: 11400000, guid: 4ca78fcf5a2160945aa1949022d7bde9,
     type: 2}
   deadStateData: {fileID: 11400000, guid: d383a0f3bfff4cb43bf466263ab0088d, type: 2}

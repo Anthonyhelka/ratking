@@ -2,25 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDetectedState : State {
-  protected D_PlayerDetectedState stateData;
+public class BlockState : State {
+  protected D_BlockState stateData;
 
   protected bool isPlayerInMinAggroRange;
   protected bool isPlayerInMaxAggroRange;
   protected bool performCloseRangeAction;
-  protected bool performLongRangeAction;
-  protected bool isDetectingWall;
-  protected bool isDetectingLedge;
+  protected bool isMinBlockTimeOver;
 
-  public PlayerDetectedState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_PlayerDetectedState stateData) : base(entity, stateMachine, animationBoolName) {
+  public BlockState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_BlockState stateData) : base(entity, stateMachine, animationBoolName) {
     this.stateData = stateData;
   }
-
+  
   public override void Enter() {
     base.Enter();
 
-    performLongRangeAction = false;
-    entity.SetVelocity(0.0f);
+    isMinBlockTimeOver = false;
   }
 
   public override void Exit() {
@@ -30,12 +27,8 @@ public class PlayerDetectedState : State {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (entity.facingDirection != (entity.lastPlayerDetectedPosition.x <= entity.alive.transform.position.x ? -1 : 1)) {
-      entity.Flip();
-    }
-
-    if (Time.time >= startTime + stateData.longRangeActionTime) {
-      performLongRangeAction = true;
+    if (Time.time >= startTime + stateData.minBlockTime) {
+      isMinBlockTimeOver = true;
     }
   }
 
@@ -49,7 +42,5 @@ public class PlayerDetectedState : State {
     isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
     isPlayerInMaxAggroRange = entity.CheckPlayerInMinAggroRange();
     performCloseRangeAction = entity.CheckPlayerInCloseRangeAction() && entity.CheckMeleeAttackCooldown();
-    isDetectingWall = entity.CheckWall();
-    isDetectingLedge = entity.CheckLedge();
   }
 }

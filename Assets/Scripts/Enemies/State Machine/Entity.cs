@@ -14,10 +14,11 @@ public class Entity : MonoBehaviour {
   private float currentHealth;
   public int lastDamageDirection;
   public float lastDamageTime;
-  public int lastPlayerDirection;
+  public Vector2 lastPlayerDetectedPosition;
   public Collider2D lastPlayerTouched;
   public float meleeAttackCooldownTime;
   protected bool isDead;
+  public bool willBlock;
 
   public int facingDirection { get; private set; }
   private Vector2 velocityWorkspace;
@@ -62,7 +63,7 @@ public class Entity : MonoBehaviour {
   public virtual bool CheckPlayerInMinAggroRange() {
     Collider2D[] detectedObjects = Physics2D.OverlapBoxAll(playerCheck.position, entityData.minAggroDistance, 0.0f, entityData.whatIsPlayer);
     if (detectedObjects.Length > 0) {
-      lastPlayerDirection = detectedObjects[0].transform.position.x <= alive.transform.position.x ? -1 : 1;
+      lastPlayerDetectedPosition = detectedObjects[0].transform.position;
       return true;
     } else {
       return false;
@@ -72,7 +73,7 @@ public class Entity : MonoBehaviour {
   public virtual bool CheckPlayerInMaxAggroRange() {
     Collider2D[] detectedObjects = Physics2D.OverlapBoxAll(playerCheck.position, entityData.maxAggroDistance, 0.0f, entityData.whatIsPlayer);
     if (detectedObjects.Length > 0) {
-      lastPlayerDirection = detectedObjects[0].transform.position.x <= alive.transform.position.x ? -1 : 1;
+      lastPlayerDetectedPosition = detectedObjects[0].transform.position;
       return true;
     } else {
       return false;
@@ -101,18 +102,23 @@ public class Entity : MonoBehaviour {
   public virtual void Damage(AttackDetails attackDetails) {
     if (Time.time < lastDamageTime + entityData.damageCooldown) { return; }
 
-    currentHealth -= attackDetails.damageAmount;
+    if (willBlock) {
+      GameObject blockParticle = Instantiate(entityData.blockParticle, (alive.transform.position + (Vector3)attackDetails.position) / 2, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
+      Destroy(blockParticle, 0.35f);
+    } else {
+      currentHealth -= attackDetails.damageAmount;
 
-    DamageHop(entityData.damageHopSpeed);
+      DamageHop(entityData.damageHopSpeed);
 
-    GameObject hitParticle = Instantiate(entityData.hitParticle, alive.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
-    Destroy(hitParticle, 0.35f);
+      GameObject hitParticle = Instantiate(entityData.hitParticle, (alive.transform.position + (Vector3)attackDetails.position) / 2, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
+      Destroy(hitParticle, 0.35f);
 
-    lastDamageTime = Time.time;
-    lastDamageDirection = attackDetails.position.x <= alive.transform.position.x ? -1 : 1;
+      lastDamageTime = Time.time;
+      lastDamageDirection = attackDetails.position.x <= alive.transform.position.x ? -1 : 1;
 
-    if (currentHealth <= 0) {
-      isDead = true;
+      if (currentHealth <= 0) {
+        isDead = true;
+      }
     }
   }
 

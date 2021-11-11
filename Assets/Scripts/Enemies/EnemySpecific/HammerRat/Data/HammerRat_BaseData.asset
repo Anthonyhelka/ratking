@@ -20,8 +20,8 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 4096
-  minAggroDistance: {x: 2.25, y: 1.25}
-  maxAggroDistance: {x: 2.25, y: 1.25}
+  minAggroDistance: {x: 1.5, y: 2}
+  maxAggroDistance: {x: 1.5, y: 2}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
@@ -31,4 +31,6 @@ MonoBehaviour:
   touchDamageAmount: 1
   touchDamageDistance: {x: 0.4, y: 0.5}
   hitParticle: {fileID: 3837136863414369658, guid: a6fb3877f5baa6c43ab5a94804f36404,
+    type: 3}
+  blockParticle: {fileID: 3837136863414369658, guid: ad412af0fbc27c9429edd9c600c4ca58,
     type: 3}

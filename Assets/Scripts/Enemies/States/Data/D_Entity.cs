@@ -19,4 +19,5 @@ public class D_Entity : ScriptableObject {
   public int touchDamageAmount = 1;
   public Vector2 touchDamageDistance = new Vector2(0.2f, 0.3f);
   public GameObject hitParticle;
+  public GameObject blockParticle;
 }
