@@ -11,6 +11,8 @@ public class KnightRat_MeleeAttackState : MeleeAttackState {
 
   public override void Enter() {
     base.Enter();
+
+    attackPosition.gameObject.GetComponent<Animator>().SetBool("meleeAttack", true);
   }
 
   public override void Exit() {
@@ -43,5 +45,7 @@ public class KnightRat_MeleeAttackState : MeleeAttackState {
   
   public override void FinishAttack() {
     base.FinishAttack();
+
+    attackPosition.gameObject.GetComponent<Animator>().SetBool("meleeAttack", false);
   }
 }

@@ -35,7 +35,7 @@ public class Entity : MonoBehaviour {
     atsm = alive.GetComponent<AnimationToStateMachine>();
     
     currentHealth = entityData.maxHealth;
-    facingDirection = 1;
+    facingDirection = alive.transform.rotation.y == 0.0f ? 1 : -1;
   }
 
   public virtual void Update() {
