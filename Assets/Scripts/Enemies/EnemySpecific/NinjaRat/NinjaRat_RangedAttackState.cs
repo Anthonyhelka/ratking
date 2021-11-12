@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NinjaRat_DodgeState : DodgeState {
+public class Ninja_RangedAttackState : RangedAttackState {
   private NinjaRat ninjaRat;
 
-  public NinjaRat_DodgeState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_DodgeState stateData, NinjaRat ninjaRat) : base(entity, stateMachine, animationBoolName, stateData) {
+  public Ninja_RangedAttackState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, Transform attackPosition, D_RangedAttackState stateData, NinjaRat ninjaRat) : base(entity, stateMachine, animationBoolName, attackPosition, stateData) {
     this.ninjaRat = ninjaRat;
   }
 
@@ -20,10 +20,10 @@ public class NinjaRat_DodgeState : DodgeState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (isDodgeOver) {
-      if (isPlayerInMaxAggroRange) {
-        stateMachine.ChangeState(ninjaRat.rangedAttackState);
-      } else if (!isPlayerInMaxAggroRange) {
+    if (isAnimationFinished) {
+      if (isPlayerInMinAggroRange) {
+        stateMachine.ChangeState(ninjaRat.playerDetectedState);
+      } else {
         stateMachine.ChangeState(ninjaRat.moveState);
       }
     }

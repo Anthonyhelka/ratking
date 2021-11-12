@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bdff045672e9f2488c4b9dd96e6b4bd, type: 3}
   m_Name: NinjaRat_BaseData
   m_EditorClassIdentifier: 
-  maxHealth: 10000
+  maxHealth: 50
   damageHopSpeed: 1
   damageCooldown: 0.125
   wallCheckDistance: 0.1
@@ -21,8 +21,8 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 4096
-  minAggroDistance: {x: 4, y: 0.75}
-  maxAggroDistance: {x: 4, y: 0.75}
+  minAggroDistance: {x: 3, y: 0.75}
+  maxAggroDistance: {x: 4, y: 1}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512

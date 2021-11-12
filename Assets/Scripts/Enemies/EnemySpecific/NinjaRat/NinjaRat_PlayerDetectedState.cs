@@ -26,6 +26,8 @@ public class NinjaRat_PlayerDetectedState : PlayerDetectedState {
       if (Time.time >= ninjaRat.dodgeState.startTime + ninjaRat.dodgeStateData.dodgeCooldown) {
         stateMachine.ChangeState(ninjaRat.dodgeState);
       }
+    } else if (Time.time > ninjaRat.rangedAttackState.startTime + ninjaRat.rangedAttackStateData.attackCooldown) {
+      stateMachine.ChangeState(ninjaRat.rangedAttackState);
     } else if (!isPlayerInMaxAggroRange) {
       stateMachine.ChangeState(ninjaRat.moveState);
     }
