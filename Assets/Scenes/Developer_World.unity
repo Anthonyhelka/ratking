@@ -339,6 +339,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HammerRat (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3851846108365385161, guid: 8d9b0c1243f683d4e8a746c77de4aa23,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3851846108365385163, guid: 8d9b0c1243f683d4e8a746c77de4aa23,
         type: 3}
       propertyPath: m_RootOrder

@@ -51,7 +51,6 @@ public class Projectile : MonoBehaviour {
         hasHitGround = true;  
         DestroyProjectile();
       }
-
       if (Mathf.Abs(startPositionX - transform.position.x) >= travelDistance && !isGravityOn) {
         isGravityOn = true;
         rb.gravityScale = gravity;
@@ -60,6 +59,7 @@ public class Projectile : MonoBehaviour {
   }
 
   private void DestroyProjectile() {
+    beingDestroyed = true;
     rb.gravityScale = 0.0f;
     rb.velocity = new Vector2(0.0f, 0.0f);
     animator.SetBool("fizzle", true);

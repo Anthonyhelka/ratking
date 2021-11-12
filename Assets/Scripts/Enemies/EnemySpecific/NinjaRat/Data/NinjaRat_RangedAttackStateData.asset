@@ -17,4 +17,4 @@ MonoBehaviour:
   projectileDamage: 1
   projectileSpeed: 2.5
   projectTravelDistance: 1.5
-  attackCooldown: 1
+  attackCooldown: 1.5
