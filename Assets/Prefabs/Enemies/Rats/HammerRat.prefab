@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1618327477859937072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1295365382737055981}
+  m_Layer: 10
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1295365382737055981
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618327477859937072}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.16, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3851846108186217213}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3851846107678816776
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,6 +125,7 @@ Transform:
   - {fileID: 3851846108998937824}
   - {fileID: 3851846108048862833}
   - {fileID: 3851846107678816777}
+  - {fileID: 1295365382737055981}
   - {fileID: 3851846108690743159}
   - {fileID: 3851846109127751399}
   m_Father: {fileID: 3851846108365385163}
@@ -240,7 +271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3851846108365385163}
   - component: {fileID: 3851846108365385162}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HammerRat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,6 +316,7 @@ MonoBehaviour:
   wallCheck: {fileID: 3851846108048862833}
   ledgeCheck: {fileID: 3851846107678816777}
   playerCheck: {fileID: 3851846108690743159}
+  groundCheck: {fileID: 1295365382737055981}
   idleStateData: {fileID: 11400000, guid: 80348dfd54b442845a1afcb9f621f32f, type: 2}
   playerDetectedStateData: {fileID: 11400000, guid: fbfb8501711941444a4b80e5ca9722b4,
     type: 2}
@@ -321,7 +353,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3851846108186217213}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3851846108998937839
 GameObject:
@@ -381,5 +413,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3851846108186217213}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

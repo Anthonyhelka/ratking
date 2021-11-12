@@ -95,6 +95,7 @@ Transform:
   - {fileID: 2950786108230494873}
   - {fileID: 402508706460465852}
   - {fileID: 402508706404299755}
+  - {fileID: 8555075147306998969}
   - {fileID: 4441673757083935440}
   - {fileID: 6425639556816127852}
   m_Father: {fileID: 402508707717112066}
@@ -277,13 +278,15 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: 935e0453a758586479851f89cc076787, type: 2}
   lastDamageDirection: 0
   lastDamageTime: 0
-  lastPlayerDirection: 0
+  lastPlayerDetectedPosition: {x: 0, y: 0}
   lastPlayerTouched: {fileID: 0}
   meleeAttackCooldownTime: 0
+  willBlock: 0
   attackCheck: {fileID: 2950786108230494873}
   wallCheck: {fileID: 402508706460465852}
   ledgeCheck: {fileID: 402508706404299755}
   playerCheck: {fileID: 4441673757083935440}
+  groundCheck: {fileID: 8555075147306998969}
   idleStateData: {fileID: 11400000, guid: 890ee0ff95e28854c93bd8ea95a0fdb6, type: 2}
   moveStateData: {fileID: 11400000, guid: 0e03126341faa314f8f14eeaea35c8c6, type: 2}
   playerDetectedStateData: {fileID: 11400000, guid: 3b63b91c3e267644cb14ed974e23b7fd,
@@ -353,7 +356,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 402508707095436867}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1742839987
 SpriteRenderer:
@@ -425,6 +428,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &2892800189999271232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8555075147306998969}
+  m_Layer: 10
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8555075147306998969
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2892800189999271232}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 402508707095436867}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6480089203506444038
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,5 +486,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 402508707095436867}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

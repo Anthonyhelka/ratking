@@ -9,6 +9,7 @@ public class D_Entity : ScriptableObject {
   public float damageCooldown = 0.125f;
   public float wallCheckDistance = 0.1f;
   public float ledgeCheckDistance = 0.35f;
+  public float groundCheckRadius = 0.3f;
   public LayerMask whatIsGround;
   public Vector2 minAggroDistance = new Vector2(2.25f, 1.25f);
   public Vector2 maxAggroDistance = new Vector2(2.25f, 1.25f);

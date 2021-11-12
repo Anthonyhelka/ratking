@@ -10,27 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bdff045672e9f2488c4b9dd96e6b4bd, type: 3}
-  m_Name: KnightRat_BaseData
+  m_Name: NinjaRat_BaseData
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 10000
   damageHopSpeed: 1
   damageCooldown: 0.125
   wallCheckDistance: 0.1
   ledgeCheckDistance: 0.35
-  groundCheckRadius: 0.1
+  groundCheckRadius: 0.075
   whatIsGround:
     serializedVersion: 2
     m_Bits: 4096
-  minAggroDistance: {x: 2.25, y: 1.25}
-  maxAggroDistance: {x: 2.25, y: 1.25}
+  minAggroDistance: {x: 4, y: 0.75}
+  maxAggroDistance: {x: 4, y: 0.75}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
-  closeRangeActionDistance: 0.3
+  closeRangeActionDistance: 0.5
   type: Knight
   meleeAttackCooldown: 1
   touchDamageAmount: 1
   touchDamageDistance: {x: 0.2, y: 0.3}
   hitParticle: {fileID: 3837136863414369658, guid: a6fb3877f5baa6c43ab5a94804f36404,
     type: 3}
-  blockParticle: {fileID: 0}
+  blockParticle: {fileID: 3837136863414369658, guid: ad412af0fbc27c9429edd9c600c4ca58,
+    type: 3}

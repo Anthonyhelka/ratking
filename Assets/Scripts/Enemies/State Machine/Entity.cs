@@ -27,6 +27,7 @@ public class Entity : MonoBehaviour {
   [SerializeField] private Transform wallCheck;
   [SerializeField] private Transform ledgeCheck;
   [SerializeField] private Transform playerCheck;
+  [SerializeField] private Transform groundCheck;
 
   public virtual void Start() {
     stateMachine = new FiniteStateMachine();
@@ -41,6 +42,8 @@ public class Entity : MonoBehaviour {
 
   public virtual void Update() {
     stateMachine.currentState.LogicUpdate();
+
+    animator.SetFloat("yVelocity", rb.velocity.y);
   }
 
   public virtual void FixedUpdate() {
@@ -52,12 +55,22 @@ public class Entity : MonoBehaviour {
     rb.velocity = velocityWorkspace;
   }
 
+  public virtual void SetVelocity(float velocity, Vector2 angle, int direction) {
+    angle.Normalize();
+    velocityWorkspace.Set(angle.x * velocity * direction, angle.y * velocity);
+    rb.velocity = velocityWorkspace;
+  }
+
   public virtual bool CheckWall() {
     return Physics2D.Raycast(wallCheck.position, alive.transform.right, entityData.wallCheckDistance, entityData.whatIsGround);
   }
 
   public virtual bool CheckLedge() {
     return Physics2D.Raycast(ledgeCheck.position, Vector2.down, entityData.ledgeCheckDistance, entityData.whatIsGround);
+  }
+
+  public virtual bool CheckGround() {
+    return Physics2D.OverlapCircle(groundCheck.position, entityData.groundCheckRadius, entityData.whatIsGround);
   }
 
   public virtual bool CheckPlayerInMinAggroRange() {
@@ -133,9 +146,10 @@ public class Entity : MonoBehaviour {
   }
 
   public virtual void OnDrawGizmos() {
-    // Wall & Ledge Check
+    // Wall, Ledge & Ground Check
     Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.wallCheckDistance));
     Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
+    Gizmos.DrawWireSphere(groundCheck.position, entityData.groundCheckRadius);
 
     // Player Min & Max Check
     Gizmos.DrawWireCube(playerCheck.position, entityData.minAggroDistance);
@@ -146,14 +160,5 @@ public class Entity : MonoBehaviour {
 
     // Touch Damage Check
     Gizmos.DrawWireCube(playerCheck.position, entityData.touchDamageDistance);
-
-    // Vector2 touchDamageBotLeft = new Vector2(playerCheck.position.x - (entityData.touchDamageWidth / 2), playerCheck.position.y - (entityData.touchDamageHeight / 2));
-    // Vector2 touchDamageBotRight = new Vector2(playerCheck.position.x + (entityData.touchDamageWidth / 2), playerCheck.position.y - (entityData.touchDamageHeight / 2));
-    // Vector2 touchDamageTopRight = new Vector2(playerCheck.position.x + (entityData.touchDamageWidth / 2), playerCheck.position.y + (entityData.touchDamageHeight / 2));
-    // Vector2 touchDamageTopLeft = new Vector2(playerCheck.position.x - (entityData.touchDamageWidth / 2), playerCheck.position.y + (entityData.touchDamageHeight / 2));
-    // Gizmos.DrawLine(touchDamageBotLeft, touchDamageBotRight);
-    // Gizmos.DrawLine(touchDamageBotRight, touchDamageTopRight);
-    // Gizmos.DrawLine(touchDamageTopRight, touchDamageTopLeft);
-    // Gizmos.DrawLine(touchDamageTopLeft, touchDamageBotLeft);
   }
 }
