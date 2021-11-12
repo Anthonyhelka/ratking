@@ -12,7 +12,7 @@ public class HammerRat : Entity {
   [SerializeField] private D_IdleState idleStateData;
   [SerializeField] private D_PlayerDetectedState playerDetectedStateData;
   [SerializeField] private D_BlockState blockStateData;
-  [SerializeField] private D_MeleeAttackState meleeAttackStateData;
+  [SerializeField] public D_MeleeAttackState meleeAttackStateData;
   [SerializeField] private D_DeadState deadStateData;
 
   [SerializeField] private Transform meleeAttackPosition;

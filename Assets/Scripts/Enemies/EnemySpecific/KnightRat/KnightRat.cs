@@ -8,13 +8,15 @@ public class KnightRat : Entity {
   public KnightRat_PlayerDetectedState playerDetectedState { get; private set; }
   public KnightRat_ChargeState chargeState { get; private set; }
   public KnightRat_MeleeAttackState meleeAttackState { get; private set; }
+  public KnightRat_StunState stunState { get; private set; }
   public KnightRat_DeadState deadState { get; private set; }
 
   [SerializeField] private D_IdleState idleStateData;
   [SerializeField] private D_MoveState moveStateData;
   [SerializeField] private D_PlayerDetectedState playerDetectedStateData;
   [SerializeField] private D_ChargeState chargeStateData;
-  [SerializeField] private D_MeleeAttackState meleeAttackStateData;
+  [SerializeField] public D_MeleeAttackState meleeAttackStateData;
+  [SerializeField] private D_StunState stunStateData;
   [SerializeField] private D_DeadState deadStateData;
 
   [SerializeField] private Transform meleeAttackPosition;
@@ -27,6 +29,7 @@ public class KnightRat : Entity {
     playerDetectedState = new KnightRat_PlayerDetectedState(this, stateMachine, "playerDetected", playerDetectedStateData, this);
     chargeState = new KnightRat_ChargeState(this, stateMachine, "charge", chargeStateData, this);
     meleeAttackState = new KnightRat_MeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
+    stunState = new KnightRat_StunState(this, stateMachine, "stun", stunStateData, this);
     deadState = new KnightRat_DeadState(this, stateMachine, "dead", deadStateData, this);
 
     stateMachine.Initialize(moveState);
@@ -37,6 +40,8 @@ public class KnightRat : Entity {
 
     if (isDead) {
       stateMachine.ChangeState(deadState);
+    } else if (lastPlayerDetectedPosition.y > alive.transform.position.y + 0.275f && Time.time > stunState.nextStunTime) {
+      stateMachine.ChangeState(stunState);
     }
   }
 

@@ -21,7 +21,9 @@ public class KnightRat_PlayerDetectedState : PlayerDetectedState {
     base.LogicUpdate();
 
     if (performCloseRangeAction) {
-      stateMachine.ChangeState(knightRat.meleeAttackState);
+      if (Time.time > knightRat.meleeAttackState.startTime + knightRat.meleeAttackStateData.attackCooldown) {
+        stateMachine.ChangeState(knightRat.meleeAttackState);
+      }
     } else if (performLongRangeAction) {
       stateMachine.ChangeState(knightRat.chargeState);
     }

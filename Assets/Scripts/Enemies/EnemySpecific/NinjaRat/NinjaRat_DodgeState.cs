@@ -22,7 +22,11 @@ public class NinjaRat_DodgeState : DodgeState {
 
     if (isDodgeOver) {
       if (isPlayerInMaxAggroRange) {
-        stateMachine.ChangeState(ninjaRat.rangedAttackState);
+        if (Time.time > ninjaRat.rangedAttackState.startTime + ninjaRat.rangedAttackStateData.attackCooldown) {
+          stateMachine.ChangeState(ninjaRat.rangedAttackState);
+        } else {
+          stateMachine.ChangeState(ninjaRat.playerDetectedState);
+        }
       } else if (!isPlayerInMaxAggroRange) {
         stateMachine.ChangeState(ninjaRat.moveState);
       }

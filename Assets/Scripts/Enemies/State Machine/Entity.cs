@@ -97,10 +97,6 @@ public class Entity : MonoBehaviour {
     return Physics2D.Raycast(attackCheck.position, alive.transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
   }
 
-  public virtual bool CheckMeleeAttackCooldown() {
-    return Time.time >= meleeAttackCooldownTime;
-  }
-
   public virtual bool CheckTouchingPlayer() {
     Collider2D[] detectedObjects = Physics2D.OverlapBoxAll(playerCheck.position, entityData.touchDamageDistance, 0.0f, entityData.whatIsPlayer);
     if (detectedObjects.Length > 0) {

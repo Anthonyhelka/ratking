@@ -2,33 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockState : State {
-  protected D_BlockState stateData;
+public class StunState : State {
+  protected D_StunState stateData;
 
+  protected bool isStunTimeOver;
   protected bool isPlayerInMinAggroRange;
-  protected bool isPlayerInMaxAggroRange;
   protected bool performCloseRangeAction;
-  protected bool isMinBlockTimeOver;
+  public float nextStunTime = 0.0f;
 
-  public BlockState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_BlockState stateData) : base(entity, stateMachine, animationBoolName) {
+  public StunState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_StunState stateData) : base(entity, stateMachine, animationBoolName) {
     this.stateData = stateData;
   }
-  
+
   public override void Enter() {
     base.Enter();
 
-    isMinBlockTimeOver = false;
+    entity.SetVelocity(0.0f);
+    isStunTimeOver = false;
   }
 
   public override void Exit() {
     base.Exit();
+
+    nextStunTime = Time.time + stateData.stunCooldown;
   }
 
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (Time.time >= startTime + stateData.minBlockTime) {
-      isMinBlockTimeOver = true;
+    if (Time.time >= startTime + stateData.stunTime) {
+      isStunTimeOver = true;
     }
   }
 
@@ -38,9 +41,8 @@ public class BlockState : State {
 
   public override void DoChecks() {
     base.DoChecks();
-
+    
     isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
-    isPlayerInMaxAggroRange = entity.CheckPlayerInMinAggroRange();
     performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
   }
 }

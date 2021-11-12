@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac1283f30ff5f9478254eaf30e66bff, type: 3}
   m_Name: KnightRat_ChargeStateData
   m_EditorClassIdentifier: 
-  chargeSpeed: 1.5
+  chargeSpeed: 2
   chargeTime: 1

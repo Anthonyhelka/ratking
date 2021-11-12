@@ -49,7 +49,7 @@ public class ChargeState : State {
     base.DoChecks();
 
     isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
-    performCloseRangeAction = entity.CheckPlayerInCloseRangeAction() && entity.CheckMeleeAttackCooldown();
+    performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
     isTouchingPlayer = entity.CheckTouchingPlayer();
   }
 }

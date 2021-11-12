@@ -21,7 +21,9 @@ public class HammerRat_PlayerDetectedState : PlayerDetectedState {
     base.LogicUpdate();
 
     if (performCloseRangeAction) {
-      stateMachine.ChangeState(hammerRat.meleeAttackState);
+      if (Time.time > hammerRat.meleeAttackState.startTime + hammerRat.meleeAttackStateData.attackCooldown) {
+        stateMachine.ChangeState(hammerRat.meleeAttackState);
+      }
     } else if (entity.lastPlayerDetectedPosition.y > entity.alive.transform.position.y + 0.4f) {
       stateMachine.ChangeState(hammerRat.blockState);
     }

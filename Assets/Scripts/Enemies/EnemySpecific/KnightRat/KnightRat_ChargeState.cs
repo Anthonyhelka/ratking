@@ -21,7 +21,11 @@ public class KnightRat_ChargeState : ChargeState {
     base.LogicUpdate();
 
     if (performCloseRangeAction) {
-      stateMachine.ChangeState(knightRat.meleeAttackState);
+      if (Time.time > knightRat.meleeAttackState.startTime + knightRat.meleeAttackStateData.attackCooldown) {
+        stateMachine.ChangeState(knightRat.meleeAttackState);
+      } else {
+        stateMachine.ChangeState(knightRat.playerDetectedState);
+      }
     } else if (isChargeTimeOver) {
       stateMachine.ChangeState(knightRat.moveState);
     }

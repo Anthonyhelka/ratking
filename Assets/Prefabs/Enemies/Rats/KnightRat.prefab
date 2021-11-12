@@ -294,6 +294,7 @@ MonoBehaviour:
   chargeStateData: {fileID: 11400000, guid: ac483b1da6415c5489f83ee33abe2fcb, type: 2}
   meleeAttackStateData: {fileID: 11400000, guid: 2884821f1c75a704faf4f15f9168f452,
     type: 2}
+  stunStateData: {fileID: 11400000, guid: 3b0b467f0bfddb04b96dc0e3a94176d6, type: 2}
   deadStateData: {fileID: 11400000, guid: 85b1f6732c6aa28458361a96ce7712d0, type: 2}
   meleeAttackPosition: {fileID: 6425639556816127852}
 --- !u!1 &1069127816270583306

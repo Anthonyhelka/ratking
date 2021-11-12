@@ -48,7 +48,7 @@ public class PlayerDetectedState : State {
 
     isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
     isPlayerInMaxAggroRange = entity.CheckPlayerInMinAggroRange();
-    performCloseRangeAction = entity.CheckPlayerInCloseRangeAction() && entity.CheckMeleeAttackCooldown();
+    performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
     isDetectingWall = entity.CheckWall();
     isDetectingLedge = entity.CheckLedge();
   }
