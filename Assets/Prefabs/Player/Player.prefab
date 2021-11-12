@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2128432463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2128432464}
+  m_Layer: 9
+  m_Name: Bounce_Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2128432464
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128432463}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7787247275520382262}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7787247273974015923
 GameObject:
   m_ObjectHideFlags: 0
@@ -66,6 +96,7 @@ Transform:
   m_Children:
   - {fileID: 7787247273974015922}
   - {fileID: 7787247274147365194}
+  - {fileID: 2128432464}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -84,6 +115,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -146,22 +178,33 @@ MonoBehaviour:
     m_Bits: 1024
   _airJumpCountMax: 1
   _jumpForce: 3.5
+  _bounceForce: 3.5
+  _comingOffBounce: 0
   _fallMultiplier: 2.5
   _lowJumpMultiplier: 2
+  _queueRoll: 0
+  _rollDuration: 0.4
   _dashCount: 0
   _dashCountMax: 1
   _dashHorizontalSpeed: 8
   _dashDurationCountMax: 0.5
   _dashCooldown: 1
   _dashTimer: -1
+  _knockbackStartTime: 0
+  _knockbackDuration: 0.4
+  _knockbackSpeed: {x: 1.5, y: 2}
   _moving: 0
   _jumping: 1
   _doubleJump: 0
   _falling: 0
+  _rolling: 0
   _dashing: 0
-  _sleeping: 0
+  _knockback: 0
+  _sleepingOne: 0
+  _sleepingTwo: 0
   _lookingUp: 0
   _lookingDown: 0
+  _dancing: 0
 --- !u!114 &7787247275520382258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,14 +218,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
-  _knockbackDuration: 0.2
-  _knockbackForce: 15
   _invincibilityCooldown: 2
   _invincibilityTimer: -1
-  _damaged: 0
   _dying: 0
   _vomit: 0
   _spikes: 0
+  _knight: 0
 --- !u!114 &7787247275520382253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,20 +237,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 7787247273974015922}
+  bouncePoint: {fileID: 2128432464}
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 25600
   _attackTimer: -1
   _firstLightAttackDamage: 20
   _firstLightAttackRange: 0.2
   _firstLightAttackCooldown: 0.4
-  _secondLightAttackDamage: 40
+  _secondLightAttackDamage: 30
   _secondLightAttackRange: 0.2
   _secondLightAttackCooldown: 0.4
-  _thirdLightAttackDamage: 60
+  _thirdLightAttackDamage: 40
   _thirdLightAttackRange: 0.2
   _thirdLightAttackCooldown: 0.4
-  _airHeavyAttackDamage: 10
+  _airLightAttackDamage: 10
+  _airLightAttackRange: 0.2
+  _airLightAttackCooldown: 0.4
+  _airHeavyAttackDamage: 15
   _airHeavyAttackRange: 0.3
   _airHeavyAttackCooldown: 0.5
   HarmfulGround:
@@ -219,6 +264,7 @@ MonoBehaviour:
   _secondLightAttack: 0
   _thirdLightAttack: 0
   _airHeavyAttack: 0
+  _airLightAttack: 0
 --- !u!95 &7787247275520382257
 Animator:
   serializedVersion: 3
@@ -346,6 +392,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5594893290883997481, guid: aee0cb1780b66ac4dad807c793e0395f,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5594893290883997483, guid: aee0cb1780b66ac4dad807c793e0395f,
         type: 3}

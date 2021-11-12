@@ -342,17 +342,14 @@ public class PlayerCombat : MonoBehaviour
     if (AirHeavyAttack) Gizmos.DrawWireSphere(transform.position, _airHeavyAttackRange);
   }
 
-  // void OnCollisionStay2D(Collision2D collision) {
-  //   if (HarmfulGround.Contains(collision.gameObject.tag)) {
-  //     _playerControllerScript.ResetAnimationVariables();
-  //     _playerHealthScript.TakeDamage(collision.transform);
-  //   }
-  // }
-
-  // void OnTriggerStay2D(Collider2D collision) {
-  //   if (collision.gameObject.layer == 13) {
-  //     _playerControllerScript.ResetAnimationVariables();
-  //     _playerHealthScript.TakeDamage(collision.transform.parent);
-  //   }
-  // }
+  void OnCollisionStay2D(Collision2D collision) {
+    if (HarmfulGround.Contains(collision.gameObject.tag)) {
+      _playerControllerScript.ResetAnimationVariables();
+      AttackDetails attackDetails;
+      attackDetails.position = collision.transform.position;
+      attackDetails.damageAmount = 1;
+      attackDetails.type = collision.gameObject.tag;
+      gameObject.transform.SendMessage("Damage", attackDetails);
+    }
+  }
 }

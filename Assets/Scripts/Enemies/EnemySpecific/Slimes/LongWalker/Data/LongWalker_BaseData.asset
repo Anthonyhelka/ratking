@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bdff045672e9f2488c4b9dd96e6b4bd, type: 3}
   m_Name: LongWalker_BaseData
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 75
   damageHopSpeed: 1
   damageCooldown: 0.125
   wallCheckDistance: 0.1
@@ -22,14 +22,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   minAggroDistance: {x: 2, y: 1.5}
-  maxAggroDistance: {x: 4, y: 2}
+  maxAggroDistance: {x: 3, y: 2}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
   closeRangeActionDistance: 0
   type: Infected
   meleeAttackCooldown: 0
-  touchDamageAmount: 1
+  touchDamageAmount: 0
   touchDamageDistance: {x: 0.2, y: 0.3}
   hitParticle: {fileID: 3837136863414369658, guid: 49ef0fb48bd35204498143afa0ff9473,
     type: 3}
