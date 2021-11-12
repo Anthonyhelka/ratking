@@ -74,9 +74,9 @@ public class Entity : MonoBehaviour {
   }
 
   public virtual bool CheckPlayerInMinAggroRange() {
-    Collider2D[] detectedObjects = Physics2D.OverlapBoxAll(playerCheck.position, entityData.minAggroDistance, 0.0f, entityData.whatIsPlayer);
-    if (detectedObjects.Length > 0) {
-      lastPlayerDetectedPosition = detectedObjects[0].transform.position;
+    Collider2D[] detectedObjectsMinAggroRange = Physics2D.OverlapBoxAll(playerCheck.position, entityData.minAggroDistance, 0.0f, entityData.whatIsPlayer);
+    if (detectedObjectsMinAggroRange.Length > 0) {
+      lastPlayerDetectedPosition = detectedObjectsMinAggroRange[0].transform.position;
       return true;
     } else {
       return false;
@@ -84,9 +84,9 @@ public class Entity : MonoBehaviour {
   }
 
   public virtual bool CheckPlayerInMaxAggroRange() {
-    Collider2D[] detectedObjects = Physics2D.OverlapBoxAll(playerCheck.position, entityData.maxAggroDistance, 0.0f, entityData.whatIsPlayer);
-    if (detectedObjects.Length > 0) {
-      lastPlayerDetectedPosition = detectedObjects[0].transform.position;
+    Collider2D[] detectedObjectsMaxAggroRange = Physics2D.OverlapBoxAll(playerCheck.position, entityData.maxAggroDistance, 0.0f, entityData.whatIsPlayer);
+    if (detectedObjectsMaxAggroRange.Length > 0) {
+      lastPlayerDetectedPosition = detectedObjectsMaxAggroRange[0].transform.position;
       return true;
     } else {
       return false;

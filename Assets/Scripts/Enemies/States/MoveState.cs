@@ -7,9 +7,9 @@ public class MoveState : State {
 
   protected bool isDetectingWall;
   protected bool isDetectingLedge;
-  
   protected bool isPlayerInMinAggroRange;
-
+  protected bool isTouchingPlayer;
+  
   public MoveState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_MoveState stateData) : base(entity, stateMachine, animationBoolName) {
     this.stateData = stateData;
   }
@@ -38,5 +38,6 @@ public class MoveState : State {
     isDetectingWall = entity.CheckWall();
     isDetectingLedge = entity.CheckLedge();
     isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
+    isTouchingPlayer = entity.CheckTouchingPlayer();
   }
 }

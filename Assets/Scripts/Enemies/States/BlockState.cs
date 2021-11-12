@@ -5,10 +5,11 @@ using UnityEngine;
 public class BlockState : State {
   protected D_BlockState stateData;
 
+  protected bool isMinBlockTimeOver;
   protected bool isPlayerInMinAggroRange;
   protected bool isPlayerInMaxAggroRange;
   protected bool performCloseRangeAction;
-  protected bool isMinBlockTimeOver;
+  protected bool isTouchingPlayer;
 
   public BlockState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_BlockState stateData) : base(entity, stateMachine, animationBoolName) {
     this.stateData = stateData;
@@ -40,7 +41,8 @@ public class BlockState : State {
     base.DoChecks();
 
     isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
-    isPlayerInMaxAggroRange = entity.CheckPlayerInMinAggroRange();
+    isPlayerInMaxAggroRange = entity.CheckPlayerInMaxAggroRange();
     performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
+    isTouchingPlayer = entity.CheckTouchingPlayer();
   }
 }

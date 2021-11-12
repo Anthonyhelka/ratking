@@ -8,6 +8,7 @@ public class StunState : State {
   protected bool isStunTimeOver;
   protected bool isPlayerInMinAggroRange;
   protected bool performCloseRangeAction;
+  protected bool isTouchingPlayer;
   public float nextStunTime = 0.0f;
 
   public StunState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_StunState stateData) : base(entity, stateMachine, animationBoolName) {
@@ -44,5 +45,6 @@ public class StunState : State {
     
     isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
     performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
+    isTouchingPlayer = entity.CheckTouchingPlayer();
   }
 }

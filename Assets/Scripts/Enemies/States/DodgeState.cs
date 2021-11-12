@@ -10,6 +10,7 @@ public class DodgeState : State {
   protected bool isDetectingWall;
   protected bool isDetectingLedge;
   protected bool isGrounded;
+  protected bool isTouchingPlayer;
   protected bool isDodgeOver;
 
   public DodgeState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_DodgeState stateData) : base(entity, stateMachine, animationBoolName) {
@@ -47,5 +48,6 @@ public class DodgeState : State {
     isDetectingWall = entity.CheckWall();
     isDetectingLedge = entity.CheckLedge();
     isGrounded = entity.CheckGround();
+    isTouchingPlayer = entity.CheckTouchingPlayer();
   }
 }

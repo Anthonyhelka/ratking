@@ -31,14 +31,6 @@ public class ChargeState : State {
     if (Time.time >= startTime + stateData.chargeTime) {
       isChargeTimeOver = true;
     }
-
-    if (isTouchingPlayer) {
-      AttackDetails attackDetails;
-      attackDetails.position = entity.alive.transform.position;
-      attackDetails.damageAmount = entity.entityData.touchDamageAmount;
-      attackDetails.type = entity.entityData.type;
-      entity.lastPlayerTouched.transform.SendMessage("Damage", attackDetails);
-    }
   }
 
   public override void PhysicsUpdate() {

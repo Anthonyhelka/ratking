@@ -5,6 +5,8 @@ using UnityEngine;
 public class DeadState : State {
   protected D_DeadState stateData;
 
+  protected bool isTouchingPlayer;
+
   public DeadState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_DeadState stateData) : base(entity, stateMachine, animationBoolName) {
     this.stateData = stateData;
   }
@@ -31,5 +33,7 @@ public class DeadState : State {
 
   public override void DoChecks() {
     base.DoChecks();
+
+    isTouchingPlayer = entity.CheckTouchingPlayer();
   }
 }

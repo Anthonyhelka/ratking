@@ -10,7 +10,8 @@ public class IdleState : State {
   protected bool isIdleTimeOver;
 
   protected bool isPlayerInMinAggroRange;
-
+  protected bool isTouchingPlayer;
+  
   public IdleState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_IdleState stateData) : base(entity, stateMachine, animationBoolName) {
     this.stateData = stateData;
   }
@@ -47,6 +48,7 @@ public class IdleState : State {
     base.DoChecks();
 
     isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
+    isTouchingPlayer = entity.CheckTouchingPlayer();
   }
 
   public void SetFlipAfterIdle(bool flip) {

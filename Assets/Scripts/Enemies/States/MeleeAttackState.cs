@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class MeleeAttackState : AttackState {
   protected D_MeleeAttackState stateData;
+  
   protected AttackDetails attackDetails;
   protected float attackCooldownTime;
+  protected bool isTouchingPlayer;
 
   public MeleeAttackState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, Transform attackPosition, D_MeleeAttackState stateData) : base(entity, stateMachine, animationBoolName, attackPosition) {
     this.stateData = stateData;
@@ -33,6 +35,8 @@ public class MeleeAttackState : AttackState {
 
   public override void DoChecks() {
     base.DoChecks();
+
+    isTouchingPlayer = entity.CheckTouchingPlayer();
   }
 
   public override void TriggerAttack() {

@@ -5,9 +5,10 @@ using UnityEngine;
 public class RangedAttackState : AttackState {
   protected D_RangedAttackState stateData;
 
+  protected bool isTouchingPlayer;
   protected GameObject projectile;
   protected Projectile projectileScript;
-
+  
   public RangedAttackState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, Transform attackPosition, D_RangedAttackState stateData) : base(entity, stateMachine, animationBoolName, attackPosition) {
     this.stateData = stateData;
   }
@@ -34,6 +35,8 @@ public class RangedAttackState : AttackState {
 
   public override void DoChecks() {
     base.DoChecks();
+
+    isTouchingPlayer = entity.CheckTouchingPlayer();
   }
 
   public override void TriggerAttack() {
