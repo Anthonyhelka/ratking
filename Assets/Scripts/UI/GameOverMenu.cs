@@ -25,7 +25,7 @@ public class GameOverMenu : MonoBehaviour
   }
 
   public void Restart() {
-    SceneManager.LoadScene("Developer_World");
+    SceneManager.LoadScene("Game");
     _gameOverMenu.SetActive(false);
     _playerControllerScript.enabled = true;
     _playerCombatScript.enabled = true; 

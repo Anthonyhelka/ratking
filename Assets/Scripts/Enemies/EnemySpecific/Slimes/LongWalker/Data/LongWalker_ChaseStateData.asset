@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eaab16ebc7959f4f8b457659c058960, type: 3}
   m_Name: LongWalker_ChaseStateData
   m_EditorClassIdentifier: 
-  chaseSpeed: 1
+  chaseSpeed: 0.5
   turnDelayTime: 0.1
