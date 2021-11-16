@@ -25,7 +25,7 @@ TagManager:
   - Ground
   - EnemyHitbox
   - Damageable
-  - 
+  - Dead
   - 
   - 
   - 
@@ -49,6 +49,12 @@ TagManager:
   - name: Background
     uniqueID: 2494668677
     locked: 0
+  - name: Decoration
+    uniqueID: 1492925639
+    locked: 0
+  - name: Platforms
+    uniqueID: 3634682283
+    locked: 0
   - name: Ground
     uniqueID: 3364971577
     locked: 0
@@ -58,7 +64,7 @@ TagManager:
   - name: Player
     uniqueID: 4269026361
     locked: 0
-  - name: Foreground
+  - name: Foreground Decoration
     uniqueID: 2930405997
     locked: 0
   - name: Top

@@ -113,14 +113,12 @@ public class Entity : MonoBehaviour {
 
     if (willBlock) {
       GameObject blockParticle = Instantiate(entityData.blockParticle, (alive.transform.position + (Vector3)attackDetails.position) / 2, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
-      Destroy(blockParticle, 0.35f);
     } else {
       currentHealth -= attackDetails.damageAmount;
 
       DamageHop(entityData.damageHopSpeed);
 
       GameObject hitParticle = Instantiate(entityData.hitParticle, (alive.transform.position + (Vector3)attackDetails.position) / 2, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
-      Destroy(hitParticle, 0.35f);
 
       lastDamageTime = Time.time;
       lastDamageDirection = attackDetails.position.x <= alive.transform.position.x ? -1 : 1;
