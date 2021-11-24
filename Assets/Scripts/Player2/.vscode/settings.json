@@ -1,0 +1,8 @@
+{
+  "files.exclude": {
+    "**/*.asset": true,
+    "**/*.inputactions": true,
+    "**/*.meta": true,
+    "**/*.prefab": true
+  }
+}
