@@ -15,6 +15,7 @@ public class Player : MonoBehaviour {
     public PlayerWallClimbState wallClimbState { get; private set; }
     public PlayerWallJumpState wallJumpState { get; private set; }
     public PlayerLedgeClimbState ledgeClimbState { get; private set; }
+    public PlayerDashState dashState { get; private set; }
     [SerializeField] private PlayerData playerData;
   #endregion
 
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour {
     public Rigidbody2D rb { get; private set; }
     public Animator animator { get; private set; }
     public PlayerInputHandler inputHandler { get; private set; }
+    public Transform dashDirectionIndicator { get; private set; }
   #endregion
 
   #region Check Transforms
@@ -50,12 +52,14 @@ public class Player : MonoBehaviour {
       wallClimbState = new PlayerWallClimbState(this, stateMachine, playerData, "wallClimb");
       wallJumpState = new PlayerWallJumpState(this, stateMachine, playerData, "inAir");
       ledgeClimbState = new PlayerLedgeClimbState(this, stateMachine, playerData, "ledgeClimbState");
+      dashState = new PlayerDashState(this, stateMachine, playerData, "inAir");
     }
 
     private void Start() {
       rb = GetComponent<Rigidbody2D>();
       animator = GetComponent<Animator>();
       inputHandler = GetComponent<PlayerInputHandler>();
+      dashDirectionIndicator = transform.Find("DashDirectionIndicator");
       facingDirection = 1;
 
       stateMachine.Initialize(idleState);
@@ -85,6 +89,13 @@ public class Player : MonoBehaviour {
       rb.velocity = velocityWorkspace;
       currentVelocity = velocityWorkspace;
     }
+
+    public void SetVelocity(float velocity, Vector2 direction) {
+      velocityWorkspace = direction * velocity;
+      rb.velocity = velocityWorkspace;
+      currentVelocity = velocityWorkspace;
+    }
+
     public void SetVelocityX(float velocity) {
       velocityWorkspace.Set(velocity, currentVelocity.y);
       rb.velocity = velocityWorkspace;
@@ -96,6 +107,7 @@ public class Player : MonoBehaviour {
       rb.velocity = velocityWorkspace;
       currentVelocity = velocityWorkspace;
     }
+
   #endregion
 
   #region Check Functions
@@ -139,8 +151,8 @@ public class Player : MonoBehaviour {
     public Vector2 DetermineCornerPosition() {
       RaycastHit2D xHit = Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
       float xDistance = xHit.distance;
-      velocityWorkspace.Set(xDistance * facingDirection, 0.0f);
-      RaycastHit2D yHit = Physics2D.Raycast(ledgeCheck.position + (Vector3)(velocityWorkspace), Vector2.down, ledgeCheck.position.y - wallCheck.position.y, playerData.whatIsGround);
+      velocityWorkspace.Set((xDistance + 0.015f) * facingDirection, 0.0f);
+      RaycastHit2D yHit = Physics2D.Raycast(ledgeCheck.position + (Vector3)(velocityWorkspace), Vector2.down, ledgeCheck.position.y - wallCheck.position.y + 0.015f, playerData.whatIsGround);
       float yDistance = yHit.distance;
       velocityWorkspace.Set(wallCheck.position.x + (xDistance * facingDirection), ledgeCheck.position.y - yDistance);
       return velocityWorkspace;

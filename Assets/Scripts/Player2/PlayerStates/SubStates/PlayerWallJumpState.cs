@@ -15,6 +15,7 @@ public class PlayerWallJumpState : PlayerAbilityState {
     player.SetVelocity(playerData.wallJumpVelocity, playerData.wallJumpAngle, wallJumpDirection);
     player.CheckIfShouldFlip(wallJumpDirection);
     player.jumpState.DecreaseAmountOfJumpsLeft();
+    player.dashState.ResetDash();
   }
 
   public override void Exit() {
