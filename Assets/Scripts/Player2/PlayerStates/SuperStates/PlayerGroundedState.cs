@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerGroundedState : PlayerState {
   protected int xInput;
+  protected int yInput;
   protected bool jumpInput;
   protected bool dashInput;
   protected bool grabInput;
@@ -26,7 +27,8 @@ public class PlayerGroundedState : PlayerState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    xInput = player.inputHandler.normalizedInputX;
+    xInput = player.inputHandler.normalizedInputX;    
+    yInput = player.inputHandler.normalizedInputY;
     jumpInput = player.inputHandler.jumpInput;
     dashInput = player.inputHandler.dashInput;
     grabInput = player.inputHandler.grabInput;

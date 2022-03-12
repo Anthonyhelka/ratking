@@ -21,6 +21,8 @@ public class PlayerIdleState : PlayerGroundedState {
     if (!isExitingState) {
       if (xInput != 0) {
         stateMachine.ChangeState(player.moveState);
+      } else if (yInput == -1) {
+        stateMachine.ChangeState(player.crouchIdleState);
       }
     }
   }

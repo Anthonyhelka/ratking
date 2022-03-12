@@ -17,11 +17,11 @@ MonoBehaviour:
   jumpVelocity: 20
   coyoteTime: 0.2
   variableJumpHeightMultiplier: 0.5
-  wallSlideVelocity: 3
-  wallClimbVelocity: 3
-  wallJumpVelocity: 20
+  wallSlideVelocity: 5
+  wallClimbVelocity: 5
+  wallJumpVelocity: 25
   wallJumpTime: 0.2
-  wallJumpAngle: {x: 1, y: 2.5}
+  wallJumpAngle: {x: 0.5, y: 1}
   startOffset: {x: 0.4, y: 0.9}
   stopOffset: {x: 0.4, y: 0.75}
   dashCooldown: 0.5
