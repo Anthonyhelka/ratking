@@ -62,6 +62,36 @@ TextureImporter:
   - first:
       213: -2052802151978313287
     second: damaged_sprite_9
+  - first:
+      213: 3865779245405396931
+    second: damaged_0
+  - first:
+      213: -6806755141263944071
+    second: damaged_1
+  - first:
+      213: -4102841925239998255
+    second: damaged_2
+  - first:
+      213: 229976294609435873
+    second: damaged_3
+  - first:
+      213: -8036808465469291113
+    second: damaged_4
+  - first:
+      213: -3840802220300860508
+    second: damaged_5
+  - first:
+      213: 6631632140554703921
+    second: damaged_6
+  - first:
+      213: -3849542103520707673
+    second: damaged_7
+  - first:
+      213: 2512912169837372114
+    second: damaged_8
+  - first:
+      213: 5482888753692775456
+    second: damaged_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -83,6 +113,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -92,8 +123,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -114,9 +145,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
@@ -159,211 +193,211 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: damaged_sprite_0
+      name: damaged_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 99
-        width: 26
-        height: 28
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11c40b55b467f8e90800000000000000
-      internalID: -7021263228115071983
+      spriteID: 3cf577eedb106a530800000000000000
+      internalID: 3865779245405396931
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: damaged_sprite_1
+      name: damaged_1
       rect:
         serializedVersion: 2
         x: 32
-        y: 99
-        width: 26
-        height: 28
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 117c71bcb85a06bc0800000000000000
-      internalID: -3791848866419587311
+      spriteID: 97616e3434c8981a0800000000000000
+      internalID: -6806755141263944071
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: damaged_sprite_2
+      name: damaged_2
       rect:
         serializedVersion: 2
-        x: 66
-        y: 99
-        width: 26
-        height: 28
+        x: 64
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 946c249d95da4a570800000000000000
-      internalID: 8477091000026842697
+      spriteID: 1d87d7cb107cf07c0800000000000000
+      internalID: -4102841925239998255
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: damaged_sprite_3
+      name: damaged_3
       rect:
         serializedVersion: 2
-        x: 2
-        y: 67
-        width: 26
-        height: 28
+        x: 0
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ddca51cffda53bb0800000000000000
-      internalID: -4956864500879143465
+      spriteID: 1ecb4f2b83a013300800000000000000
+      internalID: 229976294609435873
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: damaged_sprite_4
+      name: damaged_4
       rect:
         serializedVersion: 2
-        x: 34
-        y: 67
-        width: 26
-        height: 28
+        x: 32
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 647d3170184b7b630800000000000000
-      internalID: 3942818465048680262
+      spriteID: 795c9df0845877090800000000000000
+      internalID: -8036808465469291113
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: damaged_sprite_5
+      name: damaged_5
       rect:
         serializedVersion: 2
-        x: 66
-        y: 67
-        width: 26
-        height: 28
+        x: 64
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 465a6f3ed092288f0800000000000000
-      internalID: -539823865695132316
+      spriteID: 4a38f66eabab2bac0800000000000000
+      internalID: -3840802220300860508
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: damaged_sprite_6
+      name: damaged_6
       rect:
         serializedVersion: 2
-        x: 3
-        y: 35
-        width: 26
-        height: 28
+        x: 0
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95d9cf00a3978e0d0800000000000000
-      internalID: -3393329029192049319
+      spriteID: 13493d2cb4a480c50800000000000000
+      internalID: 6631632140554703921
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: damaged_sprite_7
+      name: damaged_7
       rect:
         serializedVersion: 2
-        x: 35
-        y: 35
-        width: 26
-        height: 28
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c573b764951210390800000000000000
-      internalID: -7853959607839148196
+      spriteID: 7abfcb34adda39ac0800000000000000
+      internalID: -3849542103520707673
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: damaged_sprite_8
+      name: damaged_8
       rect:
         serializedVersion: 2
-        x: 67
-        y: 35
-        width: 26
-        height: 28
+        x: 64
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 817a448916d55a960800000000000000
-      internalID: 7612593418887538456
+      spriteID: 2d2a9e2fd48afd220800000000000000
+      internalID: 2512912169837372114
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: damaged_sprite_9
+      name: damaged_9
       rect:
         serializedVersion: 2
-        x: 3
-        y: 3
-        width: 26
-        height: 28
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b9dc29a15bf283e0800000000000000
-      internalID: -2052802151978313287
+      spriteID: 02497da9542271c40800000000000000
+      internalID: 5482888753692775456
       vertices: []
       indices: 
       edges: []

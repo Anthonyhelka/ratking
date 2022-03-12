@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCombat : MonoBehaviour
-{
+public class PlayerCombat : MonoBehaviour {
   private Animator _animator;
   private Rigidbody2D _rb;
   private PlayerHealth _playerHealthScript;
@@ -340,16 +339,5 @@ public class PlayerCombat : MonoBehaviour
     if (ThirdLightAttack) Gizmos.DrawWireSphere(attackPoint.position, _thirdLightAttackRange);
     if (AirLightAttack) Gizmos.DrawWireSphere(bouncePoint.position, _airLightAttackRange);
     if (AirHeavyAttack) Gizmos.DrawWireSphere(transform.position, _airHeavyAttackRange);
-  }
-
-  void OnCollisionStay2D(Collision2D collision) {
-    if (HarmfulGround.Contains(collision.gameObject.tag)) {
-      _playerControllerScript.ResetAnimationVariables();
-      AttackDetails attackDetails;
-      attackDetails.position = collision.transform.position;
-      attackDetails.damageAmount = 1;
-      attackDetails.type = collision.gameObject.tag;
-      gameObject.transform.SendMessage("Damage", attackDetails);
-    }
   }
 }

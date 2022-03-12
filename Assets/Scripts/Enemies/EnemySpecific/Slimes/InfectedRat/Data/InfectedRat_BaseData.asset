@@ -25,7 +25,7 @@ MonoBehaviour:
   maxAggroDistance: {x: 0, y: 0}
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 512
   closeRangeActionDistance: 0
   type: Infected
   meleeAttackCooldown: 0

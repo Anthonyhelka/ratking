@@ -69,7 +69,7 @@ public class PlayerHealth : MonoBehaviour {
   }
 
   void Damage(AttackDetails attackDetails) {
-    if (Time.time < _invincibilityTimer) return;
+    if (Time.time < _invincibilityTimer || Dying) return;
 
     health -= attackDetails.damageAmount;
 
@@ -80,7 +80,7 @@ public class PlayerHealth : MonoBehaviour {
       direction = -1;
     }
 
-    if (health <= 0 && !Dying) {
+    if (health <= 0) {
       _playerControllerScript.doKnockback(direction);
       StartCoroutine(PlayerDeathRoutine(attackDetails.type));
     } else if (health > 0) {
@@ -121,7 +121,7 @@ public class PlayerHealth : MonoBehaviour {
 
   IEnumerator PlayerDeathRoutine(string tag) {
     Dying = true;
-
+    Debug.Log(tag);
     if (_playerControllerScript._dashRoutine != null) StopCoroutine(_playerControllerScript._dashRoutine);
     if (_playerCombatScript._firstLightAttackRoutine != null) StopCoroutine(_playerCombatScript._firstLightAttackRoutine);
     if (_playerCombatScript._secondLightAttackRoutine != null) StopCoroutine(_playerCombatScript._secondLightAttackRoutine);
