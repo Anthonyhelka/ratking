@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour {
   private CinemachineFramingTransposer _cinemaMachineFramingTransposer;
 
   // Movement
-  private float _horizontalInput;
-  private float _verticalInput;
+  public float _horizontalInput;
+  public float _verticalInput;
   [SerializeField] private float _speed = 1.0f;
   public bool _facingRight = true;
   public bool _lockPlayerInput = false;
@@ -216,7 +216,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Jump
-    if (Input.GetButton("Jump") && !_playerCombatScript.AirHeavyAttack) {
+    if (Input.GetButtonDown("Jump") && !_playerCombatScript.AirHeavyAttack) {
       if (_isGrounded) {
         _jumpRequest = true;
       } else {
@@ -235,9 +235,9 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Attack
-    if (Input.GetButton("Fire1") && !_playerCombatScript.Attacking) {
+    if (Input.GetButtonDown("Fire1") && !_playerCombatScript.Attacking) {
       _playerCombatScript.Attack("Light");
-    } else if (Input.GetButton("Fire2") && !_playerCombatScript.Attacking) {
+    } else if (Input.GetButtonDown("Fire2") && !_playerCombatScript.Attacking) {
       _playerCombatScript.Attack("Heavy");
     }
 
@@ -292,7 +292,7 @@ public class PlayerController : MonoBehaviour {
     if (!Dashing && !Knockback) {
       CalculateMovement();
       CalculateLookAround();
-      if (!_playerCombatScript.Attacking || _playerCombatScript.AirLightAttack) CalculateGravity();
+      if (!_playerCombatScript.AirHeavyAttack) CalculateGravity();
     }
 
     // Detect Collisions With BoxCast
@@ -352,13 +352,13 @@ public class PlayerController : MonoBehaviour {
 
   void CalculateGravity() {
     // Fall Gravity
-    if (_isGrounded && Mathf.Round(_rb.velocity.y) < 0 && !_playerCombatScript.AirLightAttack && !_comingOffBounce) {
+    if (_isGrounded && Mathf.Round(_rb.velocity.y) < 0 && !_playerCombatScript.Attacking && !_comingOffBounce) {
       _rb.gravityScale = _fallMultiplier;
       return;
     }
 
     // Low Jump Gravity
-    if (Mathf.Round(_rb.velocity.y) > 0 && !Input.GetButton("Jump") && !_playerHealthScript.Dying && !_playerCombatScript.AirLightAttack && !_comingOffBounce) {
+    if (Mathf.Round(_rb.velocity.y) > 0 && !Input.GetButton("Jump") && !_playerHealthScript.Dying && !_playerCombatScript.Attacking && !_comingOffBounce) {
       _rb.gravityScale = _lowJumpMultiplier;
       return;
     }
@@ -410,6 +410,7 @@ public class PlayerController : MonoBehaviour {
     CreateDust();
     _comingOffBounce = true;
     DoubleJumping = true;
+    _airJumpCount = 0;
     _rb.velocity = Vector2.up * 0;
     _rb.AddForce(Vector2.up * _bounceForce, ForceMode2D.Impulse);
   }
@@ -483,7 +484,7 @@ public class PlayerController : MonoBehaviour {
     Rolling = true;
     float duration = 0.0f;
     while (duration < _rollDuration) {
-      if (_horizontalInput == 0.0f) { break; }
+      if (_horizontalInput == 0.0f || !_isGrounded) { break; }
       _speed = 1.5f;
       duration += Time.deltaTime;
       yield return 0;
@@ -499,7 +500,7 @@ public class PlayerController : MonoBehaviour {
   }
 
   void DetermineLockedInput() {
-    if (Dashing || (_playerCombatScript.Attacking && !_playerCombatScript.AirLightAttack && !_playerCombatScript.AirHeavyAttack) || Knockback || _playerHealthScript.Dying) {
+    if (Dashing || Knockback || _playerHealthScript.Dying) {
       _lockPlayerInput = true;
     } else {
       _lockPlayerInput = false;

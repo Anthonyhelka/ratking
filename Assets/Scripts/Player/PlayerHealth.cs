@@ -121,11 +121,10 @@ public class PlayerHealth : MonoBehaviour {
 
   IEnumerator PlayerDeathRoutine(string tag) {
     Dying = true;
-    Debug.Log(tag);
+    
     if (_playerControllerScript._dashRoutine != null) StopCoroutine(_playerControllerScript._dashRoutine);
     if (_playerCombatScript._firstLightAttackRoutine != null) StopCoroutine(_playerCombatScript._firstLightAttackRoutine);
     if (_playerCombatScript._secondLightAttackRoutine != null) StopCoroutine(_playerCombatScript._secondLightAttackRoutine);
-    if (_playerCombatScript._thirdLightAttackRoutine != null) StopCoroutine(_playerCombatScript._thirdLightAttackRoutine);
     if (_playerCombatScript._airHeavyAttackRoutine != null) StopCoroutine(_playerCombatScript._airHeavyAttackRoutine);
 
     float maxDuration = 0.0f;

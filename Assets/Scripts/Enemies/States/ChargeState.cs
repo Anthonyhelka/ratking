@@ -23,6 +23,8 @@ public class ChargeState : State {
 
   public override void Exit() {
     base.Exit();
+
+    entity.chargeCooldownTime = Time.time + stateData.chargeCooldown;
   }
 
   public override void LogicUpdate() {

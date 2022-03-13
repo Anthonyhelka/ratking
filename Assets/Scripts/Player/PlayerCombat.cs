@@ -25,11 +25,6 @@ public class PlayerCombat : MonoBehaviour {
   [SerializeField] private float _secondLightAttackCooldown = 0.4f;
   public IEnumerator _secondLightAttackRoutine;
 
-  [SerializeField] private int _thirdLightAttackDamage = 40;
-  [SerializeField] private float _thirdLightAttackRange = 0.20f;
-  [SerializeField] private float _thirdLightAttackCooldown = 0.4f;
-  public IEnumerator _thirdLightAttackRoutine;
-
   [SerializeField] private int _airLightAttackDamage = 10;
   [SerializeField] private float _airLightAttackRange = 0.2f;
   [SerializeField] private float _airLightAttackCooldown = 0.4f;
@@ -41,6 +36,8 @@ public class PlayerCombat : MonoBehaviour {
   [SerializeField] private float _airHeavyAttackRange = 0.3f;
   [SerializeField] private float _airHeavyAttackCooldown = 0.4f;
   public IEnumerator _airHeavyAttackRoutine;
+
+  private int lastAttack = 2;
 
   public List<string> HarmfulGround = new List<string>() { "Spikes" };
 
@@ -74,16 +71,6 @@ public class PlayerCombat : MonoBehaviour {
     }
   }
 
-  [SerializeField] private bool _thirdLightAttack;
-  public bool ThirdLightAttack {
-    get { return _thirdLightAttack; }
-    set {
-      if (value == _thirdLightAttack) return;
-      _thirdLightAttack = value;
-      _animator.SetBool("thirdLightAttack", _thirdLightAttack);
-    }
-  }
-
   [SerializeField] private bool _airHeavyAttack;
   public bool AirHeavyAttack {
     get { return _airHeavyAttack; }
@@ -114,12 +101,19 @@ public class PlayerCombat : MonoBehaviour {
   public void Attack(string type) {
     if (Time.time < _attackTimer) { return; }
     if (type == "Light") {
-      if (_playerControllerScript._isGrounded) {
-        _firstLightAttackRoutine = firstLightAttackRoutine();
-        StartCoroutine(_firstLightAttackRoutine);
-      } else {
+      if (!_playerControllerScript._isGrounded) {
         _airLightAttackRoutine = airLightAttackRoutine();
         StartCoroutine(_airLightAttackRoutine);
+      } else {
+        if (lastAttack == 2) {
+          _firstLightAttackRoutine = firstLightAttackRoutine();
+          StartCoroutine(_firstLightAttackRoutine);          
+          lastAttack = 1;
+        } else {
+          _secondLightAttackRoutine = secondLightAttackRoutine();
+          StartCoroutine(_secondLightAttackRoutine);          
+          lastAttack = 2;
+        }
       }
     } else if (type == "Heavy") {
       _airHeavyAttackRoutine = airHeavyAttackRoutine();
@@ -137,18 +131,14 @@ public class PlayerCombat : MonoBehaviour {
     foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", attackDetails); }
 
     float duration = 0.0f;
-    bool queueSecondLightAttack = false;
     bool queueHeavyAttack = false;
     _attackTimer = 10000000.0f;
-    while (duration < 0.25f && !_playerControllerScript.Knockback && !_playerHealthScript.Dying) {
-      if (Input.GetButton("Fire1") && duration > 0.1f) {
-        queueSecondLightAttack = true;
-      } else if (Input.GetButton("Fire2") && duration > 0.1f) {
+    while (duration < 0.3f && !_playerControllerScript.Knockback && !_playerHealthScript.Dying) {
+      if (Input.GetButtonDown("Fire1") && duration > 0.1f) {
+      } else if (Input.GetButtonDown("Fire2") && duration > 0.1f) {
         queueHeavyAttack = true;
       }
       duration += Time.deltaTime;
-      _rb.velocity = new Vector2(0, 0) * 0;
-      _rb.gravityScale = 0.0f;
       yield return 0;
     }
 
@@ -156,10 +146,7 @@ public class PlayerCombat : MonoBehaviour {
 
     FirstLightAttack = false;
 
-    if (queueSecondLightAttack) {
-      _secondLightAttackRoutine = secondLightAttackRoutine();
-      StartCoroutine(_secondLightAttackRoutine);
-    } else if (queueHeavyAttack) {
+    if (queueHeavyAttack) {
       _airHeavyAttackRoutine = airHeavyAttackRoutine();
       StartCoroutine(_airHeavyAttackRoutine);
     } else {
@@ -177,18 +164,13 @@ public class PlayerCombat : MonoBehaviour {
     foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", attackDetails); }
 
     float duration = 0.0f;
-    bool queueThirdLightAttack = false;
     bool queueHeavyAttack = false;
     _attackTimer = 10000000.0f;
-    while (duration < 0.25f && !_playerControllerScript.Knockback && !_playerHealthScript.Dying) {
-      if (Input.GetButton("Fire1") && duration > 0.1f) {
-        queueThirdLightAttack = true;
-      } else if (Input.GetButton("Fire2") && duration > 0.1f) {
+    while (duration < 0.3f && !_playerControllerScript.Knockback && !_playerHealthScript.Dying) {
+      if (Input.GetButtonDown("Fire2") && duration > 0.1f) {
         queueHeavyAttack = true;
       }      
       duration += Time.deltaTime;
-      _rb.velocity = new Vector2(0, 0) * 0;
-      _rb.gravityScale = 0.0f;
       yield return 0;
     }
 
@@ -196,41 +178,6 @@ public class PlayerCombat : MonoBehaviour {
 
     SecondLightAttack = false;
     
-    if (queueThirdLightAttack) {
-      _thirdLightAttackRoutine = thirdLightAttackRoutine();
-      StartCoroutine(_thirdLightAttackRoutine);
-    } else if (queueHeavyAttack) {
-      _airHeavyAttackRoutine = airHeavyAttackRoutine();
-      StartCoroutine(_airHeavyAttackRoutine);
-    } else {
-      Attacking = false;
-    }
-  }
-
-  public IEnumerator thirdLightAttackRoutine() {
-    Attacking = true;
-    ThirdLightAttack = true;
-
-    attackDetails.damageAmount = _thirdLightAttackDamage;
-    attackDetails.position = transform.position;
-    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _firstLightAttackRange, enemyLayers);
-    foreach(Collider2D enemy in hitEnemies) { enemy.transform.parent.SendMessage("Damage", attackDetails); }
-
-    float duration = 0.0f;
-    bool queueHeavyAttack = false;
-    _attackTimer = 10000000.0f;
-    while (duration < 0.25f && !_playerControllerScript.Knockback && !_playerHealthScript.Dying) {
-      if (Input.GetButton("Fire2") && duration > 0.1f) queueHeavyAttack = true;
-      duration += Time.deltaTime;
-      _rb.velocity = new Vector2(0, 0) * 0;
-      _rb.gravityScale = 0.0f;
-      yield return 0;
-    }
-
-    _attackTimer = Time.time + _thirdLightAttackCooldown;
-
-    ThirdLightAttack = false;
-
     if (queueHeavyAttack) {
       _airHeavyAttackRoutine = airHeavyAttackRoutine();
       StartCoroutine(_airHeavyAttackRoutine);
@@ -263,7 +210,7 @@ public class PlayerCombat : MonoBehaviour {
 
       if (hitEnemies.Length > 0) { 
         _playerControllerScript.Bounce(); 
-        break;
+        // break;
       }
 
       yield return new WaitForSeconds(0.01f);
@@ -336,7 +283,6 @@ public class PlayerCombat : MonoBehaviour {
   void OnDrawGizmosSelected() {
     if (FirstLightAttack) Gizmos.DrawWireSphere(attackPoint.position, _firstLightAttackRange);
     if (SecondLightAttack) Gizmos.DrawWireSphere(attackPoint.position, _secondLightAttackRange);
-    if (ThirdLightAttack) Gizmos.DrawWireSphere(attackPoint.position, _thirdLightAttackRange);
     if (AirLightAttack) Gizmos.DrawWireSphere(bouncePoint.position, _airLightAttackRange);
     if (AirHeavyAttack) Gizmos.DrawWireSphere(transform.position, _airHeavyAttackRange);
   }

@@ -16,6 +16,7 @@ public class Entity : MonoBehaviour {
   public float lastDamageTime;
   public Vector2 lastPlayerDetectedPosition;
   public Collider2D lastPlayerTouched;
+  public float chargeCooldownTime;
   public float meleeAttackCooldownTime;
   protected bool isDead;
   public bool willBlock;
@@ -148,13 +149,13 @@ public class Entity : MonoBehaviour {
     Gizmos.DrawWireSphere(groundCheck.position, entityData.groundCheckRadius);
 
     // Player Min & Max Check
-    // Gizmos.DrawWireCube(playerCheck.position, entityData.minAggroDistance);
-    // Gizmos.DrawWireCube(playerCheck.position, entityData.maxAggroDistance);
+    Gizmos.DrawWireCube(playerCheck.position, entityData.minAggroDistance);
+    Gizmos.DrawWireCube(playerCheck.position, entityData.maxAggroDistance);
 
     // Attack Range Check
-    // Gizmos.DrawWireSphere(attackCheck.position + (Vector3)(alive.transform.right * entityData.closeRangeActionDistance), 0.1f);
+    Gizmos.DrawWireSphere(attackCheck.position + (Vector3)(alive.transform.right * entityData.closeRangeActionDistance), 0.1f);
 
     // Touch Damage Check
-    // Gizmos.DrawWireCube(playerCheck.position, entityData.touchDamageDistance);
+    Gizmos.DrawWireCube(playerCheck.position, entityData.touchDamageDistance);
   }
 }

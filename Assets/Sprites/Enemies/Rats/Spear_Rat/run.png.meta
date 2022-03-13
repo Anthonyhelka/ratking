@@ -1,34 +1,22 @@
 fileFormatVersion: 2
-guid: f1e58960923be034aa55960fea649de7
+guid: d068fc83981264a43a1a8cde44151f2d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5522316921255302568
-    second: light_attack_0
+      213: -1882347247711912902
+    second: run_0
   - first:
-      213: 6834226137480691828
-    second: light_attack_1
+      213: 7439426567979852956
+    second: run_1
   - first:
-      213: -1535609499185853323
-    second: light_attack_2
+      213: -2673560216460186399
+    second: run_2
   - first:
-      213: 6829729283754005052
-    second: light_attack_3
+      213: -5822559823783948592
+    second: run_3
   - first:
-      213: 3175624500002701566
-    second: light_attack_4
-  - first:
-      213: -5609132493606755600
-    second: light_attack_5
-  - first:
-      213: -8716354939280725090
-    second: light_attack_6
-  - first:
-      213: -5699660327412297761
-    second: light_attack_7
-  - first:
-      213: -22550550361940204
-    second: light_attack_8
+      213: -4997308686002322044
+    second: run_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -130,76 +118,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: light_attack_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 128
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 85ae273c40acc53b0800000000000000
-      internalID: -5522316921255302568
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: light_attack_1
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 128
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4700a37767c08de50800000000000000
-      internalID: 6834226137480691828
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: light_attack_2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 128
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 57ccf47eb4b60bae0800000000000000
-      internalID: -1535609499185853323
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: light_attack_3
+      name: run_0
       rect:
         serializedVersion: 2
         x: 0
         y: 64
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -207,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c329d3e199218ce50800000000000000
-      internalID: 6829729283754005052
+      spriteID: a3c723cb62f80e5e0800000000000000
+      internalID: -1882347247711912902
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light_attack_4
+      name: run_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 64
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef040b658a5121c20800000000000000
-      internalID: 3175624500002701566
+      spriteID: c94ea0d3c072e3760800000000000000
+      internalID: 7439426567979852956
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light_attack_5
+      name: run_2
       rect:
         serializedVersion: 2
-        x: 128
-        y: 64
-        width: 64
-        height: 64
+        x: 0
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -249,20 +174,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f2e77c27bb5822b0800000000000000
-      internalID: -5609132493606755600
+      spriteID: 1ec2644f52b95ead0800000000000000
+      internalID: -2673560216460186399
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light_attack_6
+      name: run_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0de85e380bc123fa0800000000000000
+      internalID: -5822559823783948592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: run_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -270,50 +216,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9b63fb2d59490780800000000000000
-      internalID: -8716354939280725090
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: light_attack_7
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fdf043c512db6e0b0800000000000000
-      internalID: -5699660327412297761
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: light_attack_8
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 41fdf28d462efaff0800000000000000
-      internalID: -22550550361940204
+      spriteID: 4858bd91a3ef5aab0800000000000000
+      internalID: -4997308686002322044
       vertices: []
       indices: 
       edges: []
