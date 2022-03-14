@@ -1,52 +1,31 @@
 fileFormatVersion: 2
-guid: e3efc1d472cbd764295135b736f4f819
+guid: e2512ad9ae0daf34aa6617efaa3db2f8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 827538889749247048
-    second: attack_0
+      213: -5595748233500887021
+    second: cooldown_0
   - first:
-      213: -5010287565412364656
-    second: attack_1
+      213: 690117833904468086
+    second: cooldown_1
   - first:
-      213: -5463148037355797382
-    second: attack_2
+      213: 7452491933114084588
+    second: cooldown_2
   - first:
-      213: -5182820943178688908
-    second: attack_3
+      213: 6345282036650076689
+    second: cooldown_3
   - first:
-      213: 7402079830906333199
-    second: attack_4
+      213: -2193870346070337764
+    second: cooldown_4
   - first:
-      213: 1372099006290288469
-    second: attack_5
+      213: 1878604750224413862
+    second: cooldown_5
   - first:
-      213: -5569035362507985257
-    second: attack_6
+      213: -4894319273286220918
+    second: cooldown_6
   - first:
-      213: -5789285544991574940
-    second: attack_7
-  - first:
-      213: 6712529985953942657
-    second: attack_8
-  - first:
-      213: -3996406334776252399
-    second: attack_9
-  - first:
-      213: 4918900733310490901
-    second: attack_10
-  - first:
-      213: -625631833852202795
-    second: attack_11
-  - first:
-      213: 6012938448837418133
-    second: attack_12
-  - first:
-      213: 6768331479742512771
-    second: attack_13
-  - first:
-      213: -1910202648154200349
-    second: attack_14
+      213: -8875658680064805655
+    second: cooldown_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -148,91 +127,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: attack_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 192
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.25, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 84433595c320c7b00800000000000000
-      internalID: 827538889749247048
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attack_1
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 192
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.25, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 09e0a014102e77ab0800000000000000
-      internalID: -5010287565412364656
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attack_2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 192
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.25, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a7409061ecffe24b0800000000000000
-      internalID: -5463148037355797382
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attack_3
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 192
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.25, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 476116bdfcbe218b0800000000000000
-      internalID: -5182820943178688908
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attack_4
+      name: cooldown_0
       rect:
         serializedVersion: 2
         x: 0
@@ -240,20 +135,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.25, y: 0.25}
+      pivot: {x: 0.46, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f086148636879b660800000000000000
-      internalID: 7402079830906333199
+      spriteID: 318f8a111a8e752b0800000000000000
+      internalID: -5595748233500887021
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack_5
+      name: cooldown_1
       rect:
         serializedVersion: 2
         x: 64
@@ -261,20 +156,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.25, y: 0.25}
+      pivot: {x: 0.46, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55f599ac6ccaa0310800000000000000
-      internalID: 1372099006290288469
+      spriteID: 670b907738ac39900800000000000000
+      internalID: 690117833904468086
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack_6
+      name: cooldown_2
       rect:
         serializedVersion: 2
         x: 128
@@ -282,41 +177,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.25, y: 0.25}
+      pivot: {x: 0.46, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79e6f1408dfc6b2b0800000000000000
-      internalID: -5569035362507985257
+      spriteID: cecaabc9de19c6760800000000000000
+      internalID: 7452491933114084588
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack_7
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 128
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.25, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4643973487358afa0800000000000000
-      internalID: -5789285544991574940
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attack_8
+      name: cooldown_3
       rect:
         serializedVersion: 2
         x: 0
@@ -324,20 +198,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.25, y: 0.25}
+      pivot: {x: 0.46, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18c41fc2572b72d50800000000000000
-      internalID: 6712529985953942657
+      spriteID: 11ae132c468fe0850800000000000000
+      internalID: 6345282036650076689
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack_9
+      name: cooldown_4
       rect:
         serializedVersion: 2
         x: 64
@@ -345,20 +219,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.25, y: 0.25}
+      pivot: {x: 0.46, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1186a85cc99e988c0800000000000000
-      internalID: -3996406334776252399
+      spriteID: c17d63b3b8ecd81e0800000000000000
+      internalID: -2193870346070337764
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack_10
+      name: cooldown_5
       rect:
         serializedVersion: 2
         x: 128
@@ -366,41 +240,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.25, y: 0.25}
+      pivot: {x: 0.46, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 519516ec722734440800000000000000
-      internalID: 4918900733310490901
+      spriteID: 6a4dc7a2115221a10800000000000000
+      internalID: 1878604750224413862
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack_11
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 64
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.25, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5d0301f692f4157f0800000000000000
-      internalID: -625631833852202795
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attack_12
+      name: cooldown_6
       rect:
         serializedVersion: 2
         x: 0
@@ -408,20 +261,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.25, y: 0.25}
+      pivot: {x: 0.46, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59c1e3b49af327350800000000000000
-      internalID: 6012938448837418133
+      spriteID: a834d6a5d82e31cb0800000000000000
+      internalID: -4894319273286220918
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack_13
+      name: cooldown_7
       rect:
         serializedVersion: 2
         x: 64
@@ -429,35 +282,14 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.25, y: 0.25}
+      pivot: {x: 0.46, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38e7524ee91fded50800000000000000
-      internalID: 6768331479742512771
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attack_14
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.25, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3e622cbefc89d75e0800000000000000
-      internalID: -1910202648154200349
+      spriteID: 9e4ff1ba47353d480800000000000000
+      internalID: -8875658680064805655
       vertices: []
       indices: 
       edges: []

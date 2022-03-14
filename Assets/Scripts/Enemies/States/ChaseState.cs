@@ -18,6 +18,7 @@ public class ChaseState : State {
   
   public override void Enter() {
     base.Enter();
+    
     entity.SetVelocity(stateData.chaseSpeed);
   }
 

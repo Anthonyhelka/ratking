@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StrikeRat_PlayerDetectedState : PlayerDetectedState {
+public class StrikeRat_CooldownState : CooldownState {
   private StrikeRat strikeRat;
 
-  public StrikeRat_PlayerDetectedState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_PlayerDetectedState stateData, StrikeRat strikeRat) : base(entity, stateMachine, animationBoolName, stateData) {
+  public StrikeRat_CooldownState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_CooldownState stateData, StrikeRat strikeRat) : base(entity, stateMachine, animationBoolName, stateData) {
     this.strikeRat = strikeRat;
   }
 
@@ -20,9 +20,7 @@ public class StrikeRat_PlayerDetectedState : PlayerDetectedState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (performLongRangeAction) {
-      stateMachine.ChangeState(strikeRat.teleportState);
-    } else {
+    if (isCooldownTimeOver) {
       stateMachine.ChangeState(strikeRat.idleState);
     }
   }

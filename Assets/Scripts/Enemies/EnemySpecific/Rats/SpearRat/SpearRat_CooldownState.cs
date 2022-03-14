@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpearRat_PlayerDetectedState : PlayerDetectedState {
+public class SpearRat_CooldownState : CooldownState {
   private SpearRat spearRat;
 
-  public SpearRat_PlayerDetectedState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_PlayerDetectedState stateData, SpearRat spearRat) : base(entity, stateMachine, animationBoolName, stateData) {
+  public SpearRat_CooldownState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_CooldownState stateData, SpearRat spearRat) : base(entity, stateMachine, animationBoolName, stateData) {
     this.spearRat = spearRat;
   }
 
@@ -20,8 +20,8 @@ public class SpearRat_PlayerDetectedState : PlayerDetectedState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (performLongRangeAction && Time.time > entity.chargeCooldownTime) {
-      stateMachine.ChangeState(spearRat.chargeState);
+    if (isCooldownTimeOver) {
+      stateMachine.ChangeState(spearRat.idleState);
     }
   }
 

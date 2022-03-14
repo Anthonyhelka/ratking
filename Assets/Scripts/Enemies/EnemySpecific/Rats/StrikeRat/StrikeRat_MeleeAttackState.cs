@@ -23,11 +23,7 @@ public class StrikeRat_MeleeAttackState : MeleeAttackState {
     base.LogicUpdate();
 
     if (isAnimationFinished) {
-      if (isPlayerInMinAggroRange) {
-        stateMachine.ChangeState(strikeRat.playerDetectedState);
-      } else {
-        stateMachine.ChangeState(strikeRat.idleState);
-      }
+      stateMachine.ChangeState(strikeRat.cooldownState);
     }
   }
 

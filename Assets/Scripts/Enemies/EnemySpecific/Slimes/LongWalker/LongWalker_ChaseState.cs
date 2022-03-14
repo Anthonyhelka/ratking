@@ -19,7 +19,7 @@ public class LongWalker_ChaseState : ChaseState {
 
   public override void LogicUpdate() {
     base.LogicUpdate();
-    Debug.Log(isPlayerInMaxAggroRange);
+
     if (!isPlayerInMaxAggroRange) {
       stateMachine.ChangeState(longWalker.moveState);
     }

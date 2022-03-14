@@ -19,8 +19,6 @@ public class SpearRat_DeadState : DeadState {
 
   public override void LogicUpdate() {
     base.LogicUpdate();
-
-    Debug.Log("Dead");
   }
 
   public override void PhysicsUpdate() {

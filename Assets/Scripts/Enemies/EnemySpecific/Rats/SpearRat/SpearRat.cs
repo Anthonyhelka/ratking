@@ -6,11 +6,13 @@ public class SpearRat : Entity {
   public SpearRat_IdleState idleState { get; private set; }
   public SpearRat_PlayerDetectedState playerDetectedState { get; private set; }
   public SpearRat_ChargeState chargeState { get; private set; }
+  public SpearRat_CooldownState cooldownState { get; private set; }
   public SpearRat_DeadState deadState { get; private set; }
 
   [SerializeField] private D_IdleState idleStateData;
   [SerializeField] private D_PlayerDetectedState playerDetectedStateData;
   [SerializeField] private D_ChargeState chargeStateData;
+  [SerializeField] private D_CooldownState cooldownStateData;
   [SerializeField] private D_DeadState deadStateData;
 
   [SerializeField] private Transform meleeAttackPosition;
@@ -21,6 +23,7 @@ public class SpearRat : Entity {
     idleState = new SpearRat_IdleState(this, stateMachine, "idle", idleStateData, this);
     playerDetectedState = new SpearRat_PlayerDetectedState(this, stateMachine, "playerDetected", playerDetectedStateData, this);
     chargeState = new SpearRat_ChargeState(this, stateMachine, "charge", chargeStateData, this);
+    cooldownState = new SpearRat_CooldownState(this, stateMachine, "cooldown", cooldownStateData, this);
     deadState = new SpearRat_DeadState(this, stateMachine, "dead", deadStateData, this);
 
     stateMachine.Initialize(idleState);

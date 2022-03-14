@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chargeSpeed: 2.5
   chargeTime: 0.75
-  chargeCooldown: 1
+  chargeCooldown: 0

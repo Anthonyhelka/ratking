@@ -183,7 +183,7 @@ SpriteRenderer:
   m_SortingLayerID: -267985297
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8793639957104055765, guid: ce24ae457873c9e46a77f9e157de2203,
+  m_Sprite: {fileID: 8793639957104055765, guid: 610f39efed1846344a8c111886a4f6b4,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -319,7 +319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &59096312000324476
 Transform:
   m_ObjectHideFlags: 0
@@ -352,6 +352,7 @@ MonoBehaviour:
   lastDamageTime: 0
   lastPlayerDetectedPosition: {x: 0, y: 0}
   lastPlayerTouched: {fileID: 0}
+  chargeCooldownTime: 0
   meleeAttackCooldownTime: 0
   willBlock: 0
   attackCheck: {fileID: 59096312585176172}
@@ -362,8 +363,10 @@ MonoBehaviour:
   idleStateData: {fileID: 11400000, guid: 364bb25c1260dee4eb25d433c2678615, type: 2}
   playerDetectedStateData: {fileID: 11400000, guid: 25dc77d3818755e41b53830fb504b09c,
     type: 2}
+  teleportStateData: {fileID: 11400000, guid: 059109306e499e440956e944ee5bc81a, type: 2}
   meleeAttackStateData: {fileID: 11400000, guid: 3632990fc9b9bdf4cafa86487c872ffa,
     type: 2}
+  cooldownStateData: {fileID: 11400000, guid: 20e3473d998345d4b8f8dab7bc456521, type: 2}
   deadStateData: {fileID: 11400000, guid: 86792ac9485a6dc4ab7e2698e5ae8070, type: 2}
   meleeAttackPosition: {fileID: 59096311786950410}
 --- !u!1 &59096312168225376

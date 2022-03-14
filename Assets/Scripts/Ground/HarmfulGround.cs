@@ -9,7 +9,6 @@ public class HarmfulGround : MonoBehaviour {
       attackDetails.position = collision.transform.position;
       attackDetails.damageAmount = 1;
       attackDetails.type = gameObject.tag;
-      Debug.Log(attackDetails);
       collision.gameObject.transform.SendMessage("Damage", attackDetails);
     } else if (collision.transform.tag == "Enemy") {
       AttackDetails attackDetails;

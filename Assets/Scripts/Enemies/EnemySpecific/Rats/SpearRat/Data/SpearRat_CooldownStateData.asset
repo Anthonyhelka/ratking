@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b664fb0dcecd7b64986feca9f3539ef4, type: 3}
-  m_Name: StrikeRat_PlayerDetectedStateData
+  m_Script: {fileID: 11500000, guid: 06cf783b38fc89d4cab312f8e4305160, type: 3}
+  m_Name: SpearRat_CooldownStateData
   m_EditorClassIdentifier: 
-  longRangeActionTime: 0.5
+  cooldownTime: 1

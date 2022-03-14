@@ -21,7 +21,7 @@ public class SpearRat_ChargeState : ChargeState {
     base.LogicUpdate();
 
     if (isChargeTimeOver) {
-      stateMachine.ChangeState(spearRat.idleState);
+      stateMachine.ChangeState(spearRat.cooldownState);
     }
 
     if (isTouchingPlayer) {

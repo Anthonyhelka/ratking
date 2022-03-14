@@ -62,6 +62,10 @@ public class Entity : MonoBehaviour {
     rb.velocity = velocityWorkspace;
   }
 
+  public virtual void SetPosition(Vector2 position) {
+    alive.transform.position = position;
+  }
+
   public virtual bool CheckWall() {
     return Physics2D.Raycast(wallCheck.position, alive.transform.right, entityData.wallCheckDistance, entityData.whatIsGround);
   }

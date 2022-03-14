@@ -321,6 +321,7 @@ MonoBehaviour:
   playerDetectedStateData: {fileID: 11400000, guid: 560ca358cb41c4d4cbb6866651d240f1,
     type: 2}
   chargeStateData: {fileID: 11400000, guid: ba43012d1019d304aaa7217a6f87739c, type: 2}
+  cooldownStateData: {fileID: 11400000, guid: a53c2ba870fb69e4b9b3453b6590da7f, type: 2}
   deadStateData: {fileID: 11400000, guid: 60ce2f96d20fd284487f70f3c641bbf5, type: 2}
   meleeAttackPosition: {fileID: 0}
 --- !u!1 &8686612536174510686
