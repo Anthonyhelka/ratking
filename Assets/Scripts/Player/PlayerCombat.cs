@@ -15,26 +15,26 @@ public class PlayerCombat : MonoBehaviour {
   private AttackDetails attackDetails;
 
   // Light Attacks
-  [SerializeField] private int _firstLightAttackDamage = 20;
+  [SerializeField] private int _firstLightAttackDamage = 30;
   [SerializeField] private float _firstLightAttackRange = 0.20f;
-  [SerializeField] private float _firstLightAttackCooldown = 0.4f;
+  [SerializeField] private float _firstLightAttackCooldown = 0.2f;
   public IEnumerator _firstLightAttackRoutine;
 
   [SerializeField] private int _secondLightAttackDamage = 30;
   [SerializeField] private float _secondLightAttackRange = 0.20f;
-  [SerializeField] private float _secondLightAttackCooldown = 0.4f;
+  [SerializeField] private float _secondLightAttackCooldown = 0.2f;
   public IEnumerator _secondLightAttackRoutine;
 
   [SerializeField] private int _airLightAttackDamage = 10;
   [SerializeField] private float _airLightAttackRange = 0.2f;
-  [SerializeField] private float _airLightAttackCooldown = 0.4f;
+  [SerializeField] private float _airLightAttackCooldown = 0.2f;
   public IEnumerator _airLightAttackRoutine;
   public IEnumerator _airLightAttacksRoutine;
 
   // Heavy Attacks
   [SerializeField] private int _airHeavyAttackDamage = 15;
   [SerializeField] private float _airHeavyAttackRange = 0.3f;
-  [SerializeField] private float _airHeavyAttackCooldown = 0.4f;
+  [SerializeField] private float _airHeavyAttackCooldown = 0.2f;
   public IEnumerator _airHeavyAttackRoutine;
 
   private int lastAttack = 2;

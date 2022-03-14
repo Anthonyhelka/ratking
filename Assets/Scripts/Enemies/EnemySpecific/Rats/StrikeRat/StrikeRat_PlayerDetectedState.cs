@@ -22,8 +22,6 @@ public class StrikeRat_PlayerDetectedState : PlayerDetectedState {
 
     if (performLongRangeAction) {
       stateMachine.ChangeState(strikeRat.teleportState);
-    } else {
-      stateMachine.ChangeState(strikeRat.idleState);
     }
   }
 
