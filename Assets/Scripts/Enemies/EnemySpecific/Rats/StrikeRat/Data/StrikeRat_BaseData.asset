@@ -27,7 +27,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   closeRangeActionDistance: 0.3
-  type: Knight
+  type: Strike
   meleeAttackCooldown: 1
   touchDamageAmount: 1
   touchDamageDistance: {x: 0.2, y: 0.3}

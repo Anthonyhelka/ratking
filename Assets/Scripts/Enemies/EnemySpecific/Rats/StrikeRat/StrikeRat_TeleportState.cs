@@ -15,6 +15,8 @@ public class StrikeRat_TeleportState : TeleportState {
 
   public override void Exit() {
     base.Exit();
+
+    entity.willDodge = false;
   }
 
   public override void LogicUpdate() {
@@ -23,6 +25,8 @@ public class StrikeRat_TeleportState : TeleportState {
     if (isTeleportTimeOver) {
       entity.SetPosition(lastPlayerDetectedPosition);
       stateMachine.ChangeState(strikeRat.meleeAttackState);
+    } else {
+      entity.willDodge = true;
     }
   }
 

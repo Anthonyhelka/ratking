@@ -19,6 +19,7 @@ public class PlayerHealth : MonoBehaviour {
   private float _vomitDuration = 3.4f;
   private float _spikesDuration = 1.9f;
   private float _knightDuration = 2.5f;
+  private float _strikeDuration = 1.9f;
 
   [SerializeField] public bool _dying;
   public bool Dying {
@@ -57,6 +58,16 @@ public class PlayerHealth : MonoBehaviour {
       if (value == _knight) return;
       _knight = value;
       _animator.SetBool("knight", _knight);
+    }
+  }
+
+  [SerializeField] public bool _strike;
+  public bool Strike {
+    get { return _strike; }
+    set {
+      if (value == _strike) return;
+      _strike = value;
+      _animator.SetBool("strike", _strike);
     }
   }
 
@@ -137,6 +148,9 @@ public class PlayerHealth : MonoBehaviour {
     } else if (tag == "Knight") {
       maxDuration = _knightDuration;
       Knight = true;
+    } else if (tag == "Strike") {
+      maxDuration = _spikesDuration;
+      Strike = true;
     }
 
     float duration = 0.0f;

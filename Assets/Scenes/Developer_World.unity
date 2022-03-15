@@ -2364,6 +2364,26 @@ PrefabInstance:
       propertyPath: _secondLightAttackCooldown
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 7787247275520382256, guid: 53b3894969988254aac40a0a5fce8998,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787247275520382256, guid: 53b3894969988254aac40a0a5fce8998,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787247275520382256, guid: 53b3894969988254aac40a0a5fce8998,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787247275520382256, guid: 53b3894969988254aac40a0a5fce8998,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.32
+      objectReference: {fileID: 0}
     - target: {fileID: 7787247275520382261, guid: 53b3894969988254aac40a0a5fce8998,
         type: 3}
       propertyPath: m_Name
@@ -2423,6 +2443,27 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787247275520382263, guid: 53b3894969988254aac40a0a5fce8998,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787247275520382263, guid: 53b3894969988254aac40a0a5fce8998,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787247275520382263, guid: 53b3894969988254aac40a0a5fce8998,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 8793639957104055765, guid: ea69a717a54d1de41bcd4b2a06c4d252,
+        type: 3}
+    - target: {fileID: 7787247275520382263, guid: 53b3894969988254aac40a0a5fce8998,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53b3894969988254aac40a0a5fce8998, type: 3}

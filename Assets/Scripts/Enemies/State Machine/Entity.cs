@@ -20,6 +20,7 @@ public class Entity : MonoBehaviour {
   public float meleeAttackCooldownTime;
   protected bool isDead;
   public bool willBlock;
+  public bool willDodge;
 
   public int facingDirection { get; private set; }
   private Vector2 velocityWorkspace;
@@ -45,6 +46,8 @@ public class Entity : MonoBehaviour {
     stateMachine.currentState.LogicUpdate();
 
     animator.SetFloat("yVelocity", rb.velocity.y);
+
+    Debug.Log(willDodge);
   }
 
   public virtual void FixedUpdate() {
@@ -116,7 +119,9 @@ public class Entity : MonoBehaviour {
   public virtual void Damage(AttackDetails attackDetails) {
     if (Time.time < lastDamageTime + entityData.damageCooldown) { return; }
 
-    if (willBlock) {
+    if (willDodge) {
+      return;
+    } else if (willBlock) {
       GameObject blockParticle = Instantiate(entityData.blockParticle, (alive.transform.position + (Vector3)attackDetails.position) / 2, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
       Destroy(blockParticle, 0.35f);
     } else {
