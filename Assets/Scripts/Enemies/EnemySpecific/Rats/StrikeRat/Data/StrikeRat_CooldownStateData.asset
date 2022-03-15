@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06cf783b38fc89d4cab312f8e4305160, type: 3}
   m_Name: StrikeRat_CooldownStateData
   m_EditorClassIdentifier: 
-  cooldownTime: 0.75
+  cooldownTime: 1

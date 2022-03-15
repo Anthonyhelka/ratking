@@ -157,7 +157,7 @@ public class Entity : MonoBehaviour {
     Gizmos.DrawWireCube(playerCheck.position, entityData.maxAggroDistance);
 
     // Attack Range Check
-    Gizmos.DrawWireSphere(attackCheck.position + (Vector3)(alive.transform.right * entityData.closeRangeActionDistance), 0.1f);
+    // Gizmos.DrawWireSphere(attackCheck.position + (Vector3)(alive.transform.right * entityData.closeRangeActionDistance), 0.1f);
 
     // Touch Damage Check
     Gizmos.DrawWireCube(playerCheck.position, entityData.touchDamageDistance);

@@ -21,8 +21,8 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 4096
-  minAggroDistance: {x: 2.75, y: 0.75}
-  maxAggroDistance: {x: 2.75, y: 0.75}
+  minAggroDistance: {x: 3, y: 1.5}
+  maxAggroDistance: {x: 3, y: 1.5}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512

@@ -27,6 +27,10 @@ public class MeleeAttackState : AttackState {
 
   public override void LogicUpdate() {
     base.LogicUpdate();
+
+    if (entity.facingDirection != (entity.lastPlayerDetectedPosition.x <= entity.alive.transform.position.x ? -1 : 1)) {
+      entity.Flip();
+    }
   }
 
   public override void PhysicsUpdate() {
