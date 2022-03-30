@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 59096312000324475}
   m_Layer: 0
   m_Name: StrikeRat
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -355,6 +355,7 @@ MonoBehaviour:
   chargeCooldownTime: 0
   meleeAttackCooldownTime: 0
   willBlock: 0
+  willDodge: 0
   attackCheck: {fileID: 59096312585176172}
   wallCheck: {fileID: 59096312404820616}
   ledgeCheck: {fileID: 59096311914198535}

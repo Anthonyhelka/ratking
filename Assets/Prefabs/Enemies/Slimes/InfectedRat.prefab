@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 3476296979080695083}
   m_Layer: 0
   m_Name: InfectedRat
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,8 +79,10 @@ MonoBehaviour:
   lastDamageTime: 0
   lastPlayerDetectedPosition: {x: 0, y: 0}
   lastPlayerTouched: {fileID: 0}
+  chargeCooldownTime: 0
   meleeAttackCooldownTime: 0
   willBlock: 0
+  willDodge: 0
   attackCheck: {fileID: 3476296980442557596}
   wallCheck: {fileID: 3476296979533608757}
   ledgeCheck: {fileID: 3476296979180398279}

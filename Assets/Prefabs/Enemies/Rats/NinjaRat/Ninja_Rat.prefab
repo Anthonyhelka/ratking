@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 2386198440907460799}
   m_Layer: 10
   m_Name: Ninja_Rat
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -340,8 +340,10 @@ MonoBehaviour:
   lastDamageTime: 0
   lastPlayerDetectedPosition: {x: 0, y: 0}
   lastPlayerTouched: {fileID: 0}
+  chargeCooldownTime: 0
   meleeAttackCooldownTime: 0
   willBlock: 0
+  willDodge: 0
   attackCheck: {fileID: 2386198440155124620}
   wallCheck: {fileID: 2386198439944742556}
   ledgeCheck: {fileID: 2386198439685295743}
