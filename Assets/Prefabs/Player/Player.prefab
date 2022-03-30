@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1300137868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1300137869}
+  m_Layer: 9
+  m_Name: Bounce_Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1300137869
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300137868}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7787247275520382262}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2128432463
 GameObject:
   m_ObjectHideFlags: 0
@@ -28,7 +58,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7787247275520382262}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7787247273974015923
 GameObject:
@@ -54,7 +84,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7787247273974015923}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: 0, z: 0}
+  m_LocalPosition: {x: 0.3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7787247275520382262}
@@ -96,6 +126,7 @@ Transform:
   m_Children:
   - {fileID: 7787247273974015922}
   - {fileID: 7787247274147365194}
+  - {fileID: 1300137869}
   - {fileID: 2128432464}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -140,13 +171,13 @@ SpriteRenderer:
   m_SortingLayerID: -25940935
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2155043920833278567, guid: 694d22e054c994f51a3a3d5cc98f554d,
+  m_Sprite: {fileID: 8793639957104055765, guid: ea69a717a54d1de41bcd4b2a06c4d252,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.26, y: 0.26}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -164,6 +195,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29106c652ca3991488a0e14fb680d862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _horizontalInput: 0
+  _verticalInput: 0
   _speed: 1.25
   _facingRight: 1
   _lockPlayerInput: 0
@@ -224,6 +257,7 @@ MonoBehaviour:
   _vomit: 0
   _spikes: 0
   _knight: 0
+  _strike: 0
 --- !u!114 &7787247275520382253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,32 +271,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 7787247273974015922}
-  bouncePoint: {fileID: 2128432464}
+  bouncePoint: {fileID: 1300137869}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 25600
   _attackTimer: -1
-  _firstLightAttackDamage: 20
+  _firstLightAttackDamage: 40
   _firstLightAttackRange: 0.2
-  _firstLightAttackCooldown: 0.4
-  _secondLightAttackDamage: 30
+  _firstLightAttackCooldown: 0.05
+  _secondLightAttackDamage: 40
   _secondLightAttackRange: 0.2
-  _secondLightAttackCooldown: 0.4
-  _thirdLightAttackDamage: 40
-  _thirdLightAttackRange: 0.2
-  _thirdLightAttackCooldown: 0.4
-  _airLightAttackDamage: 10
+  _secondLightAttackCooldown: 0.1
+  _airLightAttackDamage: 20
   _airLightAttackRange: 0.2
-  _airLightAttackCooldown: 0.4
+  _airLightAttackCooldown: 0.3
   _airHeavyAttackDamage: 15
   _airHeavyAttackRange: 0.3
-  _airHeavyAttackCooldown: 0.5
+  _airHeavyAttackCooldown: 0.3
   HarmfulGround:
   - Spikes
   _attacking: 0
   _firstLightAttack: 0
   _secondLightAttack: 0
-  _thirdLightAttack: 0
   _airHeavyAttack: 0
   _airLightAttack: 0
 --- !u!95 &7787247275520382257
@@ -322,8 +352,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.26, y: 0.26}
-    newSize: {x: 0.26, y: 0.26}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
