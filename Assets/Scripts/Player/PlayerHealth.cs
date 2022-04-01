@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour {
   private GameOverMenu _gameOverMenuScript;
 
   public int health;
+  private int _maxHealth;
 
   // Invincibility
   [SerializeField] private float  _invincibilityCooldown = 1.5f;
@@ -77,6 +78,7 @@ public class PlayerHealth : MonoBehaviour {
     _playerControllerScript = GetComponent<PlayerController>();
     _playerCombatScript = GetComponent<PlayerCombat>();
     _gameOverMenuScript = GameObject.Find("UI").GetComponent<GameOverMenu>();
+    _maxHealth = health;
   }
 
   void Damage(AttackDetails attackDetails) {
@@ -98,6 +100,14 @@ public class PlayerHealth : MonoBehaviour {
       _playerControllerScript.doKnockback(direction);
       _invincibilityRoutine = InvincibilityRoutine();
       StartCoroutine(_invincibilityRoutine);
+    }
+  }
+
+  void Heal(int amount) {
+    health += amount;
+
+    if (health > _maxHealth) {
+      health = _maxHealth;
     }
   }
 
