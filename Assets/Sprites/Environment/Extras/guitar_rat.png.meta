@@ -20,6 +20,24 @@ TextureImporter:
   - first:
       213: 5786519751632441232
     second: Rat playing Guitar_5
+  - first:
+      213: -6592920663039377291
+    second: guitar_rat_0
+  - first:
+      213: 6216478514174064427
+    second: guitar_rat_1
+  - first:
+      213: -676516990114076055
+    second: guitar_rat_2
+  - first:
+      213: 900146659395086466
+    second: guitar_rat_3
+  - first:
+      213: -2073634068199521651
+    second: guitar_rat_4
+  - first:
+      213: -6339039594446327708
+    second: guitar_rat_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -121,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Rat playing Guitar_0
+      name: guitar_rat_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 68
-        width: 23
-        height: 24
+        x: 0
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3048407487f5e8980800000000000000
-      internalID: -8534779273628318717
+      spriteID: 5708437769d3184a0800000000000000
+      internalID: -6592920663039377291
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rat playing Guitar_1
+      name: guitar_rat_1
       rect:
         serializedVersion: 2
-        x: 35
-        y: 68
-        width: 23
-        height: 24
+        x: 32
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 862730550b8abd000800000000000000
-      internalID: 61828495193633384
+      spriteID: b277137b54e554650800000000000000
+      internalID: 6216478514174064427
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rat playing Guitar_2
+      name: guitar_rat_2
       rect:
         serializedVersion: 2
-        x: 3
-        y: 36
-        width: 23
-        height: 24
+        x: 0
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,20 +195,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc08d29263777dd20800000000000000
-      internalID: 3303239926202335439
+      spriteID: 96aebbfb1678c96f0800000000000000
+      internalID: -676516990114076055
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rat playing Guitar_3
+      name: guitar_rat_3
       rect:
         serializedVersion: 2
-        x: 35
-        y: 36
-        width: 23
-        height: 24
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -198,20 +216,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d6001625428ee9a0800000000000000
-      internalID: -6201876403339655465
+      spriteID: 288aff61e96fd7c00800000000000000
+      internalID: 900146659395086466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rat playing Guitar_4
+      name: guitar_rat_4
       rect:
         serializedVersion: 2
-        x: 3
-        y: 4
-        width: 23
-        height: 24
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -219,20 +237,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43918baca7e44b7d0800000000000000
-      internalID: -2903609570453087948
+      spriteID: d82c1d23dc8f833e0800000000000000
+      internalID: -2073634068199521651
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rat playing Guitar_5
+      name: guitar_rat_5
       rect:
         serializedVersion: 2
-        x: 35
-        y: 4
-        width: 23
-        height: 24
+        x: 32
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -240,8 +258,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09f45d94e09dd4050800000000000000
-      internalID: 5786519751632441232
+      spriteID: 460f3e313153708a0800000000000000
+      internalID: -6339039594446327708
       vertices: []
       indices: 
       edges: []
