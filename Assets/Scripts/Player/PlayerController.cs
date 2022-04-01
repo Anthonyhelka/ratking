@@ -73,6 +73,16 @@ public class PlayerController : MonoBehaviour {
     }
   }
 
+  [SerializeField] private bool _grounded;
+  public bool Grounded {
+    get { return _grounded; }
+    set {
+      if (value == _grounded) return;
+      _grounded = value;
+      _animator.SetBool("grounded", _grounded);
+    }
+  }
+
   [SerializeField] private bool _jumping;
   public bool Jumping {
     get { return _jumping; }
@@ -497,6 +507,7 @@ public class PlayerController : MonoBehaviour {
     float height = 0.03f;
     RaycastHit2D groundcastHit = Physics2D.BoxCast(_bc.bounds.center, _bc.bounds.size, 0f, Vector2.down, height, _groundLayerMask);
     _isGrounded = groundcastHit.collider != null; 
+    Grounded = _isGrounded;
   }
 
   void DetermineLockedInput() {
