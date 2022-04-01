@@ -46,8 +46,6 @@ public class Entity : MonoBehaviour {
     stateMachine.currentState.LogicUpdate();
 
     animator.SetFloat("yVelocity", rb.velocity.y);
-
-    Debug.Log(willDodge);
   }
 
   public virtual void FixedUpdate() {

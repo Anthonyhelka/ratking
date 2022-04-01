@@ -25,7 +25,7 @@ public class GameOverMenu : MonoBehaviour
   }
 
   public void Restart() {
-    SceneManager.LoadScene("Game");
+    SceneManager.LoadScene("Beta_Level_1");
     _gameOverMenu.SetActive(false);
     _playerControllerScript.enabled = true;
     _playerCombatScript.enabled = true; 
