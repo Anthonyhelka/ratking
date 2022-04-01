@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour {
   // Jumping & Gravity
   public bool _isGrounded;
   [SerializeField] private LayerMask _groundLayerMask;
+  [SerializeField] private Transform _groundCheck;
+  [SerializeField] private float _groundCheckRadius;
   [SerializeField] private LayerMask _enemyLayerMask;
   private bool _jumpRequest;
   private int _airJumpCount = 0;
@@ -504,9 +506,7 @@ public class PlayerController : MonoBehaviour {
   }
 
   void GroundCheck() {
-    float height = 0.03f;
-    RaycastHit2D groundcastHit = Physics2D.BoxCast(_bc.bounds.center, _bc.bounds.size, 0f, Vector2.down, height, _groundLayerMask);
-    _isGrounded = groundcastHit.collider != null; 
+    _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, _groundCheckRadius, _groundLayerMask);
     Grounded = _isGrounded;
   }
 
@@ -563,5 +563,9 @@ public class PlayerController : MonoBehaviour {
       Knockback = false;
       _rb.velocity = new Vector2(0.0f, _rb.velocity.y);
     }
+  }
+
+  void OnDrawGizmos() {
+    Gizmos.DrawWireSphere(_groundCheck.position, _groundCheckRadius);
   }
 }

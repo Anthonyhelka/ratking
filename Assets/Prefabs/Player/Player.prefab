@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &978532384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 978532385}
+  m_Layer: 9
+  m_Name: Ground_Check
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &978532385
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978532384}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.04, y: -0.17, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7787247275520382262}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1300137868
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,6 +158,7 @@ Transform:
   - {fileID: 7787247274147365194}
   - {fileID: 1300137869}
   - {fileID: 2128432464}
+  - {fileID: 978532385}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -206,6 +237,8 @@ MonoBehaviour:
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 4096
+  _groundCheck: {fileID: 978532385}
+  _groundCheckRadius: 0.04
   _enemyLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -227,6 +260,7 @@ MonoBehaviour:
   _knockbackDuration: 0.4
   _knockbackSpeed: {x: 1.5, y: 2}
   _moving: 0
+  _grounded: 0
   _jumping: 1
   _doubleJump: 0
   _falling: 0
