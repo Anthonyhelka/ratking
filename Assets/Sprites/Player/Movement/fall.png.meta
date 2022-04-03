@@ -1,13 +1,7 @@
 fileFormatVersion: 2
-guid: 3fb5d9eb018d54502bf15f59fdc52656
+guid: b3d7f70ac3a2545429f4d2ac6d611a2d
 TextureImporter:
   internalIDToNameTable:
-  - first:
-      213: -2269937039538280652
-    second: jump_down_sprite_0
-  - first:
-      213: 505011236072843559
-    second: jump_down_sprite_1
   - first:
       213: -6732294965104032732
     second: fall_0

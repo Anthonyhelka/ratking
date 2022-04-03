@@ -210,7 +210,7 @@ public class PlayerCombat : MonoBehaviour {
 
       if (hitEnemies.Length > 0) { 
         _playerControllerScript.Bounce(); 
-        // break;
+        break;
       }
 
       yield return new WaitForSeconds(0.01f);

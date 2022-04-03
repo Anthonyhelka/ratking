@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour {
   private float _lookDownTimer = 0.0f;
   [SerializeField] private float _lookDuration = 1.0f;
   private bool _hasTouchedGround = false;
+  [SerializeField] private float _idleDuration = 5.0f;
   private float _idleTime = 0.0f;
   private IEnumerator _idleRoutine;
   private bool _isIdle = false;
@@ -42,7 +43,8 @@ public class PlayerController : MonoBehaviour {
   [SerializeField] private int _airJumpCountMax = 1;
   [SerializeField] private float _jumpForce = 3.5f;
   [SerializeField] private float _bounceForce = 3.5f;
-  [SerializeField] private bool _comingOffBounce;
+  [SerializeField] private float _bounceDurationCountMax = 0.5f;
+  private IEnumerator _bounceRoutine;
   [SerializeField] private float _fallMultiplier = 2.5f;
   [SerializeField] private float _lowJumpMultiplier = 2.0f;
   [SerializeField] private bool _queueRoll;
@@ -53,9 +55,9 @@ public class PlayerController : MonoBehaviour {
   private bool _dashRequest;
   public int _dashCount;
   public int _dashCountMax = 1;
-  [SerializeField] private float _dashHorizontalSpeed = 8.0f;
-  [SerializeField] private float _dashDurationCountMax = 0.4f;
-  public float _dashCooldown = 1.0f;
+  [SerializeField] private float _dashHorizontalSpeed = 14.0f;
+  [SerializeField] private float _dashDurationCountMax = 0.35f;
+  public float _dashCooldown = 0.7f;
   public float _dashTimer = -1.0f;
   public IEnumerator _dashRoutine;
   
@@ -102,6 +104,16 @@ public class PlayerController : MonoBehaviour {
       if (value == _doubleJump) return;
       _doubleJump = value;
       _animator.SetBool("doubleJumping", _doubleJump);
+    }
+  }
+
+  [SerializeField] private bool _bouncing;
+  public bool Bouncing {
+    get { return _bouncing; }
+    set {
+      if (value == _bouncing) return;
+      _bouncing = value;
+      _animator.SetBool("bouncing", _bouncing);
     }
   }
 
@@ -162,6 +174,16 @@ public class PlayerController : MonoBehaviour {
       if (value == _sleepingTwo) return;
       _sleepingTwo = value;
       _animator.SetBool("sleepingTwo", _sleepingTwo);
+    }
+  }
+
+  [SerializeField] private bool _sleepingThree;
+  public bool SleepingThree {
+    get { return _sleepingThree; }
+    set {
+      if (value == _sleepingThree) return;
+      _sleepingThree = value;
+      _animator.SetBool("sleepingThree", _sleepingThree);
     }
   }
 
@@ -283,9 +305,9 @@ public class PlayerController : MonoBehaviour {
       if (Mathf.Round(_rb.velocity.y) < 0) {
         Falling = true;
       } else if (Mathf.Round(_rb.velocity.y) > 0) {
-        if (_airJumpCount > 0 || _comingOffBounce) {
+        if (_airJumpCount > 0 && !Bouncing) {
           DoubleJumping = true;
-        } else if (_airJumpCount == 0) {
+        } else if (_airJumpCount == 0 && !Bouncing) {
           Jumping = true;
         }
       }
@@ -311,7 +333,7 @@ public class PlayerController : MonoBehaviour {
     GroundCheck();
 
     _idleTime += Time.deltaTime;
-    if (_idleTime > 10.0f) {
+    if (_idleTime > _idleDuration) {
       if (!_isIdle) Idle();
     } else {
       _isIdle = false;
@@ -321,7 +343,6 @@ public class PlayerController : MonoBehaviour {
     if (_isGrounded) {
       _airJumpCount = 0;
       _hasTouchedGround = true;
-      _comingOffBounce = false;
     }
     if (Time.time > _dashTimer && _hasTouchedGround) _dashCount = 0;
 
@@ -364,13 +385,13 @@ public class PlayerController : MonoBehaviour {
 
   void CalculateGravity() {
     // Fall Gravity
-    if (_isGrounded && Mathf.Round(_rb.velocity.y) < 0 && !_playerCombatScript.Attacking && !_comingOffBounce) {
+    if (_isGrounded && Mathf.Round(_rb.velocity.y) < 0 && !_playerCombatScript.Attacking && !Bouncing) {
       _rb.gravityScale = _fallMultiplier;
       return;
     }
 
     // Low Jump Gravity
-    if (Mathf.Round(_rb.velocity.y) > 0 && !Input.GetButton("Jump") && !_playerHealthScript.Dying && !_playerCombatScript.Attacking && !_comingOffBounce) {
+    if (Mathf.Round(_rb.velocity.y) > 0 && !Input.GetButton("Jump") && !_playerHealthScript.Dying && !_playerCombatScript.Attacking && !Bouncing) {
       _rb.gravityScale = _lowJumpMultiplier;
       return;
     }
@@ -413,18 +434,29 @@ public class PlayerController : MonoBehaviour {
 
   void Jump() {
     CreateDust();
-    _comingOffBounce = false;
+    Bouncing = false;
     _rb.velocity = Vector2.up * 0;
     _rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
   }
 
   public void Bounce() {
     CreateDust();
-    _comingOffBounce = true;
-    DoubleJumping = true;
-    _airJumpCount = 0;
     _rb.velocity = Vector2.up * 0;
     _rb.AddForce(Vector2.up * _bounceForce, ForceMode2D.Impulse);
+    _dashCount = 0;
+    _bounceRoutine = BounceRoutine();
+    StartCoroutine(_bounceRoutine);
+  }
+
+  IEnumerator BounceRoutine() {
+    Bouncing = true;
+    float duration = 0.0f;
+    while (duration <= _bounceDurationCountMax) {
+      if (duration > 0.05f && (Jumping || DoubleJumping || Dashing|| Knockback || _playerCombatScript.AirLightAttack || _playerHealthScript.Dying)) break;
+      duration += Time.deltaTime;
+      yield return 0;
+    }
+    Bouncing = false;
   }
 
   void Dash() {
@@ -496,7 +528,7 @@ public class PlayerController : MonoBehaviour {
     Rolling = true;
     float duration = 0.0f;
     while (duration < _rollDuration) {
-      if (_horizontalInput == 0.0f || !_isGrounded) { break; }
+      if (_horizontalInput == 0.0f || Jumping) { break; }
       _speed = 1.5f;
       duration += Time.deltaTime;
       yield return 0;
@@ -526,16 +558,22 @@ public class PlayerController : MonoBehaviour {
   IEnumerator IdleRoutine() {
     _isIdle = true;
     while (_isIdle && !Dancing) {
-      if (Random.value > 0.5) {
+      int randomNumber = Random.Range(0, 3);
+      if (randomNumber == 0) {
         SleepingOne = true;
         yield return new WaitForSeconds(1.4f);
-      } else {
+      } else if (randomNumber == 1) {
         SleepingTwo = true;
         yield return new WaitForSeconds(3.0f);
+      } else if (randomNumber == 2) {
+        SleepingThree = true;
+        yield return new WaitForSeconds(5.75f);
       }
+
       SleepingOne = false;
       SleepingTwo = false;
-      yield return new WaitForSeconds(5.0f);
+      SleepingThree = false;
+      yield return new WaitForSeconds(_idleDuration);
     }
     _isIdle = false;
   }

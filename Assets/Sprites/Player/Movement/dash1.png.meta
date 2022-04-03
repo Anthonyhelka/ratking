@@ -1,31 +1,61 @@
 fileFormatVersion: 2
-guid: a9ca6cac780eff74b9a8341b96b1c081
+guid: 4b58dd5deb277184ea7164d15cc08cbd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6169159234755722469
-    second: double_jump_0
+      213: -6332986411492553454
+    second: dash_2_0
   - first:
-      213: -6470151467633595150
-    second: double_jump_1
+      213: -8814538180086280053
+    second: dash_2_1
   - first:
-      213: 2072975462814133436
-    second: double_jump_2
+      213: -3457791104416146524
+    second: dash_2_2
   - first:
-      213: -6811767222545637187
-    second: double_jump_3
+      213: -4656696797609329214
+    second: dash_2_3
   - first:
-      213: -7378852044914200828
-    second: double_jump_4
+      213: 6657562339184231992
+    second: dash_2_4
   - first:
-      213: 3948881211912718083
-    second: double_jump_5
+      213: -7545032444707700574
+    second: dash_2_5
   - first:
-      213: 1441615010862144925
-    second: double_jump_6
+      213: 7413677591597623558
+    second: dash_2_6
   - first:
-      213: 1576356400837538439
-    second: double_jump_7
+      213: 4193099114357153530
+    second: dash_2_7
+  - first:
+      213: 1453231880026612526
+    second: dash_2_8
+  - first:
+      213: 7110878671101974141
+    second: dash_0
+  - first:
+      213: 7643240275301989466
+    second: dash_1
+  - first:
+      213: -8809873816130030523
+    second: dash_2
+  - first:
+      213: -4770175892979620097
+    second: dash_3
+  - first:
+      213: -1190105860681885623
+    second: dash_4
+  - first:
+      213: 8035217175372748222
+    second: dash_5
+  - first:
+      213: 697318719324224050
+    second: dash_6
+  - first:
+      213: -123402397366724103
+    second: dash_7
+  - first:
+      213: 1856454893650784056
+    second: dash_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -111,23 +141,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: double_jump_0
+      name: dash_0
       rect:
         serializedVersion: 2
         x: 0
@@ -141,14 +159,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1380919c5eb26aa0800000000000000
-      internalID: -6169159234755722469
+      spriteID: d765fefe97aeea260800000000000000
+      internalID: 7110878671101974141
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: double_jump_1
+      name: dash_1
       rect:
         serializedVersion: 2
         x: 32
@@ -162,14 +180,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fc2ab045876536a0800000000000000
-      internalID: -6470151467633595150
+      spriteID: a5c7556e88e321a60800000000000000
+      internalID: 7643240275301989466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: double_jump_2
+      name: dash_2
       rect:
         serializedVersion: 2
         x: 64
@@ -183,14 +201,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbc23294330b4cc10800000000000000
-      internalID: 2072975462814133436
+      spriteID: 544fd81e07a0db580800000000000000
+      internalID: -8809873816130030523
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: double_jump_3
+      name: dash_3
       rect:
         serializedVersion: 2
         x: 0
@@ -204,14 +222,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db0a4872dcdb771a0800000000000000
-      internalID: -6811767222545637187
+      spriteID: ff661de7c4eeccdb0800000000000000
+      internalID: -4770175892979620097
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: double_jump_4
+      name: dash_4
       rect:
         serializedVersion: 2
         x: 32
@@ -225,14 +243,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40f69b4f82d099990800000000000000
-      internalID: -7378852044914200828
+      spriteID: 94812f07605eb7fe0800000000000000
+      internalID: -1190105860681885623
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: double_jump_5
+      name: dash_5
       rect:
         serializedVersion: 2
         x: 64
@@ -246,14 +264,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30785484a8e3dc630800000000000000
-      internalID: 3948881211912718083
+      spriteID: eb5d537d273d28f60800000000000000
+      internalID: 8035217175372748222
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: double_jump_6
+      name: dash_6
       rect:
         serializedVersion: 2
         x: 0
@@ -267,14 +285,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9d1f41e635a10410800000000000000
-      internalID: 1441615010862144925
+      spriteID: 23afc804eaf5da900800000000000000
+      internalID: 697318719324224050
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: double_jump_7
+      name: dash_7
       rect:
         serializedVersion: 2
         x: 32
@@ -288,8 +306,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 782b55f6bc750e510800000000000000
-      internalID: 1576356400837538439
+      spriteID: 9f956846c26994ef0800000000000000
+      internalID: -123402397366724103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83f279dc3e373c910800000000000000
+      internalID: 1856454893650784056
       vertices: []
       indices: 
       edges: []
