@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &415174305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 415174306}
+  m_Layer: 9
+  m_Name: GrapplingGun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &415174306
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415174305}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7787247275520382262}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &978532384
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +163,7 @@ GameObject:
   - component: {fileID: 7787247275520382260}
   - component: {fileID: 7787247275520382258}
   - component: {fileID: 7787247275520382253}
+  - component: {fileID: 6555754677443583187}
   - component: {fileID: 7787247275520382257}
   - component: {fileID: 7787247275520382259}
   - component: {fileID: 7787247275520382256}
@@ -159,6 +190,7 @@ Transform:
   - {fileID: 1300137869}
   - {fileID: 2128432464}
   - {fileID: 978532385}
+  - {fileID: 415174306}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -226,12 +258,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29106c652ca3991488a0e14fb680d862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerGrapplingGunScript: {fileID: 0}
   _horizontalInput: 0
   _verticalInput: 0
   _speed: 1.25
   _facingRight: 1
   _lockPlayerInput: 0
   _lookDuration: 1
+  _idleDuration: 5
   _dust: {fileID: 7787247274147365192}
   _isGrounded: 0
   _groundLayerMask:
@@ -245,16 +279,16 @@ MonoBehaviour:
   _airJumpCountMax: 1
   _jumpForce: 3.5
   _bounceForce: 3.5
-  _comingOffBounce: 0
+  _bounceDurationCountMax: 0.5
   _fallMultiplier: 2.5
   _lowJumpMultiplier: 2
   _queueRoll: 0
   _rollDuration: 0.4
   _dashCount: 0
   _dashCountMax: 1
-  _dashHorizontalSpeed: 8
-  _dashDurationCountMax: 0.5
-  _dashCooldown: 1
+  _dashHorizontalSpeed: 14
+  _dashDurationCountMax: 0.35
+  _dashCooldown: 0.75
   _dashTimer: -1
   _knockbackStartTime: 0
   _knockbackDuration: 0.4
@@ -263,12 +297,14 @@ MonoBehaviour:
   _grounded: 0
   _jumping: 1
   _doubleJump: 0
+  _bouncing: 0
   _falling: 0
   _rolling: 0
   _dashing: 0
   _knockback: 0
   _sleepingOne: 0
   _sleepingTwo: 0
+  _sleepingThree: 0
   _lookingUp: 0
   _lookingDown: 0
   _dancing: 0
@@ -318,7 +354,7 @@ MonoBehaviour:
   _secondLightAttackCooldown: 0.1
   _airLightAttackDamage: 20
   _airLightAttackRange: 0.2
-  _airLightAttackCooldown: 0.3
+  _airLightAttackCooldown: 0.5
   _airHeavyAttackDamage: 15
   _airHeavyAttackRange: 0.3
   _airHeavyAttackCooldown: 0.3
@@ -329,6 +365,18 @@ MonoBehaviour:
   _secondLightAttack: 0
   _airHeavyAttack: 0
   _airLightAttack: 0
+--- !u!114 &6555754677443583187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7787247275520382261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b2ece8962ff17146b2611cbc46b273d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &7787247275520382257
 Animator:
   serializedVersion: 3

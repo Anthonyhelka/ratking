@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
   private Animator _animator;
   private PlayerHealth _playerHealthScript;
   private PlayerCombat _playerCombatScript;
+  private PlayerGrapplingGun _playerGrapplingGunScript;
   private CinemachineVirtualCamera _cinemaMachineVirtualCamera;
   private CinemachineFramingTransposer _cinemaMachineFramingTransposer;
 
@@ -61,6 +62,12 @@ public class PlayerController : MonoBehaviour {
   public float _dashTimer = -1.0f;
   public IEnumerator _dashRoutine;
   
+  // Special
+  private bool _specialRequest;
+  [SerializeField] private Vector2 _specialDirection;
+  [SerializeField] private float _specialForce;
+  private IEnumerator _specialRoutine;
+
   // Knockback
   [SerializeField] private float _knockbackStartTime;
   [SerializeField] private float _knockbackDuration;
@@ -217,6 +224,16 @@ public class PlayerController : MonoBehaviour {
     }
   }
 
+  [SerializeField] private bool _grappling;
+  public bool Grappling {
+    get { return _grappling; }
+    set {
+      if (value == _grappling) return;
+      _grappling = value;
+      _animator.SetBool("jumping", _grappling);
+    }
+  }
+
   void Awake() {
     _rb = GetComponent<Rigidbody2D>();
     _bc = GetComponent<BoxCollider2D>();
@@ -224,6 +241,7 @@ public class PlayerController : MonoBehaviour {
     _playerHealthScript = GetComponent<PlayerHealth>();
     _playerCombatScript = GetComponent<PlayerCombat>();
     _playerCombatScript = GetComponent<PlayerCombat>();
+    _playerGrapplingGunScript = GetComponent<PlayerGrapplingGun>();
     _cinemaMachineVirtualCamera = GameObject.Find("Cinemachine_Camera").GetComponent<CinemachineVirtualCamera>();
     _cinemaMachineFramingTransposer = _cinemaMachineVirtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
     Application.targetFrameRate = 60;
@@ -275,6 +293,11 @@ public class PlayerController : MonoBehaviour {
       _playerCombatScript.Attack("Heavy");
     }
 
+    // Special
+    if (Input.GetButtonDown("Special")) {
+      _specialRequest = true;      
+    }
+
     // Dance 
     if (Input.GetButton("Dance")) {
       _danceRequest = true;
@@ -287,6 +310,7 @@ public class PlayerController : MonoBehaviour {
     _jumpRequest = false;
     _dashRequest = false;
     _danceRequest = false;
+    _specialRequest = false;
   }
   
   void SetAnimations() {
@@ -355,6 +379,10 @@ public class PlayerController : MonoBehaviour {
       Dash();
       _dashRequest = false;
     }
+    if (_specialRequest) {
+      Special();
+      _specialRequest = false;
+    }
     if (_danceRequest) {
       Dance();
       _danceRequest = false;
@@ -385,13 +413,13 @@ public class PlayerController : MonoBehaviour {
 
   void CalculateGravity() {
     // Fall Gravity
-    if (_isGrounded && Mathf.Round(_rb.velocity.y) < 0 && !_playerCombatScript.Attacking && !Bouncing) {
+    if (_isGrounded && Mathf.Round(_rb.velocity.y) < 0 && !_playerCombatScript.Attacking && !Bouncing && !Grappling) {
       _rb.gravityScale = _fallMultiplier;
       return;
     }
 
     // Low Jump Gravity
-    if (Mathf.Round(_rb.velocity.y) > 0 && !Input.GetButton("Jump") && !_playerHealthScript.Dying && !_playerCombatScript.Attacking && !Bouncing) {
+    if (Mathf.Round(_rb.velocity.y) > 0 && !Input.GetButton("Jump") && !_playerHealthScript.Dying && !_playerCombatScript.Attacking && !Bouncing && !Grappling) {
       _rb.gravityScale = _lowJumpMultiplier;
       return;
     }
@@ -506,6 +534,27 @@ public class PlayerController : MonoBehaviour {
     if (queueHeavyAttack) _playerCombatScript.Attack("Heavy");
   }
 
+  void Special() {
+    CreateDust();
+    _specialRoutine = SpecialRoutine();
+    StartCoroutine(_specialRoutine);
+  }
+
+  IEnumerator SpecialRoutine() {
+    Dashing = true;
+    _rb.velocity = new Vector2(0.0f, 0.0f);
+    float duration = 0.0f;
+    while (duration < 0.1f) {
+      _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y);
+      Debug.Log(_rb.velocity);
+      Vector2 direction = _specialDirection * _specialForce;
+      _rb.AddForce(direction * _specialForce, ForceMode2D.Impulse);
+      duration += Time.deltaTime;
+      yield return 0;
+    }
+    Dashing = false;
+  }
+
   void Dance() {
     _danceRoutine = DanceRoutine();
     StartCoroutine(_danceRoutine);
@@ -543,7 +592,7 @@ public class PlayerController : MonoBehaviour {
   }
 
   void DetermineLockedInput() {
-    if (Dashing || Knockback || _playerHealthScript.Dying) {
+    if (Dashing || Grappling || Knockback || _playerHealthScript.Dying) {
       _lockPlayerInput = true;
     } else {
       _lockPlayerInput = false;

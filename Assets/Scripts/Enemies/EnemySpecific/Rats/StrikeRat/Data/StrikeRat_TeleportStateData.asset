@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f526d2c40e57c1d47bfe909a3076695b, type: 3}
   m_Name: StrikeRat_TeleportStateData
   m_EditorClassIdentifier: 
-  teleportTime: 0.3
+  teleportTime: 0.5
