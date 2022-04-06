@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIdleState : PlayerGroundedState {
-  public PlayerIdleState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName) {
+public class PlayerWallClimbState : PlayerTouchingWallState {
+  public PlayerWallClimbState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName) {
   }
 
   public override void Enter() {
@@ -17,10 +17,10 @@ public class PlayerIdleState : PlayerGroundedState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    player.SetVelocityX(0.0f);
+    player.SetVelocityY(playerData.wallClimbVelocity);
 
-    if (xInput != 0) {
-      stateMachine.ChangeState(player.MoveState);
+    if (yInput != 1) {
+      stateMachine.ChangeState(player.WallGrabState);
     }
   }
 

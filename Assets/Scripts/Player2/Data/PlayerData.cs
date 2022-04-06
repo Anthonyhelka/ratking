@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "newPlayerData", menuName = "Data/Player Data/Base Data")]
 public class PlayerData : ScriptableObject {
-  [Header("Idle State")]
+  // [Header("Idle State")]
 
   [Header("Move State")]
   public float movementVelocity = 1.5f;
@@ -15,14 +15,23 @@ public class PlayerData : ScriptableObject {
 
   [Header("Jump State")]
   public float jumpVelocity = 4.0f;
-  public int amountOfJumps = 1;
+  public int amountOfJumps = 2;
 
   [Header("Double Jump State")]
   public float doubleJumpVelocity = 4.0f;
 
-  [Header("Check Variables")]
-  public float groundCheckRadius = 0.3f;
-  public LayerMask whatIsGround;
-
   // [Header("Land State")]
+
+  [Header("Wall Slide State")]
+  public float wallSlideVelocity = 0.75f;
+
+  // [Header("Wall Grab State")]
+
+  [Header("Wall Climb State")]
+  public float wallClimbVelocity = 0.75f;
+  
+  [Header("Check Variables")]
+  public float groundCheckRadius = 0.075f;
+  public LayerMask whatIsGround;
+  public float wallCheckDistance = 0.1f;
 }

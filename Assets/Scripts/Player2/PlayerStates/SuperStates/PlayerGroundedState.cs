@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlayerGroundedState : PlayerState {
   protected int xInput;
-  private bool JumpInput;
+  private bool jumpInput;
+  private bool grabInput;
   private bool isGrounded;
+  private bool isTouchingWall;
 
   public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName) {
   }
@@ -24,14 +26,17 @@ public class PlayerGroundedState : PlayerState {
     base.LogicUpdate();
 
     xInput = player.InputHandler.NormalizedInputX;
-    JumpInput = player.InputHandler.JumpInput;
+    jumpInput = player.InputHandler.JumpInput;
+    grabInput = player.InputHandler.GrabInput;
 
-    if (JumpInput && player.JumpState.CanJump()) {
+    if (jumpInput && player.JumpState.CanJump()) {
       player.InputHandler.UseJumpInput();
       stateMachine.ChangeState(player.JumpState);
     } else if (!isGrounded) {
       player.InAirState.StartCoyoteTime();
       stateMachine.ChangeState(player.InAirState);
+    } else if (isTouchingWall && grabInput) {
+      stateMachine.ChangeState(player.WallGrabState);
     }
   }
 
@@ -41,6 +46,8 @@ public class PlayerGroundedState : PlayerState {
 
   public override void DoChecks() {
     base.DoChecks();
+
     isGrounded = player.CheckIfGrounded();
+    isTouchingWall = player.CheckIfTouchingWall();
   }
 }

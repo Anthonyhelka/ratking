@@ -18,7 +18,10 @@ MonoBehaviour:
   jumpVelocity: 4
   amountOfJumps: 2
   doubleJumpVelocity: 4
+  wallSlideVelocity: 0.75
+  wallClimbVelocity: 0.75
   groundCheckRadius: 0.075
   whatIsGround:
     serializedVersion: 2
     m_Bits: 4096
+  wallCheckDistance: 0.1
