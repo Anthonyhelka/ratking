@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328ae01e5ab22ec46834fbbfe61afc14, type: 3}
   m_Name: playerData
   m_EditorClassIdentifier: 
+  selectedSpecial: 0
   movementVelocity: 1.5
   coyoteTime: 0.2
   variableJumpHeightMultiplier: 0.5
@@ -20,6 +21,8 @@ MonoBehaviour:
   doubleJumpVelocity: 4
   wallSlideVelocity: 0.75
   wallClimbVelocity: 0.75
+  bananaSlippersSlipMultiplier: 0.9
+  bananaSlippersMovementVelocity: 2
   groundCheckRadius: 0.075
   whatIsGround:
     serializedVersion: 2

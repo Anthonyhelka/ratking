@@ -8,6 +8,10 @@ public class PlayerMoveState : PlayerGroundedState {
 
   public override void Enter() {
     base.Enter();
+
+    if (playerData.selectedSpecial == PlayerData.Special.bananaSlippers) {
+      stateMachine.ChangeState(player.BananaSlippersMoveState);
+    }
   }
 
   public override void Exit() {
@@ -17,11 +21,11 @@ public class PlayerMoveState : PlayerGroundedState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    player.CheckIfShouldFlip(xInput);
-    player.SetVelocityX(playerData.movementVelocity * xInput);
-
     if (xInput == 0) {
       stateMachine.ChangeState(player.IdleState);
+    } else {
+      player.CheckIfShouldFlip(xInput);
+      player.SetVelocityX(playerData.movementVelocity * xInput);
     }
   }
 

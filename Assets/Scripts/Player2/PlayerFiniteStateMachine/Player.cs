@@ -14,6 +14,11 @@ public class Player : MonoBehaviour {
   public PlayerWallSlideState WallSlideState { get; private set; }
   public PlayerWallGrabState WallGrabState { get; private set; }
   public PlayerWallClimbState WallClimbState { get; private set; }
+  // Specials
+  // Banana Slippers
+  public PlayerBananaSlippersIdleState BananaSlippersIdleState { get; private set; }
+  public PlayerBananaSlippersMoveState BananaSlippersMoveState { get; private set; }
+
   [SerializeField] private PlayerData playerData;
   #endregion
   
@@ -46,6 +51,10 @@ public class Player : MonoBehaviour {
     WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallSlide");
     WallGrabState = new PlayerWallGrabState(this, StateMachine, playerData, "wallGrab");
     WallClimbState = new PlayerWallClimbState(this, StateMachine, playerData, "wallClimb");
+    // Specials
+    // Banana Slippers
+    BananaSlippersIdleState = new PlayerBananaSlippersIdleState(this, StateMachine, playerData, "bananaSlippersIdle");
+    BananaSlippersMoveState = new PlayerBananaSlippersMoveState(this, StateMachine, playerData, "bananaSlippersMove");
   }
 
   private void Start() {
@@ -54,7 +63,6 @@ public class Player : MonoBehaviour {
     InputHandler = GetComponent<PlayerInputHandler>();
 
     FacingDirection = 1;
-
     StateMachine.Initialize(IdleState);
   }
 
