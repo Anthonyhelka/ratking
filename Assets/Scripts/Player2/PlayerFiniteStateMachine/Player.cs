@@ -14,12 +14,16 @@ public class Player : MonoBehaviour {
   public PlayerWallSlideState WallSlideState { get; private set; }
   public PlayerWallGrabState WallGrabState { get; private set; }
   public PlayerWallClimbState WallClimbState { get; private set; }
+  [SerializeField] private PlayerData playerData;
   // Specials
   // Banana Slippers
   public PlayerBananaSlippersIdleState BananaSlippersIdleState { get; private set; }
   public PlayerBananaSlippersMoveState BananaSlippersMoveState { get; private set; }
-
-  [SerializeField] private PlayerData playerData;
+  // Boomerang
+  public PlayerBoomerangThrowState BoomerangThrowState { get; private set; }
+  public PlayerBoomerangCatchState BoomerangCatchState { get; private set; }
+  // Plungeform
+  public PlayerPlungeFormThrowState PlungeformThrowState { get; private set; }
   #endregion
   
   #region Components
@@ -31,6 +35,8 @@ public class Player : MonoBehaviour {
   #region Check Transforms
   [SerializeField] private Transform groundCheck;
   [SerializeField] private Transform wallCheck;
+  public Transform boomerangPosition;
+  public Transform plungeformPosition;
   #endregion
 
   #region Other Variables
@@ -55,6 +61,11 @@ public class Player : MonoBehaviour {
     // Banana Slippers
     BananaSlippersIdleState = new PlayerBananaSlippersIdleState(this, StateMachine, playerData, "bananaSlippersIdle");
     BananaSlippersMoveState = new PlayerBananaSlippersMoveState(this, StateMachine, playerData, "bananaSlippersMove");
+    // Boomerang
+    BoomerangThrowState = new PlayerBoomerangThrowState(this, StateMachine, playerData, "boomerangThrow");
+    BoomerangCatchState = new PlayerBoomerangCatchState(this, StateMachine, playerData, "boomerangCatch");
+    // Plungeform
+    PlungeformThrowState = new PlayerPlungeFormThrowState(this, StateMachine, playerData, "boomerangThrow");
   }
 
   private void Start() {

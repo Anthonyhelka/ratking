@@ -22,7 +22,7 @@ public class PlayerState {
     player.Anim.SetBool(animationBoolName, true);
     isAnimationFinished = false;
     DoChecks();
-    Debug.Log(animationBoolName);
+    // Debug.Log(animationBoolName);
   }
 
   public virtual void Exit() {

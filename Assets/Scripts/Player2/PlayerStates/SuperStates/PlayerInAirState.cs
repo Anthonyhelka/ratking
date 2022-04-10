@@ -9,6 +9,7 @@ public class PlayerInAirState : PlayerState {
   private bool jumpInput;
   private bool jumpInputStop;
   private bool grabInput;
+  private bool specialInput;
   private bool isJumping;
   private bool coyoteTime;
 
@@ -32,10 +33,19 @@ public class PlayerInAirState : PlayerState {
     jumpInput = player.InputHandler.JumpInput;
     jumpInputStop = player.InputHandler.JumpInputStop;
     grabInput = player.InputHandler.GrabInput;
+    specialInput = player.InputHandler.SpecialInput;
 
     CheckJumpMultiplier();
 
-    if (isGrounded && player.CurrentVelocity.y < 0.01f) {
+    if (specialInput) {
+      if (playerData.selectedSpecial == PlayerData.Special.boomerang && player.BoomerangThrowState.CanThrowBoomerang()) {
+        player.InputHandler.UseSpecialInput();
+        stateMachine.ChangeState(player.BoomerangThrowState);
+      } else if (playerData.selectedSpecial == PlayerData.Special.plungeform && player.PlungeformThrowState.CanThrowPlungeform()) {
+        player.InputHandler.UseSpecialInput();
+        stateMachine.ChangeState(player.PlungeformThrowState);
+      }
+    } else if (isGrounded && player.CurrentVelocity.y < 0.01f) {
       stateMachine.ChangeState(player.LandState);
     } else if (jumpInput && player.JumpState.CanJump()) {
       if (coyoteTime) {
@@ -45,7 +55,7 @@ public class PlayerInAirState : PlayerState {
       }
     } else if (isTouchingWall && grabInput) {
       stateMachine.ChangeState(player.WallGrabState);
-    } else if (isTouchingWall && xInput == player.FacingDirection) {
+    } else if (isTouchingWall && xInput == player.FacingDirection && player.CurrentVelocity.y < 0.01f) {
       stateMachine.ChangeState(player.WallSlideState);
     } else {
       player.CheckIfShouldFlip(xInput);

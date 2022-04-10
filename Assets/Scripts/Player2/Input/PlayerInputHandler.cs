@@ -12,6 +12,7 @@ public class PlayerInputHandler : MonoBehaviour {
   [SerializeField] private float inputHoldTime = 0.2f;
   private float jumpInputStartTime;
   public bool GrabInput { get; private set; }
+  public bool SpecialInput { get; private set; }
 
   private void Update() {
     CheckJumpInputHoldTime();
@@ -63,5 +64,18 @@ public class PlayerInputHandler : MonoBehaviour {
     if (context.canceled) {
       GrabInput = false;
     }
+  }
+
+
+  public void OnSpecialInput(InputAction.CallbackContext context) {
+    if (context.started) {
+      if (GetComponent<Player>().BoomerangThrowState.CanThrowBoomerang()) {
+        SpecialInput = true;
+      }
+    }
+  }
+
+  public void UseSpecialInput() {
+    SpecialInput = false;
   }
 }
