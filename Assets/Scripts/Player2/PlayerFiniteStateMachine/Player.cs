@@ -19,6 +19,7 @@ public class Player : MonoBehaviour {
   // Shield
   // JetPack
   // Glider
+  public PlayerGlideState GlideState { get; private set; }
   #endregion
   
   #region Components
@@ -54,6 +55,7 @@ public class Player : MonoBehaviour {
     // Shield
     // JetPack
     // Glider
+    GlideState = new PlayerGlideState(this, StateMachine, playerData, "glide");
   }
 
   private void Start() {

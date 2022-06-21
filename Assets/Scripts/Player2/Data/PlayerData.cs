@@ -32,6 +32,10 @@ public class PlayerData : ScriptableObject {
   public float boomerangTravelDistance = 2.5f;
   public float boomerangCooldown = 1.0f;
 
+  [Header("Glide State")]
+  public float glideXVelocity = 2.0f;
+  public float glideYVelocity = 0.25f;
+
   [Header("Check Variables")]
   public float groundCheckRadius = 0.075f;
   public LayerMask whatIsGround;

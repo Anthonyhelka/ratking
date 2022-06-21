@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328ae01e5ab22ec46834fbbfe61afc14, type: 3}
   m_Name: playerData
   m_EditorClassIdentifier: 
-  selectedSpecial: 0
+  selectedSpecial: 3
   movementVelocity: 1.5
   coyoteTime: 0.2
   variableJumpHeightMultiplier: 0.5
@@ -25,6 +25,8 @@ MonoBehaviour:
   boomerangSpeed: 4
   boomerangTravelDistance: 2.5
   boomerangCooldown: 1
+  glideXVelocity: 2
+  glideYVelocity: 0.2
   groundCheckRadius: 0.075
   whatIsGround:
     serializedVersion: 2

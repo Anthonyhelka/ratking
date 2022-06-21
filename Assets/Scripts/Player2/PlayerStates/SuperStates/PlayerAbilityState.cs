@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAbilityState : PlayerState {
   protected int xInput;
   protected bool isAbilityDone;
-  private bool isGrounded;
+  protected bool isGrounded;
 
   public PlayerAbilityState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName) {
   }

@@ -38,6 +38,9 @@ public class PlayerInAirState : PlayerState {
       if (playerData.selectedSpecial == PlayerData.Special.boomerang && player.BoomerangThrowState.CanThrowBoomerang()) {
         player.InputHandler.UseSpecialInput();
         stateMachine.ChangeState(player.BoomerangThrowState);
+      } else if (playerData.selectedSpecial == PlayerData.Special.glider) {
+        player.InputHandler.UseSpecialInput();
+        stateMachine.ChangeState(player.GlideState);
       }
     } else if (isGrounded && player.CurrentVelocity.y < 0.01f) {
       stateMachine.ChangeState(player.LandState);
