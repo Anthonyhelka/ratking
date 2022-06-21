@@ -8,10 +8,6 @@ public class PlayerIdleState : PlayerGroundedState {
 
   public override void Enter() {
     base.Enter();
-
-    if (playerData.selectedSpecial == PlayerData.Special.bananaSlippers) {
-      stateMachine.ChangeState(player.BananaSlippersIdleState);
-    }
   }
 
   public override void Exit() {
@@ -21,7 +17,7 @@ public class PlayerIdleState : PlayerGroundedState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (xInput != 0) {
+    if (xInput != 0 && !isExitingState) {
       stateMachine.ChangeState(player.MoveState);
     }
   }

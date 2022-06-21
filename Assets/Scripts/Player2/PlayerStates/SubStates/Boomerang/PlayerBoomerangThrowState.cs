@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerBoomerangThrowState : PlayerAbilityState {
   private int xInput;
+  private bool jumpInput;
   private GameObject boomerang;
   private Boomerang boomerangScript;
   private bool canThrowBoomerang = true;
+  private bool canCancelAnimation;
 
   public PlayerBoomerangThrowState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName) {
   }
@@ -15,6 +17,7 @@ public class PlayerBoomerangThrowState : PlayerAbilityState {
     base.Enter();
 
     canThrowBoomerang = false;
+    canCancelAnimation = false;
   }
 
   public override void Exit() {
@@ -25,9 +28,12 @@ public class PlayerBoomerangThrowState : PlayerAbilityState {
     base.LogicUpdate();
 
     xInput = player.InputHandler.NormalizedInputX;
+    jumpInput = player.InputHandler.JumpInput;
 
-    if (isAnimationFinished) {
-      stateMachine.ChangeState(player.IdleState);
+    if (canCancelAnimation && jumpInput) {
+      isAbilityDone = true;
+    } else if (isAnimationFinished) {
+      isAbilityDone = true;
     } else {
       player.SetVelocityX(playerData.movementVelocity * xInput);
     }
@@ -47,6 +53,7 @@ public class PlayerBoomerangThrowState : PlayerAbilityState {
     boomerang = GameObject.Instantiate(playerData.boomerang, player.boomerangPosition.position, player.boomerangPosition.rotation);
     boomerangScript = boomerang.GetComponent<Boomerang>();
     boomerangScript.FireBoomerang(playerData.boomerangSpeed, playerData.boomerangTravelDistance, playerData.boomerangDamage);
+    canCancelAnimation = true;
   }
 
   public void CaughtBoomerang() {

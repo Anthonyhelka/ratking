@@ -12,31 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328ae01e5ab22ec46834fbbfe61afc14, type: 3}
   m_Name: playerData
   m_EditorClassIdentifier: 
-  selectedSpecial: 2
+  selectedSpecial: 0
   movementVelocity: 1.5
   coyoteTime: 0.2
   variableJumpHeightMultiplier: 0.5
   jumpVelocity: 4
   amountOfJumps: 2
   doubleJumpVelocity: 4
-  wallSlideVelocity: 0.75
-  wallClimbVelocity: 0.75
-  bananaSlippersSlipMultiplier: 0.9
-  bananaSlippersMovementVelocity: 2
   boomerang: {fileID: 3104904845522073772, guid: 26ee7dd12045f9c42afd65e84e546ad7,
     type: 3}
   boomerangDamage: 10
   boomerangSpeed: 4
   boomerangTravelDistance: 2.5
   boomerangCooldown: 1
-  plungeform: {fileID: 3892923334223429194, guid: 8d082ac3295052b43b961561718166af,
-    type: 3}
-  plungeformDamage: 10
-  plungeformSpeed: 4
-  plungeformTravelDistance: 2.5
-  plungeformCooldown: 1
   groundCheckRadius: 0.075
   whatIsGround:
     serializedVersion: 2
     m_Bits: 4096
-  wallCheckDistance: 0.1

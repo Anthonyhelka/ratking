@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class PlayerInAirState : PlayerState {
   private bool isGrounded;
-  private bool isTouchingWall;
   private int xInput;
   private bool jumpInput;
   private bool jumpInputStop;
-  private bool grabInput;
   private bool specialInput;
   private bool isJumping;
   private bool coyoteTime;
@@ -32,7 +30,6 @@ public class PlayerInAirState : PlayerState {
     xInput = player.InputHandler.NormalizedInputX;
     jumpInput = player.InputHandler.JumpInput;
     jumpInputStop = player.InputHandler.JumpInputStop;
-    grabInput = player.InputHandler.GrabInput;
     specialInput = player.InputHandler.SpecialInput;
 
     CheckJumpMultiplier();
@@ -41,22 +38,17 @@ public class PlayerInAirState : PlayerState {
       if (playerData.selectedSpecial == PlayerData.Special.boomerang && player.BoomerangThrowState.CanThrowBoomerang()) {
         player.InputHandler.UseSpecialInput();
         stateMachine.ChangeState(player.BoomerangThrowState);
-      } else if (playerData.selectedSpecial == PlayerData.Special.plungeform && player.PlungeformThrowState.CanThrowPlungeform()) {
-        player.InputHandler.UseSpecialInput();
-        stateMachine.ChangeState(player.PlungeformThrowState);
       }
     } else if (isGrounded && player.CurrentVelocity.y < 0.01f) {
       stateMachine.ChangeState(player.LandState);
     } else if (jumpInput && player.JumpState.CanJump()) {
       if (coyoteTime) {
+        player.InputHandler.UseJumpInput();
         stateMachine.ChangeState(player.JumpState);
       } else {
+        player.InputHandler.UseJumpInput();
         stateMachine.ChangeState(player.DoubleJumpState);
       }
-    } else if (isTouchingWall && grabInput) {
-      stateMachine.ChangeState(player.WallGrabState);
-    } else if (isTouchingWall && xInput == player.FacingDirection && player.CurrentVelocity.y < 0.01f) {
-      stateMachine.ChangeState(player.WallSlideState);
     } else {
       player.CheckIfShouldFlip(xInput);
       player.SetVelocityX(playerData.movementVelocity * xInput);
@@ -73,7 +65,6 @@ public class PlayerInAirState : PlayerState {
     base.DoChecks();
 
     isGrounded = player.CheckIfGrounded();
-    isTouchingWall = player.CheckIfTouchingWall();
   }
 
   public void SetIsJumping() {

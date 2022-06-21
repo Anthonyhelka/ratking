@@ -393,7 +393,7 @@ public class PlayerController : MonoBehaviour {
   
   void CalculateMovement() {
     // Calculate Velocity
-    _rb.velocity = new Vector2(_horizontalInput * _speed, _rb.velocity.y);
+    // _rb.velocity = new Vector2(_horizontalInput * _speed, _rb.velocity.y);
 
     // Flip Character
     if (_facingRight == false && _horizontalInput > 0) {
@@ -546,7 +546,6 @@ public class PlayerController : MonoBehaviour {
     float duration = 0.0f;
     while (duration < 0.1f) {
       _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y);
-      Debug.Log(_rb.velocity);
       Vector2 direction = _specialDirection * _specialForce;
       _rb.AddForce(direction * _specialForce, ForceMode2D.Impulse);
       duration += Time.deltaTime;

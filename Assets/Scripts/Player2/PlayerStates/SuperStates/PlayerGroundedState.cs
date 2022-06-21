@@ -5,10 +5,8 @@ using UnityEngine;
 public class PlayerGroundedState : PlayerState {
   protected int xInput;
   private bool jumpInput;
-  private bool grabInput;
   private bool specialInput;
   private bool isGrounded;
-  private bool isTouchingWall;
 
   public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName) {
   }
@@ -28,16 +26,12 @@ public class PlayerGroundedState : PlayerState {
 
     xInput = player.InputHandler.NormalizedInputX;
     jumpInput = player.InputHandler.JumpInput;
-    grabInput = player.InputHandler.GrabInput;
     specialInput = player.InputHandler.SpecialInput;
 
     if (specialInput) {
       if (playerData.selectedSpecial == PlayerData.Special.boomerang && player.BoomerangThrowState.CanThrowBoomerang()) {
         player.InputHandler.UseSpecialInput();
         stateMachine.ChangeState(player.BoomerangThrowState);
-      } else if (playerData.selectedSpecial == PlayerData.Special.plungeform && player.PlungeformThrowState.CanThrowPlungeform()) {
-        player.InputHandler.UseSpecialInput();
-        stateMachine.ChangeState(player.PlungeformThrowState);
       }
     } else if (jumpInput && player.JumpState.CanJump()) {
       player.InputHandler.UseJumpInput();
@@ -45,8 +39,6 @@ public class PlayerGroundedState : PlayerState {
     } else if (!isGrounded) {
       player.InAirState.StartCoyoteTime();
       stateMachine.ChangeState(player.InAirState);
-    } else if (isTouchingWall && grabInput) {
-      stateMachine.ChangeState(player.WallGrabState);
     }
   }
 
@@ -58,6 +50,5 @@ public class PlayerGroundedState : PlayerState {
     base.DoChecks();
 
     isGrounded = player.CheckIfGrounded();
-    isTouchingWall = player.CheckIfTouchingWall();
   }
 }

@@ -31,7 +31,6 @@ public class PlayerGrapplingGun : MonoBehaviour
     if (hit.transform != null) {
       hasHit = true;
       hitPosition = hit.point;
-      Debug.Log(hitPosition);
       // DrawRope();
       // hitPosition.x += hitPosition.x / 10;
       // hitPosition.y += Mathf.Abs(hitPosition.y) / 10;
@@ -75,7 +74,6 @@ public class PlayerGrapplingGun : MonoBehaviour
       _rb.MovePosition(Vector3.MoveTowards(transform.position, hitPosition, _ropeStrength * Time.deltaTime));
       // trackVelocity = (_rb.position - lastPos) * 50;
       // lastPos = _rb.position;
-      // Debug.Log(trackVelocity);
       // _rb.MovePosition(Vector3.Lerp(transform.position, hitPosition, _ropeStrength));
 
       // _rb.AddForce(((Vector3)(hitPosition) - transform.position) * _pullForce);

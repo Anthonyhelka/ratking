@@ -11,19 +11,14 @@ public class Player : MonoBehaviour {
   public PlayerDoubleJumpState DoubleJumpState { get; private set; }
   public PlayerInAirState InAirState { get; private set; }
   public PlayerLandState LandState { get; private set; }
-  public PlayerWallSlideState WallSlideState { get; private set; }
-  public PlayerWallGrabState WallGrabState { get; private set; }
-  public PlayerWallClimbState WallClimbState { get; private set; }
   [SerializeField] private PlayerData playerData;
   // Specials
-  // Banana Slippers
-  public PlayerBananaSlippersIdleState BananaSlippersIdleState { get; private set; }
-  public PlayerBananaSlippersMoveState BananaSlippersMoveState { get; private set; }
   // Boomerang
   public PlayerBoomerangThrowState BoomerangThrowState { get; private set; }
   public PlayerBoomerangCatchState BoomerangCatchState { get; private set; }
-  // Plungeform
-  public PlayerPlungeFormThrowState PlungeformThrowState { get; private set; }
+  // Shield
+  // JetPack
+  // Glider
   #endregion
   
   #region Components
@@ -34,9 +29,7 @@ public class Player : MonoBehaviour {
   
   #region Check Transforms
   [SerializeField] private Transform groundCheck;
-  [SerializeField] private Transform wallCheck;
   public Transform boomerangPosition;
-  public Transform plungeformPosition;
   #endregion
 
   #region Other Variables
@@ -54,18 +47,13 @@ public class Player : MonoBehaviour {
     DoubleJumpState = new PlayerDoubleJumpState(this, StateMachine, playerData, "inAir");
     InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
     LandState = new PlayerLandState(this, StateMachine, playerData, "land");
-    WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallSlide");
-    WallGrabState = new PlayerWallGrabState(this, StateMachine, playerData, "wallGrab");
-    WallClimbState = new PlayerWallClimbState(this, StateMachine, playerData, "wallClimb");
     // Specials
-    // Banana Slippers
-    BananaSlippersIdleState = new PlayerBananaSlippersIdleState(this, StateMachine, playerData, "bananaSlippersIdle");
-    BananaSlippersMoveState = new PlayerBananaSlippersMoveState(this, StateMachine, playerData, "bananaSlippersMove");
     // Boomerang
     BoomerangThrowState = new PlayerBoomerangThrowState(this, StateMachine, playerData, "boomerangThrow");
     BoomerangCatchState = new PlayerBoomerangCatchState(this, StateMachine, playerData, "boomerangCatch");
-    // Plungeform
-    PlungeformThrowState = new PlayerPlungeFormThrowState(this, StateMachine, playerData, "boomerangThrow");
+    // Shield
+    // JetPack
+    // Glider
   }
 
   private void Start() {
@@ -106,10 +94,6 @@ public class Player : MonoBehaviour {
     return Physics2D.OverlapCircle(groundCheck.position, playerData.groundCheckRadius, playerData.whatIsGround);
   }
 
-  public bool CheckIfTouchingWall() {
-    return Physics2D.Raycast(wallCheck.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
-  }
-
   public void CheckIfShouldFlip(int xInput) {
     if (xInput != 0 && xInput != FacingDirection) {
       Flip();
@@ -136,8 +120,6 @@ public class Player : MonoBehaviour {
   public virtual void OnDrawGizmos() {
     // Ground Check
     Gizmos.DrawWireSphere(groundCheck.position, playerData.groundCheckRadius);
-    // Wall Check
-    Gizmos.DrawRay(wallCheck.position, Vector2.right * FacingDirection * playerData.wallCheckDistance);
   }
   #endregion
 }
