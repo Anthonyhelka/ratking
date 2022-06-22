@@ -11,6 +11,7 @@ public class PlayerInputHandler : MonoBehaviour {
   public bool JumpInputStop { get; private set; }
   [SerializeField] private float inputHoldTime = 0.2f;
   private float jumpInputStartTime;
+  public bool DashInput { get; private set; }
   public bool SpecialInput { get; private set; }
   public bool SpecialInputStop { get; private set; }
 
@@ -56,6 +57,17 @@ public class PlayerInputHandler : MonoBehaviour {
     }
   }
 
+  public void OnDashInput(InputAction.CallbackContext context) {
+    if (context.performed) {
+      Debug.Log("DASH INPUT");
+      DashInput = true;
+    }
+  }
+
+  public void UseDashInput() {
+    DashInput = false;
+  }
+  
   public void OnSpecialInput(InputAction.CallbackContext context) {
     if (context.started) {
       if (GetComponent<Player>().BoomerangThrowState.CanThrowBoomerang()) {

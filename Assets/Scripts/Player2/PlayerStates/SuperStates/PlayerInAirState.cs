@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInAirState : PlayerState {
-  private bool isGrounded;
+  // Input
   private int xInput;
   private bool jumpInput;
   private bool jumpInputStop;
+  private bool dashInput;
   private bool specialInput;
+
+  private bool isGrounded;
   private bool isJumping;
   private bool coyoteTime;
 
@@ -30,6 +33,7 @@ public class PlayerInAirState : PlayerState {
     xInput = player.InputHandler.NormalizedInputX;
     jumpInput = player.InputHandler.JumpInput;
     jumpInputStop = player.InputHandler.JumpInputStop;
+    dashInput = player.InputHandler.DashInput;
     specialInput = player.InputHandler.SpecialInput;
 
     CheckJumpMultiplier();
@@ -42,6 +46,8 @@ public class PlayerInAirState : PlayerState {
         player.InputHandler.UseSpecialInput();
         stateMachine.ChangeState(player.GlideState);
       }
+    } else if (dashInput && player.DashState.CheckIfCanDash()) {
+      stateMachine.ChangeState(player.DashState);
     } else if (isGrounded && player.CurrentVelocity.y < 0.01f) {
       stateMachine.ChangeState(player.LandState);
     } else if (jumpInput && player.JumpState.CanJump()) {

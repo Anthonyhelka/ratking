@@ -23,12 +23,19 @@ public class PlayerData : ScriptableObject {
   [Header("Double Jump State")]
   public float doubleJumpVelocity = 4.0f;
 
+  [Header("Dash State")]
+  public float dashCooldown = 0.5f;
+  public float dashTime = 0.2f;
+  public float dashVelocity = 30.0f;
+  public float drag = 10.0f;
+  public float dashEndYMultiplier = 0.2f;
+
   // [Header("Land State")]
 
   [Header("Boomerang Throw State")]
   public GameObject boomerang;
   public int boomerangDamage = 10;
-  public float boomerangSpeed = 4.0f;
+  public float boomerangVelocity = 4.0f;
   public float boomerangTravelDistance = 2.5f;
   public float boomerangCooldown = 1.0f;
 

@@ -12,17 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328ae01e5ab22ec46834fbbfe61afc14, type: 3}
   m_Name: playerData
   m_EditorClassIdentifier: 
-  selectedSpecial: 3
-  movementVelocity: 1.5
+  selectedSpecial: 0
+  movementVelocity: 1.25
   coyoteTime: 0.2
   variableJumpHeightMultiplier: 0.5
-  jumpVelocity: 4
+  jumpVelocity: 3.5
   amountOfJumps: 2
-  doubleJumpVelocity: 4
+  doubleJumpVelocity: 3.5
+  dashCooldown: 0.5
+  dashTime: 0.25
+  dashVelocity: 5
+  drag: 10
+  dashEndYMultiplier: 0.2
   boomerang: {fileID: 3104904845522073772, guid: 26ee7dd12045f9c42afd65e84e546ad7,
     type: 3}
   boomerangDamage: 10
-  boomerangSpeed: 4
+  boomerangVelocity: 4
   boomerangTravelDistance: 2.5
   boomerangCooldown: 1
   glideXVelocity: 2

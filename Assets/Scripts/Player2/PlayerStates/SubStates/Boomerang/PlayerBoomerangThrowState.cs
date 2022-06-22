@@ -52,7 +52,7 @@ public class PlayerBoomerangThrowState : PlayerAbilityState {
 
     boomerang = GameObject.Instantiate(playerData.boomerang, player.boomerangPosition.position, player.boomerangPosition.rotation);
     boomerangScript = boomerang.GetComponent<Boomerang>();
-    boomerangScript.FireBoomerang(playerData.boomerangSpeed, playerData.boomerangTravelDistance, playerData.boomerangDamage);
+    boomerangScript.FireBoomerang(playerData.boomerangVelocity, playerData.boomerangTravelDistance, playerData.boomerangDamage);
     canCancelAnimation = true;
   }
 
