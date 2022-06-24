@@ -46,6 +46,10 @@ public class PlayerInAirState : PlayerState {
         player.InputHandler.UseSpecialInput();
         stateMachine.ChangeState(player.GlideState);
       }
+    } else if (player.InputHandler.AttackInputs[(int)CombatInputs.primary]) {
+      stateMachine.ChangeState(player.PrimaryAttackState);
+    } else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondary]) {
+      stateMachine.ChangeState(player.SecondaryAttackState);
     } else if (dashInput && player.DashState.CheckIfCanDash()) {
       stateMachine.ChangeState(player.DashState);
     } else if (isGrounded && player.CurrentVelocity.y < 0.01f) {

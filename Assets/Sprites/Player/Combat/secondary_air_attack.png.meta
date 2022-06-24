@@ -53,6 +53,57 @@ TextureImporter:
   - first:
       213: -6133163087162792266
     second: heavy_air_attack_16
+  - first:
+      213: -3089051853000480332
+    second: secondary_air_attack_0
+  - first:
+      213: 6584627970710099909
+    second: secondary_air_attack_1
+  - first:
+      213: 3554156875627344606
+    second: secondary_air_attack_2
+  - first:
+      213: -5189633048287747724
+    second: secondary_air_attack_3
+  - first:
+      213: 1821617395697242374
+    second: secondary_air_attack_4
+  - first:
+      213: -6671965982531828500
+    second: secondary_air_attack_5
+  - first:
+      213: 9161691143786128282
+    second: secondary_air_attack_6
+  - first:
+      213: -7337034260958205697
+    second: secondary_air_attack_7
+  - first:
+      213: -176251617873157853
+    second: secondary_air_attack_8
+  - first:
+      213: -243068900549865464
+    second: secondary_air_attack_9
+  - first:
+      213: 8245621296839915394
+    second: secondary_air_attack_10
+  - first:
+      213: -4420916872567137245
+    second: secondary_air_attack_11
+  - first:
+      213: 652104575537500528
+    second: secondary_air_attack_12
+  - first:
+      213: -104554055014426997
+    second: secondary_air_attack_13
+  - first:
+      213: 6810207131767011524
+    second: secondary_air_attack_14
+  - first:
+      213: 3816839944235635125
+    second: secondary_air_attack_15
+  - first:
+      213: 7637024511826343245
+    second: secondary_air_attack_16
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -154,7 +205,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: heavy_air_attack_0
+      name: secondary_air_attack_0
       rect:
         serializedVersion: 2
         x: 0
@@ -162,20 +213,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b5978a6028fbf2f0800000000000000
-      internalID: -937883279266703948
+      spriteID: 4b9e429c4bb7125d0800000000000000
+      internalID: -3089051853000480332
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_air_attack_1
+      name: secondary_air_attack_1
       rect:
         serializedVersion: 2
         x: 64
@@ -183,20 +234,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01991b7dd4bdc8060800000000000000
-      internalID: 6957176651758278928
+      spriteID: 5c7d644a04c416b50800000000000000
+      internalID: 6584627970710099909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_air_attack_2
+      name: secondary_air_attack_2
       rect:
         serializedVersion: 2
         x: 128
@@ -204,20 +255,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ae8e57c00d2093a0800000000000000
-      internalID: -6660774367512850781
+      spriteID: ed2b7cff8d6e25130800000000000000
+      internalID: 3554156875627344606
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_air_attack_3
+      name: secondary_air_attack_3
       rect:
         serializedVersion: 2
         x: 192
@@ -225,20 +276,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c95f492b97ef9400800000000000000
-      internalID: 333239551047719366
+      spriteID: 4716e2a0d38baf7b0800000000000000
+      internalID: -5189633048287747724
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_air_attack_4
+      name: secondary_air_attack_4
       rect:
         serializedVersion: 2
         x: 0
@@ -246,20 +297,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3ec6fc324db48650800000000000000
-      internalID: 6234315876375907902
+      spriteID: 601d43bbe5fa74910800000000000000
+      internalID: 1821617395697242374
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_air_attack_5
+      name: secondary_air_attack_5
       rect:
         serializedVersion: 2
         x: 64
@@ -267,20 +318,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16abb15b646f8f240800000000000000
-      internalID: 4825877784274123361
+      spriteID: ce443b9d94a6863a0800000000000000
+      internalID: -6671965982531828500
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_air_attack_6
+      name: secondary_air_attack_6
       rect:
         serializedVersion: 2
         x: 128
@@ -288,20 +339,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 406f7ce2034390830800000000000000
-      internalID: 4037815922462291460
+      spriteID: a93e637fd8dd42f70800000000000000
+      internalID: 9161691143786128282
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_air_attack_7
+      name: secondary_air_attack_7
       rect:
         serializedVersion: 2
         x: 192
@@ -309,20 +360,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b58c4bc9f2764b7e0800000000000000
-      internalID: -1750660900950063013
+      spriteID: ff827b2863e9d2a90800000000000000
+      internalID: -7337034260958205697
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_air_attack_8
+      name: secondary_air_attack_8
       rect:
         serializedVersion: 2
         x: 0
@@ -330,20 +381,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b548b2f68b485e7a0800000000000000
-      internalID: -6348522172034874277
+      spriteID: 321259d5614dd8df0800000000000000
+      internalID: -176251617873157853
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_air_attack_9
+      name: secondary_air_attack_9
       rect:
         serializedVersion: 2
         x: 64
@@ -351,20 +402,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb01edc0b0cf1ff70800000000000000
-      internalID: 9219427036594835643
+      spriteID: 800d7ce6f1270acf0800000000000000
+      internalID: -243068900549865464
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_air_attack_10
+      name: secondary_air_attack_10
       rect:
         serializedVersion: 2
         x: 128
@@ -372,20 +423,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a616b523caeedbc0800000000000000
-      internalID: -3756306915308202330
+      spriteID: 287f98ed1e45e6270800000000000000
+      internalID: 8245621296839915394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_air_attack_11
+      name: secondary_air_attack_11
       rect:
         serializedVersion: 2
         x: 192
@@ -393,20 +444,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 989d0295e62551dc0800000000000000
-      internalID: -3668935687528195703
+      spriteID: 32cda15078fb5a2c0800000000000000
+      internalID: -4420916872567137245
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_air_attack_12
+      name: secondary_air_attack_12
       rect:
         serializedVersion: 2
         x: 0
@@ -414,20 +465,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db81e2d65b8a2eb40800000000000000
-      internalID: 5468118394755487933
+      spriteID: 071d15d08adbc0900800000000000000
+      internalID: 652104575537500528
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_air_attack_13
+      name: secondary_air_attack_13
       rect:
         serializedVersion: 2
         x: 64
@@ -435,20 +486,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3b507754ebebd1b0800000000000000
-      internalID: -5630647543144621249
+      spriteID: b86d90314ac8c8ef0800000000000000
+      internalID: -104554055014426997
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_air_attack_14
+      name: secondary_air_attack_14
       rect:
         serializedVersion: 2
         x: 128
@@ -456,20 +507,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b33886d2da5df640800000000000000
-      internalID: 5115344613351633847
+      spriteID: 4c8fdc7ed47b28e50800000000000000
+      internalID: 6810207131767011524
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_air_attack_15
+      name: secondary_air_attack_15
       rect:
         serializedVersion: 2
         x: 192
@@ -477,20 +528,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05ac543805ece2f20800000000000000
-      internalID: 3399881613906397776
+      spriteID: 5b1dfa0f4b328f430800000000000000
+      internalID: 3816839944235635125
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heavy_air_attack_16
+      name: secondary_air_attack_16
       rect:
         serializedVersion: 2
         x: 0
@@ -498,14 +549,14 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.375}
+      pivot: {x: 0.5, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b6af18caa0a2eaa0800000000000000
-      internalID: -6133163087162792266
+      spriteID: d453c50b4592cf960800000000000000
+      internalID: 7637024511826343245
       vertices: []
       indices: 
       edges: []

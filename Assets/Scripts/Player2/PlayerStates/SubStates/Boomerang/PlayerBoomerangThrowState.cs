@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerBoomerangThrowState : PlayerAbilityState {
   private int xInput;
   private bool jumpInput;
+  private bool dashInput;
   private GameObject boomerang;
   private Boomerang boomerangScript;
   private bool canThrowBoomerang = true;
@@ -29,8 +30,10 @@ public class PlayerBoomerangThrowState : PlayerAbilityState {
 
     xInput = player.InputHandler.NormalizedInputX;
     jumpInput = player.InputHandler.JumpInput;
+    dashInput = player.InputHandler.DashInput;
 
-    if (canCancelAnimation && jumpInput) {
+    if (canCancelAnimation && (jumpInput || dashInput)) {
+      player.CheckIfShouldFlip(xInput);
       isAbilityDone = true;
     } else if (isAnimationFinished) {
       isAbilityDone = true;

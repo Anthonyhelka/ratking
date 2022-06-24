@@ -38,7 +38,11 @@ public class PlayerGroundedState : PlayerState {
         player.InputHandler.UseSpecialInput();
         stateMachine.ChangeState(player.BoomerangThrowState);
       }
-    } else if (dashInput && player.DashState.CheckIfCanDash()) {
+    } else if (player.InputHandler.AttackInputs[(int)CombatInputs.primary]) {
+      stateMachine.ChangeState(player.PrimaryAttackState);
+    } else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondary]) {
+      stateMachine.ChangeState(player.SecondaryAttackState);
+    }  else if (dashInput && player.DashState.CheckIfCanDash()) {
       stateMachine.ChangeState(player.DashState);
     } else if (jumpInput && player.JumpState.CanJump()) {
       player.InputHandler.UseJumpInput();

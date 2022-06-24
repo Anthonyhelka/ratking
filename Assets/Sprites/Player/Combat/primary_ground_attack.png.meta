@@ -1,25 +1,61 @@
 fileFormatVersion: 2
-guid: 8a5934853c79b0b4789647bcc998c132
+guid: f1e58960923be034aa55960fea649de7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3821258555941828203
-    second: light_air_attack_0
+      213: -5522316921255302568
+    second: light_attack_0
   - first:
-      213: -8528380670101790870
-    second: light_air_attack_1
+      213: 6834226137480691828
+    second: light_attack_1
   - first:
-      213: -651362576319177364
-    second: light_air_attack_2
+      213: -1535609499185853323
+    second: light_attack_2
   - first:
-      213: 3333945883695012437
-    second: light_air_attack_3
+      213: 6829729283754005052
+    second: light_attack_3
   - first:
-      213: 3080920550011618092
-    second: light_air_attack_4
+      213: 3175624500002701566
+    second: light_attack_4
   - first:
-      213: -6855230476361577467
-    second: light_air_attack_5
+      213: -5609132493606755600
+    second: light_attack_5
+  - first:
+      213: -8716354939280725090
+    second: light_attack_6
+  - first:
+      213: -5699660327412297761
+    second: light_attack_7
+  - first:
+      213: -22550550361940204
+    second: light_attack_8
+  - first:
+      213: -7186237324647691285
+    second: primary_ground_attack_0
+  - first:
+      213: 1377133356116832611
+    second: primary_ground_attack_1
+  - first:
+      213: 9222158128290882268
+    second: primary_ground_attack_2
+  - first:
+      213: -6148132724200678930
+    second: primary_ground_attack_3
+  - first:
+      213: -2995967080218701752
+    second: primary_ground_attack_4
+  - first:
+      213: 9159034930656399230
+    second: primary_ground_attack_5
+  - first:
+      213: 5543717085377156200
+    second: primary_ground_attack_6
+  - first:
+      213: 207400309609166561
+    second: primary_ground_attack_7
+  - first:
+      213: -7747618187235782129
+    second: primary_ground_attack_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -105,11 +141,23 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: light_air_attack_0
+      name: primary_ground_attack_0
       rect:
         serializedVersion: 2
         x: 0
@@ -123,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b66b5d52966d70530800000000000000
-      internalID: 3821258555941828203
+      spriteID: beb88b04a3b554c90800000000000000
+      internalID: -7186237324647691285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light_air_attack_1
+      name: primary_ground_attack_1
       rect:
         serializedVersion: 2
         x: 64
@@ -144,14 +192,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6f564147fa15a980800000000000000
-      internalID: -8528380670101790870
+      spriteID: 3617fa3bd7f8c1310800000000000000
+      internalID: 1377133356116832611
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light_air_attack_2
+      name: primary_ground_attack_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd26243e4ffabff70800000000000000
+      internalID: 9222158128290882268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: primary_ground_attack_3
       rect:
         serializedVersion: 2
         x: 0
@@ -165,14 +234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6d138a1035e5f6f0800000000000000
-      internalID: -651362576319177364
+      spriteID: ee9501e8cd17daaa0800000000000000
+      internalID: -6148132724200678930
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light_air_attack_3
+      name: primary_ground_attack_4
       rect:
         serializedVersion: 2
         x: 64
@@ -186,14 +255,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55a54020e1e844e20800000000000000
-      internalID: 3333945883695012437
+      spriteID: 840dcc850df2c66d0800000000000000
+      internalID: -2995967080218701752
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light_air_attack_4
+      name: primary_ground_attack_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7f4b272ebd6b1f70800000000000000
+      internalID: 9159034930656399230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: primary_ground_attack_6
       rect:
         serializedVersion: 2
         x: 0
@@ -207,14 +297,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c23c4a4bae0a1ca20800000000000000
-      internalID: 3080920550011618092
+      spriteID: 8645b29315d3fec40800000000000000
+      internalID: 5543717085377156200
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light_air_attack_5
+      name: primary_ground_attack_7
       rect:
         serializedVersion: 2
         x: 64
@@ -228,8 +318,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50c490bc3345dd0a0800000000000000
-      internalID: -6855230476361577467
+      spriteID: 1e67f849b75d0e200800000000000000
+      internalID: 207400309609166561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: primary_ground_attack_8
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f02947eae4eea7490800000000000000
+      internalID: -7747618187235782129
       vertices: []
       indices: 
       edges: []

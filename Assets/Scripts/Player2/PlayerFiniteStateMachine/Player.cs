@@ -12,6 +12,8 @@ public class Player : MonoBehaviour {
   public PlayerDashState DashState { get; private set; }
   public PlayerInAirState InAirState { get; private set; }
   public PlayerLandState LandState { get; private set; }
+  public PlayerAttackState PrimaryAttackState { get; private set; }
+  public PlayerAttackState SecondaryAttackState { get; private set; }
   [SerializeField] private PlayerData playerData;
   // Specials
   // Boomerang
@@ -27,6 +29,7 @@ public class Player : MonoBehaviour {
   public Animator Anim { get; private set; }
   public Rigidbody2D RB { get; private set; }
   public PlayerInputHandler InputHandler { get; private set; }
+  public PlayerInventory Inventory { get; private set; }
   #endregion
   
   #region Check Transforms
@@ -50,6 +53,8 @@ public class Player : MonoBehaviour {
     DashState = new PlayerDashState(this, StateMachine, playerData, "dash");
     InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
     LandState = new PlayerLandState(this, StateMachine, playerData, "land");
+    PrimaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
+    SecondaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
     // Specials
     // Boomerang
     BoomerangThrowState = new PlayerBoomerangThrowState(this, StateMachine, playerData, "boomerangThrow");
@@ -64,6 +69,10 @@ public class Player : MonoBehaviour {
     Anim = GetComponent<Animator>();
     RB = GetComponent<Rigidbody2D>();
     InputHandler = GetComponent<PlayerInputHandler>();
+    Inventory = GetComponent<PlayerInventory>();
+
+    PrimaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.primary]);
+    // SecondaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.primary]);
 
     FacingDirection = 1;
     StateMachine.Initialize(IdleState);

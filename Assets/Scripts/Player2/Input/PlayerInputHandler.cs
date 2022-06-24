@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,11 +10,17 @@ public class PlayerInputHandler : MonoBehaviour {
   public int NormalizedInputY { get; private set; }
   public bool JumpInput { get; private set; }
   public bool JumpInputStop { get; private set; }
-  [SerializeField] private float inputHoldTime = 0.2f;
+  private float inputHoldTime = 0.2f;
   private float jumpInputStartTime;
   public bool DashInput { get; private set; }
   public bool SpecialInput { get; private set; }
   public bool SpecialInputStop { get; private set; }
+  public bool[] AttackInputs { get; private set; }
+
+  private void Start() {
+    int count = Enum.GetValues(typeof(CombatInputs)).Length;
+    AttackInputs = new bool[count];
+  }
 
   private void Update() {
     CheckJumpInputHoldTime();
@@ -22,17 +29,8 @@ public class PlayerInputHandler : MonoBehaviour {
   public void OnMoveInput(InputAction.CallbackContext context) {
     RawMovementInput = context.ReadValue<Vector2>();
 
-    if (Mathf.Abs(RawMovementInput.x) > 0.5f) {
-      NormalizedInputX = (int)(RawMovementInput * Vector2.right).normalized.x;
-    } else {
-      NormalizedInputX = 0;
-    }
-
-    if (Mathf.Abs(RawMovementInput.y) > 0.5f) {
-      NormalizedInputY = (int)(RawMovementInput * Vector2.up).normalized.y;
-    } else {
-      NormalizedInputY = 0;
-    }
+    NormalizedInputX = Mathf.RoundToInt(RawMovementInput.x);
+    NormalizedInputY = Mathf.RoundToInt(RawMovementInput.y);
   }
 
   public void OnJumpInput(InputAction.CallbackContext context) {
@@ -59,7 +57,6 @@ public class PlayerInputHandler : MonoBehaviour {
 
   public void OnDashInput(InputAction.CallbackContext context) {
     if (context.performed) {
-      Debug.Log("DASH INPUT");
       DashInput = true;
     }
   }
@@ -68,6 +65,26 @@ public class PlayerInputHandler : MonoBehaviour {
     DashInput = false;
   }
   
+  public void OnPrimaryAttackInput(InputAction.CallbackContext context) {
+    if (context.started) {
+      AttackInputs[(int)CombatInputs.primary] = true;
+    }
+
+    if (context.canceled) {
+      AttackInputs[(int)CombatInputs.primary] = false;
+    }
+  }
+
+  public void OnSecondaryAttackInput(InputAction.CallbackContext context) {
+    if (context.started) {
+      AttackInputs[(int)CombatInputs.secondary] = true;
+    }
+
+    if (context.canceled) {
+      AttackInputs[(int)CombatInputs.secondary] = false;
+    }
+  }
+
   public void OnSpecialInput(InputAction.CallbackContext context) {
     if (context.started) {
       if (GetComponent<Player>().BoomerangThrowState.CanThrowBoomerang()) {
@@ -84,4 +101,9 @@ public class PlayerInputHandler : MonoBehaviour {
   public void UseSpecialInput() {
     SpecialInput = false;
   }
+}
+
+public enum CombatInputs {
+  primary,
+  secondary
 }

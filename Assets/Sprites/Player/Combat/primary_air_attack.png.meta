@@ -1,34 +1,43 @@
 fileFormatVersion: 2
-guid: f1e58960923be034aa55960fea649de7
+guid: 8a5934853c79b0b4789647bcc998c132
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5522316921255302568
-    second: light_attack_0
+      213: 3821258555941828203
+    second: light_air_attack_0
   - first:
-      213: 6834226137480691828
-    second: light_attack_1
+      213: -8528380670101790870
+    second: light_air_attack_1
   - first:
-      213: -1535609499185853323
-    second: light_attack_2
+      213: -651362576319177364
+    second: light_air_attack_2
   - first:
-      213: 6829729283754005052
-    second: light_attack_3
+      213: 3333945883695012437
+    second: light_air_attack_3
   - first:
-      213: 3175624500002701566
-    second: light_attack_4
+      213: 3080920550011618092
+    second: light_air_attack_4
   - first:
-      213: -5609132493606755600
-    second: light_attack_5
+      213: -6855230476361577467
+    second: light_air_attack_5
   - first:
-      213: -8716354939280725090
-    second: light_attack_6
+      213: 545116247184728890
+    second: primary_air_attack_0
   - first:
-      213: -5699660327412297761
-    second: light_attack_7
+      213: -9005075234551575525
+    second: primary_air_attack_1
   - first:
-      213: -22550550361940204
-    second: light_attack_8
+      213: 2952502038868254931
+    second: primary_air_attack_2
+  - first:
+      213: 2777241964562073339
+    second: primary_air_attack_3
+  - first:
+      213: 8472680441426248595
+    second: primary_air_attack_4
+  - first:
+      213: 2811496801072947538
+    second: primary_air_attack_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -114,23 +123,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: light_attack_0
+      name: primary_air_attack_0
       rect:
         serializedVersion: 2
         x: 0
@@ -144,14 +141,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85ae273c40acc53b0800000000000000
-      internalID: -5522316921255302568
+      spriteID: a336db2b654a09700800000000000000
+      internalID: 545116247184728890
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light_attack_1
+      name: primary_air_attack_1
       rect:
         serializedVersion: 2
         x: 64
@@ -165,35 +162,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4700a37767c08de50800000000000000
-      internalID: 6834226137480691828
+      spriteID: b1cc2ecf8cb870380800000000000000
+      internalID: -9005075234551575525
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light_attack_2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 128
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 57ccf47eb4b60bae0800000000000000
-      internalID: -1535609499185853323
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: light_attack_3
+      name: primary_air_attack_2
       rect:
         serializedVersion: 2
         x: 0
@@ -207,14 +183,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c329d3e199218ce50800000000000000
-      internalID: 6829729283754005052
+      spriteID: 3d0eb5916f469f820800000000000000
+      internalID: 2952502038868254931
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light_attack_4
+      name: primary_air_attack_3
       rect:
         serializedVersion: 2
         x: 64
@@ -228,35 +204,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef040b658a5121c20800000000000000
-      internalID: 3175624500002701566
+      spriteID: bf6c7013adeba8620800000000000000
+      internalID: 2777241964562073339
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light_attack_5
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0f2e77c27bb5822b0800000000000000
-      internalID: -5609132493606755600
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: light_attack_6
+      name: primary_air_attack_4
       rect:
         serializedVersion: 2
         x: 0
@@ -270,14 +225,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9b63fb2d59490780800000000000000
-      internalID: -8716354939280725090
+      spriteID: 3938c96a8f1059570800000000000000
+      internalID: 8472680441426248595
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light_attack_7
+      name: primary_air_attack_5
       rect:
         serializedVersion: 2
         x: 64
@@ -291,29 +246,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fdf043c512db6e0b0800000000000000
-      internalID: -5699660327412297761
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: light_attack_8
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 41fdf28d462efaff0800000000000000
-      internalID: -22550550361940204
+      spriteID: 251a913d171740720800000000000000
+      internalID: 2811496801072947538
       vertices: []
       indices: 
       edges: []
