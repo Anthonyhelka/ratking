@@ -12,7 +12,7 @@ public class PlayerGlideState : PlayerAbilityState {
   public override void Enter() {
     base.Enter();
 
-    player.SetVelocityY(0.0f);
+    core.Movement.SetVelocityY(0.0f);
   }
 
   public override void Exit() {
@@ -25,12 +25,14 @@ public class PlayerGlideState : PlayerAbilityState {
     xInput = player.InputHandler.NormalizedInputX;
     specialInputStop = player.InputHandler.SpecialInputStop;
 
+    Debug.Log(isGrounded);
+    
     if (isGrounded || specialInputStop) {
       isAbilityDone = true;
     } else {
-      player.CheckIfShouldFlip(xInput);
-      player.SetVelocityX(playerData.glideXVelocity * xInput);
-      player.SetVelocityY(-playerData.glideYVelocity);
+      core.Movement.CheckIfShouldFlip(xInput);
+      core.Movement.SetVelocityX(playerData.glideXVelocity * xInput);
+      core.Movement.SetVelocityY(-playerData.glideYVelocity);
     }
   }
 

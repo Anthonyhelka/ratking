@@ -6,6 +6,7 @@ public class PlayerState {
   protected Player player;
   protected PlayerStateMachine stateMachine;
   protected PlayerData playerData;
+  protected Core core;
   protected float startTime;
   private string animationBoolName;
   protected bool isAnimationFinished;
@@ -15,6 +16,7 @@ public class PlayerState {
     this.player = player;
     this.stateMachine = stateMachine;
     this.playerData = playerData;
+    core = player.core;
     this.animationBoolName = animationBoolName;
   }
 

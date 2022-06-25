@@ -43,7 +43,6 @@ public class PlayerData : ScriptableObject {
   public float glideXVelocity = 2.0f;
   public float glideYVelocity = 0.25f;
 
-  [Header("Check Variables")]
-  public float groundCheckRadius = 0.075f;
-  public LayerMask whatIsGround;
+  [Header("Block State")]
+  public float blockXVelocity = 0.5f;
 }

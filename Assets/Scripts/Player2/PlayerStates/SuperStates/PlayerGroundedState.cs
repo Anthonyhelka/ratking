@@ -17,6 +17,7 @@ public class PlayerGroundedState : PlayerState {
   public override void Enter() {
     base.Enter();
 
+    Debug.Log("HERE");
     player.JumpState.ResetAmountOfJumpsLeft();
     player.DashState.ResetCanDash();
   }
@@ -33,10 +34,15 @@ public class PlayerGroundedState : PlayerState {
     dashInput = player.InputHandler.DashInput;
     specialInput = player.InputHandler.SpecialInput;
 
-    if (specialInput && playerData.selectedSpecial == PlayerData.Special.boomerang && player.BoomerangThrowState.CanThrowBoomerang()) {
+    if (specialInput) {
       if (playerData.selectedSpecial == PlayerData.Special.boomerang && player.BoomerangThrowState.CanThrowBoomerang()) {
         player.InputHandler.UseSpecialInput();
         stateMachine.ChangeState(player.BoomerangThrowState);
+      } else if (playerData.selectedSpecial == PlayerData.Special.shield) {
+        player.InputHandler.UseSpecialInput();
+        stateMachine.ChangeState(player.BlockState);
+      } else {
+        player.InputHandler.UseSpecialInput();
       }
     } else if (player.InputHandler.AttackInputs[(int)CombatInputs.primary]) {
       stateMachine.ChangeState(player.PrimaryAttackState);
@@ -60,6 +66,6 @@ public class PlayerGroundedState : PlayerState {
   public override void DoChecks() {
     base.DoChecks();
 
-    isGrounded = player.CheckIfGrounded();
+    isGrounded = core.CollisionSenses.Grounded;
   }
 }

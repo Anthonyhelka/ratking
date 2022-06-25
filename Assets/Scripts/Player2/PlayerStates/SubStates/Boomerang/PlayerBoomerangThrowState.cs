@@ -33,12 +33,12 @@ public class PlayerBoomerangThrowState : PlayerAbilityState {
     dashInput = player.InputHandler.DashInput;
 
     if (canCancelAnimation && (jumpInput || dashInput)) {
-      player.CheckIfShouldFlip(xInput);
+      core.Movement.CheckIfShouldFlip(xInput);
       isAbilityDone = true;
     } else if (isAnimationFinished) {
       isAbilityDone = true;
     } else {
-      player.SetVelocityX(playerData.movementVelocity * xInput);
+      core.Movement.SetVelocityX(playerData.movementVelocity * xInput);
     }
   }
 

@@ -45,6 +45,8 @@ public class PlayerInAirState : PlayerState {
       } else if (playerData.selectedSpecial == PlayerData.Special.glider) {
         player.InputHandler.UseSpecialInput();
         stateMachine.ChangeState(player.GlideState);
+      } else {
+        player.InputHandler.UseSpecialInput();
       }
     } else if (player.InputHandler.AttackInputs[(int)CombatInputs.primary]) {
       stateMachine.ChangeState(player.PrimaryAttackState);
@@ -52,7 +54,7 @@ public class PlayerInAirState : PlayerState {
       stateMachine.ChangeState(player.SecondaryAttackState);
     } else if (dashInput && player.DashState.CheckIfCanDash()) {
       stateMachine.ChangeState(player.DashState);
-    } else if (isGrounded && player.CurrentVelocity.y < 0.01f) {
+    } else if (isGrounded && core.Movement.CurrentVelocity.y < 0.01f) {
       stateMachine.ChangeState(player.LandState);
     } else if (jumpInput && player.JumpState.CanJump()) {
       if (coyoteTime) {
@@ -63,10 +65,10 @@ public class PlayerInAirState : PlayerState {
         stateMachine.ChangeState(player.DoubleJumpState);
       }
     } else {
-      player.CheckIfShouldFlip(xInput);
-      player.SetVelocityX(playerData.movementVelocity * xInput);
-      player.Anim.SetFloat("xVelocity", Mathf.Abs(player.CurrentVelocity.x));
-      player.Anim.SetFloat("yVelocity", player.CurrentVelocity.y);
+      core.Movement.CheckIfShouldFlip(xInput);
+      core.Movement.SetVelocityX(playerData.movementVelocity * xInput);
+      player.Anim.SetFloat("xVelocity", Mathf.Abs(core.Movement.CurrentVelocity.x));
+      player.Anim.SetFloat("yVelocity", core.Movement.CurrentVelocity.y);
     }
   }
 
@@ -77,7 +79,7 @@ public class PlayerInAirState : PlayerState {
   public override void DoChecks() {
     base.DoChecks();
 
-    isGrounded = player.CheckIfGrounded();
+    isGrounded = core.CollisionSenses.Grounded;
   }
 
   public void SetIsJumping() {
@@ -87,9 +89,9 @@ public class PlayerInAirState : PlayerState {
   private void CheckJumpMultiplier() {
     if (isJumping) {
       if (jumpInputStop) {
-        player.SetVelocityY(player.CurrentVelocity.y * playerData.variableJumpHeightMultiplier);
+        core.Movement.SetVelocityY(core.Movement.CurrentVelocity.y * playerData.variableJumpHeightMultiplier);
         isJumping = false;
-      } else if (player.CurrentVelocity.y <= 0.0f) {
+      } else if (core.Movement.CurrentVelocity.y <= 0.0f) {
         isJumping = false;
       }
     }

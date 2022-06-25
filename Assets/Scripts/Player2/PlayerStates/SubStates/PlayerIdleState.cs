@@ -25,7 +25,7 @@ public class PlayerIdleState : PlayerGroundedState {
   public override void PhysicsUpdate() {
     base.PhysicsUpdate();
 
-    player.SetVelocityX(0.0f);
+    core.Movement.SetVelocityX(0.0f);
   }
 
   public override void DoChecks() {

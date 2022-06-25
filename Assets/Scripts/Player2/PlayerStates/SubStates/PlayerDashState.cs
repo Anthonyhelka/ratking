@@ -15,9 +15,9 @@ public class PlayerDashState : PlayerAbilityState {
 
     CanDash = false;
     player.InputHandler.UseDashInput();
-    dashDirection = Vector2.right * player.FacingDirection;
+    dashDirection = Vector2.right * core.Movement.FacingDirection;
     player.RB.drag = playerData.drag;
-    player.SetVelocity(playerData.dashVelocity, dashDirection);
+    core.Movement.SetVelocity(playerData.dashVelocity, dashDirection);
 
     if (isGrounded) {
       player.Anim.SetBool("slide", true);
@@ -34,7 +34,7 @@ public class PlayerDashState : PlayerAbilityState {
     base.LogicUpdate();
 
     if (!isExitingState) {
-      player.SetVelocity(playerData.dashVelocity, dashDirection);
+      core.Movement.SetVelocity(playerData.dashVelocity, dashDirection);
       if (Time.time >= startTime + playerData.dashTime) {
         player.RB.drag = 0.0f;
         isAbilityDone = true;

@@ -12,7 +12,7 @@ public class PlayerDoubleJumpState : PlayerAbilityState {
   public override void Enter() {
     base.Enter();
 
-    player.SetVelocityY(playerData.doubleJumpVelocity);
+    core.Movement.SetVelocityY(playerData.doubleJumpVelocity);
     player.Anim.SetBool("doubleJump", true);
     player.InAirState.SetIsJumping();
     player.JumpState.DecreaseAmountOfJumpsLeft();
@@ -34,10 +34,10 @@ public class PlayerDoubleJumpState : PlayerAbilityState {
     if (isAnimationFinished) {
       isAbilityDone = true;
     } else {
-      player.CheckIfShouldFlip(xInput);
-      player.SetVelocityX(playerData.movementVelocity * xInput);
-      player.Anim.SetFloat("xVelocity", Mathf.Abs(player.CurrentVelocity.x));
-      player.Anim.SetFloat("yVelocity", player.CurrentVelocity.y);
+      core.Movement.CheckIfShouldFlip(xInput);
+      core.Movement.SetVelocityX(playerData.movementVelocity * xInput);
+      player.Anim.SetFloat("xVelocity", Mathf.Abs(core.Movement.CurrentVelocity.x));
+      player.Anim.SetFloat("yVelocity", core.Movement.CurrentVelocity.y);
     }
   }
 
@@ -51,7 +51,7 @@ public class PlayerDoubleJumpState : PlayerAbilityState {
 
   private void CheckJumpMultiplier() {
     if (jumpInputStop && !velcocityStopped) {
-      player.SetVelocityY(player.CurrentVelocity.y * playerData.variableJumpHeightMultiplier);
+      core.Movement.SetVelocityY(core.Movement.CurrentVelocity.y * playerData.variableJumpHeightMultiplier);
       velcocityStopped = true;
     }
   }

@@ -20,6 +20,7 @@ public class Player : MonoBehaviour {
   public PlayerBoomerangThrowState BoomerangThrowState { get; private set; }
   public PlayerBoomerangCatchState BoomerangCatchState { get; private set; }
   // Shield
+  public PlayerBlockState BlockState { get; private set; }
   // JetPack
   // Glider
   public PlayerGlideState GlideState { get; private set; }
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour {
   public Rigidbody2D RB { get; private set; }
   public PlayerInputHandler InputHandler { get; private set; }
   public PlayerInventory Inventory { get; private set; }
+  public Core core { get; private set; }
   #endregion
   
   #region Check Transforms
@@ -37,14 +39,9 @@ public class Player : MonoBehaviour {
   public Transform boomerangPosition;
   #endregion
 
-  #region Other Variables
-  private Vector2 workspace;
-  public Vector2 CurrentVelocity { get; private set; }
-  public int FacingDirection { get; private set; }
-  #endregion
-
   #region Unity Functions
   private void Awake() {
+    core = GetComponentInChildren<Core>();
     StateMachine = new PlayerStateMachine();
     IdleState = new PlayerIdleState(this, StateMachine, playerData, "idle");
     MoveState = new PlayerMoveState(this, StateMachine, playerData, "move");
@@ -60,6 +57,7 @@ public class Player : MonoBehaviour {
     BoomerangThrowState = new PlayerBoomerangThrowState(this, StateMachine, playerData, "boomerangThrow");
     BoomerangCatchState = new PlayerBoomerangCatchState(this, StateMachine, playerData, "boomerangCatch");
     // Shield
+    BlockState = new PlayerBlockState(this, StateMachine, playerData, "block");
     // JetPack
     // Glider
     GlideState = new PlayerGlideState(this, StateMachine, playerData, "glide");
@@ -74,49 +72,17 @@ public class Player : MonoBehaviour {
     PrimaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.primary]);
     // SecondaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.primary]);
 
-    FacingDirection = 1;
     StateMachine.Initialize(IdleState);
   }
 
   private void Update() {
-    CurrentVelocity = RB.velocity;
+    core.LogicUpdate();
+
     StateMachine.CurrentState.LogicUpdate();
   }
 
   private void FixedUpdate() {
     StateMachine.CurrentState.PhysicsUpdate();
-  }
-  #endregion
-
-  #region Set Functions
-  public void SetVelocityX(float velocity) {
-    workspace.Set(velocity, CurrentVelocity.y);
-    RB.velocity = workspace;
-    CurrentVelocity = workspace;
-  }
-
-  public void SetVelocityY(float velocity) {
-    workspace.Set(CurrentVelocity.x, velocity);
-    RB.velocity = workspace;
-    CurrentVelocity = workspace;
-  }
-
-  public void SetVelocity(float velocity, Vector2 direction) {
-    workspace = direction * velocity;
-    RB.velocity = workspace;
-    CurrentVelocity = workspace;
-  }
-  #endregion
-
-  #region Check Functions
-  public bool CheckIfGrounded() {
-    return Physics2D.OverlapCircle(groundCheck.position, playerData.groundCheckRadius, playerData.whatIsGround);
-  }
-
-  public void CheckIfShouldFlip(int xInput) {
-    if (xInput != 0 && xInput != FacingDirection) {
-      Flip();
-    }
   }
   #endregion
 
@@ -128,17 +94,11 @@ public class Player : MonoBehaviour {
   private void AnimationFinishTrigger() {
     StateMachine.CurrentState.AnimationFinishTrigger();
   }
-
-  private void Flip() {
-    FacingDirection *= -1;
-    transform.Rotate(0.0f, 180.0f, 0.0f);
-  }
   #endregion
 
   #region Gizmos
   public virtual void OnDrawGizmos() {
-    // Ground Check
-    Gizmos.DrawWireSphere(groundCheck.position, playerData.groundCheckRadius);
+    core.DrawGizmos();
   }
   #endregion
 }
