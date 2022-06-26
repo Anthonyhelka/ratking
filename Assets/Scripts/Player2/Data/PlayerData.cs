@@ -76,4 +76,8 @@ public class PlayerData : ScriptableObject {
 
   [Header("Block State")]
   public float blockXVelocity = 0.5f;
+
+  [Header("Health")]
+  public int maxHealth = 5;
+  public float invincibilityTimer = 1.0f;
 }

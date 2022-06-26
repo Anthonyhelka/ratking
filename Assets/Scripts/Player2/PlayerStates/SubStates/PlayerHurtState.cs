@@ -2,16 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDeadState : PlayerAbilityState {
-  public PlayerDeadState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName) {
+public class PlayerHurtState : PlayerAbilityState {
+  private float lastUseTime = -1.0f;
+
+  public PlayerHurtState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName) {
   }
 
   public override void Enter() {
     base.Enter();
+
+    core.Movement.SetVelocityY(2.0f);
+    stateMachine.ChangeState(player.IdleState);
   }
 
   public override void Exit() {
     base.Exit();
+
+    lastUseTime = Time.time;
   }
 
   public override void LogicUpdate() {
@@ -30,7 +37,9 @@ public class PlayerDeadState : PlayerAbilityState {
 
   public override void AnimationFinishTrigger() {
     base.AnimationFinishTrigger();
+  }
 
-    player.GameOverMenu.GameOver();
+  public bool CanUse() {
+    return Time.time >= lastUseTime + playerData.invincibilityTimer;
   }
 }

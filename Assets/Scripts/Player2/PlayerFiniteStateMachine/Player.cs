@@ -16,6 +16,8 @@ public class Player : MonoBehaviour {
   public PlayerBounceState BounceState { get; private set; }
   public PlayerRollState RollState { get; private set; }
   public PlayerSleepState SleepState { get; private set; }
+  public PlayerHurtState HurtState { get; private set; }
+  public PlayerDeadState DeadState { get; private set; }
   // Combat
   public PlayerPrimaryGroundAttackState PrimaryGroundAttackState { get; private set; }
   public PlayerPrimaryAirAttackState PrimaryAirAttackState { get; private set; }
@@ -37,6 +39,11 @@ public class Player : MonoBehaviour {
   // Checks
   public Transform attackCheck;
   public LayerMask whatIsDamageable;
+
+  // Health
+  public int health;
+  public int maxHealth;
+  public GameOverMenu GameOverMenu;
   #endregion
   
   #region Components
@@ -66,6 +73,8 @@ public class Player : MonoBehaviour {
     BounceState = new PlayerBounceState(this, StateMachine, playerData, "bounce");
     RollState = new PlayerRollState(this, StateMachine, playerData, "roll");
     SleepState = new PlayerSleepState(this, StateMachine, playerData, "sleep");
+    HurtState = new PlayerHurtState(this, StateMachine, playerData, "hurt");
+    DeadState = new PlayerDeadState(this, StateMachine, playerData, "dead");
 
     // Combat
     PrimaryGroundAttackState = new PlayerPrimaryGroundAttackState(this, StateMachine, playerData, "primaryGroundAttack");
@@ -84,6 +93,11 @@ public class Player : MonoBehaviour {
     // JetPack
     // Glider
     GlideState = new PlayerGlideState(this, StateMachine, playerData, "glide");
+
+    // Health
+    health = playerData.maxHealth;
+    maxHealth = playerData.maxHealth;
+    GameOverMenu = GameObject.Find("UI").GetComponent<GameOverMenu>();
   }
 
   private void Start() {
@@ -118,6 +132,29 @@ public class Player : MonoBehaviour {
   #region Gizmos
   public void OnDrawGizmos() {
     StateMachine.CurrentState.DrawGizmos();
+  }
+  #endregion
+
+  #region Health Functions
+  public void Heal() {
+    void Heal(int amount) {
+      health += amount;
+
+      if (health > playerData.maxHealth) {
+        health = playerData.maxHealth;
+      }
+    }
+  }
+
+  public void Damage(AttackDetails attackDetails) {
+    if (!HurtState.CanUse()) return;
+    health -= attackDetails.damageAmount;
+
+    if (health <= 0) {
+      StateMachine.ChangeState(DeadState);
+    } else if (health > 0) {
+      StateMachine.ChangeState(HurtState);
+    }
   }
   #endregion
 }

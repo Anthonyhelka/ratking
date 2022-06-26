@@ -14,6 +14,7 @@ public class PlayerPrimaryGroundAttackState : PlayerAbilityState {
     base.Enter();
 
     attackCounter = 0;
+    core.Movement.SetVelocityX(0.0f);
   }
 
   public override void Exit() {

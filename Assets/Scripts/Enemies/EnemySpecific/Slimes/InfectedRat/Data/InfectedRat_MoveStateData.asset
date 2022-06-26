@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6a04c90bd795442a3447c9194cc581, type: 3}
   m_Name: InfectedRat_MoveStateData
   m_EditorClassIdentifier: 
-  movementSpeed: 0
+  movementSpeed: 0.3
