@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAbilityState : PlayerState {
+  // Inputs
   protected int xInput;
+  protected bool jumpInput;
+  protected bool dashInput;
+  protected bool specialInput;
+  protected bool primaryAttackInput;
+  protected bool secondaryAttackInput;
+
   protected bool isAbilityDone;
   protected bool isGrounded;
 
@@ -24,6 +31,11 @@ public class PlayerAbilityState : PlayerState {
     base.LogicUpdate();
 
     xInput = player.InputHandler.NormalizedInputX;
+    jumpInput = player.InputHandler.JumpInput;
+    dashInput = player.InputHandler.DashInput;
+    specialInput = player.InputHandler.SpecialInput;
+    primaryAttackInput = player.InputHandler.PrimaryAttackInput;
+    secondaryAttackInput = player.InputHandler.SecondaryAttackInput;
 
     if (isAbilityDone) {
       if (isGrounded && core.Movement.CurrentVelocity.y < 0.01f) {
@@ -42,5 +54,9 @@ public class PlayerAbilityState : PlayerState {
     base.DoChecks();
 
     isGrounded = core.CollisionSenses.Grounded;
+  }
+
+  public override void DrawGizmos() {
+    base.DrawGizmos();
   }
 }

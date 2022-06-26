@@ -28,12 +28,4 @@ public class InfectedRat : Entity {
       stateMachine.ChangeState(deadState);
     }
   }
-
-  public override void Damage(float amount) {
-    base.Damage(amount);
-
-    if (isDead) {
-      stateMachine.ChangeState(deadState);
-    }
-  }
 }

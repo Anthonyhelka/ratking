@@ -139,17 +139,6 @@ public class Entity : MonoBehaviour, IDamageable {
     }
   }
 
-  public virtual void Damage(float amount) {
-    Debug.Log(currentHealth <= 0);
-    Debug.Log(amount);
-
-    currentHealth -= amount;
-
-    if (currentHealth <= 0) {
-      isDead = true;
-    }
-  }
-
   public virtual void DamageHop(float velocity) {
     velocityWorkspace.Set(rb.velocity.x, velocity);
     rb.velocity = velocityWorkspace;

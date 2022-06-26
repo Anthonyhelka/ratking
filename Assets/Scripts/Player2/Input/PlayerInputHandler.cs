@@ -15,12 +15,8 @@ public class PlayerInputHandler : MonoBehaviour {
   public bool DashInput { get; private set; }
   public bool SpecialInput { get; private set; }
   public bool SpecialInputStop { get; private set; }
-  public bool[] AttackInputs { get; private set; }
-
-  private void Start() {
-    int count = Enum.GetValues(typeof(CombatInputs)).Length;
-    AttackInputs = new bool[count];
-  }
+  public bool PrimaryAttackInput { get; private set; }
+  public bool SecondaryAttackInput { get; private set; }
 
   private void Update() {
     CheckJumpInputHoldTime();
@@ -67,21 +63,21 @@ public class PlayerInputHandler : MonoBehaviour {
   
   public void OnPrimaryAttackInput(InputAction.CallbackContext context) {
     if (context.started) {
-      AttackInputs[(int)CombatInputs.primary] = true;
+      PrimaryAttackInput = true;
     }
 
     if (context.canceled) {
-      AttackInputs[(int)CombatInputs.primary] = false;
+      PrimaryAttackInput = false;
     }
   }
 
   public void OnSecondaryAttackInput(InputAction.CallbackContext context) {
     if (context.started) {
-      AttackInputs[(int)CombatInputs.secondary] = true;
+      SecondaryAttackInput = true;
     }
 
     if (context.canceled) {
-      AttackInputs[(int)CombatInputs.secondary] = false;
+      SecondaryAttackInput = false;
     }
   }
 

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerBlockState : PlayerAbilityState {
   private bool specialInputStop;
-  private bool isBlocking;
 
   public PlayerBlockState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName) {
   }
@@ -13,14 +12,10 @@ public class PlayerBlockState : PlayerAbilityState {
     base.Enter();
 
     core.Movement.SetVelocityX(0.0f);
-    player.Anim.SetBool("startingBlock", true);
   }
 
   public override void Exit() {
     base.Exit();
-
-    isBlocking = false;
-    player.Anim.SetBool("startingBlock", false);
   }
 
   public override void LogicUpdate() {
@@ -29,11 +24,12 @@ public class PlayerBlockState : PlayerAbilityState {
     xInput = player.InputHandler.NormalizedInputX;
     specialInputStop = player.InputHandler.SpecialInputStop;
 
-    if ((!isGrounded || specialInputStop) && isBlocking) {
+    if (specialInputStop) {
+      stateMachine.ChangeState(player.EndBlockState);
+    } else if (!isGrounded) {
       isAbilityDone = true;
     } else {
       core.Movement.CheckIfShouldFlip(xInput);
-      core.Movement.SetVelocityX(0.0f);
     }
   }
 
@@ -44,12 +40,4 @@ public class PlayerBlockState : PlayerAbilityState {
   public override void DoChecks() {
     base.DoChecks();
   }
-
-  public override void AnimationTrigger() {
-    base.AnimationTrigger(); 
-
-    isBlocking = true;
-    player.Anim.SetBool("startingBlock", false);
-  }
-
 }

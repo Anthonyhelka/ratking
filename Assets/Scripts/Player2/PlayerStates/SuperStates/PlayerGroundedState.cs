@@ -8,6 +8,8 @@ public class PlayerGroundedState : PlayerState {
   private bool jumpInput;
   private bool dashInput;
   private bool specialInput;
+  private bool primaryAttackInput;
+  private bool secondaryAttackInput;
 
   private bool isGrounded;
 
@@ -32,6 +34,8 @@ public class PlayerGroundedState : PlayerState {
     jumpInput = player.InputHandler.JumpInput;
     dashInput = player.InputHandler.DashInput;
     specialInput = player.InputHandler.SpecialInput;
+    primaryAttackInput = player.InputHandler.PrimaryAttackInput;
+    secondaryAttackInput = player.InputHandler.SecondaryAttackInput;
 
     if (specialInput) {
       if (playerData.selectedSpecial == PlayerData.Special.boomerang && player.BoomerangThrowState.CanThrowBoomerang()) {
@@ -39,15 +43,15 @@ public class PlayerGroundedState : PlayerState {
         stateMachine.ChangeState(player.BoomerangThrowState);
       } else if (playerData.selectedSpecial == PlayerData.Special.shield) {
         player.InputHandler.UseSpecialInput();
-        stateMachine.ChangeState(player.BlockState);
+        stateMachine.ChangeState(player.StartBlockState);
       } else {
         player.InputHandler.UseSpecialInput();
       }
-    } else if (player.InputHandler.AttackInputs[(int)CombatInputs.primary]) {
-      stateMachine.ChangeState(player.PrimaryAttackState);
-    } else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondary]) {
-      stateMachine.ChangeState(player.SecondaryAttackState);
-    }  else if (dashInput && player.DashState.CheckIfCanDash()) {
+    } else if (primaryAttackInput && player.PrimaryGroundAttackState.CanUse()) {
+      stateMachine.ChangeState(player.PrimaryGroundAttackState);
+    } else if (secondaryAttackInput && player.SecondaryGroundAttackState.CanUse()) {
+      stateMachine.ChangeState(player.SecondaryGroundAttackState);
+    } else if (dashInput && player.DashState.CheckIfCanDash()) {
       stateMachine.ChangeState(player.DashState);
     } else if (jumpInput && player.JumpState.CanJump()) {
       player.InputHandler.UseJumpInput();

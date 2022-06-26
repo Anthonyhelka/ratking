@@ -7,8 +7,10 @@ public class PlayerData : ScriptableObject {
   // [Header("Specials")]
   public enum Special { boomerang, shield, jetPack, glider };
   public Special selectedSpecial = Special.boomerang;
-  // [Header("Idle State")]
 
+  [Header("Idle State")]
+  public float sleepTime = 5.0f;
+  
   [Header("Move State")]
   public float movementVelocity = 1.5f;
 
@@ -30,7 +32,36 @@ public class PlayerData : ScriptableObject {
   public float drag = 10.0f;
   public float dashEndYMultiplier = 0.2f;
 
-  // [Header("Land State")]
+  [Header("Bounce State")]
+  public float bounceVelocity = 4.0f;
+
+  [Header("Roll State")]
+  public float rollVelocity = 2.0f;
+
+  [Header("Primary Ground Attack State")]
+  public float[] primaryGroundAttackDamage = new float[2];
+  public float[] primaryGroundAttackRadius = new float[2];
+  public float[] primaryGroundAttackMovement = new float[2];
+  public float primaryGroundAttackCooldown = 0.0f;
+
+  [Header("Primary Air Attack State")]
+  public float primaryAirAttackDamage = 20.0f;
+  public float primaryAirAttackRadius = 0.3f;
+  public float primaryAirAttackCooldown = 0.0f;
+
+  [Header("Secondary Ground Attack State")]
+  public float secondaryGroundAttackDamage = 20.0f;
+  public float secondaryGroundAttackRadius = 0.2f;
+  public float secondaryGroundAttackXVelocity = 0.5f;
+  public float secondaryGroundAttackYVelocity = 0.3f;
+  public float secondaryGroundAttackCooldown = 1.0f;
+
+  [Header("Secondary Air Attack State")]
+  public float secondaryAirAttackDamage = 20.0f;
+  public float secondaryAirAttackRadius = 0.3f;
+  public float secondaryAirAttackXVelocity = 1.5f;
+  public float secondaryAirAttackYVelocity = 0.0f;
+  public float secondaryAirAttackCooldown = 1.0f;
 
   [Header("Boomerang Throw State")]
   public GameObject boomerang;

@@ -33,13 +33,12 @@ public class PlayerDashState : PlayerAbilityState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (!isExitingState) {
-      core.Movement.SetVelocity(playerData.dashVelocity, dashDirection);
-      if (Time.time >= startTime + playerData.dashTime) {
-        player.RB.drag = 0.0f;
-        isAbilityDone = true;
-        lastDashTime = Time.time;
-      }
+    core.Movement.SetVelocity(playerData.dashVelocity, dashDirection);
+    
+    if (Time.time >= startTime + playerData.dashTime) {
+      player.RB.drag = 0.0f;
+      isAbilityDone = true;
+      lastDashTime = Time.time;
     }
   }
 

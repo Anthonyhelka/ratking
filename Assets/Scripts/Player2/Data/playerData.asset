@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: playerData
   m_EditorClassIdentifier: 
   selectedSpecial: 0
+  sleepTime: 10
   movementVelocity: 1.25
   coyoteTime: 0.2
   variableJumpHeightMultiplier: 0.5
@@ -24,6 +25,31 @@ MonoBehaviour:
   dashVelocity: 5
   drag: 10
   dashEndYMultiplier: 0.2
+  bounceVelocity: 4
+  rollVelocity: 2.5
+  primaryGroundAttackDamage:
+  - 10
+  - 20
+  primaryGroundAttackRadius:
+  - 0.25
+  - 0.25
+  primaryGroundAttackMovement:
+  - 0.3
+  - 0.3
+  primaryGroundAttackCooldown: 0
+  primaryAirAttackDamage: 20
+  primaryAirAttackRadius: 0.3
+  primaryAirAttackCooldown: 0
+  secondaryGroundAttackDamage: 20
+  secondaryGroundAttackRadius: 0.3
+  secondaryGroundAttackXVelocity: 1.5
+  secondaryGroundAttackYVelocity: 0.75
+  secondaryGroundAttackCooldown: 1
+  secondaryAirAttackDamage: 20
+  secondaryAirAttackRadius: 1
+  secondaryAirAttackXVelocity: 1.5
+  secondaryAirAttackYVelocity: 0
+  secondaryAirAttackCooldown: 1
   boomerang: {fileID: 3104904845522073772, guid: 26ee7dd12045f9c42afd65e84e546ad7,
     type: 3}
   boomerangDamage: 10

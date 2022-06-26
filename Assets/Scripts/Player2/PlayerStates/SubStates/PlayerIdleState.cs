@@ -19,6 +19,8 @@ public class PlayerIdleState : PlayerGroundedState {
 
     if (xInput != 0 && !isExitingState) {
       stateMachine.ChangeState(player.MoveState);
+    } else if (Time.time >= startTime + playerData.sleepTime) {
+      stateMachine.ChangeState(player.SleepState);
     }
   }
 

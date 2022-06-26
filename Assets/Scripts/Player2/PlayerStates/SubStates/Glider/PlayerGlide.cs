@@ -24,8 +24,6 @@ public class PlayerGlideState : PlayerAbilityState {
 
     xInput = player.InputHandler.NormalizedInputX;
     specialInputStop = player.InputHandler.SpecialInputStop;
-
-    Debug.Log(isGrounded);
     
     if (isGrounded || specialInputStop) {
       isAbilityDone = true;

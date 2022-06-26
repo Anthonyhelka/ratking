@@ -31,7 +31,7 @@ public class PlayerDoubleJumpState : PlayerAbilityState {
     jumpInputStop = player.InputHandler.JumpInputStop;
     CheckJumpMultiplier();
 
-    if (isAnimationFinished) {
+    if (isAnimationFinished || dashInput || specialInput || primaryAttackInput || secondaryAttackInput) {
       isAbilityDone = true;
     } else {
       core.Movement.CheckIfShouldFlip(xInput);

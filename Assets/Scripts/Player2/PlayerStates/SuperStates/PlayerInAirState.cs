@@ -9,6 +9,8 @@ public class PlayerInAirState : PlayerState {
   private bool jumpInputStop;
   private bool dashInput;
   private bool specialInput;
+  private bool primaryAttackInput;
+  private bool secondaryAttackInput;
 
   private bool isGrounded;
   private bool isJumping;
@@ -35,6 +37,8 @@ public class PlayerInAirState : PlayerState {
     jumpInputStop = player.InputHandler.JumpInputStop;
     dashInput = player.InputHandler.DashInput;
     specialInput = player.InputHandler.SpecialInput;
+    primaryAttackInput = player.InputHandler.PrimaryAttackInput;
+    secondaryAttackInput = player.InputHandler.SecondaryAttackInput;
 
     CheckJumpMultiplier();
 
@@ -48,10 +52,10 @@ public class PlayerInAirState : PlayerState {
       } else {
         player.InputHandler.UseSpecialInput();
       }
-    } else if (player.InputHandler.AttackInputs[(int)CombatInputs.primary]) {
-      stateMachine.ChangeState(player.PrimaryAttackState);
-    } else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondary]) {
-      stateMachine.ChangeState(player.SecondaryAttackState);
+    } else if (primaryAttackInput && player.PrimaryGroundAttackState.CanUse()) {
+      stateMachine.ChangeState(player.PrimaryAirAttackState);
+    } else if (secondaryAttackInput && player.SecondaryAirAttackState.CanUse()) {
+      stateMachine.ChangeState(player.SecondaryAirAttackState);
     } else if (dashInput && player.DashState.CheckIfCanDash()) {
       stateMachine.ChangeState(player.DashState);
     } else if (isGrounded && core.Movement.CurrentVelocity.y < 0.01f) {

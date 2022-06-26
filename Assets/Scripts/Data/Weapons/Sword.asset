@@ -12,14 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 349ba21c62b2cdc4d845c187dccd0852, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  movementSpeed: []
   weaponAttackDetails:
   - attackName: 
-    movementSpeed: 0
-    damageAmount: 0
-  - attackName: 
-    movementSpeed: 0
-    damageAmount: 0
-  - attackName: 
-    movementSpeed: 0
-    damageAmount: 0
+    movementSpeed: 0.5
+    damageAmount: 5
