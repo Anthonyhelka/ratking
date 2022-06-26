@@ -11,8 +11,8 @@ public class PlayerHurtState : PlayerAbilityState {
   public override void Enter() {
     base.Enter();
 
+    core.Movement.SetVelocityX(2.0f * core.Movement.FacingDirection);
     core.Movement.SetVelocityY(2.0f);
-    stateMachine.ChangeState(player.IdleState);
   }
 
   public override void Exit() {
@@ -37,6 +37,8 @@ public class PlayerHurtState : PlayerAbilityState {
 
   public override void AnimationFinishTrigger() {
     base.AnimationFinishTrigger();
+
+    stateMachine.ChangeState(player.IdleState);
   }
 
   public bool CanUse() {

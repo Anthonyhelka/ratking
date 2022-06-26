@@ -92,6 +92,36 @@ TextureImporter:
   - first:
       213: 5482888753692775456
     second: damaged_9
+  - first:
+      213: -3582916166963785052
+    second: hurt_0
+  - first:
+      213: 1642290761556927327
+    second: hurt_1
+  - first:
+      213: 6819390902422994280
+    second: hurt_2
+  - first:
+      213: 6079887152930431857
+    second: hurt_3
+  - first:
+      213: 6351682349791027127
+    second: hurt_4
+  - first:
+      213: 2988431609061880149
+    second: hurt_5
+  - first:
+      213: -856480874173875929
+    second: hurt_6
+  - first:
+      213: -7937370475652799911
+    second: hurt_7
+  - first:
+      213: -6680366435788347620
+    second: hurt_8
+  - first:
+      213: 6358333157353456557
+    second: hurt_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -193,7 +223,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: damaged_0
+      name: hurt_0
       rect:
         serializedVersion: 2
         x: 0
@@ -207,14 +237,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3cf577eedb106a530800000000000000
-      internalID: 3865779245405396931
+      spriteID: 4a29e10babce64ec0800000000000000
+      internalID: -3582916166963785052
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: damaged_1
+      name: hurt_1
       rect:
         serializedVersion: 2
         x: 32
@@ -228,14 +258,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97616e3434c8981a0800000000000000
-      internalID: -6806755141263944071
+      spriteID: f53a1841fb69ac610800000000000000
+      internalID: 1642290761556927327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: damaged_2
+      name: hurt_2
       rect:
         serializedVersion: 2
         x: 64
@@ -249,14 +279,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d87d7cb107cf07c0800000000000000
-      internalID: -4102841925239998255
+      spriteID: 86df37325e753ae50800000000000000
+      internalID: 6819390902422994280
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: damaged_3
+      name: hurt_3
       rect:
         serializedVersion: 2
         x: 0
@@ -270,14 +300,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ecb4f2b83a013300800000000000000
-      internalID: 229976294609435873
+      spriteID: 17321e82729106450800000000000000
+      internalID: 6079887152930431857
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: damaged_4
+      name: hurt_4
       rect:
         serializedVersion: 2
         x: 32
@@ -291,14 +321,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 795c9df0845877090800000000000000
-      internalID: -8036808465469291113
+      spriteID: 7bf9969c175b52850800000000000000
+      internalID: 6351682349791027127
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: damaged_5
+      name: hurt_5
       rect:
         serializedVersion: 2
         x: 64
@@ -312,14 +342,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a38f66eabab2bac0800000000000000
-      internalID: -3840802220300860508
+      spriteID: 551bead07ba097920800000000000000
+      internalID: 2988431609061880149
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: damaged_6
+      name: hurt_6
       rect:
         serializedVersion: 2
         x: 0
@@ -333,14 +363,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 13493d2cb4a480c50800000000000000
-      internalID: 6631632140554703921
+      spriteID: 72933f9ce2b2d14f0800000000000000
+      internalID: -856480874173875929
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: damaged_7
+      name: hurt_7
       rect:
         serializedVersion: 2
         x: 32
@@ -354,14 +384,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7abfcb34adda39ac0800000000000000
-      internalID: -3849542103520707673
+      spriteID: 952aa0c3b9bc8d190800000000000000
+      internalID: -7937370475652799911
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: damaged_8
+      name: hurt_8
       rect:
         serializedVersion: 2
         x: 64
@@ -375,14 +405,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d2a9e2fd48afd220800000000000000
-      internalID: 2512912169837372114
+      spriteID: c17a469ee129a43a0800000000000000
+      internalID: -6680366435788347620
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: damaged_9
+      name: hurt_9
       rect:
         serializedVersion: 2
         x: 0
@@ -396,8 +426,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02497da9542271c40800000000000000
-      internalID: 5482888753692775456
+      spriteID: da304a791565d3850800000000000000
+      internalID: 6358333157353456557
       vertices: []
       indices: 
       edges: []

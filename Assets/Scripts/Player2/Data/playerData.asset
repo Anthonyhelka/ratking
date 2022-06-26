@@ -59,3 +59,5 @@ MonoBehaviour:
   glideXVelocity: 2
   glideYVelocity: 0.2
   blockXVelocity: 0.2
+  maxHealth: 5
+  invincibilityTimer: 1
