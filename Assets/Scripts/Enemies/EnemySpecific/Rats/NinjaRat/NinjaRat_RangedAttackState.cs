@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ninja_RangedAttackState : RangedAttackState {
+public class NinjaRat_RangedAttackState : RangedAttackState {
   private NinjaRat ninjaRat;
 
-  public Ninja_RangedAttackState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, Transform attackPosition, D_RangedAttackState stateData, NinjaRat ninjaRat) : base(entity, stateMachine, animationBoolName, attackPosition, stateData) {
+  public NinjaRat_RangedAttackState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, Transform attackPosition, D_RangedAttackState stateData, NinjaRat ninjaRat) : base(entity, stateMachine, animationBoolName, attackPosition, stateData) {
     this.ninjaRat = ninjaRat;
   }
 

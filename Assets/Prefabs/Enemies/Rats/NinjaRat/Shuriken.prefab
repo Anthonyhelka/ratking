@@ -125,6 +125,7 @@ MonoBehaviour:
   isGravityOn: 0
   hasHitGround: 0
   beingDestroyed: 0
+  useGravity: 1
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512

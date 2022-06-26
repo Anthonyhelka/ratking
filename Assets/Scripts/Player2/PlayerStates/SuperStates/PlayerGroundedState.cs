@@ -17,7 +17,6 @@ public class PlayerGroundedState : PlayerState {
   public override void Enter() {
     base.Enter();
 
-    Debug.Log("HERE");
     player.JumpState.ResetAmountOfJumpsLeft();
     player.DashState.ResetCanDash();
   }

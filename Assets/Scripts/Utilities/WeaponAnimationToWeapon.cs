@@ -28,4 +28,8 @@ public class WeaponAnimationToWeapon : MonoBehaviour {
   private void AnimationTurnOffFlipTrigger() {
     weapon.AnimationTurnOffFlipTrigger();
   }
+
+  private void AnimationActionTrigger() {
+    weapon.AnimationActionTrigger();
+  }
 }

@@ -44,6 +44,6 @@ public class RangedAttackState : AttackState {
 
     projectile = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
     projectileScript = projectile.GetComponent<Projectile>();
-    projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectTravelDistance, stateData.projectileDamage, entity.entityData.type);
+    projectileScript.FireProjectile((attackPosition.position - entity.transform.position).normalized * stateData.projectileSpeed, stateData.projectTravelDistance, stateData.projectileDamage, entity.entityData.type);
   }
 }

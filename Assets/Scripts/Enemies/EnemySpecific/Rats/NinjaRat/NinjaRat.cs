@@ -7,7 +7,7 @@ public class NinjaRat : Entity {
   public NinjaRat_MoveState moveState { get; private set; }
   public NinjaRat_PlayerDetectedState playerDetectedState { get; private set; }
   public NinjaRat_DodgeState dodgeState { get; private set; }
-  public Ninja_RangedAttackState rangedAttackState { get; private set; }
+  public NinjaRat_RangedAttackState rangedAttackState { get; private set; }
   public NinjaRat_DeadState deadState { get; private set; }
 
   [SerializeField] private D_IdleState idleStateData;
@@ -26,7 +26,7 @@ public class NinjaRat : Entity {
     moveState = new NinjaRat_MoveState(this, stateMachine, "move", moveStateData, this);
     playerDetectedState = new NinjaRat_PlayerDetectedState(this, stateMachine, "playerDetected", playerDetectedStateData, this);
     dodgeState = new NinjaRat_DodgeState(this, stateMachine, "dodge", dodgeStateData, this);
-    rangedAttackState = new Ninja_RangedAttackState(this, stateMachine, "rangedAttack", rangedAttackPosition, rangedAttackStateData, this);
+    rangedAttackState = new NinjaRat_RangedAttackState(this, stateMachine, "rangedAttack", rangedAttackPosition, rangedAttackStateData, this);
     deadState = new NinjaRat_DeadState(this, stateMachine, "dead", deadStateData, this);
 
     stateMachine.Initialize(moveState);

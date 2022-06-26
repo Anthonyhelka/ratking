@@ -7,14 +7,16 @@ public class Projectile : MonoBehaviour {
   private Animator animator;
 
   private AttackDetails attackDetails;
-  private float speed;
+  private Vector2 velocity;
   private float travelDistance;
   private float startPositionX;
+  private float startPositionY;
   [SerializeField] private float gravity = 1.0f;
   [SerializeField] private float hitboxRadius;
   [SerializeField] private bool isGravityOn;
   [SerializeField] private bool hasHitGround;
   [SerializeField] private bool beingDestroyed;
+  [SerializeField] private bool useGravity;
   [SerializeField] private LayerMask whatIsPlayer;
   [SerializeField] private LayerMask whatIsGround;
   [SerializeField] private Transform hitboxPosition;
@@ -25,8 +27,9 @@ public class Projectile : MonoBehaviour {
 
     isGravityOn = false;
     rb.gravityScale = 0.0f;
-    rb.velocity = transform.right * speed;
+    rb.velocity = velocity;
     startPositionX = transform.position.x;
+    startPositionY = transform.position.y;
   }
 
   private void Update() {
@@ -51,9 +54,16 @@ public class Projectile : MonoBehaviour {
         hasHitGround = true;  
         DestroyProjectile();
       }
-      if (Mathf.Abs(startPositionX - transform.position.x) >= travelDistance && !isGravityOn) {
-        isGravityOn = true;
-        rb.gravityScale = gravity;
+
+      if ((Mathf.Abs(startPositionX - transform.position.x) >= travelDistance || Mathf.Abs(startPositionY - transform.position.y) >= travelDistance)) {
+        if (useGravity) {
+          if (!isGravityOn) {
+            isGravityOn = true;
+            rb.gravityScale = gravity;
+          }
+        } else {
+          DestroyProjectile();
+        }
       }
     }
   }
@@ -66,8 +76,8 @@ public class Projectile : MonoBehaviour {
     Destroy(gameObject, 0.35f);
   }
 
-  public void FireProjectile(float speed, float travelDistance, int damage, string type) {
-    this.speed = speed;
+  public void FireProjectile(Vector2 velocity, float travelDistance, int damage, string type) {
+    this.velocity = velocity;
     this.travelDistance = travelDistance;
     attackDetails.damageAmount = damage;
     attackDetails.type = type;

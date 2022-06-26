@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity : MonoBehaviour {
+public class Entity : MonoBehaviour, IDamageable {
   public FiniteStateMachine stateMachine;
   public D_Entity entityData;
 
@@ -136,6 +136,17 @@ public class Entity : MonoBehaviour {
       if (currentHealth <= 0) {
         isDead = true;
       }
+    }
+  }
+
+  public virtual void Damage(float amount) {
+    Debug.Log(currentHealth <= 0);
+    Debug.Log(amount);
+
+    currentHealth -= amount;
+
+    if (currentHealth <= 0) {
+      isDead = true;
     }
   }
 
