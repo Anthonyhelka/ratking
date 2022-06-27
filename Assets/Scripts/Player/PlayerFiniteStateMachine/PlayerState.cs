@@ -27,7 +27,7 @@ public class PlayerState {
     isExitingState = false;
     DoChecks();
 
-    Debug.Log(animationBoolName);
+    // Debug.Log(animationBoolName);
   }
 
   public virtual void Exit() {

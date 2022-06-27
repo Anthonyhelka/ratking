@@ -22,7 +22,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   minAggroDistance: {x: 2, y: 2}
-  maxAggroDistance: {x: 4, y: 4}
+  maxAggroDistance: {x: 5, y: 5}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512

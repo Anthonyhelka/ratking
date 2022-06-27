@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: PlagueFly_PathfindStateData
   m_EditorClassIdentifier: 
   pathfindSpeed: 1
+  nextWaypointDistance: 0.1

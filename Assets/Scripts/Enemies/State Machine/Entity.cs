@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class Entity : MonoBehaviour, IDamageable {
   public FiniteStateMachine stateMachine;
@@ -10,6 +11,7 @@ public class Entity : MonoBehaviour, IDamageable {
   public Animator animator { get; private set; }
   public GameObject alive { get; private set; }
   public AnimationToStateMachine atsm { get; private set; }
+  public Seeker seeker { get; private set; }
 
   private float currentHealth;
   public int lastDamageDirection;
@@ -21,6 +23,7 @@ public class Entity : MonoBehaviour, IDamageable {
   protected bool isDead;
   public bool willBlock;
   public bool willDodge;
+  public bool usesPathfinding;
 
   public int facingDirection { get; private set; }
   private Vector2 velocityWorkspace;
@@ -37,7 +40,8 @@ public class Entity : MonoBehaviour, IDamageable {
     rb = alive.GetComponent<Rigidbody2D>();
     animator = alive.GetComponent<Animator>();
     atsm = alive.GetComponent<AnimationToStateMachine>();
-    
+    if (usesPathfinding) seeker = alive.GetComponent<Seeker>();
+
     currentHealth = entityData.maxHealth;
     facingDirection = alive.transform.rotation.y == 0.0f ? 1 : -1;
   }
@@ -60,6 +64,21 @@ public class Entity : MonoBehaviour, IDamageable {
   public virtual void SetVelocity(float velocity, Vector2 angle, int direction) {
     angle.Normalize();
     velocityWorkspace.Set(angle.x * velocity * direction, angle.y * velocity);
+    rb.velocity = velocityWorkspace;
+  }
+
+  public void SetVelocity(float velocity, Vector2 direction) {
+    velocityWorkspace = direction * velocity;
+    rb.velocity = velocityWorkspace;
+  }
+
+  public virtual void SetVelocityX(float velocity) {
+    velocityWorkspace.Set(velocity, rb.velocity.y);
+    rb.velocity = velocityWorkspace;
+  }
+
+  public virtual void SetVelocityY(float velocity) {
+    velocityWorkspace.Set(rb.velocity.x, velocity);
     rb.velocity = velocityWorkspace;
   }
 

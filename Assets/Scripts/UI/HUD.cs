@@ -4,9 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class HUD : MonoBehaviour {
-  private PlayerController _playerControllerScript;
-  private Player _playerHealthScript;
-  private PlayerCombat _playerCombatScript;
+  private Player player;
   private Animator _portraitAnimator;
   private Slider _dashSlider;
   private Slider _attackSlider;
@@ -58,13 +56,13 @@ public class HUD : MonoBehaviour {
   }
 
   void Awake() {
-    _playerHealthScript = GameObject.Find("Player").GetComponent<Player>();
+    player = GameObject.Find("Player").GetComponent<Player>();
     _portraitAnimator = GameObject.Find("Portrait").GetComponent<Animator>();
   }
 
   void Update() {
-    _health = _playerHealthScript.health;
-    _heartCount = _playerHealthScript.maxHealth;
+    _health = player.health;
+    _heartCount = player.maxHealth;
     CalculateHearts();
     CalculatePortrait();
   }

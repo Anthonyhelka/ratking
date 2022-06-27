@@ -1,19 +1,7 @@
 fileFormatVersion: 2
-guid: 7651ea69b9f936745bda1eb2de2144c1
+guid: 1d11f6db7a296734b804951a3f6f74d7
 TextureImporter:
   internalIDToNameTable:
-  - first:
-      213: -5654065137694105707
-    second: chase_0
-  - first:
-      213: 6566893055614932371
-    second: chase_1
-  - first:
-      213: -7295056609738520459
-    second: chase_2
-  - first:
-      213: -8812194697419005380
-    second: chase_3
   - first:
       213: -9062187352664190868
     second: pathfind_0
