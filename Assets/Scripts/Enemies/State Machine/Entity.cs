@@ -100,7 +100,7 @@ public class Entity : MonoBehaviour, IDamageable {
   }
 
   public virtual bool CheckPlayerInCloseRangeAction() {
-    return Physics2D.Raycast(attackCheck.position, alive.transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
+    return Physics2D.OverlapCircleAll(attackCheck.position, entityData.closeRangeActionDistance, entityData.whatIsPlayer).Length > 0;
   }
 
   public virtual bool CheckTouchingPlayer() {
@@ -160,7 +160,7 @@ public class Entity : MonoBehaviour, IDamageable {
     Gizmos.DrawWireCube(playerCheck.position, entityData.maxAggroDistance);
 
     // Attack Range Check
-    // Gizmos.DrawWireSphere(attackCheck.position + (Vector3)(alive.transform.right * entityData.closeRangeActionDistance), 0.1f);
+    Gizmos.DrawWireSphere(attackCheck.position, entityData.closeRangeActionDistance);
 
     // Touch Damage Check
     Gizmos.DrawWireCube(playerCheck.position, entityData.touchDamageDistance);

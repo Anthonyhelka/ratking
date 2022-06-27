@@ -49,8 +49,10 @@ MonoBehaviour:
   lastDamageTime: 0
   lastPlayerDetectedPosition: {x: 0, y: 0}
   lastPlayerTouched: {fileID: 0}
+  chargeCooldownTime: 0
   meleeAttackCooldownTime: 0
   willBlock: 0
+  willDodge: 0
   attackCheck: {fileID: 427165487623185012}
   wallCheck: {fileID: 427165487452703928}
   ledgeCheck: {fileID: 427165485814969887}
@@ -285,7 +287,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 427165487046638174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627acae2b5659974bbf8e59454ff5784, type: 3}
+  m_Script: {fileID: 11500000, guid: 97bb9fa597da384438c9b1d27d23ca02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &427165487441157242
