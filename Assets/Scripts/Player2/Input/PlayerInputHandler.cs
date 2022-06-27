@@ -36,7 +36,7 @@ public class PlayerInputHandler : MonoBehaviour {
   }
 
   public void OnJumpInput(InputAction.CallbackContext context) {
-    if (context.started) {
+    if (context.started && !Paused) {
       JumpInput = true;
       JumpInputStop = false;
       jumpInputStartTime = Time.time;
@@ -58,7 +58,7 @@ public class PlayerInputHandler : MonoBehaviour {
   }
 
   public void OnDashInput(InputAction.CallbackContext context) {
-    if (context.performed) {
+    if (context.performed && !Paused) {
       DashInput = true;
     }
   }
@@ -68,7 +68,7 @@ public class PlayerInputHandler : MonoBehaviour {
   }
   
   public void OnPrimaryAttackInput(InputAction.CallbackContext context) {
-    if (context.started) {
+    if (context.started && !Paused) {
       PrimaryAttackInput = true;
     }
 
@@ -78,7 +78,7 @@ public class PlayerInputHandler : MonoBehaviour {
   }
 
   public void OnSecondaryAttackInput(InputAction.CallbackContext context) {
-    if (context.started) {
+    if (context.started && !Paused) {
       SecondaryAttackInput = true;
     }
 
@@ -88,7 +88,7 @@ public class PlayerInputHandler : MonoBehaviour {
   }
 
   public void OnSpecialInput(InputAction.CallbackContext context) {
-    if (context.started) {
+    if (context.started && !Paused) {
       if (GetComponent<Player>().BoomerangThrowState.CanThrowBoomerang()) {
         SpecialInput = true;
         SpecialInputStop = false;
@@ -106,10 +106,11 @@ public class PlayerInputHandler : MonoBehaviour {
 
   public void OnPauseInput(InputAction.CallbackContext context) {
     if (context.started) {
-      Paused = !Paused;
       if (Paused) {
+        Paused = false;
         pauseMenu.Resume();
       } else {
+        Paused = true;
         pauseMenu.Pause();
       }
     }

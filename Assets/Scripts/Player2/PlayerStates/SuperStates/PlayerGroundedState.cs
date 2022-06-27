@@ -55,7 +55,7 @@ public class PlayerGroundedState : PlayerState {
       stateMachine.ChangeState(player.PrimaryGroundAttackState);
     } else if (secondaryAttackInput && player.SecondaryGroundAttackState.CanUse()) {
       stateMachine.ChangeState(player.SecondaryGroundAttackState);
-    } else if (dashInput && player.DashState.CheckIfCanDash()) {
+    } else if (dashInput && player.DashState.CanDash()) {
       stateMachine.ChangeState(player.DashState);
     } else if (jumpInput && player.JumpState.CanJump()) {
       player.InputHandler.UseJumpInput();

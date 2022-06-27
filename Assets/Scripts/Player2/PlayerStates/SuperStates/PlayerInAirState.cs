@@ -63,7 +63,7 @@ public class PlayerInAirState : PlayerState {
       stateMachine.ChangeState(player.PrimaryAirAttackState);
     } else if (secondaryAttackInput && player.SecondaryAirAttackState.CanUse()) {
       stateMachine.ChangeState(player.SecondaryAirAttackState);
-    } else if (dashInput && player.DashState.CheckIfCanDash()) {
+    } else if (dashInput && player.DashState.CanDash()) {
       stateMachine.ChangeState(player.DashState);
     } else if (isGrounded && core.Movement.CurrentVelocity.y < 0.01f) {
       stateMachine.ChangeState(player.LandState);

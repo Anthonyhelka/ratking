@@ -26,7 +26,7 @@ public class PlayerSecondaryGroundAttackState : PlayerAbilityState {
     core.Movement.SetVelocityX(playerData.secondaryGroundAttackXVelocity * xInput);
     core.Movement.SetVelocityY(playerData.secondaryGroundAttackYVelocity);
 
-    if (jumpInput || dashInput) {
+    if ((jumpInput && player.JumpState.CanJump()) || (dashInput && player.DashState.CanDash())) {
       isAbilityDone = true;
     }
   }

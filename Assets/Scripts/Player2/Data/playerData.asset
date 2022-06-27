@@ -38,7 +38,7 @@ MonoBehaviour:
   - 0.3
   primaryGroundAttackCooldown: 0
   primaryAirAttackDamage: 20
-  primaryAirAttackRadius: 0.3
+  primaryAirAttackRadius: 0.325
   primaryAirAttackCooldown: 0
   secondaryGroundAttackDamage: 20
   secondaryGroundAttackRadius: 0.3

@@ -8,6 +8,9 @@ public class PlayerRollState : PlayerAbilityState {
 
   public override void Enter() {
     base.Enter();
+
+    player.JumpState.ResetAmountOfJumpsLeft();
+    player.DashState.ResetCanDash();
   }
 
   public override void Exit() {
@@ -17,7 +20,7 @@ public class PlayerRollState : PlayerAbilityState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (jumpInput || dashInput || specialInput || primaryAttackInput || secondaryAttackInput || xInput == 0) {
+    if ((jumpInput && player.JumpState.CanJump()) || (dashInput && player.DashState.CanDash()) || specialInput || primaryAttackInput || secondaryAttackInput || xInput == 0) {
       isAbilityDone = true;
     } else {
       core.Movement.SetVelocityX(playerData.rollVelocity * xInput);

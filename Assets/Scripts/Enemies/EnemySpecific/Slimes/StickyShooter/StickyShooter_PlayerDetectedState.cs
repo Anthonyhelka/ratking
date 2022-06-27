@@ -27,6 +27,14 @@ public class StickyShooter_PlayerDetectedState : PlayerDetectedState {
     } else if (!isPlayerInMaxAggroRange) {
       stateMachine.ChangeState(stickyShooter.idleState);
     }
+
+    if (isTouchingPlayer) {
+      AttackDetails attackDetails;
+      attackDetails.position = entity.alive.transform.position;
+      attackDetails.damageAmount = entity.entityData.touchDamageAmount;
+      attackDetails.type = entity.entityData.type;
+      entity.lastPlayerTouched.transform.SendMessage("Damage", attackDetails);
+    }
   }
 
   public override void PhysicsUpdate() {

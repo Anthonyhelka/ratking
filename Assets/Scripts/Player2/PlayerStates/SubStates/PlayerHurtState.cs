@@ -36,7 +36,7 @@ public class PlayerHurtState : PlayerAbilityState {
 
     if (hurtFall) {
       player.Anim.SetBool("hurtFall", true);
-      if (isGrounded || xInput != 0 || jumpInput || dashInput || specialInput || primaryAttackInput || secondaryAttackInput) {
+      if (isGrounded || xInput != 0 || (jumpInput && player.JumpState.CanJump()) || (dashInput && player.DashState.CanDash()) || specialInput || primaryAttackInput || secondaryAttackInput) {
         player.Anim.SetBool("hurtFall", false);
         isAbilityDone = true;
       }

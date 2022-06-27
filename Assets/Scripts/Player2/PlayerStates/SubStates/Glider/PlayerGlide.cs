@@ -27,7 +27,7 @@ public class PlayerGlideState : PlayerAbilityState {
     
     if (isGrounded) {
       stateMachine.ChangeState(player.RollState);
-    } else if (specialInputStop) {
+    } else if (specialInputStop || (jumpInput && player.JumpState.CanJump()) || (dashInput && player.DashState.CanDash())) {
       isAbilityDone = true;
     } else {
       core.Movement.CheckIfShouldFlip(xInput);

@@ -26,7 +26,7 @@ public class PlayerJetpackBlastState : PlayerAbilityState {
 
     if (endBlast) {
       player.RB.drag = 0.0f;
-      if (isGrounded || jumpInput || dashInput || specialInput || primaryAttackInput || secondaryAttackInput) {
+      if (isGrounded || (jumpInput && player.JumpState.CanJump()) || (dashInput && player.DashState.CanDash()) || specialInput || primaryAttackInput || secondaryAttackInput) {
         isAbilityDone = true;
       }
     } else {

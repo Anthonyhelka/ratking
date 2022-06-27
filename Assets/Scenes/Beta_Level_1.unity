@@ -285,7 +285,6 @@ MonoBehaviour:
     type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
-  m_CursorLockBehavior: 0
 --- !u!4 &123333006 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8398873995746501421, guid: e1b38e073746c5e4ea3ecda70f41d95b,
@@ -33230,7 +33229,6 @@ GameObject:
   - component: {fileID: 1204286086}
   - component: {fileID: 1204286085}
   - component: {fileID: 1204286084}
-  - component: {fileID: 1204286087}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -33375,12 +33373,12 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1204286079}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnPauseInput
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -33552,18 +33550,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1204286087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1204286078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 063dd79b696cdb3469522cc72e484f9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1267876342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33772,11 +33758,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sticky_Shooter
-      objectReference: {fileID: 0}
-    - target: {fileID: 6957492560246334365, guid: 29b07c73bce197348b8b8a9b152a012e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29b07c73bce197348b8b8a9b152a012e, type: 3}

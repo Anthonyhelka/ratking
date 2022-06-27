@@ -5,44 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-  public bool paused = false;
-  private GameObject _pauseMenu;
-  private PlayerController _playerControllerScript;
-  private PlayerCombat _playerCombatScript;
-  private GameOverMenu _gameOverMenuScript;
-
+  private Player player;
+  private GameObject pauseMenu;
+  
   void Awake() {
-    _pauseMenu = GameObject.Find("Pause_Menu");
-    _playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
-    _playerCombatScript = GameObject.Find("Player").GetComponent<PlayerCombat>();
-    _gameOverMenuScript = GetComponent<GameOverMenu>();
-    _pauseMenu.SetActive(false);
-  }
-
-  void Update() {
-    if (Input.GetButtonDown("Cancel") && !_gameOverMenuScript.gameOver) {
-      if (paused) {
-        Resume();
-      } else {
-        Pause();
-      }
-    }
+    player = GameObject.Find("Player").GetComponent<Player>();
+    pauseMenu = GameObject.Find("Pause_Menu");
+    pauseMenu.SetActive(false);
   }
 
   public void Resume() {
-    _pauseMenu.SetActive(false);
-    _playerControllerScript.enabled = true;
-    _playerCombatScript.enabled = true; 
+    player.enabled = true;
+    pauseMenu.SetActive(false);
     Time.timeScale = 1.0f;
-    paused = false;
   }
 
   public void Pause() {
-    _pauseMenu.SetActive(true);
-    _playerControllerScript.enabled = false;
-    _playerCombatScript.enabled = false; 
+    player.enabled = false;
+    pauseMenu.SetActive(true);
     Time.timeScale = 0.0f;
-    paused = true;
   }
 
   public void Restart() {

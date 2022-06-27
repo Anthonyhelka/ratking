@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerDashState : PlayerAbilityState {
-  public bool CanDash { get; private set; }
+  private bool canDash;
   private float lastDashTime;
   private Vector2 dashDirection;
 
@@ -13,7 +13,7 @@ public class PlayerDashState : PlayerAbilityState {
   public override void Enter() {
     base.Enter();
 
-    CanDash = false;
+    canDash = false;
     player.InputHandler.UseDashInput();
     player.RB.drag = playerData.drag;
     core.Movement.SetVelocityX(playerData.dashVelocity * core.Movement.FacingDirection);
@@ -51,11 +51,11 @@ public class PlayerDashState : PlayerAbilityState {
     base.DoChecks();
   }
 
-  public bool CheckIfCanDash() {
-    return CanDash && Time.time >= lastDashTime + playerData.dashCooldown;
+  public bool CanDash() {
+    return canDash && Time.time >= lastDashTime + playerData.dashCooldown;
   }
 
   public void ResetCanDash() {
-    CanDash = true;
+    canDash = true;
   }
 }

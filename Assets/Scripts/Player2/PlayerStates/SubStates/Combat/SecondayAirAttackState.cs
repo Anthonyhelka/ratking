@@ -26,7 +26,7 @@ public class PlayerSecondaryAirAttackState : PlayerAbilityState {
     core.Movement.SetVelocityX(playerData.secondaryAirAttackXVelocity * xInput);
     core.Movement.SetVelocityY(playerData.noGravityVelocity);
 
-    if (jumpInput || dashInput) {
+    if ((jumpInput && player.JumpState.CanJump()) || (dashInput && player.DashState.CanDash())) {
       isAbilityDone = true;
     }
   }
