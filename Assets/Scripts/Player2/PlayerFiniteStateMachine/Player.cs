@@ -143,13 +143,11 @@ public class Player : MonoBehaviour {
   #endregion
 
   #region Health Functions
-  public void Heal() {
-    void Heal(int amount) {
-      health += amount;
+  public void Heal(int amount) {
+    health += amount;
 
-      if (health > playerData.maxHealth) {
-        health = playerData.maxHealth;
-      }
+    if (health > playerData.maxHealth) {
+      health = playerData.maxHealth;
     }
   }
 
