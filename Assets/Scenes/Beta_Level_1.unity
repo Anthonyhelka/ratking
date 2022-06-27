@@ -285,6 +285,7 @@ MonoBehaviour:
     type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
 --- !u!4 &123333006 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8398873995746501421, guid: e1b38e073746c5e4ea3ecda70f41d95b,
@@ -33371,6 +33372,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d48b3acc-d215-4801-ae34-cdb7bc1c6635
     m_ActionName: Gameplay/SecondaryAttack[/Mouse/rightButton,/DualShock4GamepadHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1204286079}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9ddb9036-162b-4fd6-9471-5332d5a69a0c
+    m_ActionName: Gameplay/Pause[/Keyboard/escape,/DualShock4GamepadHID/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -33411,6 +33428,7 @@ MonoBehaviour:
   whatIsDamageable:
     serializedVersion: 2
     m_Bits: 1024
+  isHurt: 0
   health: 0
   maxHealth: 0
   GameOverMenu: {fileID: 0}

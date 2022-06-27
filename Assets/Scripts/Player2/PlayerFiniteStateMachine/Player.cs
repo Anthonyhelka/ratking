@@ -43,6 +43,8 @@ public class Player : MonoBehaviour {
   public LayerMask whatIsDamageable;
 
   // Health
+  public bool isHurt;
+  public AttackDetails lastHitAttackDetails;
   public int health;
   public int maxHealth;
   public GameOverMenu GameOverMenu;
@@ -99,6 +101,7 @@ public class Player : MonoBehaviour {
     GlideState = new PlayerGlideState(this, StateMachine, playerData, "glide");
 
     // Health
+    isHurt = false;
     health = playerData.maxHealth;
     maxHealth = playerData.maxHealth;
     GameOverMenu = GameObject.Find("UI").GetComponent<GameOverMenu>();
@@ -152,13 +155,10 @@ public class Player : MonoBehaviour {
 
   public void Damage(AttackDetails attackDetails) {
     if (!HurtState.CanUse()) return;
-    health -= attackDetails.damageAmount;
 
-    if (health <= 0) {
-      StateMachine.ChangeState(DeadState);
-    } else if (health > 0) {
-      StateMachine.ChangeState(HurtState);
-    }
+    isHurt = true;
+    lastHitAttackDetails = attackDetails;
+    HurtState.lastUseTime = Time.time;
   }
   #endregion
 }

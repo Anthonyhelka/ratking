@@ -8,14 +8,10 @@ public class PlayerJetpackChargeState : PlayerAbilityState {
 
   public override void Enter() {
     base.Enter();
-
-    player.RB.gravityScale = 0.5f;
   }
 
   public override void Exit() {
     base.Exit();
-
-    player.RB.gravityScale = 1.0f;
   }
 
   public override void LogicUpdate() {
@@ -23,7 +19,7 @@ public class PlayerJetpackChargeState : PlayerAbilityState {
 
     core.Movement.CheckIfShouldFlip(xInput);
     core.Movement.SetVelocityX(playerData.jetpackChargeXVelocity * xInput);
-    core.Movement.SetVelocityY(playerData.jetpackChargeYVelocity);
+    core.Movement.SetVelocityY(playerData.noGravityVelocity);
   }
 
   public override void PhysicsUpdate() {

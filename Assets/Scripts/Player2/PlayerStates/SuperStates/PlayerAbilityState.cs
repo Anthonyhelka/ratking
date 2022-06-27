@@ -13,6 +13,8 @@ public class PlayerAbilityState : PlayerState {
 
   protected bool isAbilityDone;
   protected bool isGrounded;
+  protected bool isHurt;
+  protected bool isDead;
 
   public PlayerAbilityState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName) {
   }
@@ -37,7 +39,10 @@ public class PlayerAbilityState : PlayerState {
     primaryAttackInput = player.InputHandler.PrimaryAttackInput;
     secondaryAttackInput = player.InputHandler.SecondaryAttackInput;
 
-    if (isAbilityDone) {
+    if (isHurt) {
+      player.isHurt = false;
+      stateMachine.ChangeState(player.HurtState);
+    } else if (isAbilityDone) {
       if (isGrounded && core.Movement.CurrentVelocity.y < 0.01f) {
         stateMachine.ChangeState(player.IdleState);
       } else {
@@ -54,6 +59,7 @@ public class PlayerAbilityState : PlayerState {
     base.DoChecks();
 
     isGrounded = core.CollisionSenses.Grounded;
+    isHurt = player.isHurt;
   }
 
   public override void DrawGizmos() {

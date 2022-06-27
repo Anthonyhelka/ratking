@@ -17,6 +17,12 @@ public class PlayerInputHandler : MonoBehaviour {
   public bool SpecialInputStop { get; private set; }
   public bool PrimaryAttackInput { get; private set; }
   public bool SecondaryAttackInput { get; private set; }
+  public bool Paused { get; private set; }
+  private PauseMenu pauseMenu;
+
+  private void Awake() {
+    pauseMenu = GameObject.Find("UI").GetComponent<PauseMenu>();
+  }
 
   private void Update() {
     CheckJumpInputHoldTime();
@@ -97,9 +103,15 @@ public class PlayerInputHandler : MonoBehaviour {
   public void UseSpecialInput() {
     SpecialInput = false;
   }
-}
 
-public enum CombatInputs {
-  primary,
-  secondary
+  public void OnPauseInput(InputAction.CallbackContext context) {
+    if (context.started) {
+      Paused = !Paused;
+      if (Paused) {
+        pauseMenu.Resume();
+      } else {
+        pauseMenu.Pause();
+      }
+    }
+  }
 }

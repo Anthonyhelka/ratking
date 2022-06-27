@@ -15,10 +15,9 @@ public class PlayerDashState : PlayerAbilityState {
 
     CanDash = false;
     player.InputHandler.UseDashInput();
-    dashDirection = Vector2.right * core.Movement.FacingDirection;
     player.RB.drag = playerData.drag;
-    core.Movement.SetVelocity(playerData.dashVelocity, dashDirection);
-
+    core.Movement.SetVelocityX(playerData.dashVelocity * core.Movement.FacingDirection);
+    core.Movement.SetVelocityY(playerData.noGravityVelocity);
     if (isGrounded) {
       player.Anim.SetBool("slide", true);
     }
@@ -28,13 +27,15 @@ public class PlayerDashState : PlayerAbilityState {
     base.Exit();
 
     player.Anim.SetBool("slide", false);
+    player.RB.drag = 0.0f;
   }
 
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    core.Movement.SetVelocity(playerData.dashVelocity, dashDirection);
-    
+    core.Movement.SetVelocityX(playerData.dashVelocity * core.Movement.FacingDirection);
+    core.Movement.SetVelocityY(playerData.noGravityVelocity);
+
     if (Time.time >= startTime + playerData.dashTime) {
       player.RB.drag = 0.0f;
       isAbilityDone = true;

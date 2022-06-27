@@ -17,7 +17,8 @@ public class PlayerJetpackBlastState : PlayerAbilityState {
 
   public override void Exit() {
     base.Exit();
-
+    
+    player.RB.drag = 0.0f;
   }
 
   public override void LogicUpdate() {

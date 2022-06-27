@@ -8,6 +8,24 @@ public class PlayerDeadState : PlayerAbilityState {
 
   public override void Enter() {
     base.Enter();
+
+    switch(player.lastHitAttackDetails.type) {
+      case "Infected":
+        player.Anim.SetInteger("deathType", 0);
+        break;
+      case "Spikes":
+        player.Anim.SetInteger("deathType", 1);
+        break;
+      case "Knight":
+        player.Anim.SetInteger("deathType", 2);
+        break;
+      case "Strike":
+        player.Anim.SetInteger("deathType", 3);
+        break;
+      default:
+        player.Anim.SetInteger("deathType", 0);
+        break;
+    }
   }
 
   public override void Exit() {
@@ -16,12 +34,12 @@ public class PlayerDeadState : PlayerAbilityState {
 
   public override void LogicUpdate() {
     base.LogicUpdate();
+
+    core.Movement.SetVelocityX(0.0f);
   }
 
   public override void PhysicsUpdate() {
     base.PhysicsUpdate();
-
-    core.Movement.SetVelocityX(0.0f);
   }
 
   public override void DoChecks() {

@@ -13,6 +13,7 @@ public class PlayerInAirState : PlayerState {
   private bool secondaryAttackInput;
 
   private bool isGrounded;
+  private bool isHurt;
   private bool isJumping;
   private bool coyoteTime;
 
@@ -42,7 +43,10 @@ public class PlayerInAirState : PlayerState {
 
     CheckJumpMultiplier();
 
-    if (specialInput) {
+    if (isHurt) {
+      player.isHurt = false;
+      stateMachine.ChangeState(player.HurtState);
+    } else if (specialInput) {
       if (playerData.selectedSpecial == PlayerData.Special.boomerang && player.BoomerangThrowState.CanThrowBoomerang()) {
         player.InputHandler.UseSpecialInput();
         stateMachine.ChangeState(player.BoomerangThrowState);
@@ -87,6 +91,7 @@ public class PlayerInAirState : PlayerState {
     base.DoChecks();
 
     isGrounded = core.CollisionSenses.Grounded;
+    isHurt = player.isHurt;
   }
 
   public void SetIsJumping() {

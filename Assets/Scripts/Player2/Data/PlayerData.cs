@@ -4,6 +4,8 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "newPlayerData", menuName = "Data/Player Data/Base Data")]
 public class PlayerData : ScriptableObject {
+  public float noGravityVelocity = 0.19675f;
+
   // [Header("Specials")]
   public enum Special { boomerang, shield, jetpack, glider };
   public Special selectedSpecial = Special.boomerang;
@@ -30,7 +32,6 @@ public class PlayerData : ScriptableObject {
   public float dashTime = 0.2f;
   public float dashVelocity = 30.0f;
   public float drag = 10.0f;
-  public float dashEndYMultiplier = 0.2f;
 
   [Header("Bounce State")]
   public float bounceVelocity = 4.0f;
@@ -85,7 +86,8 @@ public class PlayerData : ScriptableObject {
   public float jetpackBlastVelocity = 4.0f;
   public Vector2 jetpackBlastDirection = new Vector2(1, 1);
 
-  [Header("Health")]
+  [Header("Hurt State")]
   public int maxHealth = 5;
   public float invincibilityTimer = 1.0f;
+  public float hurtVelocity = 1.0f;
 }

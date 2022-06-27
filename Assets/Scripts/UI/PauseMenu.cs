@@ -37,7 +37,7 @@ public class PauseMenu : MonoBehaviour
     paused = false;
   }
 
-  void Pause() {
+  public void Pause() {
     _pauseMenu.SetActive(true);
     _playerControllerScript.enabled = false;
     _playerCombatScript.enabled = false; 

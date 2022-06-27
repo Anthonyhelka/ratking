@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328ae01e5ab22ec46834fbbfe61afc14, type: 3}
   m_Name: playerData
   m_EditorClassIdentifier: 
+  noGravityVelocity: 0.19675
   selectedSpecial: 3
   sleepTime: 10
   movementVelocity: 1.25
@@ -24,7 +25,6 @@ MonoBehaviour:
   dashTime: 0.25
   dashVelocity: 5
   drag: 10
-  dashEndYMultiplier: 0.2
   bounceVelocity: 4
   rollVelocity: 2.5
   primaryGroundAttackDamage:
@@ -44,9 +44,9 @@ MonoBehaviour:
   secondaryGroundAttackRadius: 0.3
   secondaryGroundAttackXVelocity: 1.5
   secondaryGroundAttackYVelocity: 0.75
-  secondaryGroundAttackCooldown: 1
+  secondaryGroundAttackCooldown: 0
   secondaryAirAttackDamage: 20
-  secondaryAirAttackRadius: 1
+  secondaryAirAttackRadius: 0.3
   secondaryAirAttackXVelocity: 1.5
   secondaryAirAttackYVelocity: 0
   secondaryAirAttackCooldown: 1
@@ -65,3 +65,4 @@ MonoBehaviour:
   jetpackBlastDirection: {x: 1, y: 1}
   maxHealth: 5
   invincibilityTimer: 1
+  hurtVelocity: 1.5

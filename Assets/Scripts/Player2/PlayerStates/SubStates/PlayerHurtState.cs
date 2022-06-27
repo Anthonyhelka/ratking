@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHurtState : PlayerAbilityState {
-  private float lastUseTime = -1.0f;
+  public float lastUseTime = -1.0f;
+  private Vector2 knockbackDirection;
+  public bool hurtFall;
 
   public PlayerHurtState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName) {
   }
@@ -11,24 +13,40 @@ public class PlayerHurtState : PlayerAbilityState {
   public override void Enter() {
     base.Enter();
 
-    core.Movement.SetVelocityX(2.0f * core.Movement.FacingDirection);
-    core.Movement.SetVelocityY(2.0f);
+    player.health -= player.lastHitAttackDetails.damageAmount;
+
+    if (player.health <= 0) {
+      stateMachine.ChangeState(player.DeadState);
+    } else {
+      knockbackDirection = player.lastHitAttackDetails.position - (Vector2)(player.transform.position);
+      knockbackDirection.Normalize();
+      hurtFall = false;
+      player.Anim.SetBool("hurtFall", false);
+    }
   }
 
   public override void Exit() {
     base.Exit();
 
-    lastUseTime = Time.time;
+    player.Anim.SetBool("hurtFall", false);
   }
 
   public override void LogicUpdate() {
     base.LogicUpdate();
+
+    if (hurtFall) {
+      player.Anim.SetBool("hurtFall", true);
+      if (isGrounded || xInput != 0 || jumpInput || dashInput || specialInput || primaryAttackInput || secondaryAttackInput) {
+        player.Anim.SetBool("hurtFall", false);
+        isAbilityDone = true;
+      }
+    } else {
+      core.Movement.SetVelocity(playerData.hurtVelocity, new Vector2(-knockbackDirection.x, 1));
+    }
   }
 
   public override void PhysicsUpdate() {
     base.PhysicsUpdate();
-
-    core.Movement.SetVelocityX(0.0f);
   }
 
   public override void DoChecks() {
@@ -38,7 +56,7 @@ public class PlayerHurtState : PlayerAbilityState {
   public override void AnimationFinishTrigger() {
     base.AnimationFinishTrigger();
 
-    stateMachine.ChangeState(player.IdleState);
+    hurtFall = true;
   }
 
   public bool CanUse() {

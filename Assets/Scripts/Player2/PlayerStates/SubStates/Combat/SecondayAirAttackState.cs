@@ -11,15 +11,12 @@ public class PlayerSecondaryAirAttackState : PlayerAbilityState {
 
   public override void Enter() {
     base.Enter();
-
-    player.RB.gravityScale = 0.0f;
   }
 
   public override void Exit() {
     base.Exit();
 
     lastUseTime = Time.time;
-    player.RB.gravityScale = 1.0f;
   }
 
   public override void LogicUpdate() {
@@ -27,7 +24,7 @@ public class PlayerSecondaryAirAttackState : PlayerAbilityState {
 
     core.Movement.CheckIfShouldFlip(xInput);
     core.Movement.SetVelocityX(playerData.secondaryAirAttackXVelocity * xInput);
-    core.Movement.SetVelocityY(playerData.secondaryAirAttackYVelocity);
+    core.Movement.SetVelocityY(playerData.noGravityVelocity);
 
     if (jumpInput || dashInput) {
       isAbilityDone = true;

@@ -12,6 +12,7 @@ public class PlayerGroundedState : PlayerState {
   private bool secondaryAttackInput;
 
   private bool isGrounded;
+  private bool isHurt;
 
   public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName) {
   }
@@ -36,8 +37,11 @@ public class PlayerGroundedState : PlayerState {
     specialInput = player.InputHandler.SpecialInput;
     primaryAttackInput = player.InputHandler.PrimaryAttackInput;
     secondaryAttackInput = player.InputHandler.SecondaryAttackInput;
-
-    if (specialInput) {
+    
+    if (isHurt) {
+      player.isHurt = false;
+      stateMachine.ChangeState(player.HurtState);
+    } else if (specialInput) {
       if (playerData.selectedSpecial == PlayerData.Special.boomerang && player.BoomerangThrowState.CanThrowBoomerang()) {
         player.InputHandler.UseSpecialInput();
         stateMachine.ChangeState(player.BoomerangThrowState);
@@ -70,5 +74,6 @@ public class PlayerGroundedState : PlayerState {
     base.DoChecks();
 
     isGrounded = core.CollisionSenses.Grounded;
+    isHurt = player.isHurt;
   }
 }
