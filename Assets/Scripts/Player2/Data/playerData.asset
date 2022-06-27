@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328ae01e5ab22ec46834fbbfe61afc14, type: 3}
   m_Name: playerData
   m_EditorClassIdentifier: 
-  selectedSpecial: 2
+  selectedSpecial: 3
   sleepTime: 10
   movementVelocity: 1.25
   coyoteTime: 0.2

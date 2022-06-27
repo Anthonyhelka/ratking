@@ -25,7 +25,9 @@ public class PlayerGlideState : PlayerAbilityState {
     xInput = player.InputHandler.NormalizedInputX;
     specialInputStop = player.InputHandler.SpecialInputStop;
     
-    if (isGrounded || specialInputStop) {
+    if (isGrounded) {
+      stateMachine.ChangeState(player.RollState);
+    } else if (specialInputStop) {
       isAbilityDone = true;
     } else {
       core.Movement.CheckIfShouldFlip(xInput);

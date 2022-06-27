@@ -33546,8 +33546,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063dd79b696cdb3469522cc72e484f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons:
-  - {fileID: 0}
 --- !u!1001 &1267876342
 PrefabInstance:
   m_ObjectHideFlags: 0
