@@ -49,6 +49,9 @@ public class PlayerInAirState : PlayerState {
       } else if (playerData.selectedSpecial == PlayerData.Special.glider) {
         player.InputHandler.UseSpecialInput();
         stateMachine.ChangeState(player.GlideState);
+      } else if (playerData.selectedSpecial == PlayerData.Special.jetpack) {
+        player.InputHandler.UseSpecialInput();
+        stateMachine.ChangeState(player.JetpackChargeState);
       } else {
         player.InputHandler.UseSpecialInput();
       }

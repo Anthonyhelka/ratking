@@ -33,6 +33,8 @@ public class Player : MonoBehaviour {
   public PlayerBlockState BlockState { get; private set; }
   public PlayerEndBlockState EndBlockState { get; private set; }
   // JetPack
+  public PlayerJetpackChargeState JetpackChargeState { get; private set; }
+  public PlayerJetpackBlastState JetpackBlastState { get; private set; }
   // Glider
   public PlayerGlideState GlideState { get; private set; }
 
@@ -91,6 +93,8 @@ public class Player : MonoBehaviour {
     BlockState = new PlayerBlockState(this, StateMachine, playerData, "block");
     EndBlockState = new PlayerEndBlockState(this, StateMachine, playerData, "endBlock");
     // JetPack
+    JetpackChargeState = new PlayerJetpackChargeState(this, StateMachine, playerData, "jetpackCharge");
+    JetpackBlastState = new PlayerJetpackBlastState(this, StateMachine, playerData, "jetpackBlast");
     // Glider
     GlideState = new PlayerGlideState(this, StateMachine, playerData, "glide");
 

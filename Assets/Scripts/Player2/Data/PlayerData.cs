@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "newPlayerData", menuName = "Data/Player Data/Base Data")]
 public class PlayerData : ScriptableObject {
   // [Header("Specials")]
-  public enum Special { boomerang, shield, jetPack, glider };
+  public enum Special { boomerang, shield, jetpack, glider };
   public Special selectedSpecial = Special.boomerang;
 
   [Header("Idle State")]
@@ -76,6 +76,14 @@ public class PlayerData : ScriptableObject {
 
   [Header("Block State")]
   public float blockXVelocity = 0.5f;
+
+  [Header("Jetpack Charge State")]
+  public float jetpackChargeYVelocity = 0.0f;
+
+  [Header("Jetpack Blast State")]
+  public float jetpackChargeXVelocity = 1.0f;
+  public float jetpackBlastVelocity = 4.0f;
+  public Vector2 jetpackBlastDirection = new Vector2(1, 1);
 
   [Header("Health")]
   public int maxHealth = 5;

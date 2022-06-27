@@ -24,6 +24,8 @@ public class PlayerJumpState : PlayerAbilityState {
 
   public override void LogicUpdate() {
     base.LogicUpdate();
+
+    core.Movement.SetVelocityX(playerData.movementVelocity * xInput);
   }
 
   public override void PhysicsUpdate() {
