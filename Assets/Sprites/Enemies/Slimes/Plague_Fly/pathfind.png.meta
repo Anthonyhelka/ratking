@@ -14,6 +14,18 @@ TextureImporter:
   - first:
       213: -8812194697419005380
     second: chase_3
+  - first:
+      213: -9062187352664190868
+    second: pathfind_0
+  - first:
+      213: 2536151220698554498
+    second: pathfind_1
+  - first:
+      213: -6247803643203851190
+    second: pathfind_2
+  - first:
+      213: -8732639273887287591
+    second: pathfind_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -115,13 +127,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: chase_0
+      name: pathfind_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 40
-        width: 21
-        height: 16
+        x: 0
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -129,20 +141,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59f92dab6b9b881b0800000000000000
-      internalID: -5654065137694105707
+      spriteID: c60d964cd94ac3280800000000000000
+      internalID: -9062187352664190868
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chase_1
+      name: pathfind_1
       rect:
         serializedVersion: 2
-        x: 40
-        y: 40
-        width: 21
-        height: 16
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +162,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39558e1f07a422b50800000000000000
-      internalID: 6566893055614932371
+      spriteID: 280296e1918323320800000000000000
+      internalID: 2536151220698554498
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chase_2
+      name: pathfind_2
       rect:
         serializedVersion: 2
-        x: 7
-        y: 9
-        width: 21
-        height: 16
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +183,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5788b201aa0c2ca90800000000000000
-      internalID: -7295056609738520459
+      spriteID: a4c617450b75b49a0800000000000000
+      internalID: -6247803643203851190
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chase_3
+      name: pathfind_3
       rect:
         serializedVersion: 2
-        x: 40
-        y: 9
-        width: 21
-        height: 16
+        x: 32
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,8 +204,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3262c89c9bc4b580800000000000000
-      internalID: -8812194697419005380
+      spriteID: 9d6b25019de6fc680800000000000000
+      internalID: -8732639273887287591
       vertices: []
       indices: 
       edges: []
