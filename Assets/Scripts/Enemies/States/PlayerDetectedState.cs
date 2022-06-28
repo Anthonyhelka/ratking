@@ -31,7 +31,7 @@ public class PlayerDetectedState : State {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (entity.facingDirection != (entity.lastPlayerDetectedPosition.x <= entity.alive.transform.position.x ? -1 : 1)) {
+    if (stateData.shouldFlip && entity.facingDirection != (entity.lastPlayerDetectedPosition.x <= entity.alive.transform.position.x ? -1 : 1)) {
       entity.Flip();
     }
 
