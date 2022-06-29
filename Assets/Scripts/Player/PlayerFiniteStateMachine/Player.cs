@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
   public PlayerJumpState JumpState { get; private set; }
   public PlayerDoubleJumpState DoubleJumpState { get; private set; }
   public PlayerDashState DashState { get; private set; }
+  public PlayerDodgeState DodgeState { get; private set; }
   public PlayerInAirState InAirState { get; private set; }
   public PlayerLandState LandState { get; private set; }
   public PlayerBounceState BounceState { get; private set; }
@@ -53,6 +54,7 @@ public class Player : MonoBehaviour {
   #region Components
   public Animator Anim { get; private set; }
   public Rigidbody2D RB { get; private set; }
+  public BoxCollider2D BC { get; private set; }
   public PlayerInputHandler InputHandler { get; private set; }
   public Core core { get; private set; }
   #endregion
@@ -72,6 +74,7 @@ public class Player : MonoBehaviour {
     JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
     DoubleJumpState = new PlayerDoubleJumpState(this, StateMachine, playerData, "inAir");
     DashState = new PlayerDashState(this, StateMachine, playerData, "dash");
+    DodgeState = new PlayerDodgeState(this, StateMachine, playerData, "dodge");
     InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
     LandState = new PlayerLandState(this, StateMachine, playerData, "land");
     BounceState = new PlayerBounceState(this, StateMachine, playerData, "bounce");
@@ -110,6 +113,7 @@ public class Player : MonoBehaviour {
   private void Start() {
     Anim = GetComponent<Animator>();
     RB = GetComponent<Rigidbody2D>();
+    BC = GetComponent<BoxCollider2D>();
     InputHandler = GetComponent<PlayerInputHandler>();
 
     StateMachine.Initialize(IdleState);

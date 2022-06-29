@@ -1,19 +1,34 @@
 fileFormatVersion: 2
-guid: 84369441e86189841b1482ed0df23538
+guid: 4b334964d6f914a46858469d3d8d0983
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8793639957104055765
-    second: idle_0
+      213: -5672869595778636664
+    second: dodge_0
   - first:
-      213: 6084859605308855041
-    second: idle_1
+      213: 1685754737939873486
+    second: dodge_1
   - first:
-      213: 8603369663158992956
-    second: idle_2
+      213: 4459518147029533292
+    second: dodge_2
   - first:
-      213: -5906421172241655209
-    second: idle_3
+      213: -4627716620307745415
+    second: dodge_3
+  - first:
+      213: 4930688269445531599
+    second: dodge_4
+  - first:
+      213: 281908485051993513
+    second: dodge_5
+  - first:
+      213: -1754326023506808901
+    second: dodge_6
+  - first:
+      213: -7681896579595778311
+    second: dodge_7
+  - first:
+      213: 8370771138599242472
+    second: dodge_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -115,7 +130,70 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: idle_0
+      name: dodge_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8842086a82be541b0800000000000000
+      internalID: -5672869595778636664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ece765da001056710800000000000000
+      internalID: 1685754737939873486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c628a1f802463ed30800000000000000
+      internalID: 4459518147029533292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge_3
       rect:
         serializedVersion: 2
         x: 0
@@ -129,14 +207,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d55ed543f8490a70800000000000000
-      internalID: 8793639957104055765
+      spriteID: 975b265a04c07cfb0800000000000000
+      internalID: -4627716620307745415
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle_1
+      name: dodge_4
       rect:
         serializedVersion: 2
         x: 32
@@ -150,14 +228,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 103de827293c17450800000000000000
-      internalID: 6084859605308855041
+      spriteID: fc78c7e6bd25d6440800000000000000
+      internalID: 4930688269445531599
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle_2
+      name: dodge_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ad41b6064a89e300800000000000000
+      internalID: 281908485051993513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge_6
       rect:
         serializedVersion: 2
         x: 0
@@ -171,14 +270,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c30c6f3402f456770800000000000000
-      internalID: 8603369663158992956
+      spriteID: bbf27a4c6c167a7e0800000000000000
+      internalID: -1754326023506808901
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle_3
+      name: dodge_7
       rect:
         serializedVersion: 2
         x: 32
@@ -192,8 +291,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75a90b6cc3d280ea0800000000000000
-      internalID: -5906421172241655209
+      spriteID: 9f6c7e3e2cb646590800000000000000
+      internalID: -7681896579595778311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8eacc441004fa2470800000000000000
+      internalID: 8370771138599242472
       vertices: []
       indices: 
       edges: []

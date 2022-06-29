@@ -33,6 +33,9 @@ public class PlayerData : ScriptableObject {
   public float dashVelocity = 30.0f;
   public float drag = 10.0f;
 
+  [Header("Dodge State")]
+  public float dodgeVelocity = 0.5f;
+
   [Header("Bounce State")]
   public float bounceVelocity = 4.0f;
 

@@ -13,6 +13,7 @@ public class PlayerInputHandler : MonoBehaviour {
   private float inputHoldTime = 0.2f;
   private float jumpInputStartTime;
   public bool DashInput { get; private set; }
+  public bool DodgeInput { get; private set; }
   public bool SpecialInput { get; private set; }
   public bool SpecialInputStop { get; private set; }
   public bool PrimaryAttackInput { get; private set; }
@@ -67,6 +68,16 @@ public class PlayerInputHandler : MonoBehaviour {
     DashInput = false;
   }
   
+  public void OnDodgeInput(InputAction.CallbackContext context) {
+    if (context.performed && !Paused) {
+      DodgeInput = true;
+    }
+  }
+
+  public void UseDodgeInput() {
+    DodgeInput = false;
+  }
+
   public void OnPrimaryAttackInput(InputAction.CallbackContext context) {
     if (context.started && !Paused) {
       PrimaryAttackInput = true;

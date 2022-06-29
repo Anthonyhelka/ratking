@@ -8,6 +8,7 @@ public class PlayerInAirState : PlayerState {
   private bool jumpInput;
   private bool jumpInputStop;
   private bool dashInput;
+  private bool dodgeInput;
   private bool specialInput;
   private bool primaryAttackInput;
   private bool secondaryAttackInput;
@@ -37,6 +38,7 @@ public class PlayerInAirState : PlayerState {
     jumpInput = player.InputHandler.JumpInput;
     jumpInputStop = player.InputHandler.JumpInputStop;
     dashInput = player.InputHandler.DashInput;
+    dodgeInput = player.InputHandler.DodgeInput;
     specialInput = player.InputHandler.SpecialInput;
     primaryAttackInput = player.InputHandler.PrimaryAttackInput;
     secondaryAttackInput = player.InputHandler.SecondaryAttackInput;
@@ -65,6 +67,8 @@ public class PlayerInAirState : PlayerState {
       stateMachine.ChangeState(player.SecondaryAirAttackState);
     } else if (dashInput && player.DashState.CanDash()) {
       stateMachine.ChangeState(player.DashState);
+    } else if (dodgeInput && player.DodgeState.CanDodge()) {
+      stateMachine.ChangeState(player.DodgeState);
     } else if (isGrounded && core.Movement.CurrentVelocity.y < 0.01f) {
       stateMachine.ChangeState(player.LandState);
     } else if (jumpInput && player.JumpState.CanJump()) {

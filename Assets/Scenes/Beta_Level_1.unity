@@ -4042,6 +4042,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84898f0c20678564bb228547431c0517, type: 3}
+--- !u!114 &522021547 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4046516332371786298, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+    type: 3}
+  m_PrefabInstance: {fileID: 4046516333550094405}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b99f2dcaf54f44ea0f61d10074307f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &522857711 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3476296979080695082, guid: fbb0398396e59874aaec5bfd217c66c8,
@@ -36840,6 +36852,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046516332371786437, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046516332371786437, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionId
+      value: bc7a0415-6fe5-4b93-a8ab-cfc52e2458e6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046516332371786437, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionName
+      value: Gameplay/Dodge[/Keyboard/r,/DualShock4GamepadHID/leftTrigger]
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046516332371786437, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046516332371786437, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046516332371786437, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 522021547}
+    - target: {fileID: 4046516332371786437, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046516332371786437, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnDodgeInput
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046516332371786437, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerInputHandler, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046516332371786437, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3bae2f1455f3ae45bf3a5d5f1055543, type: 3}

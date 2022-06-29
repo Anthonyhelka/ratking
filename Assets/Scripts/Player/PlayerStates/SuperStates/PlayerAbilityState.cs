@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAbilityState : PlayerState {
   // Inputs
   protected int xInput;
+  protected int yInput;
   protected bool jumpInput;
   protected bool dashInput;
   protected bool specialInput;
@@ -33,6 +34,7 @@ public class PlayerAbilityState : PlayerState {
     base.LogicUpdate();
 
     xInput = player.InputHandler.NormalizedInputX;
+    yInput = player.InputHandler.NormalizedInputY;
     jumpInput = player.InputHandler.JumpInput;
     dashInput = player.InputHandler.DashInput;
     specialInput = player.InputHandler.SpecialInput;

@@ -25,6 +25,7 @@ MonoBehaviour:
   dashTime: 0.25
   dashVelocity: 5
   drag: 10
+  dodgeVelocity: 0.5
   bounceVelocity: 4
   rollVelocity: 2.5
   primaryGroundAttackDamage:

@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBoomerangThrowState : PlayerAbilityState {
-  private int xInput;
-  private bool jumpInput;
-  private bool dashInput;
   private GameObject boomerang;
   private Boomerang boomerangScript;
   private bool canThrowBoomerang = true;
@@ -27,10 +24,6 @@ public class PlayerBoomerangThrowState : PlayerAbilityState {
 
   public override void LogicUpdate() {
     base.LogicUpdate();
-
-    xInput = player.InputHandler.NormalizedInputX;
-    jumpInput = player.InputHandler.JumpInput;
-    dashInput = player.InputHandler.DashInput;
 
     if (canCancelAnimation && ((jumpInput && player.JumpState.CanJump()) || (dashInput && player.DashState.CanDash()))) {
       core.Movement.CheckIfShouldFlip(xInput);
