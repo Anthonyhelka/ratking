@@ -30,7 +30,7 @@ public class PathfindState : State {
 
   public override void LogicUpdate() {
     base.LogicUpdate();
-
+    
     if (core.Movement.FacingDirection != (entity.lastPlayerDetectedPosition.x <= entity.transform.position.x ? -1 : 1)) {
       core.Movement.Flip();
     }

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Hive_CooldownStateData
   m_EditorClassIdentifier: 
   cooldownTime: 5
+  touchDamage: 1

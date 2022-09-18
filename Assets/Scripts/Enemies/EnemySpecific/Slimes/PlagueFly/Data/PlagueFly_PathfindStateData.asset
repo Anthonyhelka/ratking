@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathfindSpeed: 1
   nextWaypointDistance: 0.1
+  touchDamage: 1
