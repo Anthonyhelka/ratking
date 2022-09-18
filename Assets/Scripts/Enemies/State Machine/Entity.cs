@@ -111,6 +111,10 @@ public class Entity : MonoBehaviour, IDamageable, IKnockbackable {
       lastDamageTime = Time.time;
       lastDamageDirection = attackDetails.position.x <= transform.position.x ? -1 : 1;
 
+      if (lastDamageDirection != Core.Movement.FacingDirection) {
+        Core.Movement.Flip();
+      }
+
       if (currentHealth <= 0) {
         isDead = true;
       }

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: KnightRat_MoveStateData
   m_EditorClassIdentifier: 
   movementSpeed: 0.4
+  touchDamage: 1

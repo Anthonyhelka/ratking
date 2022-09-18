@@ -20,7 +20,7 @@ public class SpearRat_PlayerDetectedState : PlayerDetectedState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (performLongRangeAction && Time.time > entity.chargeCooldownTime) {
+    if (performLongRangeAction && Time.time > entity.chargeCooldownTime && isGrounded) {
       stateMachine.ChangeState(spearRat.chargeState);
     }
   }

@@ -21,7 +21,8 @@ public class DodgeState : State {
     base.Enter();
 
     isDodgeOver = false;
-    core.Movement.SetVelocity(stateData.dodgeSpeed, stateData.dodgeAngle * core.Movement.FacingDirection);
+    Debug.Log(stateData.dodgeAngle * core.Movement.FacingDirection);
+    core.Movement.SetVelocity(stateData.dodgeSpeed, stateData.dodgeAngle, core.Movement.FacingDirection);
   }
 
   public override void Exit() {

@@ -13,10 +13,13 @@ public class KnightRat_MeleeAttackState : MeleeAttackState {
     base.Enter();
 
     attackPosition.gameObject.GetComponent<Animator>().SetBool("meleeAttack", true);
+    core.Combat.canBeKnockedBack = false;
   }
 
   public override void Exit() {
     base.Exit();
+
+    core.Combat.canBeKnockedBack = true;
   }
 
   public override void LogicUpdate() {

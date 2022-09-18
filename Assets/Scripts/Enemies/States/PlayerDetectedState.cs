@@ -11,6 +11,7 @@ public class PlayerDetectedState : State {
   protected bool performLongRangeAction;
   protected bool isDetectingWall;
   protected bool isDetectingLedge;
+  protected bool isGrounded;
   protected bool isTouchingPlayer;
 
   public PlayerDetectedState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_PlayerDetectedState stateData) : base(entity, stateMachine, animationBoolName) {
@@ -21,7 +22,7 @@ public class PlayerDetectedState : State {
     base.Enter();
 
     performLongRangeAction = false;
-    core.Movement.SetVelocityZero();
+    core.Movement.SetVelocityX(0.0f);
   }
 
   public override void Exit() {
@@ -31,7 +32,7 @@ public class PlayerDetectedState : State {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    core.Movement.SetVelocityZero();
+    core.Movement.SetVelocityX(0.0f);
 
     if (stateData.shouldFlip && core.Movement.FacingDirection != (entity.lastPlayerDetectedPosition.x <= entity.transform.position.x ? -1 : 1)) {
       core.Movement.Flip();
@@ -54,6 +55,7 @@ public class PlayerDetectedState : State {
     performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
     isDetectingWall = core.CollisionSenses.WallFront;
     isDetectingLedge = core.CollisionSenses.LedgeVertical;
+    isGrounded = core.CollisionSenses.Grounded;
     isTouchingPlayer = entity.CheckTouchingPlayer();
   }
 }

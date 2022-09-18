@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: KnightRat_PlayerDetectedStateData
   m_EditorClassIdentifier: 
   longRangeActionTime: 0.2
+  shouldFlip: 1
+  touchDamage: 1

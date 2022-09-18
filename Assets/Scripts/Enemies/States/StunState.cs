@@ -18,7 +18,7 @@ public class StunState : State {
   public override void Enter() {
     base.Enter();
 
-    core.Movement.SetVelocityZero();
+    core.Movement.SetVelocityX(0.0f);
     isStunTimeOver = false;
   }
 
@@ -30,6 +30,8 @@ public class StunState : State {
 
   public override void LogicUpdate() {
     base.LogicUpdate();
+
+    core.Movement.SetVelocityX(0.0f);
 
     if (Time.time >= startTime + stateData.stunTime) {
       isStunTimeOver = true;

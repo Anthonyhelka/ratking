@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8386435c41512bc46b47ecd2487c5a43, type: 3}
   m_Name: KnightRat_StunStateData
   m_EditorClassIdentifier: 
-  stunTime: 1.5
+  stunTime: 2
   stunCooldown: 3
+  touchDamage: 0

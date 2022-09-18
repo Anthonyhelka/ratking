@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bdff045672e9f2488c4b9dd96e6b4bd, type: 3}
   m_Name: InfectedRat_BaseData
   m_EditorClassIdentifier: 
-  maxHealth: 10000.75
+  maxHealth: 100
   damageHopSpeed: 1
   damageCooldown: 0.125
   wallCheckDistance: 0.1

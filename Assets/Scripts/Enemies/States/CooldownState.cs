@@ -18,7 +18,7 @@ public class CooldownState : State {
     base.Enter();
 
     isCooldownTimeOver = false;
-    core.Movement.SetVelocityZero();
+    core.Movement.SetVelocityX(0.0f);
   }
 
   public override void Exit() {
@@ -28,7 +28,7 @@ public class CooldownState : State {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    core.Movement.SetVelocityZero();
+    core.Movement.SetVelocityX(0.0f);
 
     if (Time.time >= startTime + stateData.cooldownTime) {
       isCooldownTimeOver = true;
