@@ -11,10 +11,14 @@ public class StrikeRat_PlayerDetectedState : PlayerDetectedState {
 
   public override void Enter() {
     base.Enter();
+
+    core.Combat.canBeKnockedBack = false;
   }
 
   public override void Exit() {
     base.Exit();
+
+    core.Combat.canBeKnockedBack = true;
   }
 
   public override void LogicUpdate() {

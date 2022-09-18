@@ -13,12 +13,16 @@ public class StrikeRat_TeleportState : TeleportState {
     base.Enter();
 
     entity.SetPosition(lastPlayerDetectedPosition);
+
+    core.Combat.canBeKnockedBack = false;
   }
 
   public override void Exit() {
     base.Exit();
 
     entity.willDodge = false;
+
+    core.Combat.canBeKnockedBack = true;
   }
 
   public override void LogicUpdate() {

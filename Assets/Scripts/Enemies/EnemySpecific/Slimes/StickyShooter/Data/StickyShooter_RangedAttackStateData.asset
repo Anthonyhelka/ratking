@@ -19,3 +19,4 @@ MonoBehaviour:
   projectileDirection: {x: -1, y: 0}
   projectTravelDistance: 5
   attackCooldown: 2
+  touchDamage: 1

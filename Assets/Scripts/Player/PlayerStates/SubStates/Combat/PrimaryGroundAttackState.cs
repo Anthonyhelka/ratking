@@ -39,7 +39,7 @@ public class PlayerPrimaryGroundAttackState : PlayerAbilityState {
     base.AnimationTrigger(); 
 
     core.Movement.CheckIfShouldFlip(xInput);
-    core.Movement.SetVelocityX(playerData.primaryGroundAttackMovement[attackCounter] * core.Movement.FacingDirection);
+    core.Movement.SetVelocityX(playerData.primaryGroundAttackMovement[attackCounter] * core.Movement.FacingDirection * Mathf.Abs(xInput));
 
     Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(player.attackCheck.position, playerData.primaryGroundAttackRadius[attackCounter], player.whatIsDamageable);
     foreach (Collider2D collider in detectedObjects) {

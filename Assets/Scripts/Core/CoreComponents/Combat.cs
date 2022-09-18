@@ -6,6 +6,7 @@ public class Combat : CoreComponent, IDamageable, IKnockbackable {
   [SerializeField] private float maxKnockbackTime = 0.2f;
   [SerializeField] private float knockbackMultiplier = 1.0f;
   public bool isKnockbackActive;
+  public bool canBeKnockedBack = true;
   private float knockbackStartTime;
 
   public void LogicUpdate() {
@@ -17,6 +18,8 @@ public class Combat : CoreComponent, IDamageable, IKnockbackable {
   }
 
   public void Knockback(Vector2 angle, float strength, int direction) {
+    if (!canBeKnockedBack) { return; }
+
     if (isKnockbackActive) {
       core.Movement.CanSetVelocity = true;
     }

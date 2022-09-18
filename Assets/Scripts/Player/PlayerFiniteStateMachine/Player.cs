@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour, IDamageable {
   #region State Variables
   public PlayerStateMachine StateMachine { get; private set; }
   // Movement
