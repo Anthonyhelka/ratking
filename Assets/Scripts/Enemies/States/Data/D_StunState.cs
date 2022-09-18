@@ -6,4 +6,6 @@ using UnityEngine;
 public class D_StunState : ScriptableObject {
   public float stunTime = 1.5f;
   public float stunCooldown = 2.5f;
+
+  public bool touchDamage = false;
 }

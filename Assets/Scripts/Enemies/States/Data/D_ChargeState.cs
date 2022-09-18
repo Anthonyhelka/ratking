@@ -7,4 +7,6 @@ public class D_ChargeState : ScriptableObject {
   public float chargeSpeed = 1.5f;
   public float chargeTime = 1.0f;
   public float chargeCooldown = 1.0f;
+
+  public bool touchDamage = false;
 }

@@ -8,4 +8,6 @@ public class D_MeleeAttackState : ScriptableObject {
   public float attackRadius = 0.25f;
   public float attackCooldown = 0.2f;
   public LayerMask whatIsPlayer;
+  
+  public bool touchDamage = false;
 }

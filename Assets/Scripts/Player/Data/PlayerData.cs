@@ -47,11 +47,15 @@ public class PlayerData : ScriptableObject {
   public float[] primaryGroundAttackRadius = new float[2];
   public float[] primaryGroundAttackMovement = new float[2];
   public float primaryGroundAttackCooldown = 0.0f;
+  public float[] primaryGroundAttackKnockbackStength = new float[2];
+  public Vector2[] primaryGroundAttackKnockbackAngle = new Vector2[2];
 
   [Header("Primary Air Attack State")]
   public float primaryAirAttackDamage = 20.0f;
   public float primaryAirAttackRadius = 0.3f;
   public float primaryAirAttackCooldown = 0.0f;
+  public float primaryAirAttackKnockbackStength = 1.0f;
+  public Vector2 primaryAirAttackKnockbackAngle = new Vector2(0.2f, 0.2f);
 
   [Header("Secondary Ground Attack State")]
   public float secondaryGroundAttackDamage = 20.0f;
@@ -59,6 +63,8 @@ public class PlayerData : ScriptableObject {
   public float secondaryGroundAttackXVelocity = 0.5f;
   public float secondaryGroundAttackYVelocity = 0.3f;
   public float secondaryGroundAttackCooldown = 1.0f;
+  public float secondaryGroundAttackKnockbackStength = 5.0f;
+  public Vector2 secondaryGroundAttackKnockbackAngle = new Vector2(1.0f, 0.0f);
 
   [Header("Secondary Air Attack State")]
   public float secondaryAirAttackDamage = 20.0f;
@@ -66,6 +72,8 @@ public class PlayerData : ScriptableObject {
   public float secondaryAirAttackXVelocity = 1.5f;
   public float secondaryAirAttackYVelocity = 0.0f;
   public float secondaryAirAttackCooldown = 1.0f;
+  public float secondaryAirAttackKnockbackStength = 1.0f;
+  public Vector2 secondaryAirAttackKnockbackAngle = new Vector2(-1.0f, 0.0f);
 
   [Header("Boomerang Throw State")]
   public GameObject boomerang;

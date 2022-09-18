@@ -6,5 +6,7 @@ using UnityEngine;
 public class D_ChaseState : ScriptableObject {
   public float chaseSpeed = 1.0f;
   public float turnDelayTime = 0.5f;
+
+  public bool touchDamage = false;
 }
 

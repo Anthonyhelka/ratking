@@ -19,8 +19,8 @@ public class StrikeRat : Entity {
 
   [SerializeField] private Transform meleeAttackPosition;
 
-  public override void Start() {
-    base.Start();
+  public override void Awake() {
+    base.Awake();
 
     idleState = new StrikeRat_IdleState(this, stateMachine, "idle", idleStateData, this);
     playerDetectedState = new StrikeRat_PlayerDetectedState(this, stateMachine, "playerDetected", playerDetectedStateData, this);
@@ -28,7 +28,9 @@ public class StrikeRat : Entity {
     meleeAttackState = new StrikeRat_MeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
     cooldownState = new StrikeRat_CooldownState(this, stateMachine, "cooldown", cooldownStateData, this);
     deadState = new StrikeRat_DeadState(this, stateMachine, "dead", deadStateData, this);
+  }
 
+  private void Start() {
     stateMachine.Initialize(idleState);
   }
 

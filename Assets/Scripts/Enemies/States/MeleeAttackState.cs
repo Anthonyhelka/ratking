@@ -16,7 +16,7 @@ public class MeleeAttackState : AttackState {
   public override void Enter() {
     base.Enter();
 
-    attackDetails.position = entity.alive.transform.position;
+    attackDetails.position = entity.transform.position;
     attackDetails.damageAmount = stateData.attackDamage;
     attackDetails.type = entity.entityData.type;
   }
@@ -28,8 +28,8 @@ public class MeleeAttackState : AttackState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (entity.facingDirection != (entity.lastPlayerDetectedPosition.x <= entity.alive.transform.position.x ? -1 : 1)) {
-      entity.Flip();
+    if (core.Movement.FacingDirection != (entity.lastPlayerDetectedPosition.x <= entity.transform.position.x ? -1 : 1)) {
+      core.Movement.Flip();
     }
   }
 
@@ -48,7 +48,11 @@ public class MeleeAttackState : AttackState {
 
     Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attackPosition.position, stateData.attackRadius, stateData.whatIsPlayer);
     foreach (Collider2D collider in detectedObjects) {
-      collider.transform.SendMessage("Damage", attackDetails);
+      IDamageable damageable = collider.GetComponent<IDamageable>();
+
+      if (damageable != null) {
+        damageable.Damage(attackDetails);
+      }
     }
   }
   

@@ -15,21 +15,23 @@ public class StickyShooter : Entity {
 
   [SerializeField] private Transform rangedAttackPosition;
 
-  public override void Start() {
-    base.Start();
+  public override void Awake() {
+    base.Awake();
 
     idleState = new StickyShooter_IdleState(this, stateMachine, "idle", idleStateData, this);
     playerDetectedState = new StickyShooter_PlayerDetectedState(this, stateMachine, "playerDetected", playerDetectedStateData, this);
     rangedAttackState = new StickyShooter_RangedAttackState(this, stateMachine, "rangedAttack", rangedAttackPosition, rangedAttackStateData, this);
     deadState = new StickyShooter_DeadState(this, stateMachine, "dead", deadStateData, this);
+  }
 
+  private void Start() {
     stateMachine.Initialize(idleState);
   }
 
   public override void FixedUpdate() {
     base.FixedUpdate();
 
-    rb.gravityScale = 0.0f;
+    Core.Movement.RB.gravityScale = 0.0f;
   }
 
   public override void Damage(AttackDetails attackDetails) {

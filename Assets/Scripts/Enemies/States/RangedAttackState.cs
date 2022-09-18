@@ -16,8 +16,8 @@ public class RangedAttackState : AttackState {
   public override void Enter() {
     base.Enter();
 
-    if (entity.facingDirection != (entity.lastPlayerDetectedPosition.x <= entity.alive.transform.position.x ? -1 : 1)) {
-      entity.Flip();
+    if (core.Movement.FacingDirection != (entity.lastPlayerDetectedPosition.x <= entity.transform.position.x ? -1 : 1)) {
+      core.Movement.Flip();
     }
   }
 

@@ -49,6 +49,11 @@ public class PlayerPrimaryGroundAttackState : PlayerAbilityState {
         attackDetails.damageAmount = (int)playerData.primaryGroundAttackDamage[attackCounter];
         damageable.Damage(attackDetails);
       }
+
+      IKnockbackable knockbackable = collider.GetComponentInParent<IKnockbackable>();
+      if (knockbackable != null) {
+        knockbackable.Knockback(playerData.primaryGroundAttackKnockbackAngle[attackCounter], playerData.primaryGroundAttackKnockbackStength[attackCounter], core.Movement.FacingDirection);
+      }
     }
 
     attackCounter++;

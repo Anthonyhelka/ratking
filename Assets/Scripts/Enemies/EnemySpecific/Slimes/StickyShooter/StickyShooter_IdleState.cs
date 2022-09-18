@@ -20,7 +20,7 @@ public class StickyShooter_IdleState : IdleState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    entity.SetVelocity(0.0f);
+    core.Movement.SetVelocityZero();
 
     if (isPlayerInMinAggroRange) {
       stateMachine.ChangeState(stickyShooter.playerDetectedState);
@@ -28,7 +28,7 @@ public class StickyShooter_IdleState : IdleState {
 
     if (isTouchingPlayer) {
       AttackDetails attackDetails;
-      attackDetails.position = entity.alive.transform.position;
+      attackDetails.position = entity.transform.position;
       attackDetails.damageAmount = entity.entityData.touchDamageAmount;
       attackDetails.type = entity.entityData.type;
       entity.lastPlayerTouched.transform.SendMessage("Damage", attackDetails);

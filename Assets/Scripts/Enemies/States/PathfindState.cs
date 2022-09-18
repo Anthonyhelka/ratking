@@ -21,7 +21,7 @@ public class PathfindState : State {
   public override void Enter() {
     base.Enter();
 
-    entity.seeker.StartPath(entity.rb.position, entity.lastPlayerDetectedPosition, OnPathComplete);
+    entity.seeker.StartPath(core.Movement.RB.position, entity.lastPlayerDetectedPosition, OnPathComplete);
   }
 
   public override void Exit() {
@@ -31,16 +31,16 @@ public class PathfindState : State {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (entity.facingDirection != (entity.lastPlayerDetectedPosition.x <= entity.alive.transform.position.x ? -1 : 1)) {
-      entity.Flip();
+    if (core.Movement.FacingDirection != (entity.lastPlayerDetectedPosition.x <= entity.transform.position.x ? -1 : 1)) {
+      core.Movement.Flip();
     }
 
     if (currentWaypoint < path.vectorPath.Count) {
-      if (Vector2.Distance(entity.rb.position, path.vectorPath[currentWaypoint]) < stateData.nextWaypointDistance) {
+      if (Vector2.Distance(core.Movement.RB.position, path.vectorPath[currentWaypoint]) < stateData.nextWaypointDistance) {
         currentWaypoint++;
       }
-      entity.SetVelocity(stateData.pathfindSpeed, ((Vector2)path.vectorPath[currentWaypoint] - entity.rb.position).normalized);
-      entity.seeker.StartPath(entity.rb.position, entity.lastPlayerDetectedPosition, OnPathComplete); 
+      core.Movement.SetVelocity(stateData.pathfindSpeed, ((Vector2)path.vectorPath[currentWaypoint] - core.Movement.RB.position).normalized);
+      entity.seeker.StartPath(core.Movement.RB.position, entity.lastPlayerDetectedPosition, OnPathComplete); 
     }
   }
 

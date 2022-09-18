@@ -3,7 +3,18 @@ guid: 5944d02c583c9a7408fc854458d1c620
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - entityData: {instanceID: 0}
+  - lastPlayerTouched: {instanceID: 0}
+  - attackCheck: {instanceID: 0}
+  - wallCheck: {instanceID: 0}
+  - ledgeCheck: {instanceID: 0}
+  - playerCheck: {instanceID: 0}
+  - groundCheck: {instanceID: 0}
+  - idleStateData: {instanceID: 0}
+  - moveStateData: {instanceID: 0}
+  - hurtStateData: {instanceID: 0}
+  - deadStateData: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

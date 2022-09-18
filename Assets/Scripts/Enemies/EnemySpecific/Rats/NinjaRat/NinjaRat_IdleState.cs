@@ -20,7 +20,7 @@ public class NinjaRat_IdleState : IdleState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    entity.SetVelocity(0.0f);
+    core.Movement.SetVelocityZero();
 
     if (isPlayerInMinAggroRange) {
       stateMachine.ChangeState(ninjaRat.playerDetectedState);

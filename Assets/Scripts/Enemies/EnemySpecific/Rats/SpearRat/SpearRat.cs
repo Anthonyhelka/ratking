@@ -17,18 +17,20 @@ public class SpearRat : Entity {
 
   [SerializeField] private Transform meleeAttackPosition;
 
-  public override void Start() {
-    base.Start();
+  public override void Awake() {
+    base.Awake();
 
     idleState = new SpearRat_IdleState(this, stateMachine, "idle", idleStateData, this);
     playerDetectedState = new SpearRat_PlayerDetectedState(this, stateMachine, "playerDetected", playerDetectedStateData, this);
     chargeState = new SpearRat_ChargeState(this, stateMachine, "charge", chargeStateData, this);
     cooldownState = new SpearRat_CooldownState(this, stateMachine, "cooldown", cooldownStateData, this);
     deadState = new SpearRat_DeadState(this, stateMachine, "dead", deadStateData, this);
-
-    stateMachine.Initialize(idleState);
   }
 
+  private void Start() {
+    stateMachine.Initialize(idleState);
+  }
+  
   public override void Damage(AttackDetails attackDetails) {
     base.Damage(attackDetails);
 

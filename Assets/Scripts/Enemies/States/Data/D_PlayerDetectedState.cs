@@ -6,4 +6,6 @@ using UnityEngine;
 public class D_PlayerDetectedState : ScriptableObject {
   public float longRangeActionTime = 0.2f;
   public bool shouldFlip = true;
+
+  public bool touchDamage = false;
 }

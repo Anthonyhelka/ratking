@@ -6,4 +6,6 @@ using UnityEngine;
 public class D_IdleState : ScriptableObject {
   public float minIdleTime = 1.0f;
   public float maxIdleTime = 2.0f;
+
+  public bool touchDamage = false;
 }

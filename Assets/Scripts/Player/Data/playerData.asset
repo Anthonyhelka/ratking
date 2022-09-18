@@ -37,20 +37,32 @@ MonoBehaviour:
   primaryGroundAttackMovement:
   - 0.3
   - 0.3
-  primaryGroundAttackCooldown: 0
+  primaryGroundAttackCooldown: 0.25
+  primaryGroundAttackKnockbackStength:
+  - 1.75
+  - 1.75
+  primaryGroundAttackKnockbackAngle:
+  - {x: 1, y: 1}
+  - {x: 1, y: 1}
   primaryAirAttackDamage: 20
   primaryAirAttackRadius: 0.325
   primaryAirAttackCooldown: 0
+  primaryAirAttackKnockbackStength: 1
+  primaryAirAttackKnockbackAngle: {x: 0, y: -1}
   secondaryGroundAttackDamage: 20
   secondaryGroundAttackRadius: 0.3
-  secondaryGroundAttackXVelocity: 1.5
-  secondaryGroundAttackYVelocity: 0.75
-  secondaryGroundAttackCooldown: 0
+  secondaryGroundAttackXVelocity: 0
+  secondaryGroundAttackYVelocity: 0
+  secondaryGroundAttackCooldown: 0.25
+  secondaryGroundAttackKnockbackStength: 4
+  secondaryGroundAttackKnockbackAngle: {x: -0.25, y: 1}
   secondaryAirAttackDamage: 20
   secondaryAirAttackRadius: 0.3
   secondaryAirAttackXVelocity: 1.5
   secondaryAirAttackYVelocity: 0
   secondaryAirAttackCooldown: 1
+  secondaryAirAttackKnockbackStength: 0.75
+  secondaryAirAttackKnockbackAngle: {x: 0, y: 1}
   boomerang: {fileID: 3104904845522073772, guid: 26ee7dd12045f9c42afd65e84e546ad7,
     type: 3}
   boomerangDamage: 10

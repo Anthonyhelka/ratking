@@ -21,7 +21,7 @@ public class PlayerDetectedState : State {
     base.Enter();
 
     performLongRangeAction = false;
-    entity.SetVelocity(0.0f);
+    core.Movement.SetVelocityZero();
   }
 
   public override void Exit() {
@@ -31,8 +31,10 @@ public class PlayerDetectedState : State {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (stateData.shouldFlip && entity.facingDirection != (entity.lastPlayerDetectedPosition.x <= entity.alive.transform.position.x ? -1 : 1)) {
-      entity.Flip();
+    core.Movement.SetVelocityZero();
+
+    if (stateData.shouldFlip && core.Movement.FacingDirection != (entity.lastPlayerDetectedPosition.x <= entity.transform.position.x ? -1 : 1)) {
+      core.Movement.Flip();
     }
 
     if (Time.time >= startTime + stateData.longRangeActionTime) {
@@ -50,8 +52,8 @@ public class PlayerDetectedState : State {
     isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
     isPlayerInMaxAggroRange = entity.CheckPlayerInMaxAggroRange();
     performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
-    isDetectingWall = entity.CheckWall();
-    isDetectingLedge = entity.CheckLedge();
+    isDetectingWall = core.CollisionSenses.WallFront;
+    isDetectingLedge = core.CollisionSenses.LedgeVertical;
     isTouchingPlayer = entity.CheckTouchingPlayer();
   }
 }

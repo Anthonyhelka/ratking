@@ -19,8 +19,8 @@ public class NinjaRat : Entity {
 
   [SerializeField] private Transform rangedAttackPosition;
 
-  public override void Start() {
-    base.Start();
+  public override void Awake() {
+    base.Awake();
 
     idleState = new NinjaRat_IdleState(this, stateMachine, "idle", idleStateData, this);
     moveState = new NinjaRat_MoveState(this, stateMachine, "move", moveStateData, this);
@@ -28,7 +28,9 @@ public class NinjaRat : Entity {
     dodgeState = new NinjaRat_DodgeState(this, stateMachine, "dodge", dodgeStateData, this);
     rangedAttackState = new NinjaRat_RangedAttackState(this, stateMachine, "rangedAttack", rangedAttackPosition, rangedAttackStateData, this);
     deadState = new NinjaRat_DeadState(this, stateMachine, "dead", deadStateData, this);
+  }
 
+  private void Start() {
     stateMachine.Initialize(moveState);
   }
 

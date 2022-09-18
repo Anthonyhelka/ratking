@@ -11,6 +11,8 @@ public class PlayerSecondaryGroundAttackState : PlayerAbilityState {
 
   public override void Enter() {
     base.Enter();
+
+    core.Movement.SetVelocityX(0.0f);
   }
 
   public override void Exit() {
@@ -22,9 +24,7 @@ public class PlayerSecondaryGroundAttackState : PlayerAbilityState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    core.Movement.CheckIfShouldFlip(xInput);
-    core.Movement.SetVelocityX(playerData.secondaryGroundAttackXVelocity * xInput);
-    core.Movement.SetVelocityY(playerData.secondaryGroundAttackYVelocity);
+    core.Movement.SetVelocityX(0.0f);
 
     if ((jumpInput && player.JumpState.CanJump()) || (dashInput && player.DashState.CanDash())) {
       isAbilityDone = true;
@@ -49,6 +49,11 @@ public class PlayerSecondaryGroundAttackState : PlayerAbilityState {
         attackDetails.position = player.transform.position;
         attackDetails.damageAmount = (int)playerData.secondaryGroundAttackDamage;
         damageable.Damage(attackDetails);
+      }
+
+      IKnockbackable knockbackable = collider.GetComponentInParent<IKnockbackable>();
+      if (knockbackable != null) {
+        knockbackable.Knockback(playerData.secondaryGroundAttackKnockbackAngle, playerData.secondaryGroundAttackKnockbackStength, core.Movement.FacingDirection);
       }
     }
   }

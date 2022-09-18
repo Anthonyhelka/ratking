@@ -18,7 +18,7 @@ public class StunState : State {
   public override void Enter() {
     base.Enter();
 
-    entity.SetVelocity(0.0f);
+    core.Movement.SetVelocityZero();
     isStunTimeOver = false;
   }
 

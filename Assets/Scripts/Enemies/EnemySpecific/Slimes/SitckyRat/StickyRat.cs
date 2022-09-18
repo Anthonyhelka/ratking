@@ -9,19 +9,21 @@ public class StickyRat : Entity {
   [SerializeField] private D_IdleState idleStateData;
   [SerializeField] private D_DeadState deadStateData;
 
-  public override void Start() {
-    base.Start();
+  public override void Awake() {
+    base.Awake();
 
     idleState = new StickyRat_IdleState(this, stateMachine, "idle", idleStateData, this);
     deadState = new StickyRat_DeadState(this, stateMachine, "dead", deadStateData, this);
+  }
 
+  private void Start() {
     stateMachine.Initialize(idleState);
   }
 
   public override void FixedUpdate() {
     base.FixedUpdate();
 
-    rb.gravityScale = 0.0f;
+    Core.Movement.RB.gravityScale = 0.0f;
   }
 
   public override void Damage(AttackDetails attackDetails) {

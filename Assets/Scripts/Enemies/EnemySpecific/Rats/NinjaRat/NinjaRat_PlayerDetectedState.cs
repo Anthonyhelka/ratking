@@ -20,7 +20,7 @@ public class NinjaRat_PlayerDetectedState : PlayerDetectedState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    entity.SetVelocity(0.0f);
+    core.Movement.SetVelocityZero();
 
     if (performCloseRangeAction) {
       if (Time.time >= ninjaRat.dodgeState.startTime + ninjaRat.dodgeStateData.dodgeCooldown) {

@@ -7,6 +7,7 @@ public class CooldownState : State {
 
   protected bool isPlayerInMinAggroRange;
   protected bool performCloseRangeAction;
+  protected bool isTouchingPlayer;
   protected bool isCooldownTimeOver;
   
   public CooldownState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_CooldownState stateData) : base(entity, stateMachine, animationBoolName) {
@@ -17,7 +18,7 @@ public class CooldownState : State {
     base.Enter();
 
     isCooldownTimeOver = false;
-    entity.SetVelocity(0.0f);
+    core.Movement.SetVelocityZero();
   }
 
   public override void Exit() {
@@ -26,6 +27,8 @@ public class CooldownState : State {
 
   public override void LogicUpdate() {
     base.LogicUpdate();
+
+    core.Movement.SetVelocityZero();
 
     if (Time.time >= startTime + stateData.cooldownTime) {
       isCooldownTimeOver = true;
@@ -41,5 +44,6 @@ public class CooldownState : State {
 
     isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
     performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
+    isTouchingPlayer = entity.CheckTouchingPlayer();
   }
 }

@@ -20,7 +20,7 @@ public class StickyShooter_PlayerDetectedState : PlayerDetectedState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    entity.SetVelocity(0.0f);
+    core.Movement.SetVelocityZero();
 
     if (Time.time > stickyShooter.rangedAttackState.startTime + stickyShooter.rangedAttackStateData.attackCooldown) {
       stateMachine.ChangeState(stickyShooter.rangedAttackState);
@@ -30,7 +30,7 @@ public class StickyShooter_PlayerDetectedState : PlayerDetectedState {
 
     if (isTouchingPlayer) {
       AttackDetails attackDetails;
-      attackDetails.position = entity.alive.transform.position;
+      attackDetails.position = entity.transform.position;
       attackDetails.damageAmount = entity.entityData.touchDamageAmount;
       attackDetails.type = entity.entityData.type;
       entity.lastPlayerTouched.transform.SendMessage("Damage", attackDetails);

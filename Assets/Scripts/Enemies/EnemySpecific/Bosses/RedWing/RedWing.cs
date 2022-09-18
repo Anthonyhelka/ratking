@@ -17,15 +17,17 @@ public class RedWing : Entity {
 
   [SerializeField] private Transform meleeAttackPosition;
 
-  public override void Start() {
-    base.Start();
+  public override void Awake() {
+    base.Awake();
 
     idleState = new RedWing_IdleState(this, stateMachine, "idle", idleStateData, this);
     moveState = new RedWing_MoveState(this, stateMachine, "move", moveStateData, this);
     playerDetectedState = new RedWing_PlayerDetectedState(this, stateMachine, "playerDetected", playerDetectedStateData, this);
     meleeAttackState = new RedWing_MeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
     deadState = new RedWing_DeadState(this, stateMachine, "dead", deadStateData, this);
+  }
 
+  private void Start() {
     stateMachine.Initialize(idleState);
   }
 

@@ -13,21 +13,23 @@ public class PlagueFly : Entity {
   [SerializeField] private D_PathfindState pathfindStateData;
   [SerializeField] private D_DeadState deadStateData;
 
-  public override void Start() {
-    base.Start();
+  public override void Awake() {
+    base.Awake();
 
     idleState = new PlagueFly_IdleState(this, stateMachine, "idle", idleStateData, this);
     playerDetectedState = new PlagueFly_PlayerDetectedState(this, stateMachine, "playerDetected", playerDetectedStateData, this);
     pathfindState = new PlagueFly_PathfindState(this, stateMachine, "pathfind", pathfindStateData, this);
     deadState = new PlagueFly_DeadState(this, stateMachine, "dead", deadStateData, this);
+  }
 
+  private void Start() {
     stateMachine.Initialize(idleState);
   }
 
   public override void FixedUpdate() {
     base.FixedUpdate();
 
-    rb.gravityScale = 0.0f;
+    Core.Movement.RB.gravityScale = 0.0f;
   }
   
   public override void Damage(AttackDetails attackDetails) {

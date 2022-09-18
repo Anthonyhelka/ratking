@@ -52,6 +52,11 @@ public class PlayerPrimaryAirAttackState : PlayerAbilityState {
         damageable.Damage(attackDetails);
         stateMachine.ChangeState(player.BounceState);
       }
+
+      IKnockbackable knockbackable = collider.GetComponentInParent<IKnockbackable>();
+      if (knockbackable != null) {
+        knockbackable.Knockback(playerData.primaryAirAttackKnockbackAngle, playerData.primaryAirAttackKnockbackStength, collider.transform.position.x > player.transform.position.x ? 1 : -1);
+      }
     }
   }
 

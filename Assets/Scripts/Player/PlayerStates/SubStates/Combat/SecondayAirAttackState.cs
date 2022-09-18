@@ -50,6 +50,11 @@ public class PlayerSecondaryAirAttackState : PlayerAbilityState {
         attackDetails.damageAmount = (int)playerData.secondaryAirAttackDamage;
         damageable.Damage(attackDetails);
       }
+
+      IKnockbackable knockbackable = collider.GetComponentInParent<IKnockbackable>();
+      if (knockbackable != null) {
+        knockbackable.Knockback(playerData.secondaryAirAttackKnockbackAngle, playerData.secondaryAirAttackKnockbackStength, core.Movement.FacingDirection);
+      }
     }
   }
   

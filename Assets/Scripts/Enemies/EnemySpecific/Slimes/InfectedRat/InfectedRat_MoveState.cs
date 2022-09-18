@@ -20,14 +20,14 @@ public class InfectedRat_MoveState : MoveState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (isDetectingWall || !isDetectingLedge) {
+    if ((isDetectingWall || !isDetectingLedge) && !core.Combat.isKnockbackActive) {
       infectedRat.idleState.SetFlipAfterIdle(true);
       stateMachine.ChangeState(infectedRat.idleState);
     }
 
     if (isTouchingPlayer) {
       AttackDetails attackDetails;
-      attackDetails.position = entity.alive.transform.position;
+      attackDetails.position = entity.transform.position;
       attackDetails.damageAmount = entity.entityData.touchDamageAmount;
       attackDetails.type = entity.entityData.type;
       entity.lastPlayerTouched.transform.SendMessage("Damage", attackDetails);

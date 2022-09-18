@@ -31,6 +31,13 @@ public class BlockState : State {
     if (Time.time >= startTime + stateData.minBlockTime) {
       isMinBlockTimeOver = true;
     }
+
+    // if (entityData.touchDamage && isTouchingPlayer) {
+    //   IDamageable damageable = entity.lastPlayerTouched.GetComponent<IDamageable>();
+    //   if (damageable != null) {
+    //     damageable.Damage(attackDetails);
+    //   }
+    // }
   }
 
   public override void PhysicsUpdate() {

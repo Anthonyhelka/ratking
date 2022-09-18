@@ -19,23 +19,23 @@ public class IdleState : State {
   public override void Enter() {
     base.Enter();
 
-    entity.SetVelocity(0.0f);
     isIdleTimeOver = false;
     SetRandomIdleTime();
+    core.Movement.SetVelocityX(0.0f);
   }
 
   public override void Exit() {
     base.Exit();
 
     if (flipAfterIdle) {
-      entity.Flip();
+      core.Movement.Flip();
     }
   }
 
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    entity.SetVelocity(0.0f);
+    core.Movement.SetVelocityX(0.0f);
 
     if (Time.time >= startTime + idleTime) {
       isIdleTimeOver = true;

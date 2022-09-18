@@ -32,7 +32,7 @@ public class HammerRat_MeleeAttackState : MeleeAttackState {
 
     if (isTouchingPlayer) {
       AttackDetails attackDetails;
-      attackDetails.position = entity.alive.transform.position;
+      attackDetails.position = entity.transform.position;
       attackDetails.damageAmount = entity.entityData.touchDamageAmount;
       attackDetails.type = entity.entityData.type;
       entity.lastPlayerTouched.transform.SendMessage("Damage", attackDetails);

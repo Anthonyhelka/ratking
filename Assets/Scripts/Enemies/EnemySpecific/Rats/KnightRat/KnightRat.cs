@@ -21,8 +21,8 @@ public class KnightRat : Entity {
 
   [SerializeField] private Transform meleeAttackPosition;
 
-  public override void Start() {
-    base.Start();
+  public override void Awake() {
+    base.Awake();
 
     idleState = new KnightRat_IdleState(this, stateMachine, "idle", idleStateData, this);
     moveState = new KnightRat_MoveState(this, stateMachine, "move", moveStateData, this);
@@ -31,7 +31,9 @@ public class KnightRat : Entity {
     meleeAttackState = new KnightRat_MeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
     stunState = new KnightRat_StunState(this, stateMachine, "stun", stunStateData, this);
     deadState = new KnightRat_DeadState(this, stateMachine, "dead", deadStateData, this);
+  }
 
+  private void Start() {
     stateMachine.Initialize(moveState);
   }
 
@@ -40,7 +42,7 @@ public class KnightRat : Entity {
 
     if (isDead) {
       stateMachine.ChangeState(deadState);
-    } else if (lastPlayerDetectedPosition.y > alive.transform.position.y + 0.275f && Time.time > stunState.nextStunTime) {
+    } else if (lastPlayerDetectedPosition.y > transform.position.y + 0.275f && Time.time > stunState.nextStunTime) {
       stateMachine.ChangeState(stunState);
     }
   }

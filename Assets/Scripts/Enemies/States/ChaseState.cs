@@ -19,7 +19,7 @@ public class ChaseState : State {
   public override void Enter() {
     base.Enter();
     
-    entity.SetVelocity(stateData.chaseSpeed);
+    core.Movement.SetVelocityX(stateData.chaseSpeed * core.Movement.FacingDirection);
   }
 
   public override void Exit() {
@@ -29,7 +29,9 @@ public class ChaseState : State {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (entity.facingDirection != (entity.lastPlayerDetectedPosition.x <= entity.alive.transform.position.x ? -1 : 1) && !willTurn) {
+    core.Movement.SetVelocityX(stateData.chaseSpeed * core.Movement.FacingDirection);
+
+    if (core.Movement.FacingDirection != (entity.lastPlayerDetectedPosition.x <= entity.transform.position.x ? -1 : 1) && !willTurn) {
       willTurn = true;
       turnStartTime = Time.time;
     }
@@ -37,8 +39,8 @@ public class ChaseState : State {
     if (willTurn) {
       if (Time.time > turnStartTime + stateData.turnDelayTime) {
         willTurn = false;
-        entity.Flip();
-        entity.SetVelocity(stateData.chaseSpeed);
+        core.Movement.Flip();
+        core.Movement.SetVelocityX(stateData.chaseSpeed * core.Movement.FacingDirection);
       }
     }
   }

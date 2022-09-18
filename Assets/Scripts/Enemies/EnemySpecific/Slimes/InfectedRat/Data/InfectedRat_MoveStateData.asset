@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: InfectedRat_MoveStateData
   m_EditorClassIdentifier: 
   movementSpeed: 0.3
+  touchDamage: 0

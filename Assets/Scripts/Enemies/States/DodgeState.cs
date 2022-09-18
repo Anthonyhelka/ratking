@@ -21,7 +21,7 @@ public class DodgeState : State {
     base.Enter();
 
     isDodgeOver = false;
-    entity.SetVelocity(stateData.dodgeSpeed, stateData.dodgeAngle, entity.facingDirection);
+    core.Movement.SetVelocity(stateData.dodgeSpeed, stateData.dodgeAngle * core.Movement.FacingDirection);
   }
 
   public override void Exit() {
@@ -45,9 +45,9 @@ public class DodgeState : State {
 
     performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
     isPlayerInMaxAggroRange = entity.CheckPlayerInMaxAggroRange();
-    isDetectingWall = entity.CheckWall();
-    isDetectingLedge = entity.CheckLedge();
-    isGrounded = entity.CheckGround();
+    isDetectingWall = core.CollisionSenses.WallFront;
+    isDetectingLedge = core.CollisionSenses.LedgeVertical;
+    isGrounded = core.CollisionSenses.Grounded;
     isTouchingPlayer = entity.CheckTouchingPlayer();
   }
 }

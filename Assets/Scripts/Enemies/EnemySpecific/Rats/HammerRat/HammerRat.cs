@@ -17,15 +17,17 @@ public class HammerRat : Entity {
 
   [SerializeField] private Transform meleeAttackPosition;
 
-  public override void Start() {
-    base.Start();
+  public override void Awake() {
+    base.Awake();
 
     idleState = new HammerRat_IdleState(this, stateMachine, "idle", idleStateData, this);
     playerDetectedState = new HammerRat_PlayerDetectedState(this, stateMachine, "playerDetected", playerDetectedStateData, this);
     blockState = new HammerRat_BlockState(this, stateMachine, "block", blockStateData, this);
     meleeAttackState = new HammerRat_MeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
     deadState = new HammerRat_DeadState(this, stateMachine, "dead", deadStateData, this);
+  }
 
+  private void Start() {
     stateMachine.Initialize(idleState);
   }
 

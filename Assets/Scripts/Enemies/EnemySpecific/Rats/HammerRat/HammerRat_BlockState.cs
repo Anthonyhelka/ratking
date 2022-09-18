@@ -34,13 +34,13 @@ public class HammerRat_BlockState : BlockState {
 
     if (isTouchingPlayer) {
       AttackDetails attackDetails;
-      attackDetails.position = entity.alive.transform.position;
+      attackDetails.position = entity.transform.position;
       attackDetails.damageAmount = entity.entityData.touchDamageAmount;
       attackDetails.type = entity.entityData.type;
       entity.lastPlayerTouched.transform.SendMessage("Damage", attackDetails);
     }
 
-    entity.willBlock = entity.lastPlayerDetectedPosition.y > entity.alive.transform.position.y + 0.4f;
+    entity.willBlock = entity.lastPlayerDetectedPosition.y > entity.transform.position.y + 0.4f;
   }
 
   public override void PhysicsUpdate() {

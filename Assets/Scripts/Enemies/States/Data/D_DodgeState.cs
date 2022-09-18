@@ -8,5 +8,7 @@ public class D_DodgeState : ScriptableObject {
   public float dodgeTime = 0.2f;
   public float dodgeCooldown = 0.75f;
   public Vector2 dodgeAngle;
+
+  public bool touchDamage = false;
 }
 
