@@ -37519,12 +37519,12 @@ PrefabInstance:
     - target: {fileID: 240099176226497018, guid: 38b7f0652d6c9aa4482dec243cd195c6,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 240099176607458674, guid: 38b7f0652d6c9aa4482dec243cd195c6,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 240099177323076874, guid: 38b7f0652d6c9aa4482dec243cd195c6,
         type: 3}
