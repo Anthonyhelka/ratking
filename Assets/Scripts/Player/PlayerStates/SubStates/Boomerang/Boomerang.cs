@@ -15,7 +15,8 @@ public class Boomerang : MonoBehaviour {
   [SerializeField] private LayerMask whatIsPlayer;
   [SerializeField] private LayerMask whatIsEnemy;
   [SerializeField] private LayerMask whatIsGround;
-
+  [SerializeField] private Vector2 knockbackAngle = new Vector2(1.0f, 0.0f);
+  [SerializeField] private float knockbackStrength = 1.0f;
   private void Start() {
     rb = GetComponent<Rigidbody2D>();
     player = GameObject.Find("Player");
@@ -38,8 +39,18 @@ public class Boomerang : MonoBehaviour {
       transform.Rotate(0.0f, 180.0f, 0.0f);
     }
 
-    if (enemyHit) {
-      enemyHit.transform.parent.SendMessage("Damage", attackDetails);
+    Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(hitboxPosition.position, hitboxRadius, whatIsEnemy);
+    foreach (Collider2D collider in detectedObjects) {
+      IDamageable damageable = collider.GetComponentInParent<IDamageable>();
+      if (damageable != null) {
+        attackDetails.position = transform.position;
+        damageable.Damage(attackDetails);
+      }
+
+      IKnockbackable knockbackable = collider.GetComponentInParent<IKnockbackable>();
+      if (knockbackable != null) {
+        knockbackable.Knockback(knockbackAngle, knockbackStrength, collider.transform.position.x <= transform.position.x ? 1 : -1);
+      }
     }
 
     if (Mathf.Abs(startPositionX - transform.position.x) >= travelDistance && goingOut) {

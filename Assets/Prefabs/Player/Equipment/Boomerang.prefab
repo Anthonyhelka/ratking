@@ -181,3 +181,5 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 4096
+  knockbackAngle: {x: 1, y: 1}
+  knockbackStrength: 2

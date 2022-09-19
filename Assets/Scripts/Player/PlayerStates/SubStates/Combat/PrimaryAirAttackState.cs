@@ -25,7 +25,7 @@ public class PlayerPrimaryAirAttackState : PlayerAbilityState {
     core.Movement.CheckIfShouldFlip(xInput);
     core.Movement.SetVelocityX(playerData.movementVelocity * xInput);
 
-    if ((jumpInput && player.JumpState.CanJump()) || (dashInput && player.DashState.CanDash())) {
+    if ((jumpInput && player.JumpState.CanJump()) || (dashInput && player.DashState.CanDash()) || (secondaryAttackInput && player.SecondaryAirAttackState.CanUse())) {
       isAbilityDone = true;
     } else if (isGrounded) {
       stateMachine.ChangeState(player.RollState);

@@ -32,12 +32,14 @@ public class Entity : MonoBehaviour, IDamageable, IKnockbackable {
   [SerializeField] private Transform ledgeCheck;
   [SerializeField] private Transform playerCheck;
   [SerializeField] private Transform groundCheck;
+  private GameObject player;
 
   public virtual void Awake() {
     stateMachine = new FiniteStateMachine();
     animator = GetComponent<Animator>();
     atsm = GetComponent<AnimationToStateMachine>();
     Core = GetComponentInChildren<Core>();
+    player = GameObject.Find("Player");
     if (usesPathfinding) seeker = GetComponent<Seeker>();
 
     currentHealth = entityData.maxHealth;
@@ -111,8 +113,8 @@ public class Entity : MonoBehaviour, IDamageable, IKnockbackable {
       lastDamageTime = Time.time;
       lastDamageDirection = attackDetails.position.x <= transform.position.x ? -1 : 1;
 
-      if (lastDamageDirection != Core.Movement.FacingDirection) {
-        Core.Movement.Flip();
+      if ((player.transform.position.x <= transform.position.x ? -1 : 1) != Core.Movement.FacingDirection) {
+        // Core.Movement.Flip();
       }
 
       if (currentHealth <= 0) {
