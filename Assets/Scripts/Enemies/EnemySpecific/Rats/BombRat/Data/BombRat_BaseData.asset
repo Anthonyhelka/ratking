@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bdff045672e9f2488c4b9dd96e6b4bd, type: 3}
+  m_Name: BombRat_BaseData
+  m_EditorClassIdentifier: 
+  maxHealth: 75
+  damageHopSpeed: 1
+  damageCooldown: 0.125
+  wallCheckDistance: 0.1
+  ledgeCheckDistance: 0.35
+  groundCheckRadius: 0.3
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 4096
+  minAggroDistance: {x: 2, y: 1.25}
+  maxAggroDistance: {x: 4, y: 2.5}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 512
+  closeRangeActionDistance: 0.3
+  type: Strike
+  meleeAttackCooldown: 1
+  touchDamageAmount: 1
+  touchDamageDistance: {x: 0.2, y: 0.3}
+  hitParticle: {fileID: 3837136863414369658, guid: a6fb3877f5baa6c43ab5a94804f36404,
+    type: 3}
+  blockParticle: {fileID: 3837136863414369658, guid: ad412af0fbc27c9429edd9c600c4ca58,
+    type: 3}
+  canBeHurt: 1

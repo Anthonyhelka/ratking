@@ -1,31 +1,19 @@
 fileFormatVersion: 2
-guid: 3677ed2d89412d444959f6fdd856df99
+guid: 1b9d6df3515d6674f9ec8fd36abd23c3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7480956658806378257
-    second: Bomb Rat_0
+      213: -5595748233500887021
+    second: cooldown_0
   - first:
-      213: 7323206903265255800
-    second: Bomb Rat_1
+      213: 690117833904468086
+    second: cooldown_1
   - first:
-      213: -2881641834646967105
-    second: Bomb Rat_2
+      213: 7452491933114084588
+    second: cooldown_2
   - first:
-      213: 3506278551393199792
-    second: Bomb Rat_3
-  - first:
-      213: -9132448780963533961
-    second: Bomb Rat_4
-  - first:
-      213: -8701499452027380293
-    second: Bomb Rat_5
-  - first:
-      213: 1910746438990524459
-    second: Bomb Rat_6
-  - first:
-      213: 3998715128563184380
-    second: Bomb Rat_7
+      213: 6345282036650076689
+    second: cooldown_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -127,13 +115,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bomb Rat_0
+      name: cooldown_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 100
-        width: 50
-        height: 50
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,20 +129,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11f4f340272b1d760800000000000000
-      internalID: 7480956658806378257
+      spriteID: 318f8a111a8e752b0800000000000000
+      internalID: -5595748233500887021
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bomb Rat_1
+      name: cooldown_1
       rect:
         serializedVersion: 2
-        x: 50
-        y: 100
-        width: 50
-        height: 50
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,104 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87160d5e0e141a560800000000000000
-      internalID: 7323206903265255800
+      spriteID: 670b907738ac39900800000000000000
+      internalID: 690117833904468086
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bomb Rat_2
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 100
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fbc66fbd40a5208d0800000000000000
-      internalID: -2881641834646967105
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bomb Rat_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 50
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0b6ec53f3cdc8a030800000000000000
-      internalID: 3506278551393199792
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bomb Rat_4
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 50
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 77b28313836034180800000000000000
-      internalID: -9132448780963533961
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bomb Rat_5
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 50
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bbdd6a4d9501e3780800000000000000
-      internalID: -8701499452027380293
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bomb Rat_6
+      name: cooldown_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 50
-        height: 50
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -267,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b207fdf33c5548a10800000000000000
-      internalID: 1910746438990524459
+      spriteID: cecaabc9de19c6760800000000000000
+      internalID: 7452491933114084588
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bomb Rat_7
+      name: cooldown_3
       rect:
         serializedVersion: 2
-        x: 50
+        x: 32
         y: 0
-        width: 50
-        height: 50
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -288,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf23dfb293a4e7730800000000000000
-      internalID: 3998715128563184380
+      spriteID: 11ae132c468fe0850800000000000000
+      internalID: 6345282036650076689
       vertices: []
       indices: 
       edges: []

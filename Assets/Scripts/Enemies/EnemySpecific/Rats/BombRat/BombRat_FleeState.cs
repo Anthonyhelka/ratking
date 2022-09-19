@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hive_SpawnUnitState : SpawnUnitState {
-  private Hive hive;
+public class BombRat_FleeState : FleeState {
+  private BombRat bombRat;
 
-  public Hive_SpawnUnitState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, Transform attackPosition, D_SpawnUnitState stateData, Hive hive) : base(entity, stateMachine, animationBoolName, attackPosition, stateData) {
-    this.hive = hive;
+  public BombRat_FleeState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_FleeState stateData, BombRat bombRat) : base(entity, stateMachine, animationBoolName, stateData) {
+    this.bombRat = bombRat;
   }
 
   public override void Enter() {
@@ -19,6 +19,12 @@ public class Hive_SpawnUnitState : SpawnUnitState {
 
   public override void LogicUpdate() {
     base.LogicUpdate();
+
+    if (!isPlayerInMaxAggroRange) {
+      stateMachine.ChangeState(bombRat.moveState);
+    } else if (Time.time > bombRat.spawnUnitState.startTime + bombRat.spawnUnitStateData.spawnCooldown) {
+      stateMachine.ChangeState(bombRat.spawnUnitState);
+    }
 
     if (isTouchingPlayer) {
       AttackDetails attackDetails;
@@ -35,15 +41,5 @@ public class Hive_SpawnUnitState : SpawnUnitState {
 
   public override void DoChecks() {
     base.DoChecks();
-  }
-
-  public override void TriggerAttack() {
-    base.TriggerAttack();
-  }
-
-  public override void FinishAttack() {
-    base.FinishAttack();
-
-    stateMachine.ChangeState(hive.cooldownState);
   }
 }

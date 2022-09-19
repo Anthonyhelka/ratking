@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af7acb34dc75214aa0a27ff638d7c2c, type: 3}
+  m_Name: BombRat_SpawnUnitStateData
+  m_EditorClassIdentifier: 
+  unit: {fileID: 8805709825523127272, guid: ed9ee37a9ada9c848b5d222e8f3824f3, type: 3}
+  spawnCooldown: 2.5
+  touchDamage: 0

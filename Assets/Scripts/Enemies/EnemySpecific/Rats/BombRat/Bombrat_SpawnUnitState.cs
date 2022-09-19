@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hive_SpawnUnitState : SpawnUnitState {
-  private Hive hive;
+public class BombRat_SpawnUnitState : SpawnUnitState {
+  private BombRat bombRat;
 
-  public Hive_SpawnUnitState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, Transform attackPosition, D_SpawnUnitState stateData, Hive hive) : base(entity, stateMachine, animationBoolName, attackPosition, stateData) {
-    this.hive = hive;
+  public BombRat_SpawnUnitState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, Transform attackPosition, D_SpawnUnitState stateData, BombRat bombRat) : base(entity, stateMachine, animationBoolName, attackPosition, stateData) {
+    this.bombRat = bombRat;
   }
 
   public override void Enter() {
@@ -44,6 +44,6 @@ public class Hive_SpawnUnitState : SpawnUnitState {
   public override void FinishAttack() {
     base.FinishAttack();
 
-    stateMachine.ChangeState(hive.cooldownState);
+    stateMachine.ChangeState(bombRat.fleeState);
   }
 }
