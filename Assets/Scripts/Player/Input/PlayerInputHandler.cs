@@ -126,4 +126,8 @@ public class PlayerInputHandler : MonoBehaviour {
       }
     }
   }
+
+  public void Unpause() {
+    Paused = false;
+  }
 }

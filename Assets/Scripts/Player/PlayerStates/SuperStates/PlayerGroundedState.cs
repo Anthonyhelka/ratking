@@ -39,6 +39,8 @@ public class PlayerGroundedState : PlayerState {
     primaryAttackInput = player.InputHandler.PrimaryAttackInput;
     secondaryAttackInput = player.InputHandler.SecondaryAttackInput;
     
+    Debug.Log(jumpInput);
+    
     if (isHurt) {
       player.isHurt = false;
       stateMachine.ChangeState(player.HurtState);
