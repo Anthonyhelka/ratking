@@ -24,7 +24,7 @@ public class Player : MonoBehaviour, IDamageable {
   public PlayerPrimaryAirAttackState PrimaryAirAttackState { get; private set; }
   public PlayerSecondaryGroundAttackState SecondaryGroundAttackState { get; private set; }
   public PlayerSecondaryAirAttackState SecondaryAirAttackState { get; private set; }
-  [SerializeField] private PlayerData playerData;
+  [SerializeField] public PlayerData playerData;
   // Specials
   // Boomerang
   public PlayerBoomerangThrowState BoomerangThrowState { get; private set; }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bdff045672e9f2488c4b9dd96e6b4bd, type: 3}
   m_Name: PlagueFly_BaseData
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 30
   damageHopSpeed: 1
   damageCooldown: 0.125
   wallCheckDistance: 0.1
@@ -35,3 +35,4 @@ MonoBehaviour:
     type: 3}
   blockParticle: {fileID: 3837136863414369658, guid: ad412af0fbc27c9429edd9c600c4ca58,
     type: 3}
+  canBeHurt: 1
