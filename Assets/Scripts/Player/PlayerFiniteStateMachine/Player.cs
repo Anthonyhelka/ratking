@@ -38,6 +38,8 @@ public class Player : MonoBehaviour, IDamageable {
   public PlayerJetpackBlastState JetpackBlastState { get; private set; }
   // Glider
   public PlayerGlideState GlideState { get; private set; }
+  // Crown Art
+  public PlayerCrownArtState CrownArtState { get; private set; }
 
   // Checks
   public Transform attackCheck;
@@ -102,6 +104,8 @@ public class Player : MonoBehaviour, IDamageable {
     JetpackBlastState = new PlayerJetpackBlastState(this, StateMachine, playerData, "jetpackBlast");
     // Glider
     GlideState = new PlayerGlideState(this, StateMachine, playerData, "glide");
+    // Crown Art
+    CrownArtState = new PlayerCrownArtState(this, StateMachine, playerData, "crownArt");
 
     // Health
     isHurt = false;

@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerJetpackChargeState : PlayerAbilityState {
+  private bool canJetpackCharge;
+
   public PlayerJetpackChargeState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName) {
   }
 
   public override void Enter() {
     base.Enter();
+
+    canJetpackCharge = false;
   }
 
   public override void Exit() {
@@ -34,5 +38,13 @@ public class PlayerJetpackChargeState : PlayerAbilityState {
     base.AnimationFinishTrigger();
 
     stateMachine.ChangeState(player.JetpackBlastState);
+  }
+
+  public bool CanJetpackCharge() {
+    return canJetpackCharge;
+  }
+
+  public void ResetCanJetpackCharge() {
+    canJetpackCharge = true;
   }
 }

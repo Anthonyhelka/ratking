@@ -40,6 +40,10 @@ public class PlayerJumpState : PlayerAbilityState {
     return amountOfJumpsLeft > 0;
   }
 
+  public void IncreaseAmountOfJumpsLeft() {
+    amountOfJumpsLeft++;
+  }
+
   public void DecreaseAmountOfJumpsLeft() {
     amountOfJumpsLeft--;
   }

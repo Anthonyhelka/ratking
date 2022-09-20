@@ -7,7 +7,7 @@ public class PauseMenu : MonoBehaviour
 {
   private Player player;
   private GameObject pauseMenu;
-  public enum Special { boomerang, shield, jetpack, glider };
+  public enum Special { boomerang, shield, jetpack, glider, crownArt };
   public GameObject KnightRat;
   public GameObject HammerRat;
   public GameObject NinjaRat;
@@ -56,6 +56,11 @@ public class PauseMenu : MonoBehaviour
 
   public void SwapToShield() {
     player.GetComponent<Player>().playerData.selectedSpecial = (PlayerData.Special)Special.shield;
+    Resume();
+  }
+
+  public void SwapToCrownArt() {
+    player.GetComponent<Player>().playerData.selectedSpecial = (PlayerData.Special)Special.crownArt;
     Resume();
   }
 

@@ -55,9 +55,12 @@ public class PlayerInAirState : PlayerState {
       } else if (playerData.selectedSpecial == PlayerData.Special.glider) {
         player.InputHandler.UseSpecialInput();
         stateMachine.ChangeState(player.GlideState);
-      } else if (playerData.selectedSpecial == PlayerData.Special.jetpack) {
+      } else if (playerData.selectedSpecial == PlayerData.Special.jetpack && player.JetpackChargeState.CanJetpackCharge()) {
         player.InputHandler.UseSpecialInput();
         stateMachine.ChangeState(player.JetpackChargeState);
+      } else if (playerData.selectedSpecial == PlayerData.Special.crownArt && player.CrownArtState.CanCrownArt()) {
+        player.InputHandler.UseSpecialInput();
+        stateMachine.ChangeState(player.CrownArtState); 
       } else {
         player.InputHandler.UseSpecialInput();
       }

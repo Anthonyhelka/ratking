@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: playerData
   m_EditorClassIdentifier: 
   noGravityVelocity: 0.19675
-  selectedSpecial: 0
+  selectedSpecial: 2
   sleepTime: 10
   movementVelocity: 1.25
   coyoteTime: 0.2
@@ -76,6 +76,8 @@ MonoBehaviour:
   jetpackChargeXVelocity: 1
   jetpackBlastVelocity: 2.75
   jetpackBlastDirection: {x: 1, y: 1}
+  crownArtXVelocity: 1
+  crownArtYVelocity: -1
   maxHealth: 5
   invincibilityTimer: 1
   hurtVelocity: 1.5

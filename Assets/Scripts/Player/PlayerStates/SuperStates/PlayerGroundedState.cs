@@ -23,6 +23,8 @@ public class PlayerGroundedState : PlayerState {
     player.JumpState.ResetAmountOfJumpsLeft();
     player.DashState.ResetCanDash();
     player.DodgeState.ResetCanDodge();
+    player.JetpackChargeState.ResetCanJetpackCharge();
+    player.CrownArtState.ResetCanCrownArt();
   }
 
   public override void Exit() {

@@ -7,8 +7,8 @@ public class PlayerData : ScriptableObject {
   public float noGravityVelocity = 0.19675f;
 
   // [Header("Specials")]
-  public enum Special { boomerang, shield, jetpack, glider };
-  public Special selectedSpecial = Special.boomerang;
+  public enum Special { boomerang, shield, jetpack, glider, crownArt };
+  public Special selectedSpecial = Special.glider;
 
   [Header("Idle State")]
   public float sleepTime = 5.0f;
@@ -97,6 +97,9 @@ public class PlayerData : ScriptableObject {
   public float jetpackBlastVelocity = 4.0f;
   public Vector2 jetpackBlastDirection = new Vector2(1, 1);
 
+  [Header("Crown Art State")]
+  public float crownArtXVelocity = 0.75f;
+  public float crownArtYVelocity = 0.25f;
   [Header("Hurt State")]
   public int maxHealth = 5;
   public float invincibilityTimer = 1.0f;
