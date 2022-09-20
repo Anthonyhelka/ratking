@@ -38,6 +38,8 @@ public class BombRat : Entity {
     base.Damage(attackDetails);
 
     if (isDead) {
+      GameObject bomb = GameObject.Instantiate(spawnUnitStateData.unit, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.1f,gameObject.transform.position.z), gameObject.transform.rotation);
+      bomb.transform.localScale = new Vector3(2.0f, 2.0f, 2.0f);
       stateMachine.ChangeState(deadState);
     }
   }
