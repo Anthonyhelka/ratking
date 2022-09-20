@@ -17,6 +17,7 @@ public class Boomerang : MonoBehaviour {
   [SerializeField] private LayerMask whatIsGround;
   [SerializeField] private Vector2 knockbackAngle = new Vector2(1.0f, 0.0f);
   [SerializeField] private float knockbackStrength = 1.0f;
+  
   private void Start() {
     rb = GetComponent<Rigidbody2D>();
     player = GameObject.Find("Player");

@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb : Entity {
-  public Bomb_CooldownState cooldownState { get; private set; }
-  public Bomb_MeleeAttackState meleeAttackState { get; private set; }
-  public Bomb_DeadState deadState { get; private set; }
+public class InfectedTrap : Entity {
+  public InfectedTrap_IdleState idleState { get; private set; }
+  public InfectedTrap_MeleeAttackState meleeAttackState { get; private set; }
+  public InfectedTrap_DeadState deadState { get; private set; }
 
-  [SerializeField] private D_CooldownState cooldownStateData;
+  [SerializeField] private D_IdleState idleStateData;
   [SerializeField] private D_MeleeAttackState meleeAttackStateData;
   [SerializeField] private D_DeadState deadStateData;
 
@@ -16,13 +16,13 @@ public class Bomb : Entity {
   public override void Awake() {
     base.Awake();
 
-    cooldownState = new Bomb_CooldownState(this, stateMachine, "cooldown", cooldownStateData, this);
-    meleeAttackState = new Bomb_MeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
-    deadState = new Bomb_DeadState(this, stateMachine, "dead", deadStateData, this);
+    idleState = new InfectedTrap_IdleState(this, stateMachine, "idle", idleStateData, this);
+    meleeAttackState = new InfectedTrap_MeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
+    deadState = new InfectedTrap_DeadState(this, stateMachine, "dead", deadStateData, this);
   }
 
   private void Start() {
-    stateMachine.Initialize(cooldownState);
+    stateMachine.Initialize(idleState);
   }
 
   public override void Damage(AttackDetails attackDetails) {

@@ -23,6 +23,7 @@ public class BombRat_PlayerDetectedState : PlayerDetectedState {
     core.Movement.SetVelocityX(0.0f);
 
     if (performLongRangeAction) {
+      core.Movement.Flip();
       stateMachine.ChangeState(bombRat.fleeState);
     }
   }

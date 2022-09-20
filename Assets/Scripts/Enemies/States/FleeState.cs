@@ -18,8 +18,6 @@ public class FleeState : State {
   
   public override void Enter() {
     base.Enter();
-    
-    // core.Movement.Flip();
   }
 
   public override void Exit() {

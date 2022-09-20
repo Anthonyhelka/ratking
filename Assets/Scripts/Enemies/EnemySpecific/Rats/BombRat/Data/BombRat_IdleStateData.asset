@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3db9d6aae6231e8468b70190ba8ec7a1, type: 3}
   m_Name: BombRat_IdleStateData
   m_EditorClassIdentifier: 
-  minIdleTime: 1
-  maxIdleTime: 2
+  minIdleTime: 0
+  maxIdleTime: 0
   touchDamage: 1

@@ -10,6 +10,7 @@ public class IdleState : State {
   protected bool isIdleTimeOver;
 
   protected bool isPlayerInMinAggroRange;
+  protected bool performCloseRangeAction;
   protected bool isTouchingPlayer;
   
   public IdleState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, D_IdleState stateData) : base(entity, stateMachine, animationBoolName) {
@@ -50,6 +51,7 @@ public class IdleState : State {
     base.DoChecks();
 
     isPlayerInMinAggroRange = entity.CheckPlayerInMinAggroRange();
+    performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
     isTouchingPlayer = entity.CheckTouchingPlayer();
   }
 
