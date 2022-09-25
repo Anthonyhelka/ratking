@@ -33280,6 +33280,18 @@ Transform:
   m_Father: {fileID: 1325444319}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1002388755 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4046516332371786298, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+    type: 3}
+  m_PrefabInstance: {fileID: 4046516333550094405}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b99f2dcaf54f44ea0f61d10074307f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1038438914 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4046358027220910615, guid: a072a6171c49e584ab1c244632bf157a,
@@ -34198,90 +34210,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1795158762}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1478554822
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4419409683555821993, guid: 733045091344b38438aa3764b8ed1630,
-        type: 3}
-      propertyPath: m_Name
-      value: Knight_Rat (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4419409683555821994, guid: 733045091344b38438aa3764b8ed1630,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4419409683555821994, guid: 733045091344b38438aa3764b8ed1630,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4419409683555821994, guid: 733045091344b38438aa3764b8ed1630,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4419409683555821994, guid: 733045091344b38438aa3764b8ed1630,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4419409683555821994, guid: 733045091344b38438aa3764b8ed1630,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4419409683555821994, guid: 733045091344b38438aa3764b8ed1630,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4419409683555821994, guid: 733045091344b38438aa3764b8ed1630,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4419409683555821994, guid: 733045091344b38438aa3764b8ed1630,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4419409683555821994, guid: 733045091344b38438aa3764b8ed1630,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4419409683555821994, guid: 733045091344b38438aa3764b8ed1630,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4419409683555821994, guid: 733045091344b38438aa3764b8ed1630,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4419409683555821994, guid: 733045091344b38438aa3764b8ed1630,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4419409683555821994, guid: 733045091344b38438aa3764b8ed1630,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4419409683555821994, guid: 733045091344b38438aa3764b8ed1630,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 733045091344b38438aa3764b8ed1630, type: 3}
 --- !u!1001 &1531714282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37410,6 +37338,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4046516332371786432, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4046516332371786433, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
         type: 3}
       propertyPath: m_Size.x
@@ -37494,6 +37427,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_UIInputModule
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046516332371786437, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046516332371786437, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_ActionId
+      value: 496a9e91-7500-4652-9cb4-d6223df28dc2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046516332371786437, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_ActionName
+      value: Gameplay/Dance[/Keyboard/1,/DualShock4GamepadHID/dpad/down]
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046516332371786437, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046516332371786437, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046516332371786437, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1002388755}
+    - target: {fileID: 4046516332371786437, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046516332371786437, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnDanceInput
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046516332371786437, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerInputHandler, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046516332371786437, guid: a3bae2f1455f3ae45bf3a5d5f1055543,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3bae2f1455f3ae45bf3a5d5f1055543, type: 3}
@@ -38191,7 +38174,7 @@ MonoBehaviour:
   ledgeCheckHorizontal: {fileID: 4342858962271776099}
   ledgeCheckVertical: {fileID: 4342858962271776099}
   groundCheckRadius: 0.1
-  wallCheckDistance: 0.1
+  wallCheckDistance: 0.2
   ledgeCheckDistance: 0.3
   whatIsGround:
     serializedVersion: 2

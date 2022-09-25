@@ -17,6 +17,7 @@ public class Player : MonoBehaviour, IDamageable {
   public PlayerBounceState BounceState { get; private set; }
   public PlayerRollState RollState { get; private set; }
   public PlayerSleepState SleepState { get; private set; }
+  public PlayerDanceState DanceState { get; private set; }
   public PlayerHurtState HurtState { get; private set; }
   public PlayerDeadState DeadState { get; private set; }
   // Combat
@@ -82,6 +83,7 @@ public class Player : MonoBehaviour, IDamageable {
     BounceState = new PlayerBounceState(this, StateMachine, playerData, "bounce");
     RollState = new PlayerRollState(this, StateMachine, playerData, "roll");
     SleepState = new PlayerSleepState(this, StateMachine, playerData, "sleep");
+    DanceState = new PlayerDanceState(this, StateMachine, playerData, "dance");
     HurtState = new PlayerHurtState(this, StateMachine, playerData, "hurt");
     DeadState = new PlayerDeadState(this, StateMachine, playerData, "dead");
 

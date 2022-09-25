@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSleepState : PlayerAbilityState {
-  public PlayerSleepState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName) {
+public class PlayerDanceState : PlayerAbilityState {
+  public PlayerDanceState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName) {
   }
 
   public override void Enter() {
     base.Enter();
-
-    player.Anim.SetInteger("sleepNumber", Random.Range(0, 3));
   }
 
   public override void Exit() {
@@ -32,11 +30,5 @@ public class PlayerSleepState : PlayerAbilityState {
 
   public override void DoChecks() {
     base.DoChecks();
-  }
-
-  public override void AnimationFinishTrigger() {
-    base.AnimationFinishTrigger();
-
-    isAbilityDone = true;
   }
 }

@@ -18,6 +18,7 @@ public class PlayerInputHandler : MonoBehaviour {
   public bool SpecialInputStop { get; private set; }
   public bool PrimaryAttackInput { get; private set; }
   public bool SecondaryAttackInput { get; private set; }
+  public bool DanceInput { get; private set; }
   public bool Paused { get; private set; }
   private PauseMenu pauseMenu;
 
@@ -113,6 +114,17 @@ public class PlayerInputHandler : MonoBehaviour {
 
   public void UseSpecialInput() {
     SpecialInput = false;
+  }
+
+  public void OnDanceInput(InputAction.CallbackContext context) {
+    if (context.started && !Paused) {
+      Debug.Log("hiu");
+      DanceInput = true;
+    }
+  }
+
+  public void UseDanceInput() {
+    DanceInput = false;
   }
 
   public void OnPauseInput(InputAction.CallbackContext context) {

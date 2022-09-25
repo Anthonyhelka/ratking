@@ -10,6 +10,7 @@ public class PlayerGroundedState : PlayerState {
   private bool specialInput;
   private bool primaryAttackInput;
   private bool secondaryAttackInput;
+  private bool danceInput;
 
   private bool isGrounded;
   private bool isHurt;
@@ -40,7 +41,8 @@ public class PlayerGroundedState : PlayerState {
     specialInput = player.InputHandler.SpecialInput;
     primaryAttackInput = player.InputHandler.PrimaryAttackInput;
     secondaryAttackInput = player.InputHandler.SecondaryAttackInput;
-        
+    danceInput = player.InputHandler.DanceInput;
+
     if (isHurt) {
       player.isHurt = false;
       stateMachine.ChangeState(player.HurtState);
@@ -63,6 +65,9 @@ public class PlayerGroundedState : PlayerState {
     } else if (jumpInput && player.JumpState.CanJump()) {
       player.InputHandler.UseJumpInput();
       stateMachine.ChangeState(player.JumpState);
+    } else if (danceInput) {
+      player.InputHandler.UseDanceInput();
+      stateMachine.ChangeState(player.DanceState);
     } else if (!isGrounded) {
       player.InAirState.StartCoyoteTime();
       stateMachine.ChangeState(player.InAirState);
