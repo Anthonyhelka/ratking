@@ -13,6 +13,12 @@ public class PlayerCrownArtState : PlayerAbilityState {
     base.Enter();
 
     canCrownArt = false;
+    if (core.Movement.CurrentVelocity.x > playerData.movementVelocity) {
+      core.Movement.SetVelocityX(playerData.movementVelocity);
+    } else if (core.Movement.CurrentVelocity.x < -playerData.movementVelocity) {
+      core.Movement.SetVelocityX(-playerData.movementVelocity);
+    }
+    core.Movement.SetVelocityY(playerData.crownArtYVelocity);
   }
 
   public override void Exit() {
@@ -26,10 +32,6 @@ public class PlayerCrownArtState : PlayerAbilityState {
 
     if (isGrounded) {
       isAbilityDone = true;
-    } else {
-      core.Movement.CheckIfShouldFlip(xInput);
-      core.Movement.SetVelocityX(playerData.crownArtXVelocity * xInput);
-      core.Movement.SetVelocityY(playerData.noGravityVelocity);
     }
   }
 
