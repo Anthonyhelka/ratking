@@ -112,4 +112,7 @@ public class PlayerData : ScriptableObject {
   public int maxHealth = 5;
   public float invincibilityTimer = 1.0f;
   public float hurtVelocity = 1.0f;
+
+  [Header("Squeak State")]
+  public float squeakCooldown = 1.0f;
 }

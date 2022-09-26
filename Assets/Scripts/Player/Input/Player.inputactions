@@ -78,25 +78,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "EmoteOne",
-                    "type": "Button",
-                    "id": "496a9e91-7500-4652-9cb4-d6223df28dc2",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "EmoteTwo",
-                    "type": "Button",
-                    "id": "dfa71a9d-f8a8-4784-b50b-51e37390fcd5",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "EmoteThree",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "f50ebb93-02e7-440b-b7fc-84b789964ab4",
                     "expectedControlType": "Button",
@@ -105,7 +87,25 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "EmoteFour",
+                    "name": "Squeak",
+                    "type": "Button",
+                    "id": "496a9e91-7500-4652-9cb4-d6223df28dc2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DanceOne",
+                    "type": "Button",
+                    "id": "dfa71a9d-f8a8-4784-b50b-51e37390fcd5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DanceTwo",
                     "type": "Button",
                     "id": "1f239ea4-2d2c-4c4b-8a77-a605031970ca",
                     "expectedControlType": "Button",
@@ -353,7 +353,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "EmoteOne",
+                    "action": "Squeak",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -364,7 +364,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "EmoteOne",
+                    "action": "Squeak",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -375,7 +375,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "EmoteTwo",
+                    "action": "DanceOne",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -386,29 +386,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "EmoteTwo",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "74631e8e-1cf6-4db8-a10c-1db9eb5151b4",
-                    "path": "<Keyboard>/3",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "EmoteThree",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "16cfa922-2f31-49e0-8730-db1bd6a13cfc",
-                    "path": "<Gamepad>/dpad/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "EmoteThree",
+                    "action": "DanceOne",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -419,7 +397,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "EmoteFour",
+                    "action": "DanceTwo",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -430,7 +408,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "EmoteFour",
+                    "action": "DanceTwo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "74631e8e-1cf6-4db8-a10c-1db9eb5151b4",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "16cfa922-2f31-49e0-8730-db1bd6a13cfc",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

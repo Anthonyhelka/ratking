@@ -11,7 +11,10 @@ public class PlayerGroundedState : PlayerState {
   private bool specialInput;
   private bool primaryAttackInput;
   private bool secondaryAttackInput;
-  private bool danceInput;
+  private bool interactInput;
+  private bool squeakInput;
+  private bool danceOneInput;
+  private bool danceTwoInput;
 
   private bool isGrounded;
   private bool isHurt;
@@ -42,7 +45,10 @@ public class PlayerGroundedState : PlayerState {
     specialInput = player.InputHandler.SpecialInput;
     primaryAttackInput = player.InputHandler.PrimaryAttackInput;
     secondaryAttackInput = player.InputHandler.SecondaryAttackInput;
-    danceInput = player.InputHandler.DanceInput;
+    interactInput = player.InputHandler.InteractInput;
+    squeakInput = player.InputHandler.SqueakInput;
+    danceOneInput = player.InputHandler.DanceOneInput;
+    danceTwoInput = player.InputHandler.DanceTwoInput;
 
     if (isHurt) {
       player.isHurt = false;
@@ -75,9 +81,12 @@ public class PlayerGroundedState : PlayerState {
     } else if (jumpInput && player.JumpState.CanJump()) {
       player.InputHandler.UseJumpInput();
       stateMachine.ChangeState(player.JumpState);
-    } else if (danceInput) {
-      player.InputHandler.UseDanceInput();
-      stateMachine.ChangeState(player.DanceState);
+    } else if (squeakInput && player.SqueakState.CanSqueak()) {
+      player.InputHandler.UseSqueakInput();
+      stateMachine.ChangeState(player.SqueakState);
+    } else if (danceOneInput) {
+      player.InputHandler.UseDanceOneInput();
+      stateMachine.ChangeState(player.DanceOneState);
     } else if (!isGrounded) {
       player.InAirState.StartCoyoteTime();
       stateMachine.ChangeState(player.InAirState);

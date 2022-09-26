@@ -509,6 +509,31 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1101 &-5368599358567832467
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: squeak
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 0}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 1
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1109 &-5196963038951818488
 AnimatorTransition:
   m_ObjectHideFlags: 1
@@ -518,7 +543,7 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: dance
+    m_ConditionEvent: danceOne
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6539164014781218507}
@@ -811,7 +836,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: dance
+    m_ConditionEvent: danceOne
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
@@ -1000,6 +1025,23 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1109 &-1483243112645493833
+AnimatorTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: squeak
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 4660541780792887005}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 1
 --- !u!1109 &-1315658798007232771
 AnimatorTransition:
   m_ObjectHideFlags: 1
@@ -1541,7 +1583,13 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: dance
+  - m_Name: danceOne
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: squeak
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -2096,13 +2144,16 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 1115289591349712204}
     m_Position: {x: 400, y: 1250, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 4660541780792887005}
+    m_Position: {x: 400, y: 1600, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: 6172367950619704156}
-    m_Position: {x: 400, y: 1600, z: 0}
+    m_Position: {x: 400, y: 1670, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: -3447994249528430987}
-    m_Position: {x: 400, y: 1670, z: 0}
+    m_Position: {x: 400, y: 1740, z: 0}
   m_AnyStateTransitions: []
   m_EntryTransitions:
   - {fileID: 4903174237371878466}
@@ -2136,6 +2187,7 @@ AnimatorStateMachine:
   - {fileID: -5196963038951818488}
   - {fileID: 7776940868445359223}
   - {fileID: -1184688651418446530}
+  - {fileID: -1483243112645493833}
   m_StateMachineTransitions:
   - first: {fileID: 6172367950619704156}
     second:
@@ -2256,6 +2308,33 @@ AnimatorTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 1
+--- !u!1102 &4660541780792887005
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: squeak
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions:
+  - {fileID: -5368599358567832467}
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: ee8bde723f0fe284993a83df08eebea2, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1109 &4721444197652485465
 AnimatorTransition:
   m_ObjectHideFlags: 1
@@ -2644,7 +2723,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: dance
+  m_Name: danceOne
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

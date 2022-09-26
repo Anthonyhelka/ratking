@@ -18,11 +18,16 @@ public class PlayerInputHandler : MonoBehaviour {
   public bool SpecialInputStop { get; private set; }
   public bool PrimaryAttackInput { get; private set; }
   public bool SecondaryAttackInput { get; private set; }
-  public bool DanceInput { get; private set; }
+  public bool InteractInput { get; private set; }
+  public bool SqueakInput { get; private set; }
+  public bool DanceOneInput { get; private set; }
+  public bool DanceTwoInput { get; private set; }
   public bool Paused { get; private set; }
+  private Player player;
   private PauseMenu pauseMenu;
 
   private void Awake() {
+    player = GameObject.Find("Player").GetComponent<Player>();
     pauseMenu = GameObject.Find("UI").GetComponent<PauseMenu>();
   }
 
@@ -60,7 +65,7 @@ public class PlayerInputHandler : MonoBehaviour {
   }
 
   public void OnDashInput(InputAction.CallbackContext context) {
-    if (context.performed && !Paused) {
+    if (context.performed && player.DashState.CanDash() && !Paused) {
       DashInput = true;
     }
   }
@@ -70,7 +75,7 @@ public class PlayerInputHandler : MonoBehaviour {
   }
   
   public void OnCrownArtInput(InputAction.CallbackContext context) {
-    if (context.performed && !Paused) {
+    if (context.performed && player.CrownArtState.CanCrownArt() && !Paused) {
       CrownArtInput = true;
     }
   }
@@ -116,15 +121,44 @@ public class PlayerInputHandler : MonoBehaviour {
     SpecialInput = false;
   }
 
-  public void OnDanceInput(InputAction.CallbackContext context) {
+  public void OnInteractInput(InputAction.CallbackContext context) {
     if (context.started && !Paused) {
-      Debug.Log("hiu");
-      DanceInput = true;
+      InteractInput = true;
     }
   }
 
-  public void UseDanceInput() {
-    DanceInput = false;
+  public void UseInteractInput() {
+    InteractInput = false;
+  }
+
+  public void OnSqueakInput(InputAction.CallbackContext context) {
+    if (context.started && player.SqueakState.CanSqueak() && !Paused) {
+      SqueakInput = true;
+    }
+  }
+
+  public void UseSqueakInput() {
+    SqueakInput = false;
+  }
+
+  public void OnDanceOneInput(InputAction.CallbackContext context) {
+    if (context.started && !Paused) {
+      DanceOneInput = true;
+    }
+  }
+
+  public void UseDanceOneInput() {
+    DanceOneInput = false;
+  }
+
+  public void OnDanceTwoInput(InputAction.CallbackContext context) {
+    if (context.started && !Paused) {
+      DanceTwoInput = true;
+    }
+  }
+
+  public void UseDanceTwoInput() {
+    DanceTwoInput = false;
   }
 
   public void OnPauseInput(InputAction.CallbackContext context) {
