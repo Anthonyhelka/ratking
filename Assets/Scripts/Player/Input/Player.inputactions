@@ -78,9 +78,36 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Dance",
+                    "name": "EmoteOne",
                     "type": "Button",
                     "id": "496a9e91-7500-4652-9cb4-d6223df28dc2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EmoteTwo",
+                    "type": "Button",
+                    "id": "dfa71a9d-f8a8-4784-b50b-51e37390fcd5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EmoteThree",
+                    "type": "Button",
+                    "id": "f50ebb93-02e7-440b-b7fc-84b789964ab4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EmoteFour",
+                    "type": "Button",
+                    "id": "1f239ea4-2d2c-4c4b-8a77-a605031970ca",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -326,7 +353,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Dance",
+                    "action": "EmoteOne",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -337,7 +364,73 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Dance",
+                    "action": "EmoteOne",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "53b94fd8-e580-4082-9144-777b4f1924ad",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "EmoteTwo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cd041ff2-0ce0-4a41-93c3-8d550ae5f396",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "EmoteTwo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "74631e8e-1cf6-4db8-a10c-1db9eb5151b4",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "EmoteThree",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "16cfa922-2f31-49e0-8730-db1bd6a13cfc",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "EmoteThree",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "94c78fee-32ba-42e2-ab91-9acabf68fc9a",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "EmoteFour",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb9036a4-f726-4691-9a6b-1089522dc9f4",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "EmoteFour",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

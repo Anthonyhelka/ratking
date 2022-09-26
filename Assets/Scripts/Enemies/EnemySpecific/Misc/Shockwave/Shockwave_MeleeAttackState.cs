@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb_MeleeAttackState : MeleeAttackState {
-  private Bomb bomb;
+public class Shockwave_MeleeAttackState : MeleeAttackState {
+  private Shockwave shockwave;
 
-  public Bomb_MeleeAttackState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, Transform attackPosition, D_MeleeAttackState stateData, Bomb bomb) : base(entity, stateMachine, animationBoolName, attackPosition, stateData) {
-    this.bomb = bomb;
+  public Shockwave_MeleeAttackState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, Transform attackPosition, D_MeleeAttackState stateData, Shockwave shockwave) : base(entity, stateMachine, animationBoolName, attackPosition, stateData) {
+    this.shockwave = shockwave;
   }
 
   public override void Enter() {
@@ -23,7 +23,7 @@ public class Bomb_MeleeAttackState : MeleeAttackState {
     base.LogicUpdate();
 
     if (isAnimationFinished) {
-      stateMachine.ChangeState(bomb.deadState);
+      stateMachine.ChangeState(shockwave.deadState);
     }
   }
 

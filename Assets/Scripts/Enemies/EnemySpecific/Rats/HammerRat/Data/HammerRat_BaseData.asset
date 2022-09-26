@@ -35,3 +35,4 @@ MonoBehaviour:
     type: 3}
   blockParticle: {fileID: 3837136863414369658, guid: ad412af0fbc27c9429edd9c600c4ca58,
     type: 3}
+  canBeHurt: 1

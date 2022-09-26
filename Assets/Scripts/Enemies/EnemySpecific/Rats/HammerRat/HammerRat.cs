@@ -7,15 +7,18 @@ public class HammerRat : Entity {
   public HammerRat_PlayerDetectedState playerDetectedState { get; private set; }
   public HammerRat_BlockState blockState { get; private set; }
   public HammerRat_MeleeAttackState meleeAttackState { get; private set; }
+  public HammerRat_SpawnUnitState spawnUnitState { get; private set; }
   public HammerRat_DeadState deadState { get; private set; }
 
   [SerializeField] private D_IdleState idleStateData;
   [SerializeField] private D_PlayerDetectedState playerDetectedStateData;
   [SerializeField] private D_BlockState blockStateData;
   [SerializeField] public D_MeleeAttackState meleeAttackStateData;
+  [SerializeField] public D_SpawnUnitState spawnUnitStateData;
   [SerializeField] private D_DeadState deadStateData;
 
   [SerializeField] private Transform meleeAttackPosition;
+  [SerializeField] private Transform spawnPosition;
 
   public override void Awake() {
     base.Awake();
@@ -24,6 +27,7 @@ public class HammerRat : Entity {
     playerDetectedState = new HammerRat_PlayerDetectedState(this, stateMachine, "playerDetected", playerDetectedStateData, this);
     blockState = new HammerRat_BlockState(this, stateMachine, "block", blockStateData, this);
     meleeAttackState = new HammerRat_MeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
+    spawnUnitState = new HammerRat_SpawnUnitState(this, stateMachine, "spawnUnit", spawnPosition, spawnUnitStateData, this);
     deadState = new HammerRat_DeadState(this, stateMachine, "dead", deadStateData, this);
   }
 

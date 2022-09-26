@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HammerRat_MeleeAttackState : MeleeAttackState {
+public class HammerRat_SpawnUnitState : SpawnUnitState {
   private HammerRat hammerRat;
-  
-  public HammerRat_MeleeAttackState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, Transform attackPosition, D_MeleeAttackState stateData, HammerRat hammerRat) : base(entity, stateMachine, animationBoolName, attackPosition, stateData) {
+
+  public HammerRat_SpawnUnitState(Entity entity, FiniteStateMachine stateMachine, string animationBoolName, Transform attackPosition, D_SpawnUnitState stateData, HammerRat hammerRat) : base(entity, stateMachine, animationBoolName, attackPosition, stateData) {
     this.hammerRat = hammerRat;
   }
 
   public override void Enter() {
     base.Enter();
-
-    entity.willBlock = false;
   }
 
   public override void Exit() {
@@ -42,11 +40,10 @@ public class HammerRat_MeleeAttackState : MeleeAttackState {
   public override void TriggerAttack() {
     base.TriggerAttack();
   }
-  
+
   public override void FinishAttack() {
     base.FinishAttack();
 
-    stateMachine.ChangeState(hammerRat.spawnUnitState);
+    stateMachine.ChangeState(hammerRat.idleState);
   }
 }
-

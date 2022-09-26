@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &594520049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 594520050}
+  m_Layer: 10
+  m_Name: SpawnPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &594520050
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594520049}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.225, y: -0.06, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_Children: []
+  m_Father: {fileID: 4328284034828006757}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4328284033865086260
 GameObject:
   m_ObjectHideFlags: 0
@@ -67,6 +97,7 @@ Transform:
   - {fileID: 4328284035708304159}
   - {fileID: 4328284033865086259}
   - {fileID: 4328284035091106356}
+  - {fileID: 594520050}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -234,8 +265,10 @@ MonoBehaviour:
   blockStateData: {fileID: 11400000, guid: d1be43a2fa16f984c8570584085c665c, type: 2}
   meleeAttackStateData: {fileID: 11400000, guid: 4ca78fcf5a2160945aa1949022d7bde9,
     type: 2}
+  spawnUnitStateData: {fileID: 11400000, guid: 9bcb3fa5fd9ee464b89715ae399ae20a, type: 2}
   deadStateData: {fileID: 11400000, guid: d383a0f3bfff4cb43bf466263ab0088d, type: 2}
   meleeAttackPosition: {fileID: 4328284035091106356}
+  spawnPosition: {fileID: 594520050}
 --- !u!1 &4328284034840277317
 GameObject:
   m_ObjectHideFlags: 0
