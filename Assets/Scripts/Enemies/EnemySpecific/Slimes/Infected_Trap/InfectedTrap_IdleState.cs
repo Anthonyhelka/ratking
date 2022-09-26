@@ -20,7 +20,7 @@ public class InfectedTrap_IdleState : IdleState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (performCloseRangeAction) {
+    if (performCloseRangeAction || isTouchingPlayer) {
       stateMachine.ChangeState(infectedTrap.meleeAttackState);
     }
   }

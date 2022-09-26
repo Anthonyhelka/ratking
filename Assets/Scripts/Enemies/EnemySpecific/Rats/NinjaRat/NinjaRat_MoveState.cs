@@ -26,6 +26,14 @@ public class NinjaRat_MoveState : MoveState {
       ninjaRat.idleState.SetFlipAfterIdle(true);
       stateMachine.ChangeState(ninjaRat.idleState);
     }
+
+    if (isTouchingPlayer) {
+      AttackDetails attackDetails;
+      attackDetails.position = entity.transform.position;
+      attackDetails.damageAmount = entity.entityData.touchDamageAmount;
+      attackDetails.type = entity.entityData.type;
+      entity.lastPlayerTouched.transform.SendMessage("Damage", attackDetails);
+    }
   }
 
   public override void PhysicsUpdate() {

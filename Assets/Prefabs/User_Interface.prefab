@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 460209068}
   - component: {fileID: 460209067}
   m_Layer: 5
-  m_Name: CrownArt_Button
+  m_Name: Cloak_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -658,7 +658,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 240099176014159145}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: SwapToCrownArt
+        m_MethodName: SwapToCloak
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1207,7 +1207,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Crown Art
+  m_Text: 'Cloak
 
 '
 --- !u!114 &1429548123

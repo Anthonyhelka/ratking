@@ -15,6 +15,7 @@ public class PlayerPrimaryGroundAttackState : PlayerAbilityState {
 
     attackCounter = 0;
     core.Movement.SetVelocityX(0.0f);
+    player.EnterCloakState.ResetCloakActive();  
   }
 
   public override void Exit() {

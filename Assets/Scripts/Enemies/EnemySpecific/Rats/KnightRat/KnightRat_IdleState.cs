@@ -25,6 +25,14 @@ public class KnightRat_IdleState : IdleState {
     } else if (isIdleTimeOver) {
       stateMachine.ChangeState(knightRat.moveState);
     }
+
+    if (isTouchingPlayer) {
+      AttackDetails attackDetails;
+      attackDetails.position = entity.transform.position;
+      attackDetails.damageAmount = entity.entityData.touchDamageAmount;
+      attackDetails.type = entity.entityData.type;
+      entity.lastPlayerTouched.transform.SendMessage("Damage", attackDetails);
+    }
   }
 
   public override void PhysicsUpdate() {

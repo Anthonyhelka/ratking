@@ -11,6 +11,7 @@ public class Player : MonoBehaviour, IDamageable {
   public PlayerJumpState JumpState { get; private set; }
   public PlayerDoubleJumpState DoubleJumpState { get; private set; }
   public PlayerDashState DashState { get; private set; }
+  public PlayerCrownArtState CrownArtState { get; private set; }
   public PlayerDodgeState DodgeState { get; private set; }
   public PlayerInAirState InAirState { get; private set; }
   public PlayerLandState LandState { get; private set; }
@@ -39,8 +40,9 @@ public class Player : MonoBehaviour, IDamageable {
   public PlayerJetpackBlastState JetpackBlastState { get; private set; }
   // Glider
   public PlayerGlideState GlideState { get; private set; }
-  // Crown Art
-  public PlayerCrownArtState CrownArtState { get; private set; }
+  // Cloak
+  public PlayerEnterCloakState EnterCloakState { get; private set; }
+  public PlayerExitCloakState ExitCloakState { get; private set; }
 
   // Checks
   public Transform attackCheck;
@@ -51,6 +53,7 @@ public class Player : MonoBehaviour, IDamageable {
   public AttackDetails lastHitAttackDetails;
   public int health;
   public int maxHealth;
+  public bool canBeDetected = true;
   public GameOverMenu GameOverMenu;
   #endregion
   
@@ -58,6 +61,7 @@ public class Player : MonoBehaviour, IDamageable {
   public Animator Anim { get; private set; }
   public Rigidbody2D RB { get; private set; }
   public BoxCollider2D BC { get; private set; }
+  public SpriteRenderer SR { get; private set; }
   public PlayerInputHandler InputHandler { get; private set; }
   public Core core { get; private set; }
   #endregion
@@ -65,6 +69,7 @@ public class Player : MonoBehaviour, IDamageable {
   #region Check Transforms
   [SerializeField] private Transform groundCheck;
   public Transform boomerangPosition;
+  public Transform translocatorPosition;
   #endregion
 
   #region Unity Functions
@@ -77,6 +82,7 @@ public class Player : MonoBehaviour, IDamageable {
     JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
     DoubleJumpState = new PlayerDoubleJumpState(this, StateMachine, playerData, "inAir");
     DashState = new PlayerDashState(this, StateMachine, playerData, "dash");
+    CrownArtState = new PlayerCrownArtState(this, StateMachine, playerData, "crownArt");
     DodgeState = new PlayerDodgeState(this, StateMachine, playerData, "dodge");
     InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
     LandState = new PlayerLandState(this, StateMachine, playerData, "land");
@@ -106,8 +112,9 @@ public class Player : MonoBehaviour, IDamageable {
     JetpackBlastState = new PlayerJetpackBlastState(this, StateMachine, playerData, "jetpackBlast");
     // Glider
     GlideState = new PlayerGlideState(this, StateMachine, playerData, "glide");
-    // Crown Art
-    CrownArtState = new PlayerCrownArtState(this, StateMachine, playerData, "crownArt");
+    // Cloak
+    EnterCloakState = new PlayerEnterCloakState(this, StateMachine, playerData, "enterCloak");
+    ExitCloakState = new PlayerExitCloakState(this, StateMachine, playerData, "exitCloak");
 
     // Health
     isHurt = false;
@@ -120,8 +127,8 @@ public class Player : MonoBehaviour, IDamageable {
     Anim = GetComponent<Animator>();
     RB = GetComponent<Rigidbody2D>();
     BC = GetComponent<BoxCollider2D>();
+    SR = GetComponent<SpriteRenderer>();
     InputHandler = GetComponent<PlayerInputHandler>();
-
     StateMachine.Initialize(IdleState);
   }
 
@@ -163,7 +170,7 @@ public class Player : MonoBehaviour, IDamageable {
 
   public void Damage(AttackDetails attackDetails) {
     if (!HurtState.CanUse()) return;
-
+    
     isHurt = true;
     lastHitAttackDetails = attackDetails;
     HurtState.lastUseTime = Time.time;

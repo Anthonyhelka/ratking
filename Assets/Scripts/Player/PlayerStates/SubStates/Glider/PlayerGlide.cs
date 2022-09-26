@@ -13,6 +13,7 @@ public class PlayerGlideState : PlayerAbilityState {
     base.Enter();
 
     core.Movement.SetVelocityY(0.0f);
+    player.EnterCloakState.ResetCloakActive();
   }
 
   public override void Exit() {

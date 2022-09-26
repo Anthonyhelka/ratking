@@ -16,6 +16,7 @@ public class PlayerBoomerangThrowState : PlayerAbilityState {
 
     canThrowBoomerang = false;
     canCancelAnimation = false;
+    player.EnterCloakState.ResetCloakActive();
   }
 
   public override void Exit() {

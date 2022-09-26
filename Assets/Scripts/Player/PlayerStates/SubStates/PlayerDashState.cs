@@ -15,6 +15,7 @@ public class PlayerDashState : PlayerAbilityState {
 
     canDash = false;
     player.InputHandler.UseDashInput();
+    player.EnterCloakState.ResetCloakActive();
     player.RB.drag = playerData.drag;
     core.Movement.SetVelocityX(playerData.dashVelocity * core.Movement.FacingDirection);
     core.Movement.SetVelocityY(playerData.noGravityVelocity);

@@ -7,6 +7,7 @@ public class PlayerGroundedState : PlayerState {
   protected int xInput;
   private bool jumpInput;
   private bool dashInput;
+  private bool crownArtInput;
   private bool specialInput;
   private bool primaryAttackInput;
   private bool secondaryAttackInput;
@@ -23,9 +24,8 @@ public class PlayerGroundedState : PlayerState {
 
     player.JumpState.ResetAmountOfJumpsLeft();
     player.DashState.ResetCanDash();
-    player.DodgeState.ResetCanDodge();
-    player.JetpackChargeState.ResetCanJetpackCharge();
     player.CrownArtState.ResetCanCrownArt();
+    player.JetpackChargeState.ResetCanJetpackCharge();
   }
 
   public override void Exit() {
@@ -38,6 +38,7 @@ public class PlayerGroundedState : PlayerState {
     xInput = player.InputHandler.NormalizedInputX;
     jumpInput = player.InputHandler.JumpInput;
     dashInput = player.InputHandler.DashInput;
+    crownArtInput = player.InputHandler.CrownArtInput;
     specialInput = player.InputHandler.SpecialInput;
     primaryAttackInput = player.InputHandler.PrimaryAttackInput;
     secondaryAttackInput = player.InputHandler.SecondaryAttackInput;
@@ -53,6 +54,13 @@ public class PlayerGroundedState : PlayerState {
       } else if (playerData.selectedSpecial == PlayerData.Special.shield) {
         player.InputHandler.UseSpecialInput();
         stateMachine.ChangeState(player.StartBlockState);
+      } else if (playerData.selectedSpecial == PlayerData.Special.cloak) {
+        player.InputHandler.UseSpecialInput();
+        if (!player.EnterCloakState.CloakActive()) {
+          stateMachine.ChangeState(player.EnterCloakState);
+        } else {
+          stateMachine.ChangeState(player.ExitCloakState);
+        }
       } else {
         player.InputHandler.UseSpecialInput();
       }
@@ -62,6 +70,8 @@ public class PlayerGroundedState : PlayerState {
       stateMachine.ChangeState(player.SecondaryGroundAttackState);
     } else if (dashInput && player.DashState.CanDash()) {
       stateMachine.ChangeState(player.DashState);
+    } else if (crownArtInput && player.CrownArtState.CanCrownArt()) {
+      stateMachine.ChangeState(player.CrownArtState);
     } else if (jumpInput && player.JumpState.CanJump()) {
       player.InputHandler.UseJumpInput();
       stateMachine.ChangeState(player.JumpState);

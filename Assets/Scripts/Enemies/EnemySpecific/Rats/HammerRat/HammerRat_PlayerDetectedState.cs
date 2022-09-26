@@ -20,7 +20,6 @@ public class HammerRat_PlayerDetectedState : PlayerDetectedState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    Debug.Log(performCloseRangeAction);
     if (performCloseRangeAction) {
       if (Time.time > hammerRat.meleeAttackState.startTime + hammerRat.meleeAttackStateData.attackCooldown) {
         stateMachine.ChangeState(hammerRat.meleeAttackState);

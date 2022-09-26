@@ -12,6 +12,7 @@ public class PlayerJetpackChargeState : PlayerAbilityState {
     base.Enter();
 
     canJetpackCharge = false;
+    player.EnterCloakState.ResetCloakActive();
   }
 
   public override void Exit() {

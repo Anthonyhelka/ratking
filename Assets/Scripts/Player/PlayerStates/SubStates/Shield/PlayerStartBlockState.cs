@@ -10,6 +10,7 @@ public class PlayerStartBlockState : PlayerAbilityState {
     base.Enter();
 
     core.Movement.SetVelocityX(0.0f);
+    player.EnterCloakState.ResetCloakActive();
   }
 
   public override void Exit() {

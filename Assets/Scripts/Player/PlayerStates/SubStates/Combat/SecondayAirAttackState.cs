@@ -11,6 +11,8 @@ public class PlayerSecondaryAirAttackState : PlayerAbilityState {
 
   public override void Enter() {
     base.Enter();
+
+    player.EnterCloakState.ResetCloakActive();
   }
 
   public override void Exit() {

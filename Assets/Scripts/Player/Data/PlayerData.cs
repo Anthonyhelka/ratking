@@ -7,7 +7,7 @@ public class PlayerData : ScriptableObject {
   public float noGravityVelocity = 0.19675f;
 
   // [Header("Specials")]
-  public enum Special { boomerang, shield, jetpack, glider, crownArt };
+  public enum Special { boomerang, shield, jetpack, glider, cloak };
   public Special selectedSpecial = Special.glider;
 
   [Header("Idle State")]
@@ -32,6 +32,11 @@ public class PlayerData : ScriptableObject {
   public float dashTime = 0.2f;
   public float dashVelocity = 30.0f;
   public float drag = 10.0f;
+
+  [Header("Crown Art State")]
+  public float crownArtXVelocity = 1.0f;
+  public float crownArtYVelocity = 3.5f;
+  public float minimumCrownArtDuration = 0.5f;
 
   [Header("Dodge State")]
   public float dodgeVelocity = 0.5f;
@@ -97,9 +102,12 @@ public class PlayerData : ScriptableObject {
   public float jetpackBlastVelocity = 4.0f;
   public Vector2 jetpackBlastDirection = new Vector2(1, 1);
 
-  [Header("Crown Art State")]
-  public float crownArtXVelocity = 0.75f;
-  public float crownArtYVelocity = 0.25f;
+  [Header("Cloak Enter State")]
+  public Color cloakColor = new Color(1.0f, 1.0f, 1.0f, 0.4f);
+
+  // [Header("Cloak Exit State")]
+  // public Color cloakExitColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+
   [Header("Hurt State")]
   public int maxHealth = 5;
   public float invincibilityTimer = 1.0f;

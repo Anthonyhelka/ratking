@@ -18,6 +18,7 @@ public class PlayerHurtState : PlayerAbilityState {
     if (player.health <= 0) {
       stateMachine.ChangeState(player.DeadState);
     } else {
+      player.EnterCloakState.ResetCloakActive();
       knockbackDirection = player.lastHitAttackDetails.position - (Vector2)(player.transform.position);
       knockbackDirection.Normalize();
       hurtFall = false;

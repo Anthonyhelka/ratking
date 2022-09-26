@@ -25,6 +25,9 @@ MonoBehaviour:
   dashTime: 0.25
   dashVelocity: 5
   drag: 10
+  crownArtXVelocity: 1
+  crownArtYVelocity: 3.5
+  minimumCrownArtDuration: 0.5
   dodgeVelocity: 0.5
   bounceVelocity: 4
   rollVelocity: 2.5
@@ -76,8 +79,7 @@ MonoBehaviour:
   jetpackChargeXVelocity: 1
   jetpackBlastVelocity: 2.75
   jetpackBlastDirection: {x: 1, y: 1}
-  crownArtXVelocity: 1
-  crownArtYVelocity: 3.5
+  cloakColor: {r: 1, g: 1, b: 1, a: 0.4}
   maxHealth: 5
   invincibilityTimer: 1
   hurtVelocity: 1.5

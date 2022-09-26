@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1849187844500232437
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3068386355553600069}
+  m_Layer: 9
+  m_Name: translocatorPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3068386355553600069
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849187844500232437}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.125, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4046516332371786436}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2260801608036243274
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,6 +74,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d16a466ccac41bd44b18f01942219535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxKnockbackTime: 0.2
+  knockbackMultiplier: 1
+  isKnockbackActive: 0
+  canBeKnockedBack: 1
 --- !u!61 &2758246248053785662
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -211,6 +245,7 @@ Transform:
   - {fileID: 4046516333163407057}
   - {fileID: 4046516333564480543}
   - {fileID: 4046516333402627589}
+  - {fileID: 3068386355553600069}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -408,7 +443,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4046516332371786298}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: OnDodgeInput
+        m_MethodName: OnCrownArtInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -420,6 +455,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: bc7a0415-6fe5-4b93-a8ab-cfc52e2458e6
     m_ActionName: Gameplay/Dodge[/Keyboard/r,/DualShock4GamepadHID/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4046516332371786298}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnDanceInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 496a9e91-7500-4652-9cb4-d6223df28dc2
+    m_ActionName: Gameplay/Dance[/Keyboard/1,/DualShock4GamepadHID/dpad/down]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -457,9 +508,11 @@ MonoBehaviour:
   isHurt: 0
   health: 0
   maxHealth: 0
+  canBeDetected: 1
   GameOverMenu: {fileID: 0}
   groundCheck: {fileID: 4046516332128646100}
   boomerangPosition: {fileID: 4046516333564480543}
+  translocatorPosition: {fileID: 3068386355553600069}
 --- !u!95 &4046516332371786435
 Animator:
   serializedVersion: 3
@@ -513,7 +566,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.03463185, y: -0.020671971}
+  m_Offset: {x: -0.03463185, y: -0.02067197}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}

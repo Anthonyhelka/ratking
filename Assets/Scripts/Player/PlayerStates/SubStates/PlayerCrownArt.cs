@@ -12,7 +12,10 @@ public class PlayerCrownArtState : PlayerAbilityState {
   public override void Enter() {
     base.Enter();
 
+    player.InputHandler.UseCrownArtInput();
     canCrownArt = false;
+    player.EnterCloakState.ResetCloakActive();
+
     if (core.Movement.CurrentVelocity.x > playerData.movementVelocity) {
       core.Movement.SetVelocityX(playerData.movementVelocity);
     } else if (core.Movement.CurrentVelocity.x < -playerData.movementVelocity) {
@@ -30,7 +33,7 @@ public class PlayerCrownArtState : PlayerAbilityState {
 
     xInput = player.InputHandler.NormalizedInputX;
 
-    if (isGrounded) {
+    if (isGrounded && startTime + playerData.minimumCrownArtDuration < Time.time) {
       isAbilityDone = true;
     }
   }

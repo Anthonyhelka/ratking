@@ -12,7 +12,7 @@ public class PlayerDodgeState : PlayerAbilityState {
   public override void Enter() {
     base.Enter();
 
-    player.InputHandler.UseDodgeInput();
+    // player.InputHandler.UseDodgeInput();
     canDodge = false;
     dodgeDirection = new Vector2(xInput, yInput);
     Debug.Log(dodgeDirection);
