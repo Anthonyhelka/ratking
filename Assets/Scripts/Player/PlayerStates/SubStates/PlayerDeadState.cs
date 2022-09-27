@@ -9,6 +9,17 @@ public class PlayerDeadState : PlayerAbilityState {
   public override void Enter() {
     base.Enter();
 
+    player.isDead = true;
+
+    switch(Random.Range(0, 2)) {
+      case 0:
+        player.deathOneAudio.Play();
+        break;
+      case 1:
+        player.deathTwoAudio.Play();
+        break;
+    }
+
     switch(player.lastHitAttackDetails.type) {
       case "Infected":
         player.Anim.SetInteger("deathType", 0);

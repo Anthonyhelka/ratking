@@ -14,7 +14,11 @@ public class PauseMenu : MonoBehaviour
   public GameObject SpearRat;
   public GameObject StrikeRat;
   public GameObject BombRat;
+  public GameObject Bomb;
   public GameObject PlagueFly;
+  public GameObject InfectedRat;
+  public GameObject LongWalker;
+  public GameObject InfectedTrap;
 
   void Awake() {
     player = GameObject.Find("Player").GetComponent<Player>();
@@ -99,8 +103,28 @@ public class PauseMenu : MonoBehaviour
     Resume();
   }
 
+  public void SpawnBomb() {
+    GameObject.Instantiate(Bomb, new Vector3(player.transform.position.x + 1.5f, player.transform.position.y + 0.5f, player.transform.position.z), Quaternion.identity);
+    Resume();
+  }
+
   public void SpawnPlagueFly() {
     GameObject.Instantiate(PlagueFly, new Vector3(player.transform.position.x + 1.5f, player.transform.position.y + 0.5f, player.transform.position.z), Quaternion.identity);
+    Resume();
+  }
+
+  public void SpawnInfectedRat() {
+    GameObject.Instantiate(InfectedRat, new Vector3(player.transform.position.x + 1.5f, player.transform.position.y + 0.5f, player.transform.position.z), Quaternion.identity);
+    Resume();
+  }
+
+  public void SpawnLongWalker() {
+    GameObject.Instantiate(LongWalker, new Vector3(player.transform.position.x + 1.5f, player.transform.position.y + 0.5f, player.transform.position.z), Quaternion.identity);
+    Resume();
+  }
+
+  public void SpawnInfectedTrap() {
+    GameObject.Instantiate(InfectedTrap, new Vector3(player.transform.position.x + 1.5f, player.transform.position.y + 0.5f, player.transform.position.z), Quaternion.identity);
     Resume();
   }
 }

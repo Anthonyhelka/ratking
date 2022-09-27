@@ -41,7 +41,8 @@ public class PlayerAbilityState : PlayerState {
     primaryAttackInput = player.InputHandler.PrimaryAttackInput;
     secondaryAttackInput = player.InputHandler.SecondaryAttackInput;
 
-    if (isHurt) {
+    if (isHurt && !player.isDead) {
+      isAbilityDone = true;
       player.isHurt = false;
       stateMachine.ChangeState(player.HurtState);
     } else if (isAbilityDone) {

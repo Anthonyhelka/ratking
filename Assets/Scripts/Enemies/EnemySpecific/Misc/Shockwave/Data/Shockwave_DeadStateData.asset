@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4a678802eacabc47969a3eb134f797c, type: 3}
   m_Name: Shockwave_DeadStateData
   m_EditorClassIdentifier: 
-  deathBloodParticle: {fileID: 0}
+  deathBloodParticle: {fileID: 6144202687935296760, guid: 0f36916cf17d986478220ed6c107dc35,
+    type: 3}
   touchDamage: 0

@@ -51,6 +51,7 @@ public class Player : MonoBehaviour, IDamageable {
 
   // Health
   public bool isHurt;
+  public bool isDead;
   public AttackDetails lastHitAttackDetails;
   public int health;
   public int maxHealth;
@@ -66,6 +67,10 @@ public class Player : MonoBehaviour, IDamageable {
   public AudioSource squeakOneAudio;
   public AudioSource squeakTwoAudio;
   public AudioSource squeakThreeAudio;
+  public AudioSource hurtOneAudio;
+  public AudioSource hurtTwoAudio;
+  public AudioSource deathOneAudio;
+  public AudioSource deathTwoAudio;
   public PlayerInputHandler InputHandler { get; private set; }
   public Core core { get; private set; }
   #endregion
@@ -123,6 +128,7 @@ public class Player : MonoBehaviour, IDamageable {
 
     // Health
     isHurt = false;
+    isDead = false;
     health = playerData.maxHealth;
     maxHealth = playerData.maxHealth;
     GameOverMenu = GameObject.Find("UI").GetComponent<GameOverMenu>();

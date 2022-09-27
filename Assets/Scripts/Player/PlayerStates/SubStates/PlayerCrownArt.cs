@@ -58,7 +58,12 @@ public class PlayerCrownArtState : PlayerAbilityState {
     if (!player.DodgeState.CanDodge()) {
       player.DodgeState.ResetCanDodge();
     }
-
+    if (!player.PrimaryAirAttackState.CanUse()) {
+      player.PrimaryAirAttackState.ResetCanUse();
+    }
+    if (!player.SecondaryAirAttackState.CanUse()) {
+      player.SecondaryAirAttackState.ResetCanUse();
+    }
     isAbilityDone = true;
   }
 

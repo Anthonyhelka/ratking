@@ -17,6 +17,7 @@ public class PlayerInAirState : PlayerState {
   private bool isHurt;
   private bool isJumping;
   private bool coyoteTime;
+  private bool isDead;
 
   public PlayerInAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName) {
   }
@@ -45,7 +46,7 @@ public class PlayerInAirState : PlayerState {
 
     CheckJumpMultiplier();
 
-    if (isHurt) {
+    if (isHurt && !player.isDead) {
       player.isHurt = false;
       stateMachine.ChangeState(player.HurtState);
     } else if (specialInput) {
@@ -61,7 +62,7 @@ public class PlayerInAirState : PlayerState {
       } else {
         player.InputHandler.UseSpecialInput();
       }
-    } else if (primaryAttackInput && player.PrimaryGroundAttackState.CanUse()) {
+    } else if (primaryAttackInput && player.PrimaryAirAttackState.CanUse()) {
       stateMachine.ChangeState(player.PrimaryAirAttackState);
     } else if (secondaryAttackInput && player.SecondaryAirAttackState.CanUse()) {
       stateMachine.ChangeState(player.SecondaryAirAttackState);

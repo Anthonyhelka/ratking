@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSecondaryAirAttackState : PlayerAbilityState {
   public AttackDetails attackDetails;
-  private float lastUseTime;
+  private bool canUse = true;
 
   public PlayerSecondaryAirAttackState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName) {
   }
@@ -13,12 +13,11 @@ public class PlayerSecondaryAirAttackState : PlayerAbilityState {
     base.Enter();
 
     player.EnterCloakState.ResetCloakActive();
+    canUse = false;
   }
 
   public override void Exit() {
     base.Exit();
-
-    lastUseTime = Time.time;
   }
 
   public override void LogicUpdate() {
@@ -72,7 +71,11 @@ public class PlayerSecondaryAirAttackState : PlayerAbilityState {
     Gizmos.DrawWireSphere(player.transform.position, playerData.secondaryAirAttackRadius);
   }
 
+  public void ResetCanUse() {
+    canUse = true;
+  }
+
   public bool CanUse() {
-    return Time.time >= lastUseTime + playerData.secondaryAirAttackCooldown;
+    return canUse;
   }
 }

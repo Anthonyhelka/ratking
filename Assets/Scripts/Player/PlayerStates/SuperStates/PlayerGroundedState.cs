@@ -18,6 +18,7 @@ public class PlayerGroundedState : PlayerState {
 
   private bool isGrounded;
   private bool isHurt;
+  private bool isDead;
 
   public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName) {
   }
@@ -27,6 +28,8 @@ public class PlayerGroundedState : PlayerState {
 
     player.JumpState.ResetAmountOfJumpsLeft();
     player.DashState.ResetCanDash();
+    player.PrimaryAirAttackState.ResetCanUse();
+    player.SecondaryAirAttackState.ResetCanUse();
     player.CrownArtState.ResetCanCrownArt();
     player.JetpackChargeState.ResetCanJetpackCharge();
   }
@@ -50,7 +53,7 @@ public class PlayerGroundedState : PlayerState {
     danceOneInput = player.InputHandler.DanceOneInput;
     danceTwoInput = player.InputHandler.DanceTwoInput;
 
-    if (isHurt) {
+    if (isHurt && !player.isDead) {
       player.isHurt = false;
       stateMachine.ChangeState(player.HurtState);
     } else if (specialInput) {

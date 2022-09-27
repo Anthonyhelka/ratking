@@ -22,6 +22,8 @@ public class PlagueFly_IdleState : IdleState {
 
     if (isPlayerInMinAggroRange) {
       stateMachine.ChangeState(plagueFly.playerDetectedState);
+    } else {
+      core.Movement.SetVelocityZero();
     }
 
     if (isTouchingPlayer) {

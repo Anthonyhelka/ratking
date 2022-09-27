@@ -65,7 +65,7 @@ public class Entity : MonoBehaviour, IDamageable, IKnockbackable {
 
   public virtual bool CheckPlayerInMinAggroRange() {
     Collider2D[] detectedObjectsMinAggroRange = Physics2D.OverlapBoxAll(playerCheck.position, entityData.minAggroDistance, 0.0f, entityData.whatIsPlayer);
-    if (detectedObjectsMinAggroRange.Length > 0 && playerScript.canBeDetected) {
+    if (detectedObjectsMinAggroRange.Length > 0 && playerScript.canBeDetected && !playerScript.isDead) {
       lastPlayerDetectedPosition = detectedObjectsMinAggroRange[0].transform.position;
       return true;
     } else {
@@ -75,7 +75,7 @@ public class Entity : MonoBehaviour, IDamageable, IKnockbackable {
 
   public virtual bool CheckPlayerInMaxAggroRange() {
     Collider2D[] detectedObjectsMaxAggroRange = Physics2D.OverlapBoxAll(playerCheck.position, entityData.maxAggroDistance, 0.0f, entityData.whatIsPlayer);
-    if (detectedObjectsMaxAggroRange.Length > 0 && playerScript.canBeDetected) {
+    if (detectedObjectsMaxAggroRange.Length > 0 && playerScript.canBeDetected && !playerScript.isDead) {
       lastPlayerDetectedPosition = detectedObjectsMaxAggroRange[0].transform.position;
       return true;
     } else {
@@ -84,7 +84,7 @@ public class Entity : MonoBehaviour, IDamageable, IKnockbackable {
   }
 
   public virtual bool CheckPlayerInCloseRangeAction() {
-    return Physics2D.OverlapCircleAll(attackCheck.position, entityData.closeRangeActionDistance, entityData.whatIsPlayer).Length > 0 && playerScript.canBeDetected;
+    return Physics2D.OverlapCircleAll(attackCheck.position, entityData.closeRangeActionDistance, entityData.whatIsPlayer).Length > 0 && playerScript.canBeDetected && !playerScript.isDead;
   }
 
   public virtual bool CheckTouchingPlayer() {
