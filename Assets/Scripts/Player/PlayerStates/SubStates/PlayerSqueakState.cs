@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSqueakState : PlayerAbilityState {
-  private float lastUseTime;
+  public float lastUseTime;
 
   public PlayerSqueakState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationBoolName) : base(player, stateMachine, playerData, animationBoolName) {
   }
@@ -11,17 +11,7 @@ public class PlayerSqueakState : PlayerAbilityState {
   public override void Enter() {
     base.Enter();
 
-    switch(Random.Range(0, 3)) {
-      case 0:
-        player.squeakOneAudio.Play();
-        break;
-      case 1:
-        player.squeakTwoAudio.Play();
-        break;
-      case 2:
-        player.squeakThreeAudio.Play();
-        break;
-    }
+    player.PlaySqueak();
   }
 
   public override void Exit() {
@@ -33,11 +23,8 @@ public class PlayerSqueakState : PlayerAbilityState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (jumpInput || dashInput || specialInput || primaryAttackInput || secondaryAttackInput) {
+    if (xInput != 0 || jumpInput || dashInput || specialInput || primaryAttackInput || secondaryAttackInput) {
       isAbilityDone = true;
-    } else {
-      core.Movement.CheckIfShouldFlip(xInput);
-      core.Movement.SetVelocityX(playerData.movementVelocity * xInput);
     }
   }
 

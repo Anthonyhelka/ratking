@@ -11,6 +11,8 @@ public class PlayerAbilityState : PlayerState {
   protected bool specialInput;
   protected bool primaryAttackInput;
   protected bool secondaryAttackInput;
+  protected bool danceOneInput;
+  protected bool danceTwoInput;
 
   protected bool isAbilityDone;
   protected bool isGrounded;
@@ -40,6 +42,8 @@ public class PlayerAbilityState : PlayerState {
     specialInput = player.InputHandler.SpecialInput;
     primaryAttackInput = player.InputHandler.PrimaryAttackInput;
     secondaryAttackInput = player.InputHandler.SecondaryAttackInput;
+    danceOneInput = player.InputHandler.DanceOneInput;
+    danceTwoInput = player.InputHandler.DanceTwoInput;
 
     if (isHurt && !player.isDead) {
       isAbilityDone = true;

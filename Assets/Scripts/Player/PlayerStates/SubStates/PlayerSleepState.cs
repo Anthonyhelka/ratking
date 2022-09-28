@@ -9,7 +9,7 @@ public class PlayerSleepState : PlayerAbilityState {
   public override void Enter() {
     base.Enter();
 
-    player.Anim.SetInteger("sleepNumber", Random.Range(0, 3));
+    player.Anim.SetInteger("sleepNumber", Random.Range(0, 4));
   }
 
   public override void Exit() {

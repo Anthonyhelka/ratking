@@ -83,3 +83,4 @@ MonoBehaviour:
   maxHealth: 5
   invincibilityTimer: 1
   hurtVelocity: 1.5
+  squeakCooldown: 1

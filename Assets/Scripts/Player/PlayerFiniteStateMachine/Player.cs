@@ -20,6 +20,7 @@ public class Player : MonoBehaviour, IDamageable {
   public PlayerSleepState SleepState { get; private set; }
   public PlayerSqueakState SqueakState { get; private set; }
   public PlayerDanceOneState DanceOneState { get; private set; }
+  public PlayerDanceTwoState DanceTwoState { get; private set; }
   public PlayerHurtState HurtState { get; private set; }
   public PlayerDeadState DeadState { get; private set; }
   // Combat
@@ -100,6 +101,7 @@ public class Player : MonoBehaviour, IDamageable {
     SleepState = new PlayerSleepState(this, StateMachine, playerData, "sleep");
     SqueakState = new PlayerSqueakState(this, StateMachine, playerData, "squeak");
     DanceOneState = new PlayerDanceOneState(this, StateMachine, playerData, "danceOne");
+    DanceTwoState = new PlayerDanceTwoState(this, StateMachine, playerData, "danceTwo");
     HurtState = new PlayerHurtState(this, StateMachine, playerData, "hurt");
     DeadState = new PlayerDeadState(this, StateMachine, playerData, "dead");
 
@@ -161,6 +163,20 @@ public class Player : MonoBehaviour, IDamageable {
 
   private void AnimationFinishTrigger() {
     StateMachine.CurrentState.AnimationFinishTrigger();
+  }
+
+  public void PlaySqueak() {
+    switch(Random.Range(0, 3)) {
+      case 0:
+        squeakOneAudio.Play();
+        break;
+      case 1:
+        squeakTwoAudio.Play();
+        break;
+      case 2:
+        squeakThreeAudio.Play();
+        break;
+    }
   }
   #endregion
 

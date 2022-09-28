@@ -12,6 +12,7 @@ public class PlayerInAirState : PlayerState {
   private bool specialInput;
   private bool primaryAttackInput;
   private bool secondaryAttackInput;
+  private bool squeakInput;
 
   private bool isGrounded;
   private bool isHurt;
@@ -43,6 +44,7 @@ public class PlayerInAirState : PlayerState {
     specialInput = player.InputHandler.SpecialInput;
     primaryAttackInput = player.InputHandler.PrimaryAttackInput;
     secondaryAttackInput = player.InputHandler.SecondaryAttackInput;
+    squeakInput = player.InputHandler.SqueakInput;
 
     CheckJumpMultiplier();
 
@@ -72,6 +74,14 @@ public class PlayerInAirState : PlayerState {
       stateMachine.ChangeState(player.CrownArtState);
     } else if (isGrounded && core.Movement.CurrentVelocity.y < 0.01f) {
       stateMachine.ChangeState(player.LandState);
+    } else if (squeakInput && player.SqueakState.CanSqueak()) {
+      player.InputHandler.UseSqueakInput();
+      if (xInput == 0) {
+        stateMachine.ChangeState(player.SqueakState);
+      } else {
+        player.SqueakState.lastUseTime = Time.time;
+        player.PlaySqueak();
+      }
     } else if (jumpInput && player.JumpState.CanJump()) {
       if (coyoteTime) {
         player.InputHandler.UseJumpInput();

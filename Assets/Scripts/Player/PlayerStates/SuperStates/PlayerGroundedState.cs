@@ -86,10 +86,24 @@ public class PlayerGroundedState : PlayerState {
       stateMachine.ChangeState(player.JumpState);
     } else if (squeakInput && player.SqueakState.CanSqueak()) {
       player.InputHandler.UseSqueakInput();
-      stateMachine.ChangeState(player.SqueakState);
+      if (xInput == 0) {
+        stateMachine.ChangeState(player.SqueakState);
+      } else {
+        player.SqueakState.lastUseTime = Time.time;
+        player.PlaySqueak();
+      }
     } else if (danceOneInput) {
-      player.InputHandler.UseDanceOneInput();
-      stateMachine.ChangeState(player.DanceOneState);
+      if (xInput == 0) {
+        stateMachine.ChangeState(player.DanceOneState);
+      } else {
+        player.InputHandler.UseDanceOneInput();
+      }
+    } else if (danceTwoInput) {
+      if (xInput == 0) {
+        stateMachine.ChangeState(player.DanceTwoState);
+      } else {
+        player.InputHandler.UseDanceTwoInput();
+      }
     } else if (!isGrounded) {
       player.InAirState.StartCoyoteTime();
       stateMachine.ChangeState(player.InAirState);

@@ -17,7 +17,7 @@ public class PlayerDanceOneState : PlayerAbilityState {
   public override void LogicUpdate() {
     base.LogicUpdate();
 
-    if (xInput != 0 || jumpInput || dashInput || specialInput || primaryAttackInput || secondaryAttackInput) {
+    if (xInput != 0 || jumpInput || dashInput || specialInput || primaryAttackInput || secondaryAttackInput || danceTwoInput) {
       isAbilityDone = true;
     }
   }
